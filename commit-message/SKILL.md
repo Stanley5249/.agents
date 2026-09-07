@@ -15,6 +15,7 @@ description: Write and enforce this machine's commit message convention (Convent
 
 ### Branch naming
 
+- Default branch is `main` (`init.defaultBranch` is set globally on this machine). If a repo somehow still starts on `master`, rename it: `git branch -m main`.
 - Code branches: `feat/<topic>`, `fix/<topic>`.
 - Branches for a content/instance rather than code (a talk deck, a play session, a generated artifact run) are **date-prefixed**: `<kind>/<date>-<name>`, e.g. `deck/<group>/<date>-<venue>-<topic>`.
 - Never use a version suffix — no `-v2`, `-final`, `-wip`. Amend or open a fresh dated branch instead.
