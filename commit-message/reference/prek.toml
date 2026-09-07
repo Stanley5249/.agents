@@ -1,0 +1,54 @@
+# prek's native config format (alternative to .pre-commit-config.yaml).
+# Pattern: cheap checks run at commit time, expensive ones are deferred to
+# pre-push so `git commit` stays fast. Comment *why* a check sits where it
+# does -- that staging choice isn't obvious from the config alone.
+
+[[hooks]]
+id = "trailing-whitespace"
+
+[[hooks]]
+id = "end-of-file-fixer"
+
+[[hooks]]
+id = "check-yaml"
+
+[[hooks]]
+id = "check-toml"
+
+[[hooks]]
+id = "check-merge-conflict"
+
+[[hooks]]
+id = "check-added-large-files"
+# exclude generated/asset dirs that legitimately hold large files, e.g.:
+# exclude = "^design/"
+
+# Fast, run on every commit.
+[[hooks]]
+id = "cargo-fmt"
+name = "cargo fmt --check"
+entry = "cargo fmt --check"
+language = "system"
+pass_filenames = false
+
+# Slow -- deferred to pre-push so commits stay fast.
+[[hooks]]
+id = "cargo-clippy"
+name = "cargo clippy"
+entry = "cargo clippy --all-targets -- -D warnings"
+language = "system"
+pass_filenames = false
+stages = ["pre-push"]
+
+[[hooks]]
+id = "cargo-doc"
+name = "cargo doc"
+entry = "cargo doc --no-deps"
+language = "system"
+pass_filenames = false
+stages = ["pre-push"]
+# env: RUSTDOCFLAGS=-D warnings
+
+# Install both stages:
+#   prek install
+#   prek install --hook-type pre-push

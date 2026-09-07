@@ -1,0 +1,14 @@
+# Add this repo entry to .pre-commit-config.yaml (create the file if the
+# repo doesn't have one yet). Pin `rev` to the hook repo's latest release
+# tag at setup time -- check https://github.com/compilerla/conventional-pre-commit/releases
+# rather than reusing a version pinned here, since this file isn't kept in sync with releases.
+repos:
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: REPLACE_WITH_LATEST_TAG
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+
+# Install the hook (prek is preferred on this machine; pre-commit works identically):
+#   prek install --hook-type commit-msg
+#   # or: pre-commit install --hook-type commit-msg
