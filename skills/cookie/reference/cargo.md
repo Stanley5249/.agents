@@ -26,10 +26,6 @@ channel = "stable"
 components = ["rustfmt", "clippy"]
 ```
 
-## TOML formatting
-
-Use `tombi` (`tombi.toml`).
-
 ## Hooks
 
 Stage `cargo fmt --check` as a cheap commit-time check and `cargo clippy --workspace --all-targets -- -D warnings` / `cargo doc --workspace` (with `RUSTDOCFLAGS=-D warnings`) as the expensive pre-push checks.
