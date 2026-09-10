@@ -42,9 +42,8 @@ file it needs instead of the whole skill upfront.
   Commits, concise body) and how to enforce it with a hook. Reference files:
   `commit-msg-hook.sh` (zero-dependency fallback), `pre-commit-config.yaml`
   and `prek.toml` (preferred enforcement path).
-- **git-bash** — token-efficient Git Bash usage on Windows: MSYS path quirks,
-  batching/silencing commands.
-- **pwsh** — same idea for PowerShell: syntax traps, batching, quiet flags.
+- **windows-shell** — efficient Git Bash and PowerShell usage on Windows,
+  including syntax differences, path handling, batching, and output control.
 - **bibo** — communication style, editing behavior, and ongoing development
   preferences such as when to consider modularizing large files or crowded
   modules.

@@ -42,5 +42,4 @@ Re-run version checks and refresh this table when it looks stale rather than tru
 - Read `~/.agents/skills/cookie/SKILL.md` when scaffolding or auditing a project, or when introducing development tooling and conventions such as command runners, linting, formatting, CI, hooks, package managers, agent instruction files, or agent-specific conventions.
 - Read `~/.agents/skills/commit-message/SKILL.md` before creating a Git commit or when configuring commit-message enforcement.
 - Read `~/.agents/skills/ffmpeg/SKILL.md` before inspecting, converting, encoding, or implementing workflows around audio or video with ffmpeg.
-- Read `~/.agents/skills/git-bash/SKILL.md` before running Git Bash commands on Windows.
-- Read `~/.agents/skills/pwsh/SKILL.md` before running PowerShell commands or writing PowerShell-based automation.
+- Read `~/.agents/skills/windows-shell/SKILL.md` before running Git Bash or PowerShell commands on Windows, or writing shell-based Windows automation.
