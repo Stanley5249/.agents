@@ -12,7 +12,6 @@
 ## Release automation (only when the project ships releases)
 
 - `deny.toml` + `cargo-deny` for dependency/license/advisory checks
-- `git-cliff` for changelog generation from conventional-commit history
 - `release-plz` for automated version bumping and release PRs
 
 None of this is the right default for a personal/WIP project — add it only when the project is actually released.
@@ -33,8 +32,10 @@ Use `tombi` (`tombi.toml`).
 
 ## Hooks
 
-Stage `cargo fmt --check` as a cheap commit-time check and `cargo clippy` / `cargo doc` (with `RUSTDOCFLAGS=-D warnings`) as the expensive pre-push checks. See the `commit-message` skill for how to wire up the hook manager itself (`prek`, or `cocogitto` for a pure-cargo repo).
+Stage `cargo fmt --check` as a cheap commit-time check and `cargo clippy --workspace --all-targets -- -D warnings` / `cargo doc --workspace` (with `RUSTDOCFLAGS=-D warnings`) as the expensive pre-push checks.
 
 ## Justfile
 
-Recurring recipe names: `build`, `test`, `check` (`cargo check` / `cargo clippy`), `format`/`fmt`, `ci` composing the above. For a cargo+bun desktop app (Tauri/Dioxus with a `web/` frontend), combine with `reference/bun.md` — one justfile, recipes for both sides. See `reference/justfile.md` for the baseline Windows shell block and naming/lint-split conventions this follows.
+Recurring recipe names: `build`, `check` (`cargo check --workspace --all-targets`), `format`/`fmt`, `test`, `ci` composing the above; fold `cargo clippy --workspace --all-targets -- -D warnings` into `check` or a separate `lint`.
+
+`--all-targets` also covers tests, benches, and examples for `check`/`clippy`, but `cargo test --all-targets` silently skips doctests — run `cargo test --workspace` without it, or add `--doc` alongside, when the project has doctests worth covering.

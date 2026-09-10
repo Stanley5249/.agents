@@ -24,4 +24,4 @@ Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when u
 
 ## Justfile
 
-Keep commands out of `package.json` scripts and invoke local executables directly. `install`, `format`, `lint`, `lint-all`, and `test` are bun-driven regardless of framework (`bun install`, `bunx prettier`, `bun test`); `dev`, `check`, and `build` depend on the frontend tooling in use (Vite, SvelteKit, or otherwise) and aren't a bun convention. See `reference/justfile.md` for the baseline Windows shell block and naming/lint-split conventions.
+Keep commands out of `package.json` scripts and invoke local executables directly. `install`, `format`, `lint` (and `lint-all`, if the project splits diff-only from full-sweep linting), and `test` are bun-driven regardless of framework (`bun install`, `bunx prettier`, `bun test`); `dev`, `check`, and `build` depend on the frontend tooling in use (Vite, SvelteKit, or otherwise) and aren't a bun convention.

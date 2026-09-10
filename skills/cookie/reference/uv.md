@@ -11,4 +11,4 @@
 
 ## justfile
 
-Script- and library-shaped uv projects get no justfile; bare `uv run pytest` and `uv run ruff check` are enough. When an application grows multiple entry points or a composed CI gate, read `reference/justfile.md`.
+Script- and library-shaped uv projects get no justfile; bare `uv run pytest` and `uv run ruff check` are enough. Add one only when an application grows multiple entry points or needs a composed CI gate.
