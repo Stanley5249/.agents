@@ -1,28 +1,40 @@
 ---
 name: cookie
-description: Scaffold, audit, or extend a project's package-manager setup, lint/formatter choice, justfile command surface, and CI/hook wiring. Use when starting a new project, adding a language/toolchain to an existing one, or asked to set up linting, formatting, or CI for a cargo, uv, bun, or pixi project.
+description: Project-setup guidance useful for scaffolding, audits, toolchains, formatting, CI, hooks, and agent conventions.
 ---
 
-## Decision tree
+## Scope
 
-Detect the package manager from the repo (or ask if starting fresh), then read only the matching reference file:
+Cookie covers project setup and tooling conventions. `bibo` covers communication style and ongoing development preferences.
+
+## Quick index
+
+- Package manager or language toolchain: detect it from the repository, then read only the matching reference below.
+- Justfile, formatter, linter, CI, or hooks: see **Cross-cutting conventions**, **First commit checklist**, and **Hooks and CI**.
+- `AGENTS.md`, `CLAUDE.md`, or Claude conventions: see **Agent instruction files**.
+- Project README structure: see **README convention**.
+
+Package-manager references:
 
 - Rust workspace or crate -> `reference/cargo.md`
 - Python project -> `reference/uv.md`
 - JS/TS project, especially Svelte -> `reference/bun.md`
 - Multi-language or native/GPU-dependency-heavy project -> `reference/pixi.md`
 
-A project can combine two (cargo+bun for a Tauri/Dioxus desktop app, cargo+uv for a Rust core with a Python harness) — read both reference files.
+A project can combine two, such as cargo+bun for a Tauri/Dioxus desktop app or cargo+uv for a Rust core with a Python harness. Read both reference files.
 
 ## Cross-cutting conventions
 
 These hold across every package manager on this machine:
 
-- **justfile is the command surface, not the package manager's own script field.** `package.json` holds only `dependencies`/`devDependencies`, no `scripts`. Every command — install, dev, format, lint, check, test, build — is a `just` recipe.
+- **When a project warrants a justfile, make it the command surface.** Put recurring install, dev, format, lint, check, test, and build commands there. Small script- or library-shaped projects can use their package manager directly until they need a composed command surface.
+- **Keep JavaScript commands out of `package.json` scripts when a justfile is present.** Store dependencies there, and have recipes invoke local executables directly.
 - **Windows shell line first.** Every justfile here opens with:
   ```
   [windows]
   set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
+
+  set default-list
   ```
 - **A `ci` recipe composes the others as the merge gate**, e.g. `ci: lint check build` or `ci: lint-all check build`. Personal projects here usually have no `.github/workflows` — `just ci` run locally _is_ the gate. Add GitHub Actions only when the project is shared, has releases to automate, or the user asks.
 - **Split fast local lint from full-sweep lint**: `lint` checks only `git diff` + untracked files; `lint-all` sweeps the repo and is what `ci` calls.
@@ -58,7 +70,7 @@ Two shapes, chosen by whether the project has external users. Don't apply the he
 **Personal/WIP project**: terse, no badges.
 
 - `# Title`, optionally a one-line description under it.
-- `## Setup` or `## Commands` — install and run, phrased as justfile recipes (`just install`, `just dev`, `just ci`), not raw commands.
+- `## Setup` or `## Commands` — install and run through the project's command surface. Use justfile recipes such as `just install`, `just dev`, and `just ci` when the project has them.
 - Domain-specific sections only where behavior isn't obvious from the code.
 - `## Documentation` linking to `docs/*.md` (design, architecture, roadmap, troubleshooting) rather than growing the README.
 - `## Status` — what's done vs. not, while the project is mid-flight.
@@ -75,14 +87,14 @@ Two shapes, chosen by whether the project has external users. Don't apply the he
 
 ## Agent instruction files
 
-- **`AGENTS.md` is the single source of truth.** `CLAUDE.md` is a one-line pointer to it (`@AGENTS.md`), not a second copy.
-- **Monorepo: nest, don't duplicate.** The root `AGENTS.md` is a thin index linking out (`@catalog/AGENTS.md`, `@web/AGENTS.md`) to each subproject's full file. Never copy subproject detail upward. Nest one layer deeper for content/instance-specific rules that don't belong in the app's own file.
-- **Split a file that outgrows a page by topic** — `.claude/rules/ci.md`, `rust.md`, `cross-platform.md`, one topic per file, referenced from the root. Only once the single file is actually hard to scan; don't pre-split a new project.
+- **`AGENTS.md` is the single source of truth.** `CLAUDE.md` imports it with the one-line `@AGENTS.md` syntax instead of copying its contents. Prefer symbolic links for shared skills, data directories, and other paths that do not support an import mechanism.
+- **Monorepo: nest, don't duplicate.** The root `AGENTS.md` is a thin index directing agents to each subproject's file, such as `catalog/AGENTS.md` and `web/AGENTS.md`. Never copy subproject detail upward. Nest one layer deeper for content- or instance-specific rules that don't belong in the app's own file.
+- **Split a file that outgrows a page by topic** — `.agents/rules/ci.md`, `rust.md`, or `cross-platform.md`, one topic per file and referenced from the root. Only split once the single file is actually hard to scan; don't pre-split a new project.
 - **`.agents/` is the durable, tool-agnostic layer** — a living `backlog.md` (first-person, priority-ordered, written _to_ whichever agent picks it up next) and per-feature `plans/*.md` design docs live here. `.claude/` and `.codex/` stay ephemeral scratch and session state; anything meant to survive a switch of coding agent, including a shared `skills/` directory those dirs symlink into, belongs under `.agents/`.
 
 ## Hooks and CI: detect before you build
 
-Projects here carry no commit hook or pre-commit manager by default. When one is needed (asked for, or a shared/team repo):
+Projects here carry no commit hook or pre-commit manager by default. Add one only when requested, when hardening a shared repository, or when extending hooks the project already uses:
 
 1. Check for an existing hook manager — `.pre-commit-config.yaml`, `.husky/`, `lefthook.yml`. If one exists, add to it.
 2. Check whether the environment exposes a skill or CLI for wiring this up (e.g. a settings/hook-config helper); use it rather than hand-rolling.

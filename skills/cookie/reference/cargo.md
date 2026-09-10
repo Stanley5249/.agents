@@ -3,13 +3,11 @@
 ## Layout
 
 - Workspace shape: a `crates/` directory of members, or sibling member directories listed in the root `Cargo.toml`'s `[workspace] members`. Start with a workspace even when single-crate, if a second crate is plausible later (e.g. a `-core` / `-cli` split) — restructuring later is more disruptive.
-- Never use a git worktree for a Rust project — a new worktree triggers a fresh `target/` build.
 
 ## Lint/format
 
 - `clippy.toml` is tailored per project, not copied from a shared baseline. Typical knobs: `msrv`, `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`, `missing-docs-in-crate-items`. Pick what the project needs; don't cargo-cult a full list.
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated reason.
-- Install CLI tools with `cargo binstall`.
 
 ## Release automation (only when the project ships releases)
 

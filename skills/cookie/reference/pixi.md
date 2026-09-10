@@ -8,7 +8,6 @@ Pixi is for multi-language or native/GPU-dependency-heavy projects — e.g. a ca
 
 - `pixi.toml` at the root, `.pixi/` holds the resolved environment (gitignore it).
 - Can wrap a full cargo workspace (multiple member crates) in a single pixi environment — pixi manages the native toolchain/GPU deps, cargo still manages the Rust build inside it.
-- Install CLI tools with `pixi global install`, preferred over `uv tool install`/`winget install`/`cargo binstall` for anything pixi packages.
 
 ## Lint/format/justfile
 

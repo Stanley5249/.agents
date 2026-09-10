@@ -3,7 +3,7 @@
 ## Layout
 
 - `pyproject.toml` + `uv.lock`. Pin `.python-version` at the repo root.
-- Run Python with `uv run python`. Install CLI tools globally with `uv tool install`, not `pip install --user` or a loose venv.
+- Run project Python commands with `uv run python`. Do not use `pip install --user` or create a loose virtual environment.
 
 ## Lint/format
 

@@ -1,6 +1,6 @@
 ---
 name: pwsh
-description: Token-efficient PowerShell on Windows. Use when running pwsh commands to batch checks, silence noisy CLI tools, and slice output.
+description: PowerShell guidance useful for efficient Windows commands, syntax, batching, and output control.
 ---
 
 # PowerShell token efficiency
@@ -12,12 +12,12 @@ Shell calls run in `pwsh`. Each call is a fresh process; working directory carri
 - Variables require `$env:NAME`, not `$NAME`.
 - Redirection to `/dev/null` fails. Use `> $null` or `Out-Null`.
 - Heredocs and POSIX flags fail. Use `Remove-Item -Recurse -Force` instead of `rm -rf`.
-- Missing binaries trigger cmdlet errors. Use runners like `bunx <tool>` directly instead of probing PATH.
 
 ## Batching and silencing noise
 
 Roundtrips and noisy output waste context. Chain steps into one call, run in quiet mode, and discard unneeded output.
 
+- Use the coding harness's precise edit tool for normal changes. For large-scale mechanical edits, or when only PowerShell is available, use a reviewed scripted replacement and inspect the diff afterward.
 - Favor quiet flags such as `-q`, `-s`, or `--silent`. Redirect discarded streams to `> $null`.
 - Chain multiple checks with `;` or `&&`. Separate them with `---` labels:
   ```powershell

@@ -1,6 +1,6 @@
 ---
 name: git-bash
-description: Token-efficient Git Bash on Windows. Use when running bash commands to batch checks, silence noisy CLI tools, and slice output.
+description: Git Bash guidance useful for efficient Windows shell commands, path handling, and output control.
 ---
 
 # Git Bash token efficiency
@@ -17,7 +17,7 @@ Shell calls run in MSYS2 bash (`/usr/bin/bash`). Each call is a fresh subshell; 
 
 Roundtrips and verbose CLI output waste context. Chain commands into one call, run quiet mode, and edit in place.
 
-- Use `sed -i 's/old/new/g' path` for direct edits instead of reading and rewriting entire files through file tools.
+- Use the coding harness's precise edit tool for normal changes. For large-scale mechanical edits, or when only a shell is available, use a reviewed `sed` command and inspect the diff afterward.
 - Prefer quiet flags such as `-q`, `-s`, or `--silent`. Discard unneeded output with `> /dev/null 2>&1`.
 - Chain checks with `;` or `&&`. Separate sections with `---` headers:
   ```bash

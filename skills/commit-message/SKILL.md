@@ -1,6 +1,6 @@
 ---
 name: commit-message
-description: Write and enforce this machine's commit message convention (Conventional Commits, concise body). Use whenever creating a git commit, or when asked to set up commit message checking/enforcement for a repo.
+description: Conventional Commit guidance useful when preparing commits or configuring message enforcement.
 ---
 
 ## Convention
@@ -8,9 +8,11 @@ description: Write and enforce this machine's commit message convention (Convent
 - `type(scope): imperative summary` — Conventional Commits. Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Add `!` before the colon for a breaking change.
 - **Scope = an existing top-level directory name — never invent one.** Omit the scope for a repo-wide change.
 - Body is the exception, not the rule — most commits here are a single-line subject. When one is needed: at most 2 sections or 5 bullet lines.
-- Amend for an immediate fix to the last commit rather than stacking a `fix typo` commit. Small, individually reviewable commits otherwise. Commit outside `main` by default, ask before merging back.
+- Amend for an immediate fix to the last commit rather than stacking a `fix typo` commit. Prefer coherent commits over artificially small ones; batch related, non-conflicting changes, then format and test the batch once. Commit outside `main` by default, ask before merging back.
 - Never let a stray token (an accidental `@mention`, a pasted co-author tag) precede the `type:` in the subject — the most common real failure mode, and what `reference/commit-msg-hook.sh` catches.
-- **Check `git status` before committing.** Add any newly generated or data directory to `.gitignore` as part of the commit rather than letting it slip in.
+- **Before every commit, run the project formatter and full CI gate.** If either is unavailable, run the closest equivalent verification. Do not commit with failed checks.
+- **Check `git status` before committing.** Review every untracked generated or data path, and ignore it when it is local-only rather than letting it slip into the commit.
+- Do not commit files under `.claude/`, `.codex/`, `.pi/`, or similar tool-local directories unless the repository intentionally tracks that integration.
 - **This is the machine default, not a hard rule.** A stricter project convention wins — e.g. Angular-style: mandatory body except for `docs` commits, project-specific scopes, 72-column body wrap, `BREAKING CHANGE`/`Fixes`/`NEXT` footers. Check for a `.github/prompts/commit-message.prompt.md` or similar project-local override first.
 
 ### Branch naming
@@ -20,9 +22,9 @@ description: Write and enforce this machine's commit message convention (Convent
 - Branches for a content/instance rather than code (a talk deck, a play session, a generated artifact run) are **date-prefixed**: `<kind>/<date>-<name>`, e.g. `deck/<group>/<date>-<venue>-<topic>`.
 - Never use a version suffix — no `-v2`, `-final`, `-wip`. Amend or open a fresh dated branch instead.
 
-## Enforcement: prefer a hook over remembering to check
+## Enforcement when a repository needs it
 
-Repos here generally carry **no commit-message hook** — the convention above is followed by habit, with nothing rejecting a bad message. When you're making the commit, or asked to harden a repo, set up real enforcement instead of self-checking each time:
+Repositories here generally carry no commit-message hook. Validate ordinary commits against the convention above without adding one. Configure enforcement when the user asks, when hardening a shared repository, or when the project already uses managed hooks:
 
 1. **Check for an existing hook manager first** — `.pre-commit-config.yaml` (run by either `prek` or `pre-commit`), `.husky/`, `lefthook.yml`. If the repo has one, add a commit-msg stage to it rather than installing a second mechanism alongside it.
 2. **Otherwise, prefer `prek` running the `conventional-pre-commit` hook** — see `reference/pre-commit-config.yaml`. `prek` (github.com/j178/prek) is a Rust-native, single-binary, drop-in replacement for `pre-commit` reading the same `.pre-commit-config.yaml`; standardize on it rather than mixing the two across projects, and fall back to plain `pre-commit` only where `prek` isn't available. `conventional-pre-commit` only inspects the commit message text, so it validates the same way in a cargo, uv, bun, or pixi repo without forcing a Node or Python toolchain onto a repo that doesn't otherwise need one — unlike `commitlint` (npm) or `gitlint` (pip).

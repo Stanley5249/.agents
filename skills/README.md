@@ -19,13 +19,13 @@ Each skill is a directory:
 ```yaml
 ---
 name: <name>
-description: <what it does and when to use it>
+description: <what it does and when it may be useful>
 ---
 ```
 
-`description` is what an agent matches against to auto-trigger the skill —
-write it as a trigger condition ("use when..."), not a summary. The body
-holds the actual instructions.
+`description` is a concise summary with a soft discovery condition. Put exact
+loading conditions in `~/.agents/AGENTS.md`, while the skill body holds the
+actual instructions.
 
 If a skill has enough detail that dumping it all upfront would waste context,
 split the long tail into `reference/*.md` files and have `SKILL.md` point to
@@ -34,22 +34,26 @@ file it needs instead of the whole skill upfront.
 
 ## What's here
 
-- **cookie** — scaffolding/audit conventions for a project's package manager,
-  lint/formatter choice, justfile surface, and CI/hook wiring. Reference
-  files per package manager: `cargo.md`, `uv.md`, `bun.md`, `pixi.md`.
-- **commit-message** — this machine's commit message convention (Conventional
+- **cookie** — project-setup index for package managers, justfiles,
+  lint/formatter choices, CI/hooks, and agent conventions such as `AGENTS.md`
+  and `CLAUDE.md`. Reference files per package manager: `cargo.md`, `uv.md`,
+  `bun.md`, `pixi.md`.
+- **commit-message** — the user's commit message convention (Conventional
   Commits, concise body) and how to enforce it with a hook. Reference files:
   `commit-msg-hook.sh` (zero-dependency fallback), `pre-commit-config.yaml`
   and `prek.toml` (preferred enforcement path).
 - **git-bash** — token-efficient Git Bash usage on Windows: MSYS path quirks,
   batching/silencing commands.
 - **pwsh** — same idea for PowerShell: syntax traps, batching, quiet flags.
-- **bibo** — conversation tone and formatting: reading level, structure,
-  when to edit a file directly vs. preview first.
+- **bibo** — communication style, editing behavior, and ongoing development
+  preferences such as when to consider modularizing large files or crowded
+  modules.
 
-`cookie`, `commit-message`, and `bibo` are all symlinked into
-`~/.claude/skills/` so Claude Code picks them up; the files here are the
-source of truth, not a copy.
+Link skills into each agent's skill-discovery directory instead of copying
+them. Prefer symbolic links; use junctions only as a fallback when symbolic
+links are not practical. For instruction files with an import mechanism, such
+as Claude's `@AGENTS.md` syntax, prefer an import over a symlink. The files here
+are the source of truth.
 
 ## Using an existing skill from another agent tool
 

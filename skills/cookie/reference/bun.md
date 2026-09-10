@@ -4,7 +4,7 @@ The most consistent pattern on this machine. Existing bun projects follow it nea
 
 ## Layout
 
-- `bun.lock`, no `package-lock.json`/`yarn.lock`. Prefer bun, then deno, then node/npm.
+- `bun.lock`, no `package-lock.json` or `yarn.lock`.
 - `package.json` holds only `dependencies`/`devDependencies` — **no `scripts` field**.
 
 ## justfile
@@ -21,7 +21,7 @@ install:
     bun install
 
 dev:
-    bun run dev
+    bunx vite dev
 
 format:
     bunx prettier --write .
@@ -39,7 +39,7 @@ test:
     bun test
 
 build:
-    bun run build
+    bunx vite build
 
 ci: lint-all check build
 ```
