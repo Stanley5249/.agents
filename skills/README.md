@@ -48,6 +48,8 @@ file it needs instead of the whole skill upfront.
 - **bibo** — communication style, editing behavior, and ongoing development
   preferences such as when to consider modularizing large files or crowded
   modules.
+- **ffmpeg** — this machine's hardware encoder choice (QSV/Arc iGPU), the
+  proven AV1/Opus command line, and known Windows path gotchas.
 
 Link skills into each agent's skill-discovery directory instead of copying
 them. Prefer symbolic links; use junctions only as a fallback when symbolic
