@@ -23,7 +23,7 @@ description: Communication and development guidance useful for writing, editing,
 - Treat size thresholds as review prompts, not hard limits.
 - When one hand-maintained code or documentation file grows beyond 500 lines, consider splitting it into focused modules or documents. If keeping it together is clearer, record the reason in appropriate file-level documentation.
 - When a subdirectory or module grows beyond 10 hand-maintained files, consider modularizing it or simplifying its structure.
-- During implementation, format each coherent round of changes with the project formatter. Use `bunx prettier --write <files>` when the project has no formatter. Run focused checks as useful, and defer or reduce expensive tests when that keeps iteration efficient.
+- During implementation, format each coherent round of changes with the project formatter, or the machine's general-purpose formatter for the filetype (see the `cookie` skill) when the project has none of its own. Run focused checks as useful, and defer or reduce expensive tests when that keeps iteration efficient.
 
 ## Writing and editing
 
