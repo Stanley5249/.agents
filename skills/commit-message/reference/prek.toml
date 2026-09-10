@@ -35,19 +35,19 @@ pass_filenames = false
 [[hooks]]
 id = "cargo-clippy"
 name = "cargo clippy"
-entry = "cargo clippy --all-targets -- -D warnings"
+entry = "cargo clippy --workspace --all-targets -- -D warnings"
 language = "system"
 pass_filenames = false
 stages = ["pre-push"]
 
+# sh -c because RUSTDOCFLAGS is an env var and hook entries are not shell strings.
 [[hooks]]
 id = "cargo-doc"
 name = "cargo doc"
-entry = "cargo doc --no-deps"
+entry = "sh -c 'RUSTDOCFLAGS=\"-D warnings\" cargo doc --workspace --no-deps'"
 language = "system"
 pass_filenames = false
 stages = ["pre-push"]
-# env: RUSTDOCFLAGS=-D warnings
 
 # Install both stages:
 #   prek install
