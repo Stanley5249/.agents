@@ -9,7 +9,7 @@ The most consistent pattern on this machine.
 
 ## Lint and format
 
-Prettier is the universal formatter; ESLint is not used here. Standard config:
+Standard config:
 
 ```json
 {

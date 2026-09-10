@@ -24,6 +24,7 @@ A project can combine package-manager references, such as cargo+bun for a deskto
 ## Core conventions
 
 - Format TOML files with `tombi` (`tombi.toml`), regardless of package manager — it covers `Cargo.toml`, `pyproject.toml`, `pixi.toml`, and its own config alike.
+- Format JS, TS, CSS, HTML, JSON, YAML, and Markdown with `bunx prettier` wherever those filetypes appear — ESLint is not used here. See `reference/bun.md` for the standard config and framework plugins.
 - Match an existing same-shape project instead of introducing a new pattern without reason.
 - Write an `AGENTS.md` encoding these conventions when scaffolding a new project.
 - Use `user/` for local, gitignored runtime data such as databases or application state.
