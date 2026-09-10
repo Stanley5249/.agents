@@ -16,14 +16,17 @@ not have matching GPU hardware here.
 The proven baseline for re-encoding existing video (not primary capture):
 
 ```
-ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:v fast -global_quality:v <q> -look_ahead_depth:v 40 -extbrc:v 1 -adaptive_i:v 1 -adaptive_b:v 1 -g:v 120 -c:a libopus -vbr:a on -b:a 64k <target.mkv>
+ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:v fast -global_quality:v <q> -g:v 120 -c:a libopus -vbr:a on -b:a <bitrate> <target.mkv>
 ```
 
 - `-global_quality:v` scales with source resolution, not a fixed number: 26
   at 4K, 28 at 1080p, 30/32/34 down to 480p. Lower = higher quality. 28 is
   the 1080p figure — don't reuse it at other resolutions unchecked.
-- `-b:a 64k` fits dialogue-heavy video. Raise it for music-heavy or
-  multichannel sources.
+- `-b:a` scales with channel count, not a fixed number: 48k per channel
+  (96k for stereo). Raise it further for music-heavy sources.
+- `-look_ahead_depth:v`, `-extbrc:v`, `-adaptive_i:v`, `-adaptive_b:v` are QSV
+  tunables to try when quality needs a push, not defaults to set upfront —
+  leave them unset until a specific source justifies measuring them.
 - Use Matroska or WebM for AV1 with Opus unless the requested playback target
   has confirmed support for that combination in another container.
 - This is a starting point, "not always the exact setup we want" — expect
