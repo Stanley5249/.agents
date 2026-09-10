@@ -8,6 +8,7 @@
 ## Lint/format
 
 - `ruff` is the only Python lint/format tool here — no black, isort, or flake8. Its defaults are usually enough; the one common addition is `[tool.ruff.lint] extend-select = ["I"]` for import sorting. Don't configure more rules than the project asked for.
+- For type checking, follow whatever the project or editor already has configured (`ty`, `basedpyright`, or another LSP); default to `pyrefly` when none is set up yet.
 
 ## justfile
 
