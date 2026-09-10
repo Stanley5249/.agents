@@ -6,7 +6,7 @@ description: Conventional Commit guidance useful when preparing commits or confi
 ## Convention
 
 - `type(scope): imperative summary` — Conventional Commits. Common types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`. Add `!` before the colon for a breaking change.
-- **Scope = an existing top-level directory name — never invent one.** Omit the scope for a repo-wide change.
+- **Scope = an existing directory or crate/package name — never invent one.** Use the top-level directory in a flat repo; in a multi-crate workspace, the crate/package name (e.g. `hidpp`, not its full `crates/openlogi-hidpp` path) is the scope. Omit the scope for a repo-wide change.
 - Body is the exception, not the rule — most commits here are a single-line subject. When one is needed: at most 2 sections or 5 bullet lines.
 - Amend for an immediate fix to the last commit rather than stacking a `fix typo` commit. Commit outside `main` by default, ask before merging back.
 - **Size a commit by reviewable unit, not by diff size.** Batch several small, related changes into one commit, run the formatter/CI gate once on the batch, then commit. Split a large change into feature-sized commits when each piece stands alone — it builds, passes CI, and reviews sensibly in isolation. A single-purpose wiring or refactor commit (a rename across call sites, threading a new parameter, an API migration) often can't be split that way: the intermediate states don't build or don't mean anything on their own. Let a commit like that run past the usual size instead of chopping it into broken partial commits.
@@ -19,7 +19,7 @@ description: Conventional Commit guidance useful when preparing commits or confi
 ### Branch naming
 
 - Default branch is `main` (`init.defaultBranch` is set globally on this machine). If a repo somehow still starts on `master`, rename it: `git branch -m main`.
-- Code branches: `feat/<topic>`, `fix/<topic>`.
+- Code branches: `<type>/<topic>` using a Conventional Commit type — `feat/<topic>`, `fix/<topic>`, `refactor/<topic>`, `chore/<topic>`, and so on.
 - Branches for a content/instance rather than code (a talk deck, a play session, a generated artifact run) are **date-prefixed**: `<kind>/<date>-<name>`, e.g. `deck/<group>/<date>-<venue>-<topic>`.
 - Never use a version suffix — no `-v2`, `-final`, `-wip`. Amend or open a fresh dated branch instead.
 
