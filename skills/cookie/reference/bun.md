@@ -1,65 +1,27 @@
 # bun projects
 
-The most consistent pattern on this machine. Existing bun projects follow it near-identically; read the `AGENTS.md` of one when scaffolding the same shape.
+The most consistent pattern on this machine.
 
 ## Layout
 
-- `bun.lock`, no `package-lock.json` or `yarn.lock`.
-- `package.json` holds only `dependencies`/`devDependencies` — **no `scripts` field**.
+- Use `bun.lock`, with no `package-lock.json` or `yarn.lock`.
+- Keep `package.json` to `dependencies` and `devDependencies`, with no `scripts` field when a justfile provides the command surface.
 
-## justfile
+## Lint and format
 
-Windows shell line first, then one command per recipe (avoid multi-line shell blocks in a recipe body — comment why if you must):
+Prettier is the universal formatter; ESLint is not used here. Standard config:
 
-```
-[windows]
-set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
-
-set default-list
-
-install:
-    bun install
-
-dev:
-    bunx vite dev
-
-format:
-    bunx prettier --write .
-
-lint:
-    bunx prettier --check $(git diff --name-only --diff-filter=d; git ls-files --others --exclude-standard)
-
-lint-all:
-    bunx prettier --check .
-
-check:
-    bunx svelte-check
-
-test:
-    bun test
-
-build:
-    bunx vite build
-
-ci: lint-all check build
+```json
+{
+  "useTabs": true,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "printWidth": 100
+}
 ```
 
-Keep the `lint` (diff-only) vs `lint-all` (full sweep, used by `ci`) split.
+Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when using Tailwind. For a Svelte project, use `svelte-check` for type checking, separate from formatting and tests.
 
-## Lint/format
+## Justfile
 
-- **Prettier is the universal formatter; ESLint is not used here.** Standard config:
-  ```json
-  {
-    "useTabs": true,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "printWidth": 100
-  }
-  ```
-  Always add `prettier-plugin-svelte` for a Svelte project (Svelte is the default frontend choice here), and `prettier-plugin-tailwindcss` when Tailwind is in use.
-- `svelte-check` is the type check the `check` recipe runs, distinct from `lint` (formatting) and `test`.
-
-## CI
-
-No `.github/workflows` — locally run `just ci` is the gate, unless the project is shared or the user asks.
+Keep commands out of `package.json` scripts and invoke local executables directly. `install`, `format`, `lint`, `lint-all`, and `test` are bun-driven regardless of framework (`bun install`, `bunx prettier`, `bun test`); `dev`, `check`, and `build` depend on the frontend tooling in use (Vite, SvelteKit, or otherwise) and aren't a bun convention. See `reference/justfile.md` for the baseline Windows shell block and naming/lint-split conventions.

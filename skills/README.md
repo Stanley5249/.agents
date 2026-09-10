@@ -34,10 +34,9 @@ file it needs instead of the whole skill upfront.
 
 ## What's here
 
-- **cookie** — project-setup index for package managers, justfiles,
-  lint/formatter choices, CI/hooks, and agent conventions such as `AGENTS.md`
-  and `CLAUDE.md`. Reference files per package manager: `cargo.md`, `uv.md`,
-  `bun.md`, `pixi.md`.
+- **cookie** — project-setup index for package managers, justfiles, CI/hooks,
+  repository metadata, and agent conventions. Details are split into focused
+  files under `reference/`.
 - **commit-message** — the user's commit message convention (Conventional
   Commits, concise body) and how to enforce it with a hook. Reference files:
   `commit-msg-hook.sh` (zero-dependency fallback), `pre-commit-config.yaml`

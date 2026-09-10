@@ -11,4 +11,4 @@
 
 ## justfile
 
-Script- and library-shaped uv projects get **no justfile** — bare `uv run pytest`, `uv run ruff check` is enough. Add one only when the project grows real surface (multiple entry points, a `ci` gate); that's app-shaped, so follow the recipe naming in `reference/bun.md` (`install`/`dev`/`format`/`lint`/`check`/`test`/`ci`).
+Script- and library-shaped uv projects get no justfile; bare `uv run pytest` and `uv run ruff check` are enough. When an application grows multiple entry points or a composed CI gate, read `reference/justfile.md`.

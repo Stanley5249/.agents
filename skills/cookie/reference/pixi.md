@@ -11,4 +11,4 @@ Pixi is for multi-language or native/GPU-dependency-heavy projects — e.g. a ca
 
 ## Lint/format/justfile
 
-No pixi-specific convention beyond what the wrapped language needs — follow `reference/cargo.md` for the Rust side. Run commands through `pixi run <task>` or a justfile recipe shelling out to `pixi run`, whichever the project already uses.
+No pixi-specific convention beyond what the wrapped language needs — follow that language's own reference (`reference/cargo.md`, `reference/uv.md`, etc.). Run commands through `pixi run <task>` or a justfile recipe shelling out to `pixi run`, whichever the project already uses.

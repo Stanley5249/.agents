@@ -29,16 +29,12 @@ components = ["rustfmt", "clippy"]
 
 ## TOML formatting
 
-Use `tombi` (`tombi.toml`). `taplo` is deprecated — don't add new `taplo.toml` configs, and migrate an existing one when touching that project's tooling anyway.
-
-## When a justfile recipe needs real logic
-
-A single shelled-out command in a recipe is fine; once a recipe needs control flow, use an `xtask` crate (a plain binary crate invoked as `cargo run -p xtask -- <command>`, aliased from a recipe) instead of inline shell.
+Use `tombi` (`tombi.toml`).
 
 ## Hooks
 
-`prek` (native `prek.toml`, not necessarily `.pre-commit-config.yaml`) can split cheap commit-time checks (`cargo fmt --check`) from expensive `pre-push` ones (`cargo clippy`, `cargo doc` with `RUSTDOCFLAGS=-D warnings`) — see the `commit-message` skill's `reference/prek.toml` for the template. Comment _why_ each check is staged where; that isn't obvious from the config.
+Stage `cargo fmt --check` as a cheap commit-time check and `cargo clippy` / `cargo doc` (with `RUSTDOCFLAGS=-D warnings`) as the expensive pre-push checks. See the `commit-message` skill for how to wire up the hook manager itself (`prek`, or `cocogitto` for a pure-cargo repo).
 
-## justfile recipes
+## Justfile
 
-Recurring recipe names: `build`, `test`, `check` (`cargo check` / `cargo clippy`), `format`/`fmt`, `ci` composing the above. For cargo+bun desktop apps (Tauri/Dioxus with a `web/` frontend), combine with `reference/bun.md` — one justfile, recipes for both sides.
+Recurring recipe names: `build`, `test`, `check` (`cargo check` / `cargo clippy`), `format`/`fmt`, `ci` composing the above. For a cargo+bun desktop app (Tauri/Dioxus with a `web/` frontend), combine with `reference/bun.md` — one justfile, recipes for both sides. See `reference/justfile.md` for the baseline Windows shell block and naming/lint-split conventions this follows.
