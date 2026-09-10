@@ -1,4 +1,4 @@
-# hooks and CI
+# hooks, CI, and changelog
 
 ## CI gate
 

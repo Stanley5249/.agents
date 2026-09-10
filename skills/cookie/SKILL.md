@@ -10,7 +10,7 @@ Cookie covers project setup and tooling conventions. `bibo` covers communication
 ## Reference index
 
 - Justfile command surface and recipe naming conventions: `reference/justfile.md`
-- Hooks and local or hosted CI: `reference/hooks-ci.md`
+- Hooks, local or hosted CI, and changelog/release automation: `reference/hooks-ci.md`
 - Repository-wide metadata for a new project (`.gitattributes`, license, `.editorconfig`, commit-message enforcement timing): `reference/first-commit.md`
 - README shape and content: `reference/readme.md`
 - `AGENTS.md`/`CLAUDE.md` conventions and the `.agents/` layer: `reference/agent-files.md`

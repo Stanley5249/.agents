@@ -7,7 +7,7 @@ Use a justfile when a project needs a composed command surface for recurring dev
 When a justfile exists, document and invoke its recipes instead of duplicating raw commands elsewhere. Use the recurring names that apply: `install`, `dev`, `format`, `check`, `lint`, `test`, `build`, and `ci`.
 
 - `check` type-checks or compile-checks (`tsc --noEmit`, `svelte-check`, `cargo check`/`clippy`) without necessarily enforcing style.
-- `lint` checks formatting and style across the whole repository by default. Split out a diff-only `lint` (fast, for iteration) from a full-sweep `lint-all` (used by `ci`) only once the full sweep is slow enough to matter — most projects here just run one `lint` over everything.
+- `lint` checks formatting and style across the whole repository by default. If the project also defines `lint-all`, `lint` switches meaning to the diff-only fast variant and `lint-all` becomes the full sweep used by `ci` — split them out only once the full sweep is slow enough to matter; most projects here just run one `lint` over everything.
 - `ci` composes whichever of `lint`(`-all`)/`check`/`test`/`build` apply, e.g. `ci: lint check test build`.
 - Add recipes for non-code verification that normal tests cannot cover, such as rendering an LLM prompt or regenerating diagrams.
 
