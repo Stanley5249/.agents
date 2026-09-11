@@ -36,6 +36,6 @@ Stage `cargo fmt --check` as a cheap commit-time check and `cargo clippy --works
 
 ## Justfile
 
-Recurring recipe names: `build`, `check` (`cargo check --workspace --all-targets`, or plain `cargo clippy --workspace --all-targets` without denying warnings), `format`/`fmt`, `test`, `lint` (`cargo fmt --all --check` plus `cargo clippy --workspace --all-targets -- -D warnings`), `ci` composing the above.
+Follow the shared recipe split in `justfile.md`, adding only the recipes the project currently needs. Typical mappings are `fmt` to `cargo fmt --all`, `fmt-check` to `cargo fmt --all --check`, `typecheck` to `cargo check --workspace --all-targets`, `lint` to `cargo clippy --workspace --all-targets -- -D warnings`, and `test` to `cargo test --workspace`. Let `check` and `ci` compose the applicable source-preserving recipes; add `build` or `install` only when the workflow needs an explicit recipe for them.
 
 `--all-targets` also covers tests, benches, and examples for `check`/`clippy`, but `cargo test --all-targets` silently skips doctests — run `cargo test --workspace` without it, or add `--doc` alongside, when the project has doctests worth covering.
