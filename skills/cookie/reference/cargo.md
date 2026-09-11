@@ -3,6 +3,10 @@
 ## Layout
 
 - Workspace shape: a `crates/` directory of members, or sibling member directories listed in the root `Cargo.toml`'s `[workspace] members`. Start with a workspace even when single-crate, if a second crate is plausible later (e.g. a `-core` / `-cli` split) — restructuring later is more disruptive.
+- In `.gitattributes`, configure:
+  ```gitattributes
+  Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+  ```
 
 ## Lint/format
 

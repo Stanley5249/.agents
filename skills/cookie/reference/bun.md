@@ -5,6 +5,10 @@ The most consistent pattern on this machine.
 ## Layout
 
 - Use `bun.lock`, with no `package-lock.json` or `yarn.lock`.
+- In `.gitattributes`, configure:
+  ```gitattributes
+  bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
+  ```
 - Keep `package.json` to `dependencies` and `devDependencies`, with no `scripts` field when a justfile provides the command surface.
 
 ## Lint and format
