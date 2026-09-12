@@ -37,9 +37,8 @@ file it needs instead of the whole skill upfront.
 - **cookie** — project-setup index for package managers, justfiles, CI/hooks,
   repository metadata, and agent conventions. Details are split into focused
   files under `reference/`.
-- **version-control** covers repository safety, commit and branch practice,
-  Conventional Commits, and optional message enforcement.
-  Reference files provide fallback and managed-hook configurations.
+- **version-control** covers ignore decisions, commit and amend practice,
+  Conventional Commit messages, branch practice, and optional Git tools.
 - **windows-shell** — efficient Git Bash and PowerShell usage on Windows,
   including syntax differences, path handling, batching, and output control.
 - **bibo** — communication style, editing behavior, and ongoing development
