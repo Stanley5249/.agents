@@ -28,8 +28,8 @@ description: <what it does and when it may be useful>
 loading conditions in `~/.agents/AGENTS.md` and the actual instructions in the
 skill body.
 
-Load skills lazily. Do not preload a skill at the start of a conversation
-merely because it is available. Read it only when the current task requires it,
+Load skills lazily. Do not preload a skill at the start of a conversation merely
+because it is available. Read it only when the current task requires it,
 immediately before its first use.
 
 If a skill contains enough detail that loading all of it upfront would waste
@@ -39,9 +39,9 @@ an agent reads only the file it needs instead of the entire skill upfront.
 
 ## What's here
 
-- **cookie**: Project-setup index for package managers, CI and hooks,
-  repository metadata, and agent conventions. Its details are split into
-  focused files under `reference/`.
+- **cookie**: Project-setup index for package managers, CI and hooks, repository
+  metadata, and agent conventions. Its details are split into focused files
+  under `reference/`.
 - **justfile**: Covers recipe interfaces, verification gates, execution,
   environment handling, safety, portability, and modularization.
 - **version-control**: Covers ignore decisions, commit and amendment practices,
@@ -57,11 +57,11 @@ an agent reads only the file it needs instead of the entire skill upfront.
 Use unscoped Conventional Commit subjects because this repository has no
 distinct package scopes. For example: `docs: clarify commit boundaries`.
 
-Link skills into each agent's skill-discovery directory instead of copying
-them. Prefer symbolic links; use junctions only as a fallback when symbolic
-links are not practical. For instruction files with an import mechanism, such
-as Claude's `@AGENTS.md` syntax, prefer an import over a symlink. The files here
-are the source of truth.
+Link skills into each agent's skill-discovery directory instead of copying them.
+Prefer symbolic links; use junctions only as a fallback when symbolic links are
+not practical. For instruction files with an import mechanism, such as Claude's
+`@AGENTS.md` syntax, prefer an import over a symlink. The files here are the
+source of truth.
 
 ## Using an existing skill from another agent tool
 

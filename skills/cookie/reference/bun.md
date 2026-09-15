@@ -9,19 +9,28 @@ The most consistent pattern on this machine.
   ```gitattributes
   bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   ```
-- Keep `package.json` to `dependencies` and `devDependencies`, with no `scripts` field when a justfile provides the command surface.
+- Keep `package.json` to `dependencies` and `devDependencies`, with no `scripts`
+  field when a justfile provides the command surface.
 
 ## Lint and format
 
-Use Prettier's defaults unless the project has an established style. Record
-only deliberate deviations in the project's Prettier configuration.
+Use Prettier's defaults unless the project has an established style. Record only
+deliberate deviations in the project's Prettier configuration.
 
 For a documentation-heavy project, consider `"proseWrap": "always"` to keep
-Markdown prose near the default print width. Keep the default `"preserve"`
-when author-chosen line breaks matter.
+Markdown prose near the default print width. Keep the default `"preserve"` when
+author-chosen line breaks matter.
 
-Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when using Tailwind. For a Svelte project, use `svelte-check` for type checking, separate from formatting and tests.
+Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when
+using Tailwind. For a Svelte project, use `svelte-check` for type checking,
+separate from formatting and tests.
 
 ## Justfile
 
-Keep commands out of `package.json` scripts and invoke local executables directly. Follow the shared recipe split in the [Justfile skill](../../justfile/SKILL.md), adding only the recipes the project currently needs. Typical Bun-backed mappings include `fmt` and `fmt-check` through `bunx prettier`, and `test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install` only when a dedicated `bun install` entry point is useful to the workflow.
+Keep commands out of `package.json` scripts and invoke local executables
+directly. Follow the shared recipe split in the
+[Justfile skill](../../justfile/SKILL.md), adding only the recipes the project
+currently needs. Typical Bun-backed mappings include `fmt` and `fmt-check`
+through `bunx prettier`, and `test` through `bun test`; `typecheck`, `lint`,
+`dev`, and `build` depend on the frontend tooling in use. Add `install` only
+when a dedicated `bun install` entry point is useful to the workflow.
