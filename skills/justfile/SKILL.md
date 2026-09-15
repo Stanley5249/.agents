@@ -21,7 +21,9 @@ When a justfile exists, document and invoke its recipes instead of duplicating
 raw commands elsewhere. Start with the smallest useful set of recipes for the
 project's current workflow, then add more as the workflow grows. Use consistent
 names when their roles apply: `install`, `build`, `dev`, `prod`, `fmt`, `fix`,
-`typecheck`, `lint`, `check`, `fmt-check`, `test`, and `ci`.
+`typecheck`, `lint`, `check`, `fmt-check`, `test`, and `ci`. Prefer `dev` and
+`prod` over generic names such as `start` and `run` when a project has distinct
+development and production modes.
 
 Document public recipes so their descriptions appear in `just --list`. Set
 `default-list` for command-oriented projects, use `just --usage` for
@@ -66,7 +68,8 @@ project needs every recipe:
   warnings treated as failures where supported.
 - `check` is the fast local source-preserving gate and composes `typecheck` and
   `lint`.
-- `fmt-check` verifies formatting without modifying files.
+- `fmt-check` verifies formatting without modifying files. Include
+  `just --fmt --check` here to also verify the justfile's own formatting.
 - `test` runs the test suite.
 - `ci` is the strict source-preserving pull-request gate and composes the
   applicable checks, commonly `fmt-check`, `check`, and `test`, plus `build`
@@ -76,9 +79,6 @@ project needs every recipe:
 
 Add recipes for tedious workflow, such as rendering an LLM prompt or
 regenerating diagrams.
-
-Prefer `dev` and `prod` over generic names such as `start` and `run` when a
-project has distinct development and production modes.
 
 ## Dependencies and parallelism
 
@@ -91,7 +91,7 @@ concurrency with `--jobs` when a project needs it.
 Recipes normally run from the directory containing their justfile, even when
 `just` is invoked from a subdirectory. Use `[no-cd]` only for a command
 intentionally operating on the caller's directory. Use
-`[working-directory: "path"]` only when a recipe belongs in a fixed
+`[working-directory("path")]` only when a recipe belongs in a fixed
 subdirectory.
 
 Each ordinary recipe line runs in a separate shell. Call commands and scripts
@@ -120,9 +120,7 @@ explicitly best-effort.
 Require `[confirm("...")]` for deploys, releases, migrations, and destructive
 cleanup. The confirmation text must state the operation and target clearly.
 
-## Windows and portability
-
-### Windows shell
+## Windows shell
 
 `just` uses `sh` by default, including on Windows. Put this Windows
 configuration first for PowerShell-based projects:
@@ -147,11 +145,12 @@ before the justfile becomes difficult to scan.
 ## Conditional features
 
 Use `set minimum-version := "x.y.z"` only when the justfile depends on newer
-syntax. Use `[timestamp]` or `just --time` to diagnose long-running recipes.
+syntax. Use the `[timestamp]` attribute or the `--timestamp` flag to diagnose
+long-running recipes.
 
-Markdown justfiles, user-defined functions, shell overrides, and platform
-attributes are available when they simplify a real project need. Do not enable
-unstable `lists` or cached recipes by default.
+Markdown justfiles, shell overrides, and platform attributes are available when
+they simplify a real project need. Do not enable unstable features such as
+`lists`, cached recipes (`[cache]`), or user-defined functions by default.
 
 ## References
 
