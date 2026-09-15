@@ -52,6 +52,11 @@ an agent reads only the file it needs instead of the entire skill upfront.
   proven AV1/Opus command line, and known Windows path gotchas.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.
 
+## Version control
+
+Use unscoped Conventional Commit subjects because this repository has no
+distinct package scopes. For example: `docs: clarify commit boundaries`.
+
 Link skills into each agent's skill-discovery directory instead of copying
 them. Prefer symbolic links; use junctions only as a fallback when symbolic
 links are not practical. For instruction files with an import mechanism, such
