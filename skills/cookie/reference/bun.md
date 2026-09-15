@@ -13,16 +13,12 @@ The most consistent pattern on this machine.
 
 ## Lint and format
 
-Standard config:
+Use Prettier's defaults unless the project has an established style. Record
+only deliberate deviations in the project's Prettier configuration.
 
-```json
-{
-	"useTabs": true,
-	"singleQuote": true,
-	"trailingComma": "none",
-	"printWidth": 100
-}
-```
+For a documentation-heavy project, consider `"proseWrap": "always"` to keep
+Markdown prose near the default print width. Keep the default `"preserve"`
+when author-chosen line breaks matter.
 
 Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when using Tailwind. For a Svelte project, use `svelte-check` for type checking, separate from formatting and tests.
 
