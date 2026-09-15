@@ -15,8 +15,15 @@ description: Use for any version-control task, including ignore decisions, Git s
 ### Commit
 
 - Check the worktree status before changing it. Preserve unrelated user changes.
-- You may handle several independent small changes in one batch. Run the formatter and checks once after the batch, then commit each coherent change separately.
-- For large changes, keep each commit focused on one scope and make it reviewable.
+- Put one feature or one discrete repository action in each commit. Moving or
+  renaming files, updating dependencies, reformatting code, and performing a
+  standalone refactor are separate actions.
+- Do not combine independent actions merely because they were requested
+  together.
+- Keep a feature's implementation, tests, and directly required documentation
+  or configuration together in the same commit.
+- You may implement several actions in one working batch, but commit each
+  action separately.
 - Run the formatter and static checks before committing so each commit is clean.
 - By default, run tests after all tasks are complete so that slow tests do not block iteration.
 
