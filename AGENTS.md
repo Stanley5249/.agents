@@ -111,10 +111,6 @@ These tools are available:
 - `git-filter-repo`
 - `gh`
 
-### Just
-
-Read [Just Programmer's Manual](https://just.systems/man/en/).
-
 ### Others
 
 - `rg`
@@ -139,3 +135,4 @@ Load skills when first required:
 - `version-control`: version-control work
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
+- `justfile`: justfile recipes and conventions

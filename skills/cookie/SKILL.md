@@ -9,7 +9,6 @@ Cookie covers project setup and tooling conventions. Detect the repository shape
 
 ## Reference index
 
-- Justfile command surface and recipe naming conventions: `reference/justfile.md`
 - Local or hosted CI and hook setup: `reference/hooks-ci.md`
 - Repository-wide metadata for a new project (`.gitattributes`, license, `.editorconfig`): `reference/first-commit.md`
 - README shape and content: `reference/readme.md`

@@ -28,4 +28,4 @@ Add `prettier-plugin-svelte` for Svelte and `prettier-plugin-tailwindcss` when u
 
 ## Justfile
 
-Keep commands out of `package.json` scripts and invoke local executables directly. Follow the shared recipe split in `justfile.md`, adding only the recipes the project currently needs. Typical Bun-backed mappings include `fmt` and `fmt-check` through `bunx prettier`, and `test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install` only when a dedicated `bun install` entry point is useful to the workflow.
+Keep commands out of `package.json` scripts and invoke local executables directly. Follow the shared recipe split in the [Justfile skill](../../justfile/SKILL.md), adding only the recipes the project currently needs. Typical Bun-backed mappings include `fmt` and `fmt-check` through `bunx prettier`, and `test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install` only when a dedicated `bun install` entry point is useful to the workflow.
