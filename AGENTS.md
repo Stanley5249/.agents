@@ -136,3 +136,4 @@ Load skills when first required:
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
+- `skill-creator`: create, edit, evaluate, or benchmark skills
