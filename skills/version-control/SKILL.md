@@ -7,23 +7,24 @@ description: Use for any version-control task, including ignore decisions, Git s
 
 ### Ignore
 
-- Ignore user-specific data by default. Track source and logic, but not local configuration, databases, or runtime artifacts. Track project assets because they are not user data.
-- Do not commit editor and agent-specific dotpaths such as `.zed/`, `.agents/`, and `.claude/` by default. Ignore them unless the repository intentionally tracks them.
-- For a local temporary or scratch directory, add a local `.gitignore` containing `*`. Otherwise, ignore the directory from its nearest parent `.gitignore`.
+- By default, ignore user data and notes such as local configuration, databases, runtime artifacts, and plans. Project assets are not user data, so track them.
+- By default, do not commit editor-specific or agent-specific dotpaths such as `.zed/`, `.agents/`, `.claude/`, and `.pi/`.
+- For a local temporary or scratch directory, add a local `.gitignore` containing `*`.
+- When the user explicitly wants to ignore a local file, add it to `.git/info/exclude`.
 
 ### Commit
 
-- Check status before changing status. Preserve unrelated user changes.
+- Check the worktree status before changing it. Preserve unrelated user changes.
 - You may handle several independent small changes in one batch. Run the formatter and checks once after the batch, then commit each coherent change separately.
 - For large changes, keep each commit focused on one scope and make it reviewable.
 - Run the formatter and static checks before committing so each commit is clean.
-- Run tests after all tasks are complete by default so slow tests do not block iteration.
+- By default, run tests after all tasks are complete so that slow tests do not block iteration.
 
 ### Amend
 
 These rules apply only to local, unpublished commits:
 
-- During fast prototyping or concept discussion, defer the commit until the user is satisfied.
+- During fast prototyping or concept discussions, defer the commit until the user is satisfied.
 - Amend the latest commit when a small follow-up belongs to the same change.
 - Do not amend published or shared commits without explicit approval.
 

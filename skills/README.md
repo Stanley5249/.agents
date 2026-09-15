@@ -1,8 +1,9 @@
-# skills
+# Skills
 
-Tool-agnostic skills shared across coding agents on this machine (Claude Code,
-pi, others). Lives under `.agents/` because it's meant to survive a switch of
-agent, unlike `.claude/` or `.codex/`, which are ephemeral per-tool scratch.
+These tool-agnostic skills are shared across coding agents on this machine,
+including Claude Code and pi. They live under `.agents/` because they are meant
+to persist when switching agents, unlike `.claude/` or `.codex/`, which hold
+ephemeral, tool-specific scratch data.
 
 ## Convention
 
@@ -11,7 +12,7 @@ Each skill is a directory:
 ```
 <name>/
   SKILL.md          # entry point
-  reference/*.md     # optional, loaded on demand
+  reference/*.md    # optional, loaded on demand
 ```
 
 `SKILL.md` starts with frontmatter:
@@ -24,27 +25,24 @@ description: <what it does and when it may be useful>
 ```
 
 `description` is a concise summary with a soft discovery condition. Put exact
-loading conditions in `~/.agents/AGENTS.md`, while the skill body holds the
-actual instructions.
+loading conditions in `~/.agents/AGENTS.md` and the actual instructions in the
+skill body.
 
-If a skill has enough detail that dumping it all upfront would waste context,
-split the long tail into `reference/*.md` files and have `SKILL.md` point to
-them by name (a decision tree, a lookup table) so an agent reads only the
-file it needs instead of the whole skill upfront.
+If a skill contains enough detail that loading all of it upfront would waste
+context, move the supporting details into `reference/*.md` files. Have
+`SKILL.md` point to them by name, such as in a decision tree or lookup table, so
+an agent reads only the file it needs instead of the entire skill upfront.
 
 ## What's here
 
-- **cookie** — project-setup index for package managers, justfiles, CI/hooks,
-  repository metadata, and agent conventions. Details are split into focused
-  files under `reference/`.
-- **version-control** covers ignore decisions, commit and amend practice,
-  Conventional Commit messages, branch practice, and optional Git tools.
-- **windows-shell** — efficient Git Bash and PowerShell usage on Windows,
+- **cookie**: Project-setup index for package managers, Justfiles, CI and hooks,
+  repository metadata, and agent conventions. Its details are split into
+  focused files under `reference/`.
+- **version-control**: Covers ignore decisions, commit and amendment practices,
+  Conventional Commit messages, branching practices, and optional Git tools.
+- **windows-shell**: Covers efficient Git Bash and PowerShell usage on Windows,
   including syntax differences, path handling, batching, and output control.
-- **bibo** — communication style, editing behavior, and ongoing development
-  preferences such as when to consider modularizing large files or crowded
-  modules.
-- **ffmpeg** — this machine's hardware encoder choice (QSV/Arc iGPU), the
+- **ffmpeg**: Covers this machine's hardware encoder choice (QSV/Arc iGPU), the
   proven AV1/Opus command line, and known Windows path gotchas.
 
 Link skills into each agent's skill-discovery directory instead of copying
@@ -55,17 +53,19 @@ are the source of truth.
 
 ## Using an existing skill from another agent tool
 
-Symlink from that tool's own skill-lookup directory into this one, e.g.:
+Create a symlink from that tool's skill-lookup directory into this one. For
+example:
 
 ```
 ln -s ~/.agents/skills/cookie ~/.claude/skills/cookie
 ```
 
-Point at the skill directory here, don't copy it — one source of truth.
+Point to the skill directory here instead of copying it so that it remains the
+single source of truth.
 
 ## Adding a new skill
 
-1. Create `<name>/SKILL.md` here, with the frontmatter above.
+1. Create `<name>/SKILL.md` here with the frontmatter above.
 2. Add `reference/*.md` files if the skill has detail worth deferring.
-3. Symlink it from wherever each agent tool looks for skills, e.g.
+3. Symlink it from each agent tool's skill-lookup directory, such as
    `~/.claude/skills/<name>` for Claude Code.
