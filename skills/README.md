@@ -28,6 +28,10 @@ description: <what it does and when it may be useful>
 loading conditions in `~/.agents/AGENTS.md` and the actual instructions in the
 skill body.
 
+Load skills lazily. Do not preload a skill at the start of a conversation
+merely because it is available. Read it only when the current task requires it,
+immediately before its first use.
+
 If a skill contains enough detail that loading all of it upfront would waste
 context, move the supporting details into `reference/*.md` files. Have
 `SKILL.md` point to them by name, such as in a decision tree or lookup table, so

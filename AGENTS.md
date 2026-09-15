@@ -58,11 +58,10 @@ I insist on project quality and a clean, modular codebase, so follow these rules
 
 ## Tools
 
-Respect each project's conventions. When rules conflict, the project's conventions win. Load references or skills only when needed, immediately before use.
+Respect each project's conventions. When rules conflict, the project's conventions win. Load references only when needed, immediately before use.
 
 ### Shell
 
-- Use `~/.agents/skills/windows-shell/SKILL.md` unless running in Claude Code.
 - Use the shell provided by the harness. If none is specified, prefer `pwsh` > `C:\Program Files\Git\bin\bash` > `cmd`.
 
 ### Python
@@ -90,8 +89,6 @@ Respect each project's conventions. When rules conflict, the project's conventio
 
 ### Version Control
 
-Use `~/.agents/skills/version-control/SKILL.md` when working with version control.
-
 Avoid worktrees for projects with heavy artifacts, such as Rust projects and their `target/` directories. Ask explicitly before using one.
 
 For untracked files, describe the changes, show a simplified preview, and ask for approval.
@@ -108,10 +105,6 @@ These tools are available:
 
 Read [Just Programmer's Manual](https://just.systems/man/en/).
 
-### FFmpeg
-
-When using FFmpeg on the user's machine, read `~/.agents/skills/ffmpeg/SKILL.md` and follow its preferred arguments.
-
 ### Others
 
 - `rg`
@@ -127,8 +120,12 @@ When using FFmpeg on the user's machine, read `~/.agents/skills/ffmpeg/SKILL.md`
 ## Agents
 
 - Prioritize `AGENTS.md`. Import it in `CLAUDE.md` with `@AGENTS.md`.
-- Avoid adding fast-changing information.
 
 ## Skills
 
+Load skills lazily. Do not read a skill at the start of a conversation merely because it is available. Read it only when the current task requires it, immediately before its first use.
+
+- Read `~/.agents/skills/windows-shell/SKILL.md` before the first Git Bash or PowerShell command on Windows, or before writing shell-based Windows automation, unless running in Claude Code.
+- Read `~/.agents/skills/version-control/SKILL.md` before the first version-control operation or review.
+- Read `~/.agents/skills/ffmpeg/SKILL.md` before inspecting, converting, encoding, or implementing workflows for audio or video with FFmpeg.
 - Read `~/.agents/skills/cookie/SKILL.md` when scaffolding or auditing a project, or when introducing development tooling and conventions such as command runners, linting, formatting, CI, hooks, package managers, agent instruction files, or agent-specific conventions.

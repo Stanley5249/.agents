@@ -8,7 +8,7 @@ description: Use for any version-control task, including ignore decisions, Git s
 ### Ignore
 
 - By default, ignore user data and notes such as local configuration, databases, runtime artifacts, and plans. Project assets are not user data, so track them.
-- By default, do not commit editor-specific or agent-specific dotpaths such as `.zed/`, `.agents/`, `.claude/`, and `.pi/`.
+- By default, do not commit editor-specific or agent-specific dotpaths such as `.zed/`, `.agents/`, `.claude/`, and `.pi/` unless the repository intentionally tracks them.
 - For a local temporary or scratch directory, add a local `.gitignore` containing `*`.
 - When the user explicitly wants to ignore a local file, add it to `.git/info/exclude`.
 
