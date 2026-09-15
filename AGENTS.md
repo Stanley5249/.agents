@@ -79,6 +79,18 @@ Respect each project's conventions. When rules conflict, the project's conventio
 - `bunx prettier` is pre-approved. Use Prettier for Markdown files.
 - Warn before introducing `node` into a project, and try a `bun` alternative when available.
 
+### Rust
+
+- Prefer `cargo clippy` over `cargo check`.
+- Enable Clippy's `pedantic` lint group as warnings by default.
+- Avoid worktrees for Rust projects with large `target/` directories. Ask explicitly before creating one.
+- These tools are available:
+  - `cargo-binstall`
+  - `cargo-deny`
+  - `cargo-nextest`
+  - `cargo-llvm-cov`
+  - `cargo-sweep`
+
 ### Conda
 
 - Recommend `pixi` for multi-language projects.
@@ -88,8 +100,6 @@ Respect each project's conventions. When rules conflict, the project's conventio
 `pixi global` > `uv tool` > `winget` > `cargo-binstall`
 
 ### Version Control
-
-Avoid worktrees for projects with heavy artifacts, such as Rust projects and their `target/` directories. Ask explicitly before using one.
 
 For untracked files, describe the changes, show a simplified preview, and ask for approval.
 
@@ -123,9 +133,9 @@ Read [Just Programmer's Manual](https://just.systems/man/en/).
 
 ## Skills
 
-Load skills lazily. Do not read a skill at the start of a conversation merely because it is available. Read it only when the current task requires it, immediately before its first use.
+Load skills when first required:
 
-- Read `~/.agents/skills/windows-shell/SKILL.md` before the first Git Bash or PowerShell command on Windows, or before writing shell-based Windows automation, unless running in Claude Code.
-- Read `~/.agents/skills/version-control/SKILL.md` before the first version-control operation or review.
-- Read `~/.agents/skills/ffmpeg/SKILL.md` before inspecting, converting, encoding, or implementing workflows for audio or video with FFmpeg.
-- Read `~/.agents/skills/cookie/SKILL.md` when scaffolding or auditing a project, or when introducing development tooling and conventions such as command runners, linting, formatting, CI, hooks, package managers, agent instruction files, or agent-specific conventions.
+- `windows-shell`: Windows shell work outside Claude Code
+- `version-control`: version-control work
+- `ffmpeg`: audio or video work
+- `cookie`: project setup or tooling conventions
