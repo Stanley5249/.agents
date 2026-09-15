@@ -66,8 +66,12 @@ Respect each project's conventions. When rules conflict, the project's conventio
 
 ### Python
 
-- Run Python with `uv run python`.
-- For one-off tools, use `uvx` after getting approval.
+- Run project Python with `uv run python`.
+- When a bundled script needs undeclared packages, use
+  `uv run --with <package> python <script>` instead of modifying the project's
+  dependencies.
+- For package-provided one-off CLI tools, use
+  `uvx --with <package> <command>` after getting approval.
 - Use `ruff` for Python projects.
 - For Python projects, prefer `pyrefly` > `ty` > `basedpyright`.
 
