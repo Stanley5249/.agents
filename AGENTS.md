@@ -80,7 +80,7 @@ Respect each project's conventions. When rules conflict, the project's conventio
 `bun` > `deno` > `node`
 
 - For one-off tools, use `bunx` after getting approval.
-- `bunx prettier` is pre-approved. Use Prettier for Markdown files.
+- `bunx prettier --write --cache .` is pre-approved. Use it to format supported files.
 - Warn before introducing `node` into a project, and try a `bun` alternative when available.
 
 ### Rust
