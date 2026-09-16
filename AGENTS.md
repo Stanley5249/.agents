@@ -167,7 +167,7 @@ These tools are available:
 Load skills when first required:
 
 - `windows-shell`: Windows shell work outside Claude Code
-- `version-control`: version-control work
+- `version-control`: version-control work, before the first change or plan
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
