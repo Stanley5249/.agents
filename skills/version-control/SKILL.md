@@ -7,6 +7,21 @@ description:
 
 ## User practices
 
+### Branch
+
+Decide this before the first edit. A branch chosen after the work is done is a
+branch that has to be rewritten onto.
+
+- Use `main` as the default branch. If a new repository starts on `master`,
+  rename it with `git branch -m main`.
+- For a single small change, about one file and under 50 lines, work on the
+  current branch directly. Otherwise, use a task branch instead of committing
+  directly to `main`.
+- Name code branches `<type>/<topic>` using a Conventional Commit type and a
+  short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`,
+  or `refactor/parser`.
+- Ask before merging a task branch into `main`.
+
 ### Ignore
 
 - By default, ignore user data and notes such as local configuration, databases,
@@ -29,6 +44,9 @@ description:
   together.
 - Keep a feature's implementation, tests, and directly required documentation or
   configuration together in the same commit.
+- Keep a commit reviewable. When one action runs past roughly 300 changed lines,
+  split it along a seam that already exists, such as a store change under the
+  interface that uses it.
 - You may implement several actions in one working batch, but commit each action
   separately.
 - Run the formatter and static checks before committing so each commit is clean.
@@ -82,17 +100,6 @@ line at 72 characters or fewer.
 
 Use `!` and `BREAKING CHANGE` only after the project has been published and has
 a compatibility contract.
-
-## Branch
-
-- Use `main` as the default branch. If a new repository starts on `master`,
-  rename it with `git branch -m main`.
-- Ask before merging a task branch into `main`.
-- For a single small change, work on the current branch directly. Otherwise, use
-  a task branch instead of committing directly to `main`.
-- Name code branches `<type>/<topic>` using a Conventional Commit type and a
-  short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`,
-  or `refactor/parser`.
 
 ## Optional tools
 
