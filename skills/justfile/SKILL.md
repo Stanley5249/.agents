@@ -86,6 +86,25 @@ Dependencies compose verification gates sequentially by default. Use
 `[parallel]` only for independent, source-preserving prerequisites. Limit
 concurrency with `--jobs` when a project needs it.
 
+When the same recipe must run for a known list of items, prefer a native list
+and mapped dependencies over a shell loop, especially a platform-specific
+PowerShell loop. Put the per-item operation in a private helper so failures
+remain attributable to individual items and the public command surface stays
+small:
+
+```just
+set minimum-version := "1.53.0"
+set unstable
+set lists
+
+targets := ["app", "docs"]
+
+_build target:
+    build-tool "{{ target }}"
+
+build: *(_build *targets)
+```
+
 ## Execution context
 
 Recipes normally run from the directory containing their justfile, even when
@@ -144,13 +163,12 @@ before the justfile becomes difficult to scan.
 
 ## Conditional features
 
-Use `set minimum-version := "x.y.z"` only when the justfile depends on newer
-syntax. Use the `[timestamp]` attribute or the `--timestamp` flag to diagnose
+Use `set minimum-version := "x.y.z"` when the justfile depends on newer syntax.
+
+Use the `[timestamp]` attribute or the `--timestamp` flag to diagnose
 long-running recipes.
 
-Markdown justfiles, shell overrides, and platform attributes are available when
-they simplify a real project need. Do not enable unstable features such as
-`lists`, cached recipes (`[cache]`), or user-defined functions by default.
+Accept unstable features, such as using native lists and mapped dependencies.
 
 ## References
 
