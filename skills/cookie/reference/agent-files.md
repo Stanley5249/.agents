@@ -11,7 +11,7 @@
   files under `.agents/rules/`, one topic per file, and reference them from the
   root.
 - Keep durable plans and shared skills under `.agents/`; name the durable
-  backlog itself `.agents/AGENTS.md` — that filename gets the same automatic
-  read/injection a nested `AGENTS.md` gets, instead of needing an explicit
-  instruction to open it every time. Treat `.claude/` and `.codex/` as
+  backlog itself `.agents/AGENTS.md`, because that filename gets the same
+  automatic read/injection a nested `AGENTS.md` gets, instead of needing an
+  explicit instruction to open it every time. Treat `.claude/` and `.codex/` as
   tool-specific scratch or session state.

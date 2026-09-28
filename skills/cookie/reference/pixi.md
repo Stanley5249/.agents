@@ -2,10 +2,10 @@
 
 ## When this is the right choice
 
-Pixi is for multi-language or native/GPU-dependency-heavy projects — e.g. a
+Pixi is for multi-language or native/GPU-dependency-heavy projects, such as a
 cargo workspace that also needs a pinned CUDA/conda-forge toolchain. Not the
-default for a plain Rust or Python project — it adds conda-forge-managed native
-toolchain handling that most projects don't need.
+default for a plain Rust or Python project, because it adds conda-forge-managed
+native toolchain handling that most projects don't need.
 
 ## Layout
 
@@ -16,7 +16,7 @@ toolchain handling that most projects don't need.
   pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
   ```
 - Can wrap a full cargo workspace (multiple member crates) in a single pixi
-  environment — pixi manages the native toolchain/GPU deps, cargo still manages
+  environment: pixi manages the native toolchain/GPU deps, cargo still manages
   the Rust build inside it.
 
 ## Lint/format/justfile

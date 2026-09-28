@@ -23,11 +23,11 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
 
 - `-global_quality:v` scales with source resolution, not a fixed number: 26 at
   4K, 28 at 1080p, 30/32/34 down to 480p. Lower = higher quality. 28 is the
-  1080p figure — don't reuse it at other resolutions unchecked.
+  1080p figure, so don't reuse it at other resolutions unchecked.
 - `-b:a` scales with channel count, not a fixed number: 48k per channel (96k for
   stereo). Raise it further for music-heavy sources.
 - `-look_ahead_depth:v`, `-extbrc:v`, `-adaptive_i:v`, `-adaptive_b:v` are QSV
-  tunables to try when quality needs a push, not defaults to set upfront — leave
+  tunables to try when quality needs a push, not defaults to set upfront. Leave
   them unset until a specific source justifies measuring them.
 - Use Matroska or WebM for AV1 with Opus unless the requested playback target
   has confirmed support for that combination in another container.
@@ -42,7 +42,7 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   status line.
 - In scripts and programs, call ffmpeg with an argv array instead of a shell
   string, so paths with spaces or special characters are not re-parsed.
-- A zero exit status is not proof the output is valid — probe/verify the result
+- A zero exit status is not proof the output is valid. Probe/verify the result
   before trusting it.
 - Encode to a new path; never write over the source. Let the caller decide
   whether to replace the original afterward.
@@ -50,10 +50,10 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
 ## Windows gotchas
 
 - A filename with an unpaired UTF-16 surrogate (downloader output that mangled
-  an emoji) can't be opened by ffmpeg at all — it converts the wide path to
-  UTF-8 internally, the surrogate becomes `U+FFFD`, and it opens a name nothing
-  on disk has. `Test-Path` succeeding while `ffprobe` says "No such file or
-  directory" on the same path is the symptom. Workaround: pass the 8.3 short
+  an emoji) can't be opened by ffmpeg at all, because it converts the wide path
+  to UTF-8 internally, the surrogate becomes `U+FFFD`, and it opens a name
+  nothing on disk has. `Test-Path` succeeding while `ffprobe` says "No such file
+  or directory" on the same path is the symptom. Workaround: pass the 8.3 short
   path (`GetShortPathNameW`) or a temporary ASCII-named hardlink.
 - Quote every path; don't rely on ffmpeg's own glob expansion on Windows.
 
