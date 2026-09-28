@@ -183,6 +183,5 @@ Load skills when first required:
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
 - `browser`: browser automation, live pages, or Chrome DevTools
-- `oxfmt`: formatting JS, TS, CSS, HTML, JSON, YAML, or Markdown, or replacing
-  Prettier
+- `oxfmt`: configuring oxfmt, replacing Prettier, or editor formatter setup
 - `skill-creator`: create, edit, evaluate, or benchmark skills

@@ -14,8 +14,7 @@ The most consistent pattern on this machine.
 
 ## Lint and format
 
-Format with oxfmt as a `devDependency`, and load the `oxfmt` skill for its
-configuration, including the Svelte and Tailwind CSS options. For a Svelte
+Format with oxfmt, and load the `oxfmt` skill to configure it. For a Svelte
 project, use `svelte-check` for type checking, separate from formatting and
 tests.
 

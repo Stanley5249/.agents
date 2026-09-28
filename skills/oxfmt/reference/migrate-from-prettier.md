@@ -11,12 +11,9 @@ Start with the built-in migration:
 bunx oxfmt --migrate=prettier
 ```
 
-It writes `.oxfmtrc.json` from the Prettier configuration. It pins
-`printWidth: 80`, because Prettier's default is 80 and oxfmt's is 100. It also
-sets `sortPackageJson: false`, because Prettier never sorted `package.json`.
-`prettier-plugin-svelte` becomes `"svelte": {}`, `prettier-plugin-tailwindcss`
-becomes `sortTailwindcss`, and `.prettierignore` is copied into
-`ignorePatterns`. Then review the result:
+It writes `.oxfmtrc.json` from the Prettier configuration, including plugins and
+`.prettierignore`, and pins the Prettier defaults that oxfmt does not share,
+such as `printWidth: 80`. Then review the result:
 
 - **Drop settings that match oxfmt's defaults,** such as `endOfLine: "lf"`, and
   settings with nothing to act on, such as `sortPackageJson` in a repository
@@ -73,11 +70,10 @@ upstream, rather than changing a setting that shifts the rest of the tree.
   a list of changed files, does not fail.
 - Keep ESLint presets such as `eslint-plugin-svelte`'s `flat/prettier`. They
   turn off rules that conflict with Prettier-style output, which oxfmt produces.
-- Configure the editor, even if the project has no editor settings yet. Zed
-  keeps formatting with its bundled Prettier after the migration, and without
-  `.prettierrc` that copy falls back to Prettier's defaults, so saved files
-  silently drift from `bunx oxfmt`. See [zed.md](zed.md).
+- Configure the editor in use, even if the project has no editor settings yet.
+  An editor with a bundled Prettier keeps using it after the migration, and
+  without `.prettierrc` that copy falls back to Prettier's defaults. With format
+  on save, saved files then drift from `bunx oxfmt`. For Zed, see
+  [zed.md](zed.md).
 
 Commit this as one `build` change, such as `build: replace Prettier with oxfmt`.
-If the new configuration intentionally reflows files, such as by turning on
-`proseWrap: "always"`, commit that reformat separately.

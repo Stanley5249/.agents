@@ -14,47 +14,28 @@ Svelte language server, for example, formats `.svelte` files with its own copy
 of Prettier.
 
 So turn Prettier off in the project's `.zed/settings.json` and name `oxfmt` as
-the formatter for each language the project contains. Track this file in Git,
-even where editor dotpaths are otherwise left untracked, so every checkout
-formats the same way as `bunx oxfmt`:
+the formatter for each language the project contains. This is a reason to track
+the file intentionally, so every checkout formats the same way as `bunx oxfmt`:
 
 ```json
 {
-  "prettier": {
-    "allowed": false
-  },
+  "prettier": { "allowed": false },
   "languages": {
-    "JavaScript": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "TypeScript": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "Svelte": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "JSON": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "JSONC": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "HTML": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "CSS": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    },
-    "Markdown": {
-      "formatter": { "language_server": { "name": "oxfmt" } }
-    }
+    "JavaScript": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "TypeScript": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "TSX": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "Svelte": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "JSON": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "JSONC": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "HTML": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "CSS": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "YAML": { "formatter": { "language_server": { "name": "oxfmt" } } },
+    "Markdown": { "formatter": { "language_server": { "name": "oxfmt" } } }
   }
 }
 ```
 
-Naming the formatter for each language keeps Zed's behavior independent of
-language server priority and the extension's defaults. Add or remove languages,
-such as `TSX` or `YAML`, to match the files the project has.
+Drop the languages the project does not have.
 
 For Svelte, also enable `"svelte": {}` in `.oxfmtrc.json`. Without it, oxfmt
 skips `.svelte` files, both on the command line and in the editor.

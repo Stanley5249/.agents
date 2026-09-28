@@ -21,8 +21,7 @@ restyling a codebase.
 - **Documentation-first repositories** with no `package.json`: run `bunx oxfmt`
   and add no dependency.
 
-`bunx oxfmt` uses the local copy when one is installed, so recipes can use the
-same command in both cases.
+`bunx oxfmt` prefers the local copy, so recipes use one command either way.
 
 ## Configuration
 
@@ -48,14 +47,11 @@ to match it. The settings below are the ones that usually matter:
 | Setting           | Default      | Why set it                                                                |
 | ----------------- | ------------ | ------------------------------------------------------------------------- |
 | `printWidth`      | `100`        | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
-| `proseWrap`       | `"preserve"` | `"always"` wraps Markdown prose at `printWidth`, useful for documentation |
+| `proseWrap`       | `"preserve"` | `"always"` wraps Markdown prose; keep the default if line breaks matter   |
 | `sortPackageJson` | `true`       | set `false` to leave the key order that `bun add` and humans wrote        |
 | `svelte`          | disabled     | `{}` enables `.svelte` files and needs the `svelte` package installed     |
 | `sortTailwindcss` | disabled     | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
 | `ignorePatterns`  | `[]`         | gitignore-style globs, rooted at the directory holding the config         |
-
-Keep `proseWrap` at `"preserve"` when author-chosen line breaks matter, such as
-text rendered by a line-break-sensitive viewer.
 
 `proseWrap: "always"` breaks lines only at spaces. A paragraph of Chinese or
 Japanese without spaces stays on one line, because a line break between two CJK
@@ -86,8 +82,7 @@ bunx oxfmt            # format the tree in place
 bunx oxfmt --check    # fail on unformatted files, change nothing
 ```
 
-In a justfile, map these to `fmt` and `fmt-check`. When TOML is excluded, the
-oxfmt and tombi recipes touch disjoint files and can run in parallel.
+In a justfile, map these to `fmt` and `fmt-check`.
 
 ## Further reading
 
