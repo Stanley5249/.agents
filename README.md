@@ -54,8 +54,10 @@ an agent reads only the file it needs instead of the entire skill upfront.
 
 ## Version control
 
-Use unscoped Conventional Commit subjects because this repository has no
-distinct package scopes. For example: `docs: clarify commit boundaries`.
+Use unscoped Conventional Commit subjects. This repository is shared by all
+projects and every change concerns skills, so a scope adds no information. This
+overrides the `agents` scope in the version-control skill. For example:
+`docs: clarify commit boundaries`.
 
 ## Using an existing skill from another agent tool
 
