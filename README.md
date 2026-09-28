@@ -50,6 +50,9 @@ an agent reads only the file it needs instead of the entire skill upfront.
   including syntax differences, path handling, batching, and output control.
 - **ffmpeg**: Covers this machine's hardware encoder choice (QSV/Arc iGPU), the
   proven AV1/Opus command line, and known Windows path gotchas.
+- **browser**: Covers driving Chrome or Edge with `bunx chrome-devtools`,
+  attaching to an open browser, failure modes, and a socket client for scripts.
+  Points to upstream skills for deeper topics.
 - **oxfmt**: Covers oxfmt configuration, ignores, migration from Prettier, and
   Zed integration.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.

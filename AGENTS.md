@@ -124,6 +124,12 @@ conventions win. Load references only when needed, immediately before use.
   - `cargo-llvm-cov`
   - `cargo-sweep`
 
+### Browser
+
+- Get my approval before any CDP or other browser automation, including a
+  headless browser.
+- Use Edge. Its user-data root is `$LOCALAPPDATA/Microsoft/Edge/User Data`.
+
 ### Editor
 
 - I use Zed. When a project replaces a formatter that Zed bundles, such as
@@ -176,6 +182,7 @@ Load skills when first required:
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
+- `browser`: browser automation, live pages, or Chrome DevTools
 - `oxfmt`: formatting JS, TS, CSS, HTML, JSON, YAML, or Markdown, or replacing
   Prettier
 - `skill-creator`: create, edit, evaluate, or benchmark skills
