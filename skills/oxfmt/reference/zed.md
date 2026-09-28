@@ -1,12 +1,13 @@
 # Format with oxfmt in Zed
 
 Zed formats JS, TS, CSS, HTML, JSON, YAML, and Markdown with its own bundled
-Prettier unless told otherwise. That copy ignores `.oxfmtrc.json`, so saving a
-file and running `bunx oxfmt` would disagree.
+Prettier by default. The Oxc extension provides an `oxfmt` language server that
+respects `.oxfmtrc.json`, but another language server can take priority over it.
+The Svelte language server, for example, formats `.svelte` files with its own
+Prettier. Either way, saving a file and running `bunx oxfmt` would disagree.
 
-The Oxc extension provides an `oxfmt` language server that reads the project's
-configuration. Turn Prettier off in the project's `.zed/settings.json` and name
-`oxfmt` as the formatter for each language the project contains:
+Turn Prettier off in the project's `.zed/settings.json` and name `oxfmt` as the
+formatter for each language the project contains:
 
 ```json
 {
@@ -42,9 +43,12 @@ configuration. Turn Prettier off in the project's `.zed/settings.json` and name
 }
 ```
 
-Naming the formatter for each language keeps Zed's behavior independent of the
-extension's defaults. Add or remove languages, such as `TSX` or `YAML`, to match
-the files the project has.
+Naming the formatter for each language keeps Zed's behavior independent of
+language server priority and the extension's defaults. Add or remove languages,
+such as `TSX` or `YAML`, to match the files the project has.
+
+For Svelte, also enable `"svelte": {}` in `.oxfmtrc.json`. Without it, oxfmt
+skips `.svelte` files, both on the command line and in the editor.
 
 ## When another tool owns a language
 

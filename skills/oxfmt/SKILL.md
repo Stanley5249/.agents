@@ -10,7 +10,8 @@ description:
 
 oxfmt is a single native binary that formats what Prettier formats, with the
 Svelte and Tailwind CSS plugins built in. Its output matches Prettier's for the
-same settings, so it replaces Prettier without restyling a codebase.
+same settings in all but a few corners, so it replaces Prettier without
+restyling a codebase.
 
 ## Install
 

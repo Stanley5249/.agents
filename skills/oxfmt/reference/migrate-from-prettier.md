@@ -34,24 +34,37 @@ bundle the compiler.
 
 ## Prove the output is unchanged
 
-Start from a clean tree that Prettier formatted, then:
+Start from a tree where `bunx prettier --check .` passes, then run `bunx oxfmt`
+on the tracked files only:
 
-1. Run `bunx oxfmt`. `git diff` should be empty apart from the configuration and
-   dependency files.
-2. For a stronger check, reformat the tree with deliberately wrong settings,
-   such as `printWidth: 40` and `useTabs: true`, then restore the real
-   configuration and run `bunx oxfmt` again. An empty `git diff` shows oxfmt
-   reproduces every file on its own, instead of merely leaving already formatted
-   files alone.
+```sh
+git ls-files -z | xargs -0 bunx oxfmt --no-error-on-unmatched-pattern
+```
 
-If a file differs, compare it with Prettier's output before changing settings.
-The difference may be an oxfmt bug, which belongs in an ignore entry or an
-upstream issue, not in a setting that shifts the rest of the tree.
+Limiting the run to tracked files keeps untracked user data out of it.
+`git diff` should then be empty apart from the configuration and dependency
+files.
+
+Do not try to prove parity by reformatting with deliberately wrong settings and
+then restoring. `objectWrap` defaults to `"preserve"` in both formatters, so an
+object that a narrow `printWidth` expanded stays expanded, and the restore
+leaves hundreds of false differences.
+
+A few files may still differ, because oxfmt does not match Prettier in every
+corner. Read each difference before changing settings. If it is a small layout
+choice, accept it and commit the reformat separately as a `style` change. If it
+looks like a bug, keep the file out with `ignorePatterns` and report it
+upstream, rather than changing a setting that shifts the rest of the tree.
 
 ## Clean up
 
 - Delete `.prettierrc*` and `.prettierignore`.
-- Replace `prettier` in justfile recipes, CI, and agent instructions.
+- Replace `prettier` in justfile recipes, CI, and agent instructions. Prettier's
+  `--ignore-unknown` has no counterpart because oxfmt already skips file types
+  it cannot parse. Use `--no-error-on-unmatched-pattern` so a batch made only of
+  such files, such as a list of changed files, does not fail.
+- Keep ESLint presets such as `eslint-plugin-svelte`'s `flat/prettier`. They
+  turn off rules that conflict with Prettier-style output, which oxfmt produces.
 - Update the editor configuration. For Zed, see [zed.md](zed.md).
 
 Commit this as one `build` change, such as `build: replace Prettier with oxfmt`.
