@@ -73,7 +73,10 @@ upstream, rather than changing a setting that shifts the rest of the tree.
   a list of changed files, does not fail.
 - Keep ESLint presets such as `eslint-plugin-svelte`'s `flat/prettier`. They
   turn off rules that conflict with Prettier-style output, which oxfmt produces.
-- Update the editor configuration. For Zed, see [zed.md](zed.md).
+- Configure the editor, even if the project has no editor settings yet. Zed
+  keeps formatting with its bundled Prettier after the migration, and without
+  `.prettierrc` that copy falls back to Prettier's defaults, so saved files
+  silently drift from `bunx oxfmt`. See [zed.md](zed.md).
 
 Commit this as one `build` change, such as `build: replace Prettier with oxfmt`.
 If the new configuration intentionally reflows files, such as by turning on

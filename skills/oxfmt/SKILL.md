@@ -57,6 +57,10 @@ to match it. The settings below are the ones that usually matter:
 Keep `proseWrap` at `"preserve"` when author-chosen line breaks matter, such as
 text rendered by a line-break-sensitive viewer.
 
+`proseWrap: "always"` breaks lines only at spaces. A paragraph of Chinese or
+Japanese without spaces stays on one line, because a line break between two CJK
+characters renders as a space in Markdown. Prettier behaves the same way.
+
 ## Ignores
 
 oxfmt already skips `node_modules` and reads `.gitignore` and `.prettierignore`,
@@ -67,6 +71,10 @@ so `ignorePatterns` needs only files that are tracked but must not be formatted:
   parallel recipes race on the same files.
 - **Vendored files** that must stay byte-identical to upstream, such as skills
   installed with `bunx skills add`.
+
+Ignores also apply to content an editor passes to oxfmt, so an ignored file is
+not formatted on save either. Do not ignore files that people edit and expect to
+be formatted.
 
 Prefer `ignorePatterns` over a `.prettierignore`, so one file holds the whole
 configuration.
