@@ -7,10 +7,10 @@ ephemeral, tool-specific scratch data.
 
 ## Convention
 
-Each skill is a directory:
+Each skill is a directory under `skills/`:
 
 ```
-<name>/
+skills/<name>/
   SKILL.md          # entry point
   reference/*.md    # optional, loaded on demand
 ```
@@ -57,27 +57,22 @@ an agent reads only the file it needs instead of the entire skill upfront.
 Use unscoped Conventional Commit subjects because this repository has no
 distinct package scopes. For example: `docs: clarify commit boundaries`.
 
-Link skills into each agent's skill-discovery directory instead of copying them.
-Prefer symbolic links; use junctions only as a fallback when symbolic links are
-not practical. For instruction files with an import mechanism, such as Claude's
-`@AGENTS.md` syntax, prefer an import over a symlink. The files here are the
-source of truth.
-
 ## Using an existing skill from another agent tool
 
-Create a symlink from that tool's skill-lookup directory into this one. For
-example:
+Link skills into each agent's skill-discovery directory instead of copying them,
+so the files here remain the single source of truth. Prefer symbolic links; use
+junctions only as a fallback when symbolic links are not practical. For example:
 
 ```
 ln -s ~/.agents/skills/cookie ~/.claude/skills/cookie
 ```
 
-Point to the skill directory here instead of copying it so that it remains the
-single source of truth.
+For instruction files with an import mechanism, such as Claude's `@AGENTS.md`
+syntax, prefer an import over a symlink.
 
 ## Adding a new skill
 
-1. Create `<name>/SKILL.md` here with the frontmatter above.
+1. Create `skills/<name>/SKILL.md` with the frontmatter above.
 2. Add `reference/*.md` files if the skill has detail worth deferring.
 3. Symlink it from each agent tool's skill-lookup directory, such as
    `~/.claude/skills/<name>` for Claude Code.
