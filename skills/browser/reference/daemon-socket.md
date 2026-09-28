@@ -6,10 +6,7 @@ daemon holds the real, already-approved CDP connection, and the CLI process
 never touches the browser.
 
 The socket protocol is not documented or versioned, but it is simple and stable
-within a `chrome-devtools-mcp` release. Talking to it directly skips the 1 to 2
-seconds of startup that each CLI call costs. That matters only for scripts
-making many calls. For a single call or interactive use, the CLI is simpler and
-depends only on the public interface.
+within a `chrome-devtools-mcp` release.
 
 The daemon must already be running, as shown by `bunx chrome-devtools status`.
 The bundled client does not start one, because starting a daemon means choosing
@@ -19,7 +16,9 @@ a `--userDataDir`, and a wrong guess silently attaches to the wrong browser.
 
 - **Socket path:** `\\.\pipe\chrome-devtools-mcp-<username>\server.sock` on
   Windows. On POSIX, `$XDG_RUNTIME_DIR/chrome-devtools-mcp/server.sock`, or
-  `/tmp/chrome-devtools-mcp-<uid>.sock` when that variable is unset.
+  `/tmp/chrome-devtools-mcp-<uid>.sock` when that variable is unset. A daemon
+  started with `--sessionId <id>` appends `-<id>` to `chrome-devtools-mcp`; the
+  bundled client supports only the default session.
 - **Framing:** write `JSON.stringify(message) + "\0"`. Messages are
   NUL-terminated, not newline-terminated.
 - **Request:** `{ method: "invoke_tool", tool: "<name>", args: {...} }`. `tool`

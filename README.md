@@ -52,7 +52,6 @@ an agent reads only the file it needs instead of the entire skill upfront.
   proven AV1/Opus command line, and known Windows path gotchas.
 - **browser**: Covers driving Chrome or Edge with `bunx chrome-devtools`,
   attaching to an open browser, failure modes, and a socket client for scripts.
-  Points to upstream skills for deeper topics.
 - **oxfmt**: Covers oxfmt configuration, ignores, migration from Prettier, and
   Zed integration.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.

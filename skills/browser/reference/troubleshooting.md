@@ -11,28 +11,33 @@ to some target is wedged. `stop`, then `start` again.
 CLI's own hardcoded give-up, not a failed connect. The daemon is still working,
 so do not `stop` between retries, because that discards the attach in progress.
 The cause is almost always too many open targets, counting tabs, workers, and
-iframes, because upstream assumes 2 to 10 pages and attaches to all of them
-without a cap
-([#1921](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/1921)).
-Once attached, the daemon stays warm and later calls return in seconds.
+iframes, because upstream attaches to all of them without a cap. Once attached,
+the daemon stays warm and later calls return in seconds.
 
-Each new connection re-prompts the user for remote debugging
-([#1794](https://github.com/ChromeDevTools/chrome-devtools-mcp/issues/1794)),
-which is why one daemon should serve the whole task.
+## Could not connect to Chrome
 
-## 403 on connect
+`--autoConnect` attaches to a running browser through the `DevToolsActivePort`
+file in the user-data root. It never launches one.
 
-`Could not connect to Chrome ... Unexpected server response: 403` means the
-browser is closed. `--autoConnect` attaches to a running browser, it never
-launches one.
+- **`Could not connect to Chrome in <dir>`** means that file is missing or
+  unreadable. Either the browser is not running, or remote debugging is off.
+  Have the user open the browser and turn on the toggle at
+  `chrome://inspect/#remote-debugging` or `edge://inspect/#remote-debugging`,
+  then `start` again.
+- **An error from the connection itself**, such as a 403 or a refused
+  connection, means the file points at a browser that is gone or that refused
+  the request. Have the user reopen the browser and accept the remote debugging
+  prompt, then `start` again.
+
+Do not use a copy of the profile unless asked, because it will not have later
+logins.
 
 ## Only about:blank in list_pages
 
-The CLI launched its own browser instead of attaching. Remote debugging writes
-`DevToolsActivePort` into the user-data root, so if that file is missing, have
-the user turn on the toggle at `chrome://inspect/#remote-debugging` or
-`edge://inspect/#remote-debugging`, then retry. Do not use a copy of the profile
-unless asked, because it will not have later logins.
+The daemon is driving a browser it launched, not the user's. That happens when
+it was started without `--autoConnect`, or when a tool command ran with no
+daemon and started one by itself. Check the `args` line of `status`, then
+`start` again with `--autoConnect` and the user-data root.
 
 ## Other causes worth ruling out
 
@@ -52,30 +57,16 @@ so pass `--no-headless` explicitly when a launched browser must be visible. It
 is harmless on an `--autoConnect` daemon, which drives the window that is
 already open.
 
-**Two profiles, one user-data root.** Chromium's lock covers the whole
-`User Data` root, so `list_pages` sees the targets of every open profile, and a
-second launch fails with "already running ... Use --isolated". To scope to one
-profile, close the other profile's windows, check that no `SingletonLock`
-remains, then `start` without `--autoConnect` and with
-`--chromeArg="--profile-directory=Profile 2"`.
+**Several profiles, one user-data root.** An attach covers the whole root, so
+`list_pages` includes the tabs of every open profile. Pick pages by the id the
+user gave or by the scratch tab you opened, not by position.
 
-## A new tab jumps to the front
+## Tabs and focus
 
-`new_page` always makes the new tab the selected one, which pulls the user away
-from what they were reading. Measured against `chrome-devtools-mcp` 1.9.0 on an
-`--autoConnect` daemon:
+`new_page` always brings the new tab to the front. `--isolatedContext` does not
+change that, and it also isolates cookies, so the logged-in session is gone.
 
-| Attempt                              | Selected tab afterwards                                      |
-| ------------------------------------ | ------------------------------------------------------------ |
-| `new_page --background true`         | the new tab, the flag has no effect                          |
-| `new_page --isolatedContext probe`   | the new tab, and cookies are isolated so the session is gone |
-| `window.open` from `evaluate_script` | nothing opens, the popup blocker returns null                |
-
-What works is handing focus back once with `select_page --bringToFront` after
-opening. Later calls against that tab, including `navigate_page`,
-`evaluate_script`, `take_snapshot`, and `close_page`, leave the user's selection
-where it is.
-
-`document.visibilityState` and `document.hasFocus()` are useless as probes here,
-because every page reports visible and focused. The `selected` field from
-`list_pages` is the only reliable signal.
+Nothing reports which tab the user is looking at. `document.visibilityState` and
+`document.hasFocus()` report visible and focused on every page, and `selected`
+in `list_pages` is only the page the daemon itself last selected, which starts
+as the first page. Hand focus back only to a tab the user named.

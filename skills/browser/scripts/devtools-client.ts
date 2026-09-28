@@ -11,10 +11,10 @@ import os from "node:os";
 import path from "node:path";
 
 export interface PageInfo {
-  pageId: string;
+  pageId: number;
   title: string;
   url: string;
-  /** True for the tab the user is looking at. */
+  /** The daemon's own selection, not the tab the user is looking at. */
   selected: boolean;
 }
 
@@ -29,10 +29,8 @@ interface DaemonResponse {
 const COMMAND_TIMEOUT_MS = 300_000;
 
 const NO_DAEMON =
-  "No chrome-devtools-mcp daemon. Start one against the intended browser " +
-  "first, as in the browser skill's Quick start. Starting it from here would " +
-  "have to guess a --userDataDir, and a wrong guess attaches to the wrong " +
-  "browser.";
+  "No chrome-devtools-mcp daemon. Start one with `bunx chrome-devtools start` " +
+  "as in the browser skill.";
 
 function getSocketPath(): string {
   const { username, uid } = os.userInfo();
@@ -45,46 +43,42 @@ function getSocketPath(): string {
     : `/tmp/chrome-devtools-mcp-${uid}.sock`;
 }
 
+// A promise settles once, so the handlers that fire after it are no-ops.
 function sendDaemonCommand(command: unknown): Promise<DaemonResponse> {
   return new Promise((resolve, reject) => {
     const socket = net.createConnection({ path: getSocketPath() });
     let buf = Buffer.alloc(0);
-    const timer = setTimeout(() => {
-      socket.destroy();
-      reject(
-        new Error("Timed out waiting for chrome-devtools-mcp daemon response."),
-      );
-    }, COMMAND_TIMEOUT_MS);
-
-    socket.on("data", (chunk) => {
+    socket.setTimeout(COMMAND_TIMEOUT_MS, () =>
+      socket.destroy(new Error("Timed out waiting for the daemon response.")),
+    );
+    socket.on("data", (chunk: Buffer) => {
       buf = Buffer.concat([buf, chunk]);
       const idx = buf.indexOf(0);
-      if (idx !== -1) {
-        clearTimeout(timer);
+      if (idx === -1) return;
+      socket.end();
+      try {
         resolve(JSON.parse(buf.subarray(0, idx).toString("utf-8")));
-        socket.end();
+      } catch (err) {
+        reject(err);
       }
     });
-    socket.on("error", (err: NodeJS.ErrnoException) => {
-      clearTimeout(timer);
-      reject(
-        err.code === "ENOENT"
-          ? new Error(NO_DAEMON)
-          : new Error(
-              `Cannot reach chrome-devtools-mcp daemon: ${err.message}`,
-            ),
-      );
-    });
-    socket.on("close", () => {
-      clearTimeout(timer);
-      reject(
-        new Error(
-          "chrome-devtools-mcp daemon closed the connection with no response.",
-        ),
-      );
-    });
+    socket.on("error", (err: NodeJS.ErrnoException) =>
+      reject(err.code === "ENOENT" ? new Error(NO_DAEMON) : err),
+    );
+    socket.on("close", () =>
+      reject(new Error("The daemon closed the connection with no response.")),
+    );
     socket.write(JSON.stringify(command) + "\0");
   });
+}
+
+function toPageInfo(p: any): PageInfo {
+  return {
+    pageId: p.id,
+    title: p.title,
+    url: p.url,
+    selected: Boolean(p.selected),
+  };
 }
 
 export class DevToolsClient {
@@ -102,13 +96,10 @@ export class DevToolsClient {
       args,
     });
     if (!response.success) {
-      throw new Error(
-        `chrome-devtools-mcp tool '${tool}' failed: ${response.error}`,
-      );
+      throw new Error(`${tool} failed: ${response.error}`);
     }
     const result = JSON.parse(response.result!);
-    // A tool that could not reach the browser answers with isError and prose.
-    // Without this check, the caller reads an empty payload as an empty browser.
+    // isError means the browser was unreachable.
     if (result.isError) {
       throw new Error(`${tool}: ${result.content?.[0]?.text ?? "failed"}`);
     }
@@ -117,63 +108,50 @@ export class DevToolsClient {
 
   async getPages(): Promise<PageInfo[]> {
     const result = await this.callTool("list_pages");
-    const pages = result.structuredContent?.pages ?? [];
-    return pages.map((p: any) => ({
-      pageId: String(p.id),
-      title: p.title,
-      url: p.url,
-      selected: Boolean(p.selected),
-    }));
-  }
-
-  async findPage(match: (p: PageInfo) => boolean): Promise<PageInfo | null> {
-    return (await this.getPages()).find(match) ?? null;
+    return (result.structuredContent?.pages ?? []).map(toPageInfo);
   }
 
   /**
    * Opens `url` in a new tab and returns its pageId. Close what you open.
    *
-   * The new tab always steals focus, so this hands the user's tab back.
-   * Later calls against the returned id leave the user's selection alone.
+   * The new tab always comes to the front. Pass `returnTo`, a tab the user
+   * named, to bring that tab back. Later calls against the returned id leave
+   * it in front.
    */
-  async newPage(url: string): Promise<string> {
-    const before = (await this.getPages()).find((p) => p.selected);
-    // new_page answers with the whole page list, not the id it just created.
-    await this.callTool("new_page", { url });
-    const opened = (await this.getPages())
-      .filter((p) => p.url.startsWith(url))
-      .at(-1);
-    if (!opened) throw new Error(`no browser page found for ${url}`);
-    if (before && before.pageId !== opened.pageId)
-      await this.selectPage(before.pageId);
-    return opened.pageId;
+  async newPage(url: string, returnTo?: number): Promise<number> {
+    // new_page selects the page it opened and answers with the page list.
+    const result = await this.callTool("new_page", { url });
+    const opened = (result.structuredContent?.pages ?? []).find(
+      (p: any) => p.selected,
+    );
+    if (!opened) throw new Error(`new_page did not report a page for ${url}`);
+    if (returnTo !== undefined) await this.selectPage(returnTo);
+    return opened.id;
   }
 
   /** Brings `pageId` to the front, making it the tab the user sees. */
-  async selectPage(pageId: string): Promise<void> {
-    await this.callTool("select_page", {
-      pageId: Number(pageId),
-      bringToFront: true,
-    });
+  async selectPage(pageId: number): Promise<void> {
+    await this.callTool("select_page", { pageId, bringToFront: true });
   }
 
-  async closePage(pageId: string): Promise<void> {
-    await this.callTool("close_page", { pageId: Number(pageId) });
+  async closePage(pageId: number): Promise<void> {
+    await this.callTool("close_page", { pageId });
   }
 
-  async navigate(pageId: string, url: string): Promise<void> {
-    await this.callTool("navigate_page", { pageId: Number(pageId), url });
+  async navigate(pageId: number, url: string): Promise<void> {
+    await this.callTool("navigate_page", { pageId, url });
   }
 
   /**
    * Runs a function source (`() => ...` or `async () => ...`) in the page and
-   * returns its JSON result. Throws if the script threw, including
-   * `Execution context was destroyed`, which is what a click that navigates
-   * looks like, so catch it where a navigation is expected.
+   * returns its JSON result, or `undefined` when it returns nothing. Throws if
+   * the script threw, including `Execution context was destroyed`, which is
+   * what a click that navigates looks like, so catch it where a navigation is
+   * expected.
    */
-  async evaluate<T = any>(pageId: string, fn: string): Promise<T> {
+  async evaluate<T = any>(pageId: number, fn: string): Promise<T | undefined> {
     const result = await this.callTool("evaluate_script", {
-      pageId: Number(pageId),
+      pageId,
       function: fn,
     });
     // evaluate_script returns its value as fenced JSON inside a prose message.
@@ -181,6 +159,7 @@ export class DevToolsClient {
     const match = message.match(/```json\s*([\s\S]*?)```/);
     if (!match)
       throw new Error(`Unexpected evaluate_script response: ${message}`);
-    return JSON.parse(match[1]);
+    const json = match[1].trim();
+    return json === "undefined" ? undefined : JSON.parse(json);
   }
 }
