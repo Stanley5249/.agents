@@ -56,8 +56,18 @@ an agent reads only the file it needs instead of the entire skill upfront.
 
 Use unscoped Conventional Commit subjects. This repository is shared by all
 projects and every change concerns skills, so a scope adds no information. This
-overrides the `agents` scope in the version-control skill. For example:
-`docs: clarify commit boundaries`.
+overrides the `agents` scope in the version-control skill.
+
+Skills are instructions that agents execute, so type skill changes by their
+effect on agent behavior:
+
+- `feat`: add, change, or remove guidance.
+- `fix`: correct wrong or misleading guidance.
+- `refactor`: restructure without changing behavior, such as moving a reference.
+- `style`: change only wording, headings, or formatting.
+- `docs`: change this README.
+
+For example: `feat: prefer mapped justfile dependencies`.
 
 ## Using an existing skill from another agent tool
 
