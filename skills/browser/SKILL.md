@@ -105,8 +105,8 @@ user's tab, and later calls against the scratch tab leave the selection alone.
 - **End standalone scripts with `process.exit(0)`.** An open handle keeps the
   event loop alive after the socket closes.
 - **Never claim an attachment you do not have.** A launched browser and an
-  attached one both report a normal user agent. Check `status` for
-  `--autoConnect` if a page looks logged out, and never do a task that needs the
+  attached one both report a normal user agent. Check the `args` line
+  of `status` for `--auto-connect` if a page looks logged out, and never do a task that needs the
   real session in a throwaway browser.
 
 ## When to stop
