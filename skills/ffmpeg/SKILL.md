@@ -31,8 +31,8 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   them unset until a specific source justifies measuring them.
 - Use Matroska or WebM for AV1 with Opus unless the requested playback target
   has confirmed support for that combination in another container.
-- This is a starting point, "not always the exact setup we want" — expect to
-  retune per source, that's normal, not a sign of a bad default.
+- This is a starting point. Expect to retune per source; that is normal, not a
+  sign of a bad default.
 
 ## Invocation hygiene
 
@@ -40,8 +40,8 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   is errors only.
 - `-progress pipe:1` for machine-readable progress instead of parsing the human
   status line.
-- Call ffmpeg directly with an argv array, never through a shell — keeps paths
-  with spaces/special characters from being re-parsed.
+- In scripts and programs, call ffmpeg with an argv array instead of a shell
+  string, so paths with spaces or special characters are not re-parsed.
 - A zero exit status is not proof the output is valid — probe/verify the result
   before trusting it.
 - Encode to a new path; never write over the source. Let the caller decide
@@ -53,14 +53,11 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   an emoji) can't be opened by ffmpeg at all — it converts the wide path to
   UTF-8 internally, the surrogate becomes `U+FFFD`, and it opens a name nothing
   on disk has. `Test-Path` succeeding while `ffprobe` says "No such file or
-  directory" on the same path is the symptom. Workaround: the 8.3 short name
-  (`GetShortPathNameW`, needs `unsafe`) or a temporary ASCII hardlink via
-  `std::fs::hard_link`.
+  directory" on the same path is the symptom. Workaround: pass the 8.3 short
+  path (`GetShortPathNameW`) or a temporary ASCII-named hardlink.
 - Quote every path; don't rely on ffmpeg's own glob expansion on Windows.
 
 ## This install
 
-`ffmpeg version 9.0-full_build-www.gyan.dev` (winget `Gyan.FFmpeg`) — full
-build: QSV/NVENC/VAAPI/AMF/D3D11VA/D3D12VA, `libsvtav1`, `libaom-av1`,
-`libvmaf`, `libopus` all compiled in. Re-run `ffmpeg -version` if this looks
-stale.
+The gyan.dev full build from winget (`Gyan.FFmpeg`). Check `ffmpeg -version` for
+the exact version and enabled libraries.
