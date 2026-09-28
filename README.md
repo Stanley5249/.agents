@@ -50,6 +50,8 @@ an agent reads only the file it needs instead of the entire skill upfront.
   including syntax differences, path handling, batching, and output control.
 - **ffmpeg**: Covers this machine's hardware encoder choice (QSV/Arc iGPU), the
   proven AV1/Opus command line, and known Windows path gotchas.
+- **oxfmt**: Covers oxfmt configuration, ignores, migration from Prettier, and
+  Zed integration.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.
 
 ## Version control

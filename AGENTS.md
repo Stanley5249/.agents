@@ -106,8 +106,8 @@ conventions win. Load references only when needed, immediately before use.
 `bun` > `deno` > `node`
 
 - For one-off tools, use `bunx` after getting approval.
-- `bunx prettier --write --cache .` is pre-approved. Use it to format supported
-  files.
+- `bunx oxfmt` and `bunx oxfmt --check` are pre-approved. Use them to format
+  supported files.
 - Warn before introducing `node` into a project, and try a `bun` alternative
   when available.
 
@@ -123,6 +123,11 @@ conventions win. Load references only when needed, immediately before use.
   - `cargo-nextest`
   - `cargo-llvm-cov`
   - `cargo-sweep`
+
+### Editor
+
+- I use Zed. When a project replaces a formatter that Zed bundles, such as
+  Prettier, configure the project's `.zed/settings.json` to match.
 
 ### Conda
 
@@ -171,4 +176,6 @@ Load skills when first required:
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
+- `oxfmt`: formatting JS, TS, CSS, HTML, JSON, YAML, or Markdown, or replacing
+  Prettier
 - `skill-creator`: create, edit, evaluate, or benchmark skills
