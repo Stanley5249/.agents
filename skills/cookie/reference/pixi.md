@@ -1,4 +1,4 @@
-# pixi projects
+# Pixi projects
 
 ## When this is the right choice
 

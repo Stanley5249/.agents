@@ -1,4 +1,4 @@
-# first commit
+# First commit
 
 Set up repository-wide metadata before history accumulates:
 

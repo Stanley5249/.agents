@@ -1,4 +1,4 @@
-# agent instruction files
+# Agent instruction files
 
 - `AGENTS.md` is the source of truth. `CLAUDE.md` imports it with the one-line
   `@AGENTS.md` syntax instead of copying it.

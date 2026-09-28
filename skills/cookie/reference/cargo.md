@@ -1,4 +1,4 @@
-# cargo projects
+# Cargo projects
 
 ## Layout
 

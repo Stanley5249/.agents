@@ -20,7 +20,7 @@
   configured (`ty`, `basedpyright`, or another LSP); default to `pyrefly` when
   none is set up yet.
 
-## justfile
+## Justfile
 
 Script- and library-shaped uv projects get no justfile; bare `uv run pytest` and
 `uv run ruff check` are enough. Add one only when an application grows multiple

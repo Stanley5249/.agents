@@ -5,8 +5,6 @@ description:
   path handling, and output control.
 ---
 
-# Windows shell efficiency
-
 Identify the active shell before choosing syntax. Each tool call starts a fresh
 process: the working directory carries over, but shell variables do not.
 

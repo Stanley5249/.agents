@@ -1,4 +1,4 @@
-# bun projects
+# Bun projects
 
 The most consistent pattern on this machine.
 
