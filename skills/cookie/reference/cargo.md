@@ -39,13 +39,6 @@ channel = "stable"
 components = ["rustfmt", "clippy"]
 ```
 
-## Hooks
-
-Stage `cargo fmt --check` as a cheap commit-time check and
-`cargo clippy --workspace --all-targets -- -D warnings` /
-`cargo doc --workspace` (with `RUSTDOCFLAGS=-D warnings`) as the expensive
-pre-push checks.
-
 ## Justfile
 
 Follow the shared recipe split in the [Justfile skill](../../justfile/SKILL.md),
@@ -53,7 +46,8 @@ adding only the recipes the project currently needs. Typical mappings are `fmt`
 to `cargo fmt --all`, `fmt-check` to `cargo fmt --all --check`, `typecheck` to
 `cargo check --workspace --all-targets`, `lint` to
 `cargo clippy --workspace --all-targets -- -D warnings`, and `test` to
-`cargo test --workspace`. Let `check` and `ci` compose the applicable
+`cargo test --workspace`. A docs check runs `cargo doc --workspace` with
+`RUSTDOCFLAGS=-D warnings`. Let `check` and `ci` compose the applicable
 source-preserving recipes; add `build` or `install` only when the workflow needs
 an explicit recipe for them.
 

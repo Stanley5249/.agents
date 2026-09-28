@@ -39,9 +39,9 @@ an agent reads only the file it needs instead of the entire skill upfront.
 
 ## What's here
 
-- **cookie**: Project-setup index for package managers, CI and hooks, repository
-  metadata, and agent conventions. Its details are split into focused files
-  under `reference/`.
+- **cookie**: Project-setup index for package managers, CI, repository metadata,
+  and agent conventions. Its details are split into focused files under
+  `reference/`.
 - **justfile**: Covers recipe interfaces, verification gates, execution,
   environment handling, safety, portability, and modularization.
 - **version-control**: Covers ignore decisions, commit and amendment practices,

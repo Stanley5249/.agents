@@ -105,8 +105,6 @@ a compatibility contract.
 
 - Use [`git-cliff`](https://git-cliff.org/) to generate changelogs for published
   projects.
-- Use [`prek`](https://prek.j178.dev/) when a project needs fast pre-commit
-  hooks.
 
 ## Reference
 

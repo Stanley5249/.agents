@@ -2,7 +2,7 @@
 name: cookie
 description:
   Guidance for project setup, including scaffolding, audits, toolchains,
-  formatting, CI, hooks, and agent conventions.
+  formatting, CI, and agent conventions.
 ---
 
 ## Scope
@@ -12,7 +12,7 @@ shape, then read only the references needed for the task.
 
 ## Reference index
 
-- Local or hosted CI and hook setup: `reference/ci.md`
+- Local or hosted CI setup: `reference/ci.md`
 - Repository-wide metadata for a new project (`.gitattributes`, license,
   `.editorconfig`): `reference/first-commit.md`
 - README shape and content: `reference/readme.md`
