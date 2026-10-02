@@ -23,7 +23,7 @@ branch that has to be rewritten onto.
   runtime artifacts, and plans. Project assets are not user data, so track them.
 - By default, do not commit editor-specific or agent-specific dotpaths such as
   `.zed/`, `.agents/`, `.claude/`, and `.pi/` unless the repository
-  intentionally tracks them.
+  intentionally tracks them. `zed.md` says when to track `.zed/settings.json`.
 - For a local temporary or scratch directory, add a local `.gitignore`
   containing `*`.
 - When the user explicitly wants to ignore a local file, add it to

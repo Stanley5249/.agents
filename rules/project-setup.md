@@ -70,5 +70,5 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   `merge=binary linguist-language=<LANG> linguist-generated=true -diff`. This
   prevents corrupted lockfiles from automatic 3-way git merges, flags them as
   generated on GitHub, and collapses noisy lockfile diffs.
-- Rust crates use `LICENSE-APACHE` and `LICENSE-MIT`; non-Rust projects normally
-  use one `LICENSE`.
+- Propose `LICENSE-APACHE` and `LICENSE-MIT` for Rust crates and one `LICENSE`
+  for other projects. The user chooses the license, as `documents.md` says.
