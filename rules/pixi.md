@@ -43,3 +43,7 @@ environment in every call, because inside an activated environment a bare
 Follow the rules of the wrapped language. Run commands through `pixi run <task>`
 or a justfile recipe shelling out to `pixi run`, whichever the project already
 uses.
+
+Export `PIXI_LOCKED := "true"` in the justfile, so every `pixi run` fails on a
+stale `pixi.lock` instead of re-solving. Add a `lock-check` recipe that runs
+`pixi lock --check --dry-run` and include it in `ci`.
