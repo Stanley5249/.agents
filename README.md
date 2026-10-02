@@ -47,6 +47,10 @@ Policy files, such as version control and project setup, live under `rules/`.
 `~/.agents/AGENTS.md` indexes the general rules with their loading conditions,
 and `rules/project-setup.md` indexes the per-tool setup rules.
 
+`rules/` stays flat even past eight files. Each file is short and loaded alone
+by its index entry, so a subdirectory would add path depth without making
+anything easier to find.
+
 ## Version control
 
 Use unscoped Conventional Commit subjects. This repository is shared by all
