@@ -53,7 +53,8 @@ test *args:
 Keep standard behavior explicit in the recipe. Without lists, `{{ args }}`
 forwards one whitespace-separated string through the shell. With lists,
 `quote(args)` quotes each element using Bourne-shell syntax; use native argument
-handling in PowerShell. See the README for shell-specific forwarding details.
+handling in PowerShell. See the Just README for shell-specific forwarding
+details.
 
 ## Verification recipes
 
@@ -84,7 +85,7 @@ regenerating diagrams.
 Dependencies compose verification gates sequentially. Use `[parallel]` for
 independent, concurrency-safe prerequisites and `--jobs` to bound concurrency.
 Dependencies before `&&` precede the recipe body, dependencies after it follow
-the body, and identical invocations run once. See the README for advanced
+the body, and identical invocations run once. See the Just README for advanced
 dependency-graph behavior.
 
 When the same recipe must run for a known list of items, prefer a native list
@@ -142,7 +143,8 @@ explicitly best-effort.
 
 Require `[confirm("...")]` for deploys, releases, migrations, and destructive
 cleanup. State the operation and target clearly. Automation can approve prompts
-with `--yes`; see the README for confirmation behavior in dependency graphs.
+with `--yes`; see the Just README for confirmation behavior in dependency
+graphs.
 
 ## Windows shell
 
@@ -164,7 +166,7 @@ Use `import "path.just"` to merge definitions into the current namespace and
 `mod name "path.just"` for an isolated command domain. Invoke module recipes as
 `just name recipe` or `just name::recipe`; they normally run relative to their
 module source. Modularize when the root justfile becomes difficult to scan. See
-the README for namespace, setting, and working-directory details.
+the Just README for namespace, setting, and working-directory details.
 
 ## Conditional features
 
@@ -173,8 +175,8 @@ Use `[timestamp]` or `--timestamp` to diagnose long-running recipes.
 
 Accept unstable features when they materially improve structure, such as native
 lists and mapped dependencies replacing shell loops. Opt in with `set unstable`
-and enable separately gated features such as `set lists`; consult the README for
-their evolving contracts.
+and enable separately gated features such as `set lists`; consult the Just
+README for their evolving contracts.
 
 ## References
 
