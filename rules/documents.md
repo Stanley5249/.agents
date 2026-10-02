@@ -40,8 +40,3 @@ Add more sections when appropriate, such as:
 
 - When the project has no document location, start at `docs/`. Otherwise follow
   the project convention.
-
-## Markdown
-
-- Write headings in sentence case. Prefer noun phrases.
-- Give every code fence a language tag.

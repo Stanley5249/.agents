@@ -38,7 +38,9 @@ Preferred structure during tasks:
 Follow this default writing style:
 
 - Use bold and italics sparingly.
-- Avoid numbering headings.
+- Write headings in sentence case and prefer noun phrases. Avoid numbering
+  headings.
+- Give every code fence a language tag.
 - Avoid parenthetical repetition, such as redundant translations.
 - Use natural transitions such as "because" and "but." Do not use em dashes as
   connectors.
