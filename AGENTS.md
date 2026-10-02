@@ -125,7 +125,7 @@ conventions win. Load references only when needed, immediately before use.
 
 - Get my approval before any CDP or other browser automation, including a
   headless browser.
-- Use Edge. Its user-data root is `$LOCALAPPDATA/Microsoft/Edge/User Data`.
+- Use Edge.
 
 ### Editor
 
