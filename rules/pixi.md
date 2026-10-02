@@ -18,6 +18,26 @@ dependencies need it.
   environment: pixi manages the native toolchain and GPU dependencies, cargo
   still manages the Rust build inside it.
 
+## Tools environment
+
+Lock the command-line tools that recipes and CI call, such as just, ruff, and
+tombi, in their own environment, so their pins never move the runtime libraries:
+
+```toml
+[tool.pixi.feature.tools.dependencies]
+just = "*"
+ruff = "*"
+tombi = "*"
+
+[tool.pixi.environments]
+ci = { features = ["tools"], no-default-feature = true }
+```
+
+In `pixi.toml`, drop the `tool.pixi.` prefix. Recipes call the tools with
+`pixi run -e ci` and the project with `pixi run -e default`. Name the
+environment in every call, because inside an activated environment a bare
+`pixi run` uses that one.
+
 ## Lint, format, and justfile
 
 Follow the rules of the wrapped language. Run commands through `pixi run <task>`
