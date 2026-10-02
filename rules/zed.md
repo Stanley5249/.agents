@@ -7,6 +7,11 @@ project's `.zed/settings.json`, and set only what differs from them. A list
 setting such as `file_scan_exclusions` replaces Zed's default list, so a project
 that adds entries also copies the defaults it still needs.
 
+Zed's built-in settings also set `language_servers` per language, and a
+per-language list replaces the top-level one. Set it in each language block, and
+copy the built-in entries the language still needs. `zed: open default settings`
+shows them.
+
 Track `.zed/settings.json` when it aligns formatters or linters with the
 project's command-line tools, so every checkout formats the same way as the
 command line. When the file holds only personal language-server tweaks, leave it
@@ -72,12 +77,41 @@ server and exclude oxfmt, so Zed does not pick the wrong one:
 ## Linters
 
 The Oxc extension also starts the `oxlint` language server. When the project
-lints with ESLint instead, turn it off at the top level so the editor does not
-show a second, disagreeing set of diagnostics:
+lints with ESLint instead, turn it off so the editor does not show a second,
+disagreeing set of diagnostics. Turn it off in each language block, and keep the
+servers that Zed's built-in settings list there:
 
 ```json
 {
-  "language_servers": ["!oxlint", "..."]
+  "languages": {
+    "JavaScript": {
+      "language_servers": [
+        "!typescript-language-server",
+        "vtsls",
+        "!oxlint",
+        "..."
+      ]
+    },
+    "TypeScript": {
+      "language_servers": [
+        "!typescript-language-server",
+        "vtsls",
+        "!oxlint",
+        "..."
+      ]
+    },
+    "TSX": {
+      "language_servers": [
+        "!typescript-language-server",
+        "vtsls",
+        "!oxlint",
+        "..."
+      ]
+    },
+    "Svelte": {
+      "language_servers": ["svelte-language-server", "!oxlint", "..."]
+    }
+  }
 }
 ```
 
