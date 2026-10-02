@@ -14,6 +14,27 @@ needs from `~/.agents/rules/`:
 A project can use multiple package-manager rules, such as `cargo` + `bun` for a
 desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 
+## Scaffold a new project
+
+- Match an existing project with a similar structure instead of introducing a
+  new pattern without reason.
+- Set up the repository metadata below before history accumulates.
+- Write an `AGENTS.md` that encodes these conventions.
+- Make the first commit with a Conventional Commit subject, such as
+  `chore: first commit`.
+
+## Migrate an existing repository
+
+- Audit the repository against the core conventions, the repository metadata,
+  and each rule file it needs. List each gap with its planned change.
+- Show the list and ask which changes to apply. The user decides which existing
+  conventions to replace.
+- Work on a task branch, such as `chore/migrate-conventions`.
+- Commit each accepted change separately, such as a formatter switch, the
+  reformat it causes, and a new `.gitattributes`.
+- After changing line-ending rules in `.gitattributes`, run
+  `git add --renormalize .` and commit the result on its own.
+
 ## Core conventions
 
 - Format TOML files with `tombi` (`tombi.toml`) regardless of the package
@@ -21,10 +42,6 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   configuration file.
 - Format JS, TS, CSS, HTML, JSON, YAML, and Markdown with oxfmt wherever those
   file types appear. Do not use ESLint here.
-- Match an existing project with a similar structure instead of introducing a
-  new pattern without reason.
-- Write an `AGENTS.md` that encodes these conventions when scaffolding a new
-  project.
 - Use `user/` for local, Git-ignored runtime data such as databases or
   application state.
 - Keep the toolchain for a secondary language scoped to the subdirectory that
@@ -33,9 +50,7 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   release automation, team workflows, or hosted automation only when the project
   needs them.
 
-## First commit
-
-Set up repository-wide metadata before history accumulates:
+## Repository metadata
 
 - Add `.gitattributes` with LF normalization, binary declarations, and generated
   lockfile handling appropriate to the project:
@@ -62,5 +77,3 @@ Set up repository-wide metadata before history accumulates:
 - Do not add `.editorconfig` by default when language formatters already cover
   the repository. Add it when a polyglot or shell-heavy project needs settings
   those formatters do not own.
-- Make the first commit with a Conventional Commit subject, such as
-  `chore: first commit`.
