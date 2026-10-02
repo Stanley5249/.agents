@@ -2,17 +2,16 @@
 
 ## Layout
 
-- Workspace shape: a `crates/` directory of members, or sibling member
-  directories listed in the root `Cargo.toml`'s `[workspace] members`. Start
-  with a workspace even when single-crate, if a second crate is plausible later
-  such as a `-core` and `-cli` split, because restructuring later is more
-  disruptive.
+- Use a workspace with its members under `crates/` or listed in the root
+  `Cargo.toml`'s `[workspace] members`. Start with one even for a single crate
+  when a second is likely, such as a `-core` and `-cli` split, because
+  restructuring later is more disruptive.
 
 ## Lint and format
 
-- Tailor `clippy.toml` to each project. Typical knobs: `msrv`,
+- Tailor `clippy.toml` to each project. Typical settings: `msrv`,
   `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`,
-  `missing-docs-in-crate-items`. Set only the knobs the project needs.
+  `missing-docs-in-crate-items`. Set only the ones the project needs.
 - Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and
   have each member opt in with `[lints] workspace = true`. The group needs
   `priority = -1` so single-lint overrides beside it win. Because `lint` runs
@@ -29,8 +28,8 @@
 
 ## Release automation
 
-- `deny.toml` + `cargo-deny` for dependency, license, and advisory checks
-- `release-plz` for automated version bumping and release PRs
+- `cargo-deny` with a `deny.toml` for dependency, license, and advisory checks
+- `release-plz` for automated version bumps and release PRs
 
 Add these once the project ships releases. Until then, the local gate is enough.
 

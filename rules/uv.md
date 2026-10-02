@@ -2,7 +2,8 @@
 
 ## Layout
 
-- `pyproject.toml` + `uv.lock`. Pin `.python-version` at the repo root.
+- Keep `pyproject.toml`, `uv.lock`, and a pinned `.python-version` at the
+  repository root.
 - Add packages with `uv add` and let uv manage the project's `.venv`.
 
 ## Lint, format, and type checking

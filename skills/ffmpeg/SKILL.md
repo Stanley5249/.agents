@@ -44,8 +44,8 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   status line.
 - In scripts and programs, call ffmpeg with an argv array instead of a shell
   string, so paths with spaces or special characters are not re-parsed.
-- A zero exit status is not proof the output is valid. Probe/verify the result
-  before trusting it.
+- A zero exit status is not proof the output is valid. Probe the result before
+  trusting it.
 - Encode to a new path; never write over the source. Let the caller decide
   whether to replace the original afterward.
 

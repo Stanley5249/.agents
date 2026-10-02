@@ -2,8 +2,8 @@
 
 ## Core rules
 
-- Minimal and concise.
-- Single source of truth. No duplication.
+- Keep documents minimal and concise.
+- State each fact once, in a single source of truth.
 - Ask for approval before adding sections to or restructuring `README.md`,
   `AGENTS.md`, or other documents. Keep existing content accurate without
   asking.
@@ -33,7 +33,7 @@ Add more sections when appropriate, such as:
 
 - In a monorepo, move subproject rules to `<subproject>/AGENTS.md` when they
   start to fill the root `AGENTS.md`.
-- Don't repeat the global instructions.
+- Refer to the global instructions instead of repeating them.
 - Add personal workflow or preferences only when the user asks.
 
 ## Document locations

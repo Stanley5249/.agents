@@ -1,8 +1,10 @@
 # Project setup
 
-Detect the repository shape, then read the tool rules that `~/.agents/AGENTS.md`
-indexes for it, plus `documents.md` for README and `AGENTS.md` and `zed.md` for
-editor settings.
+Detect the repository shape, then read:
+
+- the tool rules that `~/.agents/AGENTS.md` indexes for it
+- `documents.md` for README and `AGENTS.md`
+- `zed.md` for editor settings
 
 A project can use multiple package-manager rules, such as `cargo` + `bun` for a
 desktop app or `cargo` + `uv` for a Rust core with a Python harness.
@@ -25,8 +27,8 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   conventions to replace.
 - Work on a task branch, such as `chore/migrate-conventions`.
 - Move the instructions in a project `CLAUDE.md` into `AGENTS.md`, merging them
-  with what is already there, then delete `CLAUDE.md`. A one-line `@AGENTS.md`
-  import goes too.
+  with what is already there, then delete `CLAUDE.md`, including one that only
+  imports `@AGENTS.md`.
 - Commit each accepted change separately, such as a formatter switch, the
   reformat it causes, and a new `.gitattributes`.
 - After changing line-ending rules in `.gitattributes`, run

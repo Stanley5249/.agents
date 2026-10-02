@@ -4,8 +4,8 @@
 
 ### Branch
 
-Decide this before the first edit. A branch chosen after the work is done is a
-branch that has to be rewritten onto.
+Decide this before the first edit, because choosing a branch after the work
+means moving the commits onto it.
 
 - Use `main` as the default branch. If a new repository starts on `master`,
   rename it with `git branch -m main`.
