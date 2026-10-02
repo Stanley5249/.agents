@@ -159,10 +159,7 @@ These tools are available:
 
 ### Others
 
-- `rg`
-- `fzf`
-- `jq`
-- `fd`
+- Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 
 ### Interaction
 
@@ -193,7 +190,6 @@ Read these files in `~/.agents/rules/` when first required:
 
 Load skills when first required:
 
-- `windows-shell`: Windows shell work outside Claude Code
 - `ffmpeg`: audio or video work
 - `justfile`: justfile recipes and conventions
 - `browser`: browser automation, live pages, or Chrome DevTools
