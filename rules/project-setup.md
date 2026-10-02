@@ -74,6 +74,3 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   generated on GitHub, and collapses noisy lockfile diffs.
 - Rust crates use `LICENSE-APACHE` and `LICENSE-MIT`; non-Rust projects normally
   use one `LICENSE`.
-- Let language formatters own whitespace settings. Add `.editorconfig` when a
-  polyglot or shell-heavy project needs settings beyond what those formatters
-  cover.
