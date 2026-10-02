@@ -7,10 +7,6 @@
   with a workspace even when single-crate, if a second crate is plausible later
   (e.g. a `-core` / `-cli` split), because restructuring later is more
   disruptive.
-- In `.gitattributes`, configure:
-  ```gitattributes
-  Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
-  ```
 
 ## Lint/format
 

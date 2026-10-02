@@ -11,10 +11,6 @@ native toolchain handling that most projects don't need.
 
 - `pixi.toml` at the root, `.pixi/` holds the resolved environment (gitignore
   it).
-- In `.gitattributes`, configure:
-  ```gitattributes
-  pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
-  ```
 - Can wrap a full cargo workspace (multiple member crates) in a single pixi
   environment: pixi manages the native toolchain/GPU deps, cargo still manages
   the Rust build inside it.

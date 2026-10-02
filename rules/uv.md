@@ -3,10 +3,6 @@
 ## Layout
 
 - `pyproject.toml` + `uv.lock`. Pin `.python-version` at the repo root.
-- In `.gitattributes`, configure:
-  ```gitattributes
-  uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
-  ```
 - Run project Python commands with `uv run python`. Do not use
   `pip install --user` or create a loose virtual environment.
 
