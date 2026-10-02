@@ -14,6 +14,17 @@
   Typical knobs: `msrv`, `doc-valid-idents` for project-specific terms,
   `allow-unwrap-in-tests`, `missing-docs-in-crate-items`. Pick what the project
   needs; don't cargo-cult a full list.
+- Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and
+  have each member opt in with `[lints] workspace = true`. The group needs
+  `priority = -1` so single-lint overrides beside it win. Because `lint` runs
+  with `-D warnings`, pedantic findings fail the gate, so allow a lint
+  explicitly when it does not fit the project:
+
+  ```toml
+  [workspace.lints.clippy]
+  pedantic = { level = "warn", priority = -1 }
+  ```
+
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated
   reason.
 
