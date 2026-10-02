@@ -165,16 +165,17 @@ These tools are available:
 
 Read these files in `~/.agents/rules/` when first required:
 
-- `version-control.md`: version-control work, before the first change or plan
+- `version-control.md`: any task that edits a Git repository, before the first
+  edit or plan
 - `project-setup.md`: scaffolding a new project or migrating an existing
   repository to these conventions
-- `documents.md`: writing README, `AGENTS.md`, or `docs/`
-- `release.md`: changelog or release notes for a published project
-- `zed.md`: changing global or project Zed settings
+- `documents.md`: writing or editing README, `AGENTS.md`, or `docs/`
+- `release.md`: a release, version bump, changelog, or release notes
+- `zed.md`: changing Zed settings, or a project's formatter or linter
 
-Before changing a project's tooling, such as its manifest, lint or format
-configuration, lockfile, toolchain, justfile, or CI, read the rule for each tool
-it uses:
+Before running or configuring a project's tools, such as its linter, formatter,
+type checker, manifest, lockfile, toolchain, justfile, or CI, read the rule for
+each tool it uses:
 
 - `cargo.md`: Rust workspace or crate
 - `uv.md`: Python project
