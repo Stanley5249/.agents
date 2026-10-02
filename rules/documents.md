@@ -2,71 +2,72 @@
 
 ## Where things go
 
-| File          | Reader      | Holds                                 |
-| ------------- | ----------- | ------------------------------------- |
-| `README.md`   | humans      | what the project is and how to run it |
-| `AGENTS.md`   | agents      | conventions and commands agents need  |
-| `docs/*.md`   | humans      | one focused topic per file            |
-| code comments | maintainers | why the code is the way it is         |
-| changelog     | users       | release notes generated from commits  |
+| File          | Reader      |
+| ------------- | ----------- |
+| `README.md`   | humans      |
+| `AGENTS.md`   | agents      |
+| `docs/*.md`   | humans      |
+| code comments | maintainers |
+| changelog     | users       |
 
 - State each fact in one place and link to it elsewhere. Point to the command
-  surface, such as `just --list`, instead of copying commands into prose.
+  surface, such as `justfile`, instead of copying commands into prose.
+
+<!--we shuold move changelog to ci-->
+
 - Generate the changelog with `git-cliff` from Conventional Commits for
   published projects. Unpublished projects keep no changelog.
 
+## Core rules
+
+- Minimal and concise.
+- Single source of truth. No duplication.
+- Ask for approval before adding sections to or restructuring `README.md`,
+  `AGENTS.md`, or other documents. Keep existing content accurate without
+  asking.
+
 ## README
 
-Choose the smallest shape appropriate to the audience.
+Start with the smallest shape appropriate to the audience.
 
-A personal or work-in-progress project normally has no badges and may omit the
-README when `AGENTS.md` is enough. When present, use:
+- Title: with an optional one-line description.
+- Installation: optional, user-facing. How to install the project.
+- Requirements: developer-facing. Link each tool to its installation guide.
+- Commands: point to a command runner such as `justfile` when present, and start
+  with the essential ones only.
+- Documents: links to hosted docs when present, plus relative paths to local
+  docs.
+- License: required for published projects. Ask the user to choose one.
 
-- A title and optional one-line description.
-- Setup or command instructions through the project's command surface.
-- Domain-specific sections only for behavior that is not evident from the code.
-- A documentation section linking to focused files under `docs/`.
-- A status section while major work remains.
+Add more sections when appropriate, such as:
 
-A published library should additionally provide release, documentation, CI,
-coverage, and license badges; runnable basic usage; comparison or FAQ material;
-and an explicit license section.
+- badges for release, documentation, CI, coverage, and license
+- usage
+- comparison
+- FAQ
+- references
 
 ## Agent instruction files
 
-- `AGENTS.md` is the source of truth for agent instructions.
-- Prefer symbolic links for shared skills, data directories, and other paths
-  without an import mechanism.
-- In a monorepo, keep the root `AGENTS.md` as a thin index directing agents to
-  nested files such as `catalog/AGENTS.md` and `web/AGENTS.md`. Do not duplicate
-  subproject details at the root.
-- Split an instruction file only when it becomes hard to scan. Put durable topic
-  files under `.agents/rules/`, one topic per file, and reference them from the
-  root.
-- Keep durable plans and shared skills under `.agents/`; name the durable
-  backlog itself `.agents/AGENTS.md`, because that filename gets the same
-  automatic read/injection a nested `AGENTS.md` gets, instead of needing an
-  explicit instruction to open it every time. Treat `.claude/` and `.codex/` as
-  tool-specific scratch or session state.
+- In a monorepo, move subproject rules to `<subproject>/AGENTS.md` when they
+  start to fill the root `AGENTS.md`.
+- Don't repeat the global instructions.
+- Add personal workflow or preferences only when the user asks.
 
-## docs/
+## Document locations
 
-- Keep one topic per file and name the file after its topic.
-- Link each file from the README's documentation section.
-- Record the reason for a non-obvious design decision in the doc for its topic.
+- When the project has no document location, start at `docs/`. Otherwise follow
+  the project convention.
 
 ## Code comments
 
 - Explain why the code is the way it is. The code already says what it does.
 - Give public APIs doc comments, such as rustdoc, docstrings, or JSDoc. Write
   examples in them as doctests where the language supports it.
-- When a file stays over the 400-line threshold, record the reason in its
-  file-level comment.
+
+<!--This should move to elsewhere-->
 
 ## Markdown
 
-- Format with oxfmt at a print width of 80 with `proseWrap: "always"`.
-- Write headings in sentence case.
+- Write headings in sentence case. Prefer noun phrases.
 - Give every code fence a language tag.
-- Use relative links inside the repository, and link to files rather than line
-  numbers, because line numbers go stale.
