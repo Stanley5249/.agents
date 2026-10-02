@@ -10,7 +10,7 @@ data.
 
 Each skill is a directory under `skills/`:
 
-```
+```text
 skills/<name>/
   SKILL.md          # entry point
   reference/*.md    # optional, loaded on demand
@@ -74,7 +74,7 @@ Link skills into each agent's skill-discovery directory instead of copying them,
 so the files here remain the single source of truth. Prefer symbolic links; use
 junctions only as a fallback when symbolic links are not practical. For example:
 
-```
+```sh
 ln -s ~/.agents/skills/browser ~/.claude/skills/browser
 ```
 

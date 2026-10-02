@@ -5,7 +5,7 @@
 - `pyproject.toml` + `uv.lock`. Pin `.python-version` at the repo root.
 - Do not use `pip install --user` or create a loose virtual environment.
 
-## Lint/format
+## Lint and format
 
 - Do not add black, isort, or flake8 next to `ruff`. Its defaults are usually
   enough; the one common addition is `[tool.ruff.lint] extend-select = ["I"]`

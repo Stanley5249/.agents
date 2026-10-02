@@ -1,4 +1,4 @@
-## About User
+## About the user
 
 My name is Stanley, a Traditional Chinese speaker from Taiwan. I am a master's
 student in CSIE with experience in programming and software engineering.
@@ -146,7 +146,7 @@ conventions win. Load references only when needed, immediately before use.
 
 `pixi global` > `uv tool` > `winget` > `cargo-binstall`
 
-### Version Control
+### Version control
 
 For untracked files, describe the changes, show a simplified preview, and ask
 for approval.

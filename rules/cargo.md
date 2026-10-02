@@ -5,10 +5,10 @@
 - Workspace shape: a `crates/` directory of members, or sibling member
   directories listed in the root `Cargo.toml`'s `[workspace] members`. Start
   with a workspace even when single-crate, if a second crate is plausible later
-  (e.g. a `-core` / `-cli` split), because restructuring later is more
+  such as a `-core` and `-cli` split, because restructuring later is more
   disruptive.
 
-## Lint/format
+## Lint and format
 
 - `clippy.toml` is tailored per project, not copied from a shared baseline.
   Typical knobs: `msrv`, `doc-valid-idents` for project-specific terms,
@@ -17,13 +17,13 @@
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated
   reason.
 
-## Release automation (only when the project ships releases)
+## Release automation
 
-- `deny.toml` + `cargo-deny` for dependency/license/advisory checks
+- `deny.toml` + `cargo-deny` for dependency, license, and advisory checks
 - `release-plz` for automated version bumping and release PRs
 
-None of this is the right default for a personal/WIP project. Add it only when
-the project is actually released.
+None of this is the right default for a personal or work-in-progress project.
+Add it only when the project is actually released.
 
 ## Toolchain pinning
 
@@ -47,7 +47,7 @@ Add only the justfile recipes the project currently needs. Typical mappings are
 source-preserving recipes; add `build` or `install` only when the workflow needs
 an explicit recipe for them.
 
-`--all-targets` also covers tests, benches, and examples for `check`/`clippy`,
-but `cargo test --all-targets` silently skips doctests. Run
+`--all-targets` also covers tests, benches, and examples for `cargo check` and
+`cargo clippy`, but `cargo test --all-targets` silently skips doctests. Run
 `cargo test --workspace` without it, or add `--doc` alongside, when the project
 has doctests worth covering.

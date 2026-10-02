@@ -5,6 +5,8 @@ description:
   verification gates, and Windows PowerShell configuration.
 ---
 
+# justfile
+
 ## Scope
 
 Use this skill when creating, updating, or reviewing a justfile.

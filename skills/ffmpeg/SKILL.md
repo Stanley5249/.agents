@@ -5,6 +5,8 @@ description:
   interoperability.
 ---
 
+# ffmpeg
+
 ## Hardware
 
 Use the Arc iGPU through `-hwaccel qsv -hwaccel_output_format qsv` and the
@@ -17,7 +19,7 @@ not have matching GPU hardware here.
 
 The proven baseline for re-encoding existing video (not primary capture):
 
-```
+```sh
 ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:v fast -global_quality:v <q> -g:v 120 -c:a libopus -vbr:a on -b:a <bitrate> <target.mkv>
 ```
 
