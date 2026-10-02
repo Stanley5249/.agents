@@ -1,7 +1,6 @@
 # Agent instruction files
 
-- `AGENTS.md` is the source of truth. `CLAUDE.md` imports it with the one-line
-  `@AGENTS.md` syntax instead of copying it.
+- `AGENTS.md` is the source of truth for agent instructions.
 - Prefer symbolic links for shared skills, data directories, and other paths
   without an import mechanism.
 - In a monorepo, keep the root `AGENTS.md` as a thin index directing agents to

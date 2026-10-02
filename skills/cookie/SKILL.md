@@ -16,8 +16,7 @@ shape, then read only the references needed for the task.
 - Repository-wide metadata for a new project (`.gitattributes`, license,
   `.editorconfig`): `reference/first-commit.md`
 - README shape and content: `reference/readme.md`
-- `AGENTS.md`/`CLAUDE.md` conventions and the `.agents/` layer:
-  `reference/agent-files.md`
+- `AGENTS.md` conventions and the `.agents/` layer: `reference/agent-files.md`
 - Rust workspace or crate: `reference/cargo.md`
 - Python project: `reference/uv.md`
 - JavaScript or TypeScript project, especially Svelte: `reference/bun.md`

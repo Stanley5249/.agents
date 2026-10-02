@@ -85,7 +85,7 @@ line at 72 characters or fewer.
 - Use a directory, package, or crate name as the scope by default. Omit the
   scope for a repository-wide change.
 - Use the `agents` scope for agent-related changes, including `.agents/`,
-  `AGENTS.md`, `.claude/`, `CLAUDE.md`, and skills.
+  `AGENTS.md`, `.claude/`, and skills.
 
 ### Body
 

@@ -171,7 +171,7 @@ These tools are available:
 
 ## Agents
 
-- Prioritize `AGENTS.md`. Import it in `CLAUDE.md` with `@AGENTS.md`.
+- Prioritize `AGENTS.md`.
 
 ## Skills
 
