@@ -39,15 +39,8 @@ an agent reads only the file it needs instead of the entire skill upfront.
 
 ## What's here
 
-- **cookie**: Project-setup index for package managers, CI, repository metadata,
-  and agent conventions. Its details are split into focused files under
-  `reference/`.
 - **justfile**: Covers recipe interfaces, verification gates, execution,
   environment handling, safety, portability, and modularization.
-- **version-control**: Covers ignore decisions, commit and amendment practices,
-  Conventional Commit messages, branching practices, and optional Git tools.
-- **windows-shell**: Covers efficient Git Bash and PowerShell usage on Windows,
-  including syntax differences, path handling, batching, and output control.
 - **ffmpeg**: Covers this machine's hardware encoder choice (QSV/Arc iGPU), the
   proven AV1/Opus command line, and known Windows path gotchas.
 - **browser**: Covers driving Chrome or Edge with `bunx chrome-devtools`,
@@ -56,11 +49,14 @@ an agent reads only the file it needs instead of the entire skill upfront.
   Zed integration.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.
 
+Policy files, such as version control and project setup, live under `rules/`.
+`~/.agents/AGENTS.md` indexes each one with its loading condition.
+
 ## Version control
 
 Use unscoped Conventional Commit subjects. This repository is shared by all
-projects and every change concerns skills, so a scope adds no information. This
-overrides the `agents` scope in the version-control skill.
+projects and every change concerns skills or rules, so a scope adds no
+information. This overrides the `agents` scope in the version-control rule.
 
 Skills are instructions that agents execute, so type skill changes by their
 effect on agent behavior:
@@ -80,11 +76,8 @@ so the files here remain the single source of truth. Prefer symbolic links; use
 junctions only as a fallback when symbolic links are not practical. For example:
 
 ```
-ln -s ~/.agents/skills/cookie ~/.claude/skills/cookie
+ln -s ~/.agents/skills/browser ~/.claude/skills/browser
 ```
-
-For instruction files with an import mechanism, such as Claude's `@AGENTS.md`
-syntax, prefer an import over a symlink.
 
 ## Adding a new skill
 
