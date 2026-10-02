@@ -14,16 +14,14 @@ The most consistent pattern on this machine.
 
 ## Lint and format
 
-Format with oxfmt, and load the `oxfmt` skill to configure it. For a Svelte
-project, use `svelte-check` for type checking, separate from formatting and
-tests.
+Format with oxfmt. For a Svelte project, use `svelte-check` for type checking,
+separate from formatting and tests.
 
 ## Justfile
 
 Keep commands out of `package.json` scripts and invoke local executables
-directly. Follow the shared recipe split in the
-[Justfile skill](../skills/justfile/SKILL.md), adding only the recipes the
-project currently needs. Typical Bun-backed mappings include `fmt` and
-`fmt-check` through `bunx oxfmt`, and `test` through `bun test`; `typecheck`,
-`lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install`
-only when a dedicated `bun install` entry point is useful to the workflow.
+directly. Add only the justfile recipes the project currently needs. Typical
+Bun-backed mappings include `fmt` and `fmt-check` through `bunx oxfmt`, and
+`test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the
+frontend tooling in use. Add `install` only when a dedicated `bun install` entry
+point is useful to the workflow.

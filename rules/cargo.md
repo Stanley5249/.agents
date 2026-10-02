@@ -42,11 +42,9 @@ components = ["rustfmt", "clippy"]
 
 ## Justfile
 
-Follow the shared recipe split in the
-[Justfile skill](../skills/justfile/SKILL.md), adding only the recipes the
-project currently needs. Typical mappings are `fmt` to `cargo fmt --all`,
-`fmt-check` to `cargo fmt --all --check`, `typecheck` to
-`cargo check --workspace --all-targets`, `lint` to
+Add only the justfile recipes the project currently needs. Typical mappings are
+`fmt` to `cargo fmt --all`, `fmt-check` to `cargo fmt --all --check`,
+`typecheck` to `cargo check --workspace --all-targets`, `lint` to
 `cargo clippy --workspace --all-targets -- -D warnings`, and `test` to
 `cargo test --workspace`. A docs check runs `cargo doc --workspace` with
 `RUSTDOCFLAGS=-D warnings`. Let `check` and `ci` compose the applicable

@@ -11,8 +11,7 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   manager. It covers `Cargo.toml`, `pyproject.toml`, `pixi.toml`, and its own
   configuration file.
 - Format JS, TS, CSS, HTML, JSON, YAML, and Markdown with oxfmt wherever those
-  file types appear. Do not use ESLint here. Load the `oxfmt` skill for its
-  configuration.
+  file types appear. Do not use ESLint here.
 - Match an existing project with a similar structure instead of introducing a
   new pattern without reason.
 - Write an `AGENTS.md` that encodes these conventions when scaffolding a new
