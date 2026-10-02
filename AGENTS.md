@@ -166,10 +166,6 @@ These tools are available:
 - `bat`
 - `gum`
 
-## Agents
-
-- Prioritize `AGENTS.md`.
-
 ## Rules
 
 Read these files in `~/.agents/rules/` when first required:
