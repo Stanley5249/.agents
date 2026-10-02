@@ -177,6 +177,7 @@ Read these files in `~/.agents/rules/` when first required:
 - `first-commit.md`: repository metadata for a new project (`.gitattributes`,
   license, `.editorconfig`)
 - `documents.md`: writing README, `AGENTS.md`, or `docs/`
+- `release.md`: changelog or release notes for a published project
 - `cargo.md`: Rust workspace or crate
 - `uv.md`: Python project
 - `bun.md`: JavaScript or TypeScript project, especially Svelte

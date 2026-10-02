@@ -96,11 +96,6 @@ line at 72 characters or fewer.
 Use `!` and `BREAKING CHANGE` only after the project has been published and has
 a compatibility contract.
 
-## Optional tools
-
-- Use [`git-cliff`](https://git-cliff.org/) to generate changelogs for published
-  projects.
-
 ## Reference
 
 - [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)

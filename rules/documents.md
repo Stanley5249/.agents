@@ -13,11 +13,6 @@
 - State each fact in one place and link to it elsewhere. Point to the command
   surface, such as `justfile`, instead of copying commands into prose.
 
-<!--we shuold move changelog to ci-->
-
-- Generate the changelog with `git-cliff` from Conventional Commits for
-  published projects. Unpublished projects keep no changelog.
-
 ## Core rules
 
 - Minimal and concise.
