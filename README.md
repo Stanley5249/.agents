@@ -53,7 +53,8 @@ an agent reads only the file it needs instead of the entire skill upfront.
 - **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.
 
 Policy files, such as version control and project setup, live under `rules/`.
-`~/.agents/AGENTS.md` indexes each one with its loading condition.
+`~/.agents/AGENTS.md` indexes the general rules with their loading conditions,
+and `rules/project-setup.md` indexes the per-tool setup rules.
 
 ## Version control
 
