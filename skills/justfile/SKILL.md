@@ -75,6 +75,28 @@ project sources:
   applicable checks, commonly `fmt-check`, `check`, and `test`, plus `build`
   when the project needs it.
 
+When a project has several formatters, give each one a private helper that
+forwards `*args`. `fmt` runs the helpers, and `fmt-check` passes each one its
+check flag, so the two recipes always run the same commands:
+
+```just
+[parallel]
+fmt: _fmt-cargo _fmt-oxfmt _fmt-just
+
+fmt-check: (_fmt-cargo "--check") (_fmt-oxfmt "--check") (_fmt-just "--check")
+
+_fmt-cargo *args:
+    cargo fmt --all {{ args }}
+
+_fmt-oxfmt *args:
+    bunx oxfmt {{ args }}
+
+_fmt-just *args:
+    just --fmt {{ args }}
+```
+
+Mark `fmt` as `[parallel]` only when the formatters own disjoint sets of files.
+
 ## Other recipes
 
 Add recipes for tedious workflow, such as rendering an LLM prompt or
