@@ -1,9 +1,8 @@
 # Project setup
 
-Load this file to scaffold a new project or to migrate an existing repository to
-these conventions. Detect the repository shape, then read the tool rules that
-`~/.agents/AGENTS.md` indexes for it, plus `documents.md` for README and
-`AGENTS.md` and `zed.md` for editor settings.
+Detect the repository shape, then read the tool rules that `~/.agents/AGENTS.md`
+indexes for it, plus `documents.md` for README and `AGENTS.md` and `zed.md` for
+editor settings.
 
 A project can use multiple package-manager rules, such as `cargo` + `bun` for a
 desktop app or `cargo` + `uv` for a Rust core with a Python harness.
@@ -59,7 +58,6 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   *.png binary
   *.ico binary
 
-  # Lockfiles: avoid git merge conflict markers, mark generated, suppress noisy diffs
   bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff

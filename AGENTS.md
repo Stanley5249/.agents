@@ -69,9 +69,6 @@ for my projects. Treat these size thresholds as review prompts, not hard limits:
   documentation.
 - When a subdirectory or module contains more than eight hand-maintained files,
   consider modularizing it or simplifying its structure.
-- Run cheap tools and checks, such as formatters and linters, before each
-  commit. Defer expensive end-to-end and other automated tests until all tasks
-  are complete to keep iterations fast.
 
 ## System
 

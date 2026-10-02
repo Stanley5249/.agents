@@ -18,12 +18,11 @@
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables directly. Add
-only the justfile recipes the project currently needs. Typical Bun-backed
-mappings include `fmt` and `fmt-check` through `bunx oxfmt`, and `test` through
-`bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend
-tooling in use. Add `install` only when a dedicated `bun install` entry point is
-useful to the workflow.
+Put commands in justfile recipes that invoke local executables directly. Typical
+Bun-backed mappings include `fmt` and `fmt-check` through `bunx oxfmt`, and
+`test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the
+frontend tooling in use. Add `install` only when a dedicated `bun install` entry
+point is useful to the workflow.
 
 Add a `lock-check` recipe that runs `bun install --frozen-lockfile` and include
 it in `ci`, so the gate fails when `bun.lock` disagrees with `package.json`.

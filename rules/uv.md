@@ -31,6 +31,5 @@
 
 ## Justfile
 
-Script- and library-shaped uv projects run `uv run pytest` and
-`uv run ruff check` directly. Add a justfile when an application grows multiple
-entry points or needs a composed CI gate.
+Until the project has a justfile, run `uv run pytest` and `uv run ruff check`
+directly.
