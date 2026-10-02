@@ -178,6 +178,16 @@ These tools are available:
 Read these files in `~/.agents/rules/` when first required:
 
 - `version-control.md`: version-control work, before the first change or plan
+- `project-setup.md`: project setup or tooling, before the files below
+- `ci.md`: local or hosted CI setup
+- `first-commit.md`: repository metadata for a new project (`.gitattributes`,
+  license, `.editorconfig`)
+- `readme.md`: README shape and content
+- `agent-files.md`: `AGENTS.md` conventions and the `.agents/` layer
+- `cargo.md`: Rust workspace or crate
+- `uv.md`: Python project
+- `bun.md`: JavaScript or TypeScript project, especially Svelte
+- `pixi.md`: multi-language projects or heavy native or GPU dependencies
 
 ## Skills
 
@@ -185,7 +195,6 @@ Load skills when first required:
 
 - `windows-shell`: Windows shell work outside Claude Code
 - `ffmpeg`: audio or video work
-- `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions
 - `browser`: browser automation, live pages, or Chrome DevTools
 - `oxfmt`: configuring oxfmt, replacing Prettier, or editor formatter setup
