@@ -27,9 +27,9 @@ names when their roles apply: `install`, `build`, `dev`, `prod`, `fmt`, `fix`,
 `prod` over generic names such as `start` and `run` when a project has distinct
 development and production modes.
 
-Document public recipes so their descriptions appear in `just --list`. Set
-`default-list` for command-oriented projects, use `just --usage` for
-parameterized recipes, and use `just --show` when inspecting a recipe.
+Document public recipes so their descriptions appear in `just --list`. Always
+`set default-list`, so a bare `just` lists the recipes. Use `just --usage` for
+parameterized recipes and `just --show` when inspecting a recipe.
 
 Use `_name` for a small private helper and `[private]` when a public-looking
 name improves readability. Add `[group("name")]` when a large recipe list needs
