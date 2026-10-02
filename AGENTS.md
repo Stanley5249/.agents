@@ -175,8 +175,7 @@ Read these files in `~/.agents/rules/` when first required:
 - `ci.md`: local or hosted CI setup
 - `first-commit.md`: repository metadata for a new project (`.gitattributes`,
   license, `.editorconfig`)
-- `readme.md`: README shape and content
-- `agent-files.md`: `AGENTS.md` conventions and the `.agents/` layer
+- `documents.md`: writing README, `AGENTS.md`, `docs/`, or code comments
 - `cargo.md`: Rust workspace or crate
 - `uv.md`: Python project
 - `bun.md`: JavaScript or TypeScript project, especially Svelte
