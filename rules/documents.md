@@ -1,18 +1,5 @@
 # Documents
 
-## Where things go
-
-| File          | Reader      |
-| ------------- | ----------- |
-| `README.md`   | humans      |
-| `AGENTS.md`   | agents      |
-| `docs/*.md`   | humans      |
-| code comments | maintainers |
-| changelog     | users       |
-
-- State each fact in one place and link to it elsewhere. Point to the command
-  surface, such as `justfile`, instead of copying commands into prose.
-
 ## Core rules
 
 - Minimal and concise.
@@ -28,8 +15,8 @@ Start with the smallest shape appropriate to the audience.
 - Title: with an optional one-line description.
 - Installation: optional, user-facing. How to install the project.
 - Requirements: developer-facing. Link each tool to its installation guide.
-- Commands: point to a command runner such as `justfile` when present, and start
-  with the essential ones only.
+- Commands: point to a command runner such as `justfile` when present instead of
+  copying its commands, and start with the essential ones only.
 - Documents: links to hosted docs when present, plus relative paths to local
   docs.
 - License: required for published projects. Ask the user to choose one.
