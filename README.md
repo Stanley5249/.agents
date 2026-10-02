@@ -1,11 +1,12 @@
-# Skills
+# Agents
 
-These tool-agnostic skills are shared across coding agents on this machine,
-including Claude Code and pi. They live under `.agents/` because they are meant
-to persist when switching agents, unlike `.claude/` or `.codex/`, which hold
-ephemeral, tool-specific scratch data.
+This repository holds the global `AGENTS.md`, rules, and tool-agnostic skills
+shared across coding agents on this machine, including Claude Code and pi. They
+live under `.agents/` because they are meant to persist when switching agents,
+unlike `.claude/` or `.codex/`, which hold ephemeral, tool-specific scratch
+data.
 
-## Convention
+## Skills
 
 Each skill is a directory under `skills/`:
 
@@ -72,3 +73,7 @@ junctions only as a fallback when symbolic links are not practical. For example:
 ```
 ln -s ~/.agents/skills/browser ~/.claude/skills/browser
 ```
+
+## License
+
+[MIT](LICENSE)
