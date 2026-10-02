@@ -1,4 +1,18 @@
-# Format with oxfmt in Zed
+# Zed
+
+## Project settings
+
+Read the global settings at `%APPDATA%\Zed\settings.json` before changing a
+project's `.zed/settings.json`, and set only what differs from them. A list
+setting such as `file_scan_exclusions` replaces Zed's default list, so a project
+that adds entries also copies the defaults it still needs.
+
+Track `.zed/settings.json` when it aligns formatters or linters with the
+project's command-line tools, so every checkout formats the same way as the
+command line. When the file holds only personal language-server tweaks, leave it
+untracked.
+
+## Format with oxfmt
 
 Zed's default formatter, `"auto"`, uses its bundled Prettier for every language
 where `prettier.allowed` is true, and falls back to a language server only
@@ -13,9 +27,8 @@ first language server that can format the file, which may not be oxfmt. The
 Svelte language server, for example, formats `.svelte` files with its own copy
 of Prettier.
 
-So turn Prettier off in the project's `.zed/settings.json` and name `oxfmt` as
-the formatter for each language the project contains. This is a reason to track
-the file intentionally, so every checkout formats the same way as `bunx oxfmt`:
+So turn Prettier off and name `oxfmt` as the formatter for each language the
+project contains:
 
 ```json
 {
@@ -56,6 +69,8 @@ server and exclude oxfmt, so Zed does not pick the wrong one:
 }
 ```
 
+## Linters
+
 The Oxc extension also starts the `oxlint` language server. When the project
 lints with ESLint instead, turn it off at the top level so the editor does not
 show a second, disagreeing set of diagnostics:
@@ -63,5 +78,18 @@ show a second, disagreeing set of diagnostics:
 ```json
 {
   "language_servers": ["!oxlint", "..."]
+}
+```
+
+In a Rust project, have rust-analyzer check with Clippy, so the editor shows the
+same lints as the `lint` recipe:
+
+```json
+{
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": { "check": { "command": "clippy" } }
+    }
+  }
 }
 ```
