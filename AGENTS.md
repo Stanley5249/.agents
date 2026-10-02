@@ -178,3 +178,13 @@ Read these files in `~/.agents/rules/` when first required:
 - `documents.md`: writing README, `AGENTS.md`, or `docs/`
 - `release.md`: changelog or release notes for a published project
 - `zed.md`: changing global or project Zed settings
+
+Before changing a project's tooling, such as its manifest, lint or format
+configuration, lockfile, toolchain, justfile, or CI, read the rule for each tool
+it uses:
+
+- `cargo.md`: Rust workspace or crate
+- `uv.md`: Python project
+- `bun.md`: JavaScript or TypeScript project, especially Svelte
+- `pixi.md`: multi-language projects or heavy native or GPU dependencies
+- `ci.md`: local or hosted CI
