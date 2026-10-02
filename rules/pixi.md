@@ -10,8 +10,10 @@ dependencies need it.
 
 ## Layout
 
-- `pixi.toml` at the root, and `.pixi/` holds the resolved environment, which is
-  gitignored.
+- A Python project keeps pixi's configuration under `[tool.pixi.*]` in
+  `pyproject.toml`, so one manifest holds the package and its environments.
+  Other projects use `pixi.toml` at the root.
+- `.pixi/` holds the resolved environment and is gitignored.
 - Can wrap a full cargo workspace with multiple member crates in a single pixi
   environment: pixi manages the native toolchain and GPU dependencies, cargo
   still manages the Rust build inside it.
