@@ -44,14 +44,14 @@ Record only settings that differ from oxfmt's defaults. Check a default in the
 schema's descriptions instead of guessing, and drop any setting that turns out
 to match it. The settings below are the ones that usually matter:
 
-| Setting           | Default      | Why set it                                                                |
-| ----------------- | ------------ | ------------------------------------------------------------------------- |
-| `printWidth`      | `100`        | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
-| `proseWrap`       | `"preserve"` | `"always"` wraps Markdown prose; keep the default if line breaks matter   |
-| `sortPackageJson` | `true`       | set `false` to leave the key order that `bun add` and humans wrote        |
-| `svelte`          | disabled     | `{}` enables `.svelte` files and needs the `svelte` package installed     |
-| `sortTailwindcss` | disabled     | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
-| `ignorePatterns`  | `[]`         | gitignore-style globs, rooted at the directory holding the config         |
+| Setting           | Why set it                                                                |
+| ----------------- | ------------------------------------------------------------------------- |
+| `printWidth`      | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
+| `proseWrap`       | `"always"` wraps Markdown prose; keep the default if line breaks matter   |
+| `sortPackageJson` | set `false` to leave the key order that `bun add` and humans wrote        |
+| `svelte`          | `{}` enables `.svelte` files and needs the `svelte` package installed     |
+| `sortTailwindcss` | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
+| `ignorePatterns`  | gitignore-style globs, rooted at the directory holding the config         |
 
 `proseWrap: "always"` breaks lines only at spaces. A paragraph of Chinese or
 Japanese without spaces stays on one line, because a line break between two CJK
