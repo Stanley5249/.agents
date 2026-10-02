@@ -1,6 +1,15 @@
 # Project setup
 
-Detect the repository shape, then read only the rules needed for the task.
+Load this file to scaffold a new project or to migrate an existing repository to
+these conventions. Detect the repository shape, then read only the rules it
+needs from `~/.agents/rules/`:
+
+- `cargo.md`: Rust workspace or crate
+- `uv.md`: Python project
+- `bun.md`: JavaScript or TypeScript project, especially Svelte
+- `pixi.md`: multi-language projects or heavy native or GPU dependencies
+- `ci.md`: local or hosted CI setup
+- `documents.md`: README and `AGENTS.md`
 
 A project can use multiple package-manager rules, such as `cargo` + `bun` for a
 desktop app or `cargo` + `uv` for a Rust core with a Python harness.

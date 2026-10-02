@@ -174,12 +174,7 @@ These tools are available:
 Read these files in `~/.agents/rules/` when first required:
 
 - `version-control.md`: version-control work, before the first change or plan
-- `project-setup.md`: project setup, tooling, or repository metadata
-  (`.gitattributes`, license, `.editorconfig`), before the files below
-- `ci.md`: local or hosted CI setup
+- `project-setup.md`: scaffolding a new project or migrating an existing
+  repository to these conventions
 - `documents.md`: writing README, `AGENTS.md`, or `docs/`
 - `release.md`: changelog or release notes for a published project
-- `cargo.md`: Rust workspace or crate
-- `uv.md`: Python project
-- `bun.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: multi-language projects or heavy native or GPU dependencies
