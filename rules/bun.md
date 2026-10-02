@@ -1,17 +1,15 @@
 # Bun projects
 
-The most consistent pattern on this machine.
-
 ## Layout
 
 - Use `bun.lock`, with no `package-lock.json` or `yarn.lock`.
 - Keep `package.json` to `dependencies` and `devDependencies`, with no `scripts`
   field when a justfile provides the command surface.
 
-## Lint and format
+## Type checking
 
-Format with oxfmt. For a Svelte project, use `svelte-check` for type checking,
-separate from formatting and tests.
+For a Svelte project, use `svelte-check` for type checking, separate from
+formatting and tests.
 
 ## Justfile
 
