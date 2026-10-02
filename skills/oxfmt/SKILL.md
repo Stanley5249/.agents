@@ -3,7 +3,7 @@ name: oxfmt
 description:
   Configure and run oxfmt, the Prettier-compatible formatter from Oxc, for JS,
   TS, Svelte, CSS, HTML, JSON, YAML, and Markdown, including migration from
-  Prettier and Zed editor integration.
+  Prettier.
 ---
 
 # oxfmt
@@ -88,5 +88,3 @@ In a justfile, map these to `fmt` and `fmt-check`.
 
 - [reference/migrate-from-prettier.md](reference/migrate-from-prettier.md):
   replacing Prettier in an existing project and proving the output is unchanged.
-- [reference/zed.md](reference/zed.md): making Zed format with oxfmt instead of
-  its bundled Prettier.

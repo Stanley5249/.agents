@@ -10,6 +10,7 @@ needs from `~/.agents/rules/`:
 - `pixi.md`: multi-language projects or heavy native or GPU dependencies
 - `ci.md`: local or hosted CI setup
 - `documents.md`: README and `AGENTS.md`
+- `zed.md`: Zed settings that match the project's formatters and linters
 
 A project can use multiple package-manager rules, such as `cargo` + `bun` for a
 desktop app or `cargo` + `uv` for a Rust core with a Python harness.

@@ -135,8 +135,7 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Editor
 
-- I use Zed. When a project replaces a formatter that Zed bundles, such as
-  Prettier, configure the project's `.zed/settings.json` to match.
+- I use Zed.
 
 ### Conda
 
@@ -178,3 +177,4 @@ Read these files in `~/.agents/rules/` when first required:
   repository to these conventions
 - `documents.md`: writing README, `AGENTS.md`, or `docs/`
 - `release.md`: changelog or release notes for a published project
+- `zed.md`: changing global or project Zed settings

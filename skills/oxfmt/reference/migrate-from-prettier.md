@@ -73,7 +73,6 @@ upstream, rather than changing a setting that shifts the rest of the tree.
 - Configure the editor in use, even if the project has no editor settings yet.
   An editor with a bundled Prettier keeps using it after the migration, and
   without `.prettierrc` that copy falls back to Prettier's defaults. With format
-  on save, saved files then drift from `bunx oxfmt`. For Zed, see
-  [zed.md](zed.md).
+  on save, saved files then drift from `bunx oxfmt`.
 
 Commit this as one `build` change, such as `build: replace Prettier with oxfmt`.
