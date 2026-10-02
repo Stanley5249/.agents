@@ -13,7 +13,8 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 - Start from an existing project with a similar structure, and introduce a new
   pattern only for a stated reason.
 - Set up the repository metadata below before history accumulates.
-- Write an `AGENTS.md` that encodes these conventions.
+- Write an `AGENTS.md` that encodes these conventions, as the project's only
+  agent instruction file.
 - Make the first commit with a Conventional Commit subject, such as
   `chore: first commit`.
 
@@ -24,6 +25,9 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 - Show the list and ask which changes to apply. The user decides which existing
   conventions to replace.
 - Work on a task branch, such as `chore/migrate-conventions`.
+- Move the instructions in a project `CLAUDE.md` into `AGENTS.md`, merging them
+  with what is already there, then delete `CLAUDE.md`. A one-line `@AGENTS.md`
+  import goes too.
 - Commit each accepted change separately, such as a formatter switch, the
   reformat it causes, and a new `.gitattributes`.
 - After changing line-ending rules in `.gitattributes`, run
