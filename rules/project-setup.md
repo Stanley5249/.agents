@@ -53,3 +53,5 @@ Set up repository-wide metadata before history accumulates:
 - Do not add `.editorconfig` by default when language formatters already cover
   the repository. Add it when a polyglot or shell-heavy project needs settings
   those formatters do not own.
+- Make the first commit with a Conventional Commit subject, such as
+  `chore: first commit`.
