@@ -6,10 +6,15 @@
 - Keep `package.json` to `dependencies` and `devDependencies` when a justfile
   provides the command surface.
 
-## Type checking
+## Lint and type checking
 
-For a Svelte project, use `svelte-check` for type checking, separate from
-formatting and tests.
+- Lint plain JavaScript and TypeScript with type-aware oxlint: add `oxlint` and
+  `oxlint-tsgolint` to `devDependencies` and set `typeAware` and `denyWarnings`
+  under `options` in `.oxlintrc.json`.
+- Lint a Svelte project with ESLint, `typescript-eslint`, and
+  `eslint-plugin-svelte`, because oxlint has no counterpart to the Svelte
+  plugin's template rules. Run ESLint with `--max-warnings 0`, and type-check
+  with `svelte-check`, separate from formatting and tests.
 
 ## Justfile
 
