@@ -173,12 +173,17 @@ These tools are available:
 
 - Prioritize `AGENTS.md`.
 
+## Rules
+
+Read these files in `~/.agents/rules/` when first required:
+
+- `version-control.md`: version-control work, before the first change or plan
+
 ## Skills
 
 Load skills when first required:
 
 - `windows-shell`: Windows shell work outside Claude Code
-- `version-control`: version-control work, before the first change or plan
 - `ffmpeg`: audio or video work
 - `cookie`: project setup or tooling conventions
 - `justfile`: justfile recipes and conventions

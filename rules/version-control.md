@@ -1,9 +1,4 @@
----
-name: version-control
-description:
-  Use for any version-control task, including ignore decisions, Git status and
-  diffs, commits and amendments, branches, merges, and rebases.
----
+# Version control
 
 ## User practices
 
