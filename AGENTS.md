@@ -101,8 +101,6 @@ conventions win. Load references only when needed, immediately before use.
   dependencies.
 - For package-provided one-off CLI tools, use `uvx --with <package> <command>`
   after getting approval.
-- Use `ruff` for Python projects.
-- For Python projects, prefer `pyrefly` > `ty` > `basedpyright`.
 
 ### JavaScript
 
@@ -117,7 +115,6 @@ conventions win. Load references only when needed, immediately before use.
 ### Rust
 
 - Prefer `cargo clippy` over `cargo check`.
-- Enable Clippy's `pedantic` lint group as warnings by default.
 - Avoid worktrees for Rust projects with large `target/` directories. Ask
   explicitly before creating one.
 - These tools are available:
@@ -136,10 +133,6 @@ conventions win. Load references only when needed, immediately before use.
 ### Editor
 
 - I use Zed.
-
-### Conda
-
-- Recommend `pixi` for multi-language projects.
 
 ### Installer
 
