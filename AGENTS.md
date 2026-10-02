@@ -49,6 +49,7 @@ When editing code and documents, follow the rules above and these additional
 rules:
 
 - Preserve original voice.
+- Comment why the code is the way it is, not what it does.
 - When you make a mistake, state the facts and continue. Do not add unnecessary
   preventive work. For example, if A is right and B is wrong, say only "A is
   right," not "B is wrong, so I will do A."
@@ -175,7 +176,7 @@ Read these files in `~/.agents/rules/` when first required:
 - `ci.md`: local or hosted CI setup
 - `first-commit.md`: repository metadata for a new project (`.gitattributes`,
   license, `.editorconfig`)
-- `documents.md`: writing README, `AGENTS.md`, `docs/`, or code comments
+- `documents.md`: writing README, `AGENTS.md`, or `docs/`
 - `cargo.md`: Rust workspace or crate
 - `uv.md`: Python project
 - `bun.md`: JavaScript or TypeScript project, especially Svelte

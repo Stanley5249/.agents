@@ -59,14 +59,6 @@ Add more sections when appropriate, such as:
 - When the project has no document location, start at `docs/`. Otherwise follow
   the project convention.
 
-## Code comments
-
-- Explain why the code is the way it is. The code already says what it does.
-- Give public APIs doc comments, such as rustdoc, docstrings, or JSDoc. Write
-  examples in them as doctests where the language supports it.
-
-<!--This should move to elsewhere-->
-
 ## Markdown
 
 - Write headings in sentence case. Prefer noun phrases.
