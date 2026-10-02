@@ -174,10 +174,9 @@ These tools are available:
 Read these files in `~/.agents/rules/` when first required:
 
 - `version-control.md`: version-control work, before the first change or plan
-- `project-setup.md`: project setup or tooling, before the files below
+- `project-setup.md`: project setup, tooling, or repository metadata
+  (`.gitattributes`, license, `.editorconfig`), before the files below
 - `ci.md`: local or hosted CI setup
-- `first-commit.md`: repository metadata for a new project (`.gitattributes`,
-  license, `.editorconfig`)
 - `documents.md`: writing README, `AGENTS.md`, or `docs/`
 - `release.md`: changelog or release notes for a published project
 - `cargo.md`: Rust workspace or crate
