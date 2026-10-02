@@ -10,10 +10,9 @@
 
 ## Lint and format
 
-- `clippy.toml` is tailored per project, not copied from a shared baseline.
-  Typical knobs: `msrv`, `doc-valid-idents` for project-specific terms,
-  `allow-unwrap-in-tests`, `missing-docs-in-crate-items`. Pick what the project
-  needs; don't cargo-cult a full list.
+- Tailor `clippy.toml` to each project. Typical knobs: `msrv`,
+  `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`,
+  `missing-docs-in-crate-items`. Set only the knobs the project needs.
 - Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and
   have each member opt in with `[lints] workspace = true`. The group needs
   `priority = -1` so single-lint overrides beside it win. Because `lint` runs
@@ -33,13 +32,12 @@
 - `deny.toml` + `cargo-deny` for dependency, license, and advisory checks
 - `release-plz` for automated version bumping and release PRs
 
-None of this is the right default for a personal or work-in-progress project.
-Add it only when the project is actually released.
+Add these once the project ships releases. Until then, the local gate is enough.
 
 ## Toolchain pinning
 
-Keep `rust-toolchain.toml` minimal. Pin the channel and guarantee components,
-not an exact version unless a specific regression requires it:
+Keep `rust-toolchain.toml` minimal. Pin the channel and the required components,
+and pin an exact version only when a specific regression requires it:
 
 ```toml
 [toolchain]

@@ -35,7 +35,7 @@ the file intentionally, so every checkout formats the same way as `bunx oxfmt`:
 }
 ```
 
-Drop the languages the project does not have.
+Keep only the languages the project contains.
 
 For Svelte, also enable `"svelte": {}` in `.oxfmtrc.json`. Without it, oxfmt
 skips `.svelte` files, both on the command line and in the editor.

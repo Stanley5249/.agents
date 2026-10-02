@@ -16,8 +16,8 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 
 ## Scaffold a new project
 
-- Match an existing project with a similar structure instead of introducing a
-  new pattern without reason.
+- Start from an existing project with a similar structure, and introduce a new
+  pattern only for a stated reason.
 - Set up the repository metadata below before history accumulates.
 - Write an `AGENTS.md` that encodes these conventions.
 - Make the first commit with a Conventional Commit subject, such as
@@ -74,6 +74,6 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   generated on GitHub, and collapses noisy lockfile diffs.
 - Rust crates use `LICENSE-APACHE` and `LICENSE-MIT`; non-Rust projects normally
   use one `LICENSE`.
-- Do not add `.editorconfig` by default when language formatters already cover
-  the repository. Add it when a polyglot or shell-heavy project needs settings
-  those formatters do not own.
+- Let language formatters own whitespace settings. Add `.editorconfig` when a
+  polyglot or shell-heavy project needs settings beyond what those formatters
+  cover.

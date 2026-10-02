@@ -49,10 +49,10 @@ count in the `Finished ... on N files` line matches what should be formatted.
 `git diff` should then be empty apart from the configuration and dependency
 files.
 
-Do not try to prove parity by reformatting with deliberately wrong settings and
-then restoring. `objectWrap` defaults to `"preserve"` in both formatters, so an
-object that a narrow `printWidth` expanded stays expanded, and the restore
-leaves hundreds of false differences.
+Prove parity with the tracked-files run above. Reformatting with deliberately
+wrong settings and then restoring leaves false differences, because `objectWrap`
+defaults to `"preserve"` in both formatters, so an object that a narrow
+`printWidth` expanded stays expanded.
 
 A few files may still differ, because oxfmt does not match Prettier in every
 corner. Read each difference before changing settings. If it is a small layout

@@ -19,7 +19,7 @@ restyling a codebase.
   add `oxfmt` to `devDependencies` so the version is locked with everything
   else.
 - **Documentation-first repositories** with no `package.json`: run `bunx oxfmt`
-  and add no dependency.
+  directly.
 
 `bunx oxfmt` prefers the local copy, so recipes use one command either way.
 
@@ -69,8 +69,8 @@ so `ignorePatterns` needs only files that are tracked but must not be formatted:
   installed with `bunx skills add`.
 
 Ignores also apply to content an editor passes to oxfmt, so an ignored file is
-not formatted on save either. Do not ignore files that people edit and expect to
-be formatted.
+not formatted on save either. Ignore a file only when another formatter owns it
+or it must stay byte-identical.
 
 Prefer `ignorePatterns` over a `.prettierignore`, so one file holds the whole
 configuration.
