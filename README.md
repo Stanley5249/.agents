@@ -64,6 +64,7 @@ effect on agent behavior:
 - `refactor`: restructure without changing behavior, such as moving a reference.
 - `style`: change only wording, headings, or formatting.
 - `docs`: change this README.
+- `build`: change repository tooling, such as formatter or editor settings.
 
 For example: `feat: prefer mapped justfile dependencies`.
 
