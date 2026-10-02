@@ -40,17 +40,7 @@ context, move the supporting details into `reference/*.md` files. Have
 `SKILL.md` point to them by name, such as in a decision tree or lookup table, so
 an agent reads only the file it needs instead of the entire skill upfront.
 
-## What's here
-
-- **justfile**: Covers recipe interfaces, verification gates, execution,
-  environment handling, safety, portability, and modularization.
-- **ffmpeg**: Covers this machine's hardware encoder choice (QSV/Arc iGPU), the
-  proven AV1/Opus command line, and known Windows path gotchas.
-- **browser**: Covers driving Chrome or Edge with `bunx chrome-devtools`,
-  attaching to an open browser, failure modes, and a socket client for scripts.
-- **oxfmt**: Covers oxfmt configuration, ignores, migration from Prettier, and
-  Zed integration.
-- **skill-creator**: Creates, improves, evaluates, and benchmarks agent skills.
+## Rules
 
 Policy files, such as version control and project setup, live under `rules/`.
 `~/.agents/AGENTS.md` indexes the general rules with their loading conditions,
@@ -82,10 +72,3 @@ junctions only as a fallback when symbolic links are not practical. For example:
 ```
 ln -s ~/.agents/skills/browser ~/.claude/skills/browser
 ```
-
-## Adding a new skill
-
-1. Create `skills/<name>/SKILL.md` with the frontmatter above.
-2. Add `reference/*.md` files if the skill has detail worth deferring.
-3. Symlink it from each agent tool's skill-lookup directory, such as
-   `~/.claude/skills/<name>` for Claude Code.
