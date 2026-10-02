@@ -24,9 +24,12 @@ description: <what it does and when it may be useful>
 ---
 ```
 
-`description` is a concise summary with a soft discovery condition. Put exact
-loading conditions in `~/.agents/AGENTS.md` and the actual instructions in the
-skill body.
+`description` states what the skill does and when to load it. The harness
+injects it into each session, so nothing else needs to index skills.
+
+Keep each skill self-contained: it depends only on files inside its own
+directory, so any agent can load it alone. Files in `rules/` may refer to each
+other.
 
 Load skills lazily. Do not preload a skill at the start of a conversation merely
 because it is available. Read it only when the current task requires it,
