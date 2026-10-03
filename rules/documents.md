@@ -19,7 +19,6 @@ Start with the smallest shape appropriate to the audience.
   copying its commands, and start with the essential ones only.
 - Documents: links to hosted docs when present, plus relative paths to local
   docs.
-- License: required for published projects. Ask the user to choose one.
 
 Add more sections when appropriate, such as:
 
