@@ -64,8 +64,6 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 - Start from an existing project with a similar structure, and introduce a new
   pattern only for a stated reason.
 - Set up the repository metadata before history accumulates.
-- Write an `AGENTS.md` that encodes these conventions, as the project's only
-  agent instruction file.
 - Make the first commit with a Conventional Commit subject, such as
   `chore: first commit`.
 
