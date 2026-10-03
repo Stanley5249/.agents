@@ -17,6 +17,24 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   repository root.
 - Add packages with `uv add` and let uv manage the project's `.venv`.
 
+## Build backend
+
+- For packaged libraries, use uv's native build backend:
+
+  ```toml
+  [build-system]
+  requires = ["uv_build>=0.12.0"]
+  build-backend = "uv_build"
+  ```
+
+- For standalone applications or scripts that do not publish wheels, disable
+  package building in `pyproject.toml`:
+
+  ```toml
+  [tool.uv]
+  package = false
+  ```
+
 ## Lint, format, and type checking
 
 - Use `ruff` as the only linter and formatter. Start every project with all
