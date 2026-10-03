@@ -76,44 +76,35 @@ server and exclude oxfmt, so Zed does not pick the wrong one:
 
 ## Linters
 
-The Oxc extension also starts the `oxlint` language server. When the project
-lints with ESLint instead, turn it off so the editor does not show a second,
-disagreeing set of diagnostics. Turn it off in each language block, and keep the
-servers that Zed's built-in settings list there:
+The Oxc extension also starts the `oxlint` language server. In a plain
+JavaScript or TypeScript project, keep oxlint active as `javascript.md`
+describes.
+
+In a Svelte project, oxlint cannot lint Svelte templates, so ESLint handles
+linting instead. Turn off oxlint so the editor does not show conflicting
+diagnostics. Keep a root-level fallback, and disable oxlint in each language
+block that the repository contains:
 
 ```json
 {
+  "language_servers": ["!oxlint", "..."],
   "languages": {
     "JavaScript": {
-      "language_servers": [
-        "!typescript-language-server",
-        "vtsls",
-        "!oxlint",
-        "..."
-      ]
+      "language_servers": ["!oxlint", "..."]
     },
     "TypeScript": {
-      "language_servers": [
-        "!typescript-language-server",
-        "vtsls",
-        "!oxlint",
-        "..."
-      ]
-    },
-    "TSX": {
-      "language_servers": [
-        "!typescript-language-server",
-        "vtsls",
-        "!oxlint",
-        "..."
-      ]
+      "language_servers": ["!oxlint", "..."]
     },
     "Svelte": {
-      "language_servers": ["svelte-language-server", "!oxlint", "..."]
+      "language_servers": ["!oxlint", "..."]
     }
   }
 }
 ```
+
+Zed defaults already run `vtsls` and disable `typescript-language-server`, so
+writing `["!oxlint", "..."]` disables oxlint while preserving all built-in
+defaults without restating them.
 
 In a Rust project, have rust-analyzer check with Clippy, so the editor shows the
 same lints as the `lint` recipe:
