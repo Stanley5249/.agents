@@ -51,14 +51,11 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
 
 ## Repository metadata
 
-- Add `.gitattributes` with LF normalization, binary declarations, and generated
-  lockfile handling appropriate to the project:
+- Add `.gitattributes` with LF normalization and generated lockfile handling
+  appropriate to the project:
 
   ```gitattributes
   * text=auto eol=lf
-
-  *.png binary
-  *.ico binary
 
   bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
@@ -66,6 +63,12 @@ desktop app or `cargo` + `uv` for a Rust core with a Python harness.
   pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
   ```
 
+- Declare image or other binary asset patterns (such as `*.png binary`) in
+  `.gitattributes` once the repository actually introduces them. Do not add
+  unused binary patterns as default boilerplate, but never omit them once
+  binaries exist: `binary` expands to `-text -diff -merge`, which prevents
+  corrupted assets from 3-way merges and avoids misclassifications under
+  `text=auto`.
 - Always configure package lockfiles with
   `merge=binary linguist-language=<LANG> linguist-generated=true -diff`. This
   prevents corrupted lockfiles from automatic 3-way git merges, flags them as

@@ -39,6 +39,8 @@ means moving the commits onto it.
   together.
 - Keep a feature's implementation, tests, and directly required documentation or
   configuration together in the same commit.
+- When introducing images or other binary assets, declare their patterns with
+  `binary` in `.gitattributes` in the same commit.
 - Keep a commit reviewable. When one action runs past roughly 300 changed lines,
   split it along a seam that already exists, such as a store change under the
   interface that uses it.
