@@ -64,8 +64,6 @@ rule defines:
 
 ## Workspace layout
 
-- Use `user/` for local, Git-ignored runtime data such as databases or
-  application state.
 - Keep the toolchain for a secondary language scoped to the subdirectory that
   needs it unless the whole workspace depends on it.
 
