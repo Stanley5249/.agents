@@ -58,9 +58,9 @@ rule defines:
 
 ### Licenses
 
-- Propose dual `LICENSE-APACHE` and `LICENSE-MIT` for Rust crates, and one
-  `LICENSE` for other projects. The user chooses the license, as `documents.md`
-  says.
+- Inspect upstream templates and dependency licenses first to confirm
+  compatibility. Default to dual `LICENSE-APACHE` and `LICENSE-MIT` for Rust
+  crates, and default to `LICENSE` with MIT for other projects.
 
 ## Workspace layout
 
