@@ -1,4 +1,14 @@
-# Cargo projects
+# Rust projects
+
+This rule extends `project-setup.md` for Rust workspaces and crates.
+
+## Repository metadata
+
+In `.gitattributes`, configure `Cargo.lock`:
+
+```gitattributes
+Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+```
 
 ## Layout
 

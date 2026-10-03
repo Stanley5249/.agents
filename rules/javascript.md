@@ -1,4 +1,16 @@
-# Bun projects
+# JavaScript projects
+
+This rule extends `project-setup.md` for JavaScript and TypeScript projects. Use
+Bun as the runtime and package manager. TypeScript is the default dialect for
+application code.
+
+## Repository metadata
+
+In `.gitattributes`, configure `bun.lock`:
+
+```gitattributes
+bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
+```
 
 ## Layout
 
@@ -25,4 +37,4 @@ frontend tooling in use. Add `install` only when a dedicated `bun install` entry
 point is useful to the workflow.
 
 Add a `lock-check` recipe that runs `bun install --frozen-lockfile` and include
-it in `ci`, so the gate fails when `bun.lock` disagrees with `package.json`.
+it in `ci`.

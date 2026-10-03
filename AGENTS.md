@@ -172,10 +172,11 @@ Read these files in `~/.agents/rules/` when first required:
 
 Before running or configuring a project's tools, such as its linter, formatter,
 type checker, manifest, lockfile, toolchain, justfile, or CI, read the rule for
-each tool it uses:
+each stack it uses:
 
-- `cargo.md`: Rust workspace or crate
-- `uv.md`: Python project
-- `bun.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: multi-language projects or heavy native or GPU dependencies
+- `rust.md`: Rust workspace or crate
+- `python.md`: Python project
+- `javascript.md`: JavaScript or TypeScript project, especially Svelte
+- `pixi.md`: multi-language environment overlay for heavy native or GPU
+  dependencies
 - `ci.md`: local or hosted CI

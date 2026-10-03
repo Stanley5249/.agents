@@ -1,4 +1,15 @@
-# uv projects
+# Python projects
+
+This rule extends `project-setup.md` for Python projects. Use uv for package
+management and virtual environment handling.
+
+## Repository metadata
+
+In `.gitattributes`, configure `uv.lock`:
+
+```gitattributes
+uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+```
 
 ## Layout
 
@@ -31,6 +42,13 @@
   ```
 
 ## Justfile
+
+Put commands in justfile recipes that invoke local executables through `uv run`.
+Typical mappings include `fmt` and `fmt-check` through `uv run ruff format`,
+`lint` through `uv run ruff check`, `typecheck` through `uv run pyrefly check`,
+and `test` through `uv run pytest`.
+
+Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.
 
 Until the project has a justfile, run `uv run pytest` and `uv run ruff check`
 directly.

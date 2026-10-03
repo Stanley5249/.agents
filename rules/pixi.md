@@ -1,5 +1,8 @@
 # Pixi projects
 
+This rule serves as an environment overlay on top of `project-setup.md`
+alongside `python.md` or `rust.md`.
+
 ## When to use pixi
 
 Pixi is for multi-language projects or projects with heavy native or GPU
@@ -7,6 +10,14 @@ dependencies, such as a cargo workspace that also needs a pinned CUDA toolchain
 from conda-forge. Plain Rust or Python projects use cargo or uv directly,
 because pixi's conda-forge toolchain handling pays off only when native
 dependencies need it.
+
+## Repository metadata
+
+In `.gitattributes`, configure `pixi.lock`:
+
+```gitattributes
+pixi.lock merge=binary linguist-language=YAML linguist-generated=true -diff
+```
 
 ## Layout
 
