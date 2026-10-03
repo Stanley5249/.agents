@@ -35,6 +35,12 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   package = false
   ```
 
+## Python version and syntax
+
+Check the target Python version in `.python-version` or `pyproject.toml`
+(`requires-python`) before writing code, and use the latest syntax supported by
+that version.
+
 ## Lint, format, and type checking
 
 - Use `ruff` as the only linter and formatter. Start every project with all
