@@ -72,23 +72,12 @@ for my projects. Treat these size thresholds as review prompts, not hard limits:
 
 ## System
 
-- Windows 11.
-- WSL 2 Ubuntu 26.04.
-- Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
-- The `C:` drive is almost full. `D:` and `S:` are dev drives.
-- `D:\packages` holds the JS and Python caches (bun, deno, npm, pip, uv).
-- `S:\packages` holds Rust and pixi (cargo, pixi, rattler, rustup).
-- Developer Mode is enabled. Prefer symbolic links over other link types.
+Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
 
 ## Tools
 
 Respect each project's conventions. When rules conflict, the project's
 conventions win. Load references only when needed, immediately before use.
-
-### Shell
-
-- Use the shell provided by the harness. If none is specified, prefer `pwsh` >
-  `C:\Program Files\Git\bin\bash` > `cmd`.
 
 ### Python
 
@@ -133,7 +122,7 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Installer
 
-`pixi global` > `uv tool` > `winget` > `cargo-binstall`
+`pixi global` > `uv tool` > `cargo-binstall`
 
 ### Version control
 
@@ -160,7 +149,15 @@ These tools are available:
 
 ## Rules
 
-Read these files in `~/.agents/rules/` when first required:
+Read these files in `~/.agents/rules/` when their condition is met.
+
+Read the platform rule before a global installation, a download or write over
+100 MB, or a system setting change:
+
+- `windows.md`: Windows 11
+- `wsl.md`: Ubuntu 26.04 in WSL 2
+
+Read these files when first required:
 
 - `version-control.md`: any task that edits a Git repository, before the first
   edit or plan
