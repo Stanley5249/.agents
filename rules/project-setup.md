@@ -72,6 +72,7 @@ rule defines:
 - Start from an existing project with a similar structure, and introduce a new
   pattern only for a stated reason.
 - Set up the repository metadata before history accumulates.
+- Add a justfile as `justfile.md` describes.
 - Make the first commit with a Conventional Commit subject, such as
   `chore: first commit`.
 
@@ -85,6 +86,7 @@ rule defines:
 - Move the instructions in a project `CLAUDE.md` into `AGENTS.md`, merging them
   with what is already there, then delete `CLAUDE.md`, including one that only
   imports `@AGENTS.md`.
+- Audit the justfile as `justfile.md` describes.
 - Commit each accepted change separately, such as a formatter switch, the
   reformat it causes, and a new `.gitattributes`.
 - After changing line-ending rules in `.gitattributes`, run

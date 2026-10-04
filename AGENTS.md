@@ -176,6 +176,7 @@ Read these files when first required:
   edit or plan
 - `project-setup.md`: scaffolding a new project or migrating an existing
   repository to these conventions
+- `justfile.md`: creating, changing, or auditing a justfile
 - `documents.md`: writing or editing README, `AGENTS.md`, or `docs/`
 - `release.md`: a release, version bump, changelog, or release notes
 - `zed.md`: changing Zed settings, or a project's formatter or linter
