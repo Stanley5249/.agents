@@ -1,7 +1,9 @@
 # Justfile
 
 Language rules map the recipe names below to their tools. This rule covers how
-every justfile is written.
+every justfile is written. The
+[Just README](https://github.com/casey/just/blob/master/README.md) covers the
+syntax.
 
 ## Recipes
 
@@ -11,7 +13,9 @@ recipes instead of raw commands.
 - Always `set default-list`, and document each public recipe so it appears in
   `just --list`.
 - Prefer native just syntax, such as functions, lists, and dependencies, over
-  shell commands. A `[script]` recipe or shell script is the last resort.
+  shell commands. Set a variable with `[env("NAME", "value")]` instead of a
+  shell assignment, and change directory with `[working-directory("path")]`
+  instead of `cd`. A `[script]` recipe or shell script is the last resort.
 - Run a recipe over a known list with mapped dependencies, not a shell loop. Put
   the per-item step in a helper. This needs `set unstable`, `set lists`, and a
   `minimum-version`:
@@ -33,6 +37,8 @@ recipes instead of raw commands.
 - Expose a trailing `*args` wherever a recipe wraps one tool, so extra arguments
   pass through unchanged. An aggregate recipe forwards `*args` only when every
   child accepts the same arguments.
+- Quote a scalar `{{ parameter }}` with double quotes, which both PowerShell and
+  `sh` accept.
 - When the recipe itself needs an option, declare it with
   `[arg("name", long, help="...")]` and a default, alongside `*args`.
 - Name a private helper `_name`. Use `[private]` only when a public-looking name
@@ -61,8 +67,10 @@ recipes instead of raw commands.
 - Mark a recipe `[parallel]` when its jobs ignore order, write no shared output,
   and at least two take over about a second. Pass each tool its quiet flag, not
   an environment variable, so the output does not interleave.
-- Add `[confirm("...")]` to irreversible work, including deleting regenerable
-  files. A recipe that `check` or `ci` depends on never confirms.
+- Add `[confirm("...")]` to irreversible work, such as a deploy, release, or
+  migration, including deleting regenerable files. A recipe that `check` or `ci`
+  depends on never confirms, because a gate must run unattended; `--yes` is for
+  automation that runs a confirming recipe on purpose.
 - Guard `set shell` and shell-specific recipes with the primary platform's
   attribute, `[windows]` or `[unix]`. Do not add a version for the other
   platform. On Windows, select PowerShell explicitly:
@@ -72,9 +80,15 @@ recipes instead of raw commands.
   set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
   ```
 
-- Use the verification recipe names where they apply: `fmt` rewrites sources,
-  while `fmt-check`, `lint`, `typecheck`, and `test` preserve them. `check` is
-  the fast local gate, and `ci` composes `fmt-check`, `check`, and `test`.
+- Use these names where their roles apply: `install`, `build`, `dev`, `prod`,
+  `fmt`, `fix`, `fmt-check`, `typecheck`, `lint`, `check`, `test`, and `ci`.
+  Prefer `dev` and `prod` over `start` and `run`.
+  - `fmt` rewrites sources by formatting only, and `fix` runs `fmt`, then the
+    linters' automatic fixes.
+  - `fmt-check`, `typecheck`, `lint`, and `test` preserve sources. `lint` treats
+    warnings as errors where the tool supports it.
+  - `check` is the fast local gate, and `ci` composes `fmt-check`, `check`, and
+    `test`, plus `build` when the project needs it.
 
 ## Audit
 
@@ -84,6 +98,8 @@ replace these patterns:
 - `quote(args)`, `-CommandWithArgs`, or positional arguments for forwarding,
   because each depends on one shell. Forward with `{{ args }}`.
 - A shell loop over a fixed list, which becomes mapped dependencies.
+- A shell variable assignment or `cd`, which becomes `[env]` or
+  `[working-directory]`.
 - A helper with both the `_name` prefix and `[private]`.
 - A `fmt-check` without `just --fmt --check`, or a `fmt` and `fmt-check` that
   run different commands.
