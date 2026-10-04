@@ -1,0 +1,92 @@
+# Justfile
+
+Language rules map the recipe names below to their tools. This rule covers how
+every justfile is written.
+
+## Recipes
+
+Give every project a justfile as its command surface, and point docs to its
+recipes instead of raw commands.
+
+- Always `set default-list`, and document each public recipe so it appears in
+  `just --list`.
+- Prefer native just syntax, such as functions, lists, and dependencies, over
+  shell commands. A `[script]` recipe or shell script is the last resort.
+- Run a recipe over a known list with mapped dependencies, not a shell loop. Put
+  the per-item step in a helper. This needs `set unstable`, `set lists`, and a
+  `minimum-version`:
+
+  ```just
+  set minimum-version := "1.53.0"
+  set unstable
+  set lists
+
+  documents := ["resume.typ", "essay.typ"]
+
+  _lint doc:
+      tinymist lint "{{ doc }}"
+
+  [parallel]
+  lint: *(_lint *documents)
+  ```
+
+- Expose a trailing `*args` wherever a recipe wraps one tool, so extra arguments
+  pass through unchanged. An aggregate recipe forwards `*args` only when every
+  child accepts the same arguments.
+- When the recipe itself needs an option, declare it with
+  `[arg("name", long, help="...")]` and a default, alongside `*args`.
+- Name a private helper `_name`. Use `[private]` only when a public-looking name
+  reads better.
+- Give each formatter one `_fmt-<tool> *args` helper. `fmt` and `fmt-check` call
+  the same helpers, and `fmt-check` passes each its check flag. Both always
+  include `_fmt-just`, which runs `just --fmt`:
+
+  ```just
+  [parallel]
+  fmt: _fmt-tombi _fmt-oxfmt _fmt-just
+
+  [parallel]
+  fmt-check: (_fmt-tombi "--check") (_fmt-oxfmt "--check") (_fmt-just "--check")
+
+  _fmt-tombi *args:
+      tombi format --quiet {{ args }} .
+
+  _fmt-oxfmt *args:
+      bunx oxfmt {{ args }}
+
+  _fmt-just *args:
+      just --fmt {{ args }}
+  ```
+
+- Mark a recipe `[parallel]` when its jobs ignore order, write no shared output,
+  and at least two take over about a second. Pass each tool its quiet flag, not
+  an environment variable, so the output does not interleave.
+- Add `[confirm("...")]` to irreversible work, including deleting regenerable
+  files. A recipe that `check` or `ci` depends on never confirms.
+- Guard `set shell` and shell-specific recipes with the primary platform's
+  attribute, `[windows]` or `[unix]`. Do not add a version for the other
+  platform. On Windows, select PowerShell explicitly:
+
+  ```just
+  [windows]
+  set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
+  ```
+
+- Use the verification recipe names where they apply: `fmt` rewrites sources,
+  while `fmt-check`, `lint`, `typecheck`, and `test` preserve them. `check` is
+  the fast local gate, and `ci` composes `fmt-check`, `check`, and `test`.
+
+## Audit
+
+When migrating or reviewing a justfile, check it against the rules above and
+replace these patterns:
+
+- `quote(args)`, `-CommandWithArgs`, or positional arguments for forwarding,
+  because each depends on one shell. Forward with `{{ args }}`.
+- A shell loop over a fixed list, which becomes mapped dependencies.
+- A helper with both the `_name` prefix and `[private]`.
+- A `fmt-check` without `just --fmt --check`, or a `fmt` and `fmt-check` that
+  run different commands.
+- Destructive cleanup without `[confirm]`.
+- `[parallel]` on jobs that write a shared output, such as a lockfile.
+- A copy of a shell-specific recipe for the other platform.
