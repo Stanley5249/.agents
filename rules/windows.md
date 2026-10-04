@@ -21,8 +21,7 @@ when the preferred installers cannot meet the requirement.
 
 ## Disk space
 
-Before installations, downloads, or builds over 100 MB, query the total and
-available bytes of each volume with a drive letter:
+Query the total and available bytes of each volume with a drive letter:
 
 ```powershell
 Get-Volume |
