@@ -82,49 +82,56 @@ conventions win. Load references only when needed, immediately before use.
 ### Python
 
 - Run project Python with `uv run python`.
-- When a bundled script needs undeclared packages, use
-  `uv run --with <package> python <script>` instead of modifying the project's
-  dependencies.
-- For package-provided one-off CLI tools, use `uvx --with <package> <command>`
-  after getting approval.
+- When a bundled script needs
+  [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
+  use `uv run --with <package> python <script>` instead of modifying the
+  project's dependencies.
+- For package-provided
+  [one-off CLI tools](https://docs.astral.sh/uv/guides/tools/), use
+  `uvx --with <package> <command>` after getting approval.
 
 ### JavaScript
 
 `bun` > `deno` > `node`
 
-- For one-off tools, use `bunx` after getting approval.
-- `bunx oxfmt` and `bunx oxfmt --check` are pre-approved. Use them to format
-  supported files.
+- For one-off tools, use [`bunx`](https://bun.com/docs/pm/bunx) after getting
+  approval.
+- [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html) is pre-approved
+  through `bunx oxfmt` and `bunx oxfmt --check`. Use it to format supported
+  files.
 - Warn before introducing `node` into a project, and try a `bun` alternative
   when available.
 
 ### Rust
 
-- Prefer `cargo clippy` over `cargo check`.
+- Prefer [`cargo clippy`](https://doc.rust-lang.org/clippy/) over `cargo check`.
 - Avoid worktrees for Rust projects with large `target/` directories. Ask
   explicitly before creating one.
 - These tools are available:
-  - `cargo-binstall`
-  - `cargo-deny`
-  - `cargo-nextest`
-  - `cargo-llvm-cov`
-  - `cargo-sweep`
+  - [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall)
+  - [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/)
+  - [`cargo-nextest`](https://nexte.st/)
+  - [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov)
+  - [`cargo-sweep`](https://github.com/holmgr/cargo-sweep)
 
 ### Browser
 
 - Get my approval before any CDP or other browser automation, including a
   headless browser.
-- Use Edge.
+- Use Microsoft Edge.
 
 ### Editor
 
-- I use Zed. Documentation: <https://zed.dev/docs/>
-- WSL projects use Zed's WSL remote server.
+- I use [Zed](https://zed.dev/docs/).
+- WSL projects use Zed's
+  [WSL remote server](https://zed.dev/docs/remote-development#opening-a-local-folder-in-wsl).
 
 ### Installer
 
-- Prefer `pixi global` and `uv tool`.
-- Use Bun for JavaScript CLIs and for dev dependencies of JavaScript projects.
+- Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and
+  [`uv tool`](https://docs.astral.sh/uv/concepts/tools/).
+- Use [`bun add`](https://bun.com/docs/pm/cli/add) for JavaScript CLIs and for
+  dev dependencies of JavaScript projects.
 - Use `cargo-binstall` for Rust binaries that the installers above do not
   provide.
 - For tool paths, use tool-specific environment variables when they are set,
@@ -143,14 +150,16 @@ regardless of Git status.
 These tools are available:
 
 - `git`
-- `git-filter-repo`
-- `gh`
+- [`git-filter-repo`](https://github.com/newren/git-filter-repo)
+- [`gh`](https://cli.github.com/manual/)
 
 ### Others
 
-- Use Starship for cross-platform prompts: <https://starship.rs/installing/>
+- Use [Starship](https://starship.rs/installing/) for cross-platform prompts.
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
-- Use `bat` and `gum` when writing interactive commands for me.
+- Use [`bat`](https://github.com/sharkdp/bat) and
+  [`gum`](https://github.com/charmbracelet/gum) when writing interactive
+  commands for me.
 
 ## Rules
 

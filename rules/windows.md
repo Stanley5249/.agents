@@ -2,8 +2,11 @@
 
 ## System
 
-- Developer Mode is enabled. Prefer symbolic links over other link types.
-- `D:` and `S:` are Dev Drives. Keep large files off `C:`.
+- [Developer Mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development)
+  is enabled. Prefer symbolic links over other link types.
+- `D:` and `S:` are
+  [Dev Drives](https://learn.microsoft.com/en-us/windows/dev-drive/). Keep large
+  files off `C:`.
 - Tool homes and caches live on the Dev Drives through tool-specific environment
   variables such as `CARGO_HOME`, `PIXI_HOME`, and `UV_CACHE_DIR`. Read these
   variables instead of hard-coding paths.
@@ -15,7 +18,9 @@ installed.
 
 ## Global installer
 
-Use `winget` only when the preferred installers cannot meet the requirement.
+Use
+[`winget`](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
+only when the preferred installers cannot meet the requirement.
 
 ## Disk space
 
