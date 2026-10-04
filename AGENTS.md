@@ -126,7 +126,7 @@ conventions win. Load references only when needed, immediately before use.
 - WSL projects use Zed's
   [WSL remote server](https://zed.dev/docs/remote-development#opening-a-local-folder-in-wsl).
 
-### Installer
+### Global installer
 
 - Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and
   [`uv tool`](https://docs.astral.sh/uv/concepts/tools/).
@@ -134,10 +134,15 @@ conventions win. Load references only when needed, immediately before use.
   dev dependencies of JavaScript projects.
 - Use `cargo-binstall` for Rust binaries that the installers above do not
   provide.
-- For tool paths, use tool-specific environment variables when they are set,
-  otherwise the tool's defaults. Build other paths from `$HOME` on Linux, and
-  from `$env:USERPROFILE` or `$env:LOCALAPPDATA` on Windows. Do not assume
-  optional variables such as `$XDG_CACHE_HOME` are set.
+- Do not assume that packages, tools, and caches live in default paths. When you
+  need a path, read the tool's environment variable first:
+  - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`
+  - Cargo and rustup: `CARGO_HOME`, `RUSTUP_HOME`
+  - Deno: `DENO_DIR`
+  - npm: `NPM_CONFIG_CACHE`
+  - pip: `PIP_CACHE_DIR`
+  - Pixi: `PIXI_HOME`, `PIXI_CACHE_DIR`
+  - uv: `UV_CACHE_DIR`, `UV_PYTHON_INSTALL_DIR`, `UV_TOOL_DIR`
 
 ### Version control
 

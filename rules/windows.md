@@ -7,9 +7,6 @@
 - Keep large files off the system drive (`$env:SystemDrive`) and put them on a
   [Dev Drive](https://learn.microsoft.com/en-us/windows/dev-drive/). The disk
   space query below lists Dev Drives as ReFS volumes.
-- Tool homes and caches live on the Dev Drives through tool-specific environment
-  variables such as `CARGO_HOME`, `PIXI_HOME`, and `UV_CACHE_DIR`. Read these
-  variables instead of hard-coding paths.
 
 ## Shell
 
@@ -20,7 +17,7 @@ installed.
 
 Use
 [`winget`](https://learn.microsoft.com/en-us/windows/package-manager/winget/)
-only when the preferred installers cannot meet the requirement.
+when the preferred installers cannot meet the requirement.
 
 ## Disk space
 
