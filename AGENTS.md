@@ -122,7 +122,14 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Installer
 
-`pixi global` > `uv tool` > `cargo-binstall`
+- Prefer `pixi global` and `uv tool`.
+- Use Bun for JavaScript CLIs and for dev dependencies of JavaScript projects.
+- Use `cargo-binstall` for Rust binaries that the installers above do not
+  provide.
+- For tool paths, use tool-specific environment variables when they are set,
+  otherwise the tool's defaults. Build other paths from `$HOME` on Linux, and
+  from `$env:USERPROFILE` or `$env:LOCALAPPDATA` on Windows. Do not assume
+  optional variables such as `$XDG_CACHE_HOME` are set.
 
 ### Version control
 
