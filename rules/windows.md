@@ -4,9 +4,9 @@
 
 - [Developer Mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development)
   is enabled. Prefer symbolic links over other link types.
-- `D:` and `S:` are
-  [Dev Drives](https://learn.microsoft.com/en-us/windows/dev-drive/). Keep large
-  files off `C:`.
+- Keep large files off the system drive (`$env:SystemDrive`) and put them on a
+  [Dev Drive](https://learn.microsoft.com/en-us/windows/dev-drive/). The disk
+  space query below lists Dev Drives as ReFS volumes.
 - Tool homes and caches live on the Dev Drives through tool-specific environment
   variables such as `CARGO_HOME`, `PIXI_HOME`, and `UV_CACHE_DIR`. Read these
   variables instead of hard-coding paths.
@@ -31,7 +31,7 @@ available bytes of each volume with a drive letter:
 Get-Volume |
   Where-Object DriveLetter |
   Sort-Object DriveLetter |
-  Select-Object DriveLetter,
+  Select-Object DriveLetter, FileSystemType,
     @{n="SizeBytes";e={$_.Size}},
     @{n="FreeBytes";e={$_.SizeRemaining}}
 ```
