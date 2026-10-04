@@ -86,16 +86,14 @@ conventions win. Load references only when needed, immediately before use.
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
   use `uv run --with <package> python <script>` instead of modifying the
   project's dependencies.
-- For package-provided
-  [one-off CLI tools](https://docs.astral.sh/uv/guides/tools/), use
-  `uvx --with <package> <command>` after getting approval.
+- For package-provided one-off CLI tools, use `uvx --with <package> <command>`
+  after getting approval.
 
 ### JavaScript
 
 `bun` > `deno` > `node`
 
-- For one-off tools, use [`bunx`](https://bun.com/docs/pm/bunx) after getting
-  approval.
+- For one-off tools, use `bunx` after getting approval.
 - [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html) is pre-approved
   through `bunx oxfmt` and `bunx oxfmt --check`. Use it to format supported
   files.
@@ -104,7 +102,7 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Rust
 
-- Prefer [`cargo clippy`](https://doc.rust-lang.org/clippy/) over `cargo check`.
+- Prefer `cargo clippy` over `cargo check`.
 - Avoid worktrees for Rust projects with large `target/` directories. Ask
   explicitly before creating one.
 - These tools are available:
@@ -122,16 +120,13 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Editor
 
-- I use [Zed](https://zed.dev/docs/).
-- WSL projects use Zed's
-  [WSL remote server](https://zed.dev/docs/remote-development#opening-a-local-folder-in-wsl).
+- I use Zed.
 
 ### Global installer
 
 - Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and
-  [`uv tool`](https://docs.astral.sh/uv/concepts/tools/).
-- Use [`bun add`](https://bun.com/docs/pm/cli/add) for JavaScript CLIs and for
-  dev dependencies of JavaScript projects.
+  `uv tool`.
+- Use `bun install -g` for JavaScript CLIs.
 - Use `cargo-binstall` for Rust binaries that the installers above do not
   provide.
 - Do not assume that packages, tools, and caches live in default paths. When you
@@ -156,11 +151,10 @@ These tools are available:
 
 - `git`
 - [`git-filter-repo`](https://github.com/newren/git-filter-repo)
-- [`gh`](https://cli.github.com/manual/)
+- `gh`
 
 ### Others
 
-- Use [Starship](https://starship.rs/installing/) for cross-platform prompts.
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 - Use [`bat`](https://github.com/sharkdp/bat) and
   [`gum`](https://github.com/charmbracelet/gum) when writing interactive
@@ -168,7 +162,7 @@ These tools are available:
 
 ## Rules
 
-Read these files in `~/.agents/rules/` when their condition is met.
+Files are at `~/.agents/rules/`.
 
 Read the platform rule before a global installation, a download or write over
 100 MB, or a system setting change:

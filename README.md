@@ -6,6 +6,20 @@ live under `.agents/` because they are meant to persist when switching agents,
 unlike `.claude/` or `.codex/`, which hold ephemeral, tool-specific scratch
 data.
 
+## Installation
+
+Clone this repository from the home directory:
+
+```sh
+git clone https://github.com/Stanley5249/.agents.git
+```
+
+For Claude Code, import `AGENTS.md` from `~/.claude/CLAUDE.md`:
+
+```markdown
+@~/.agents/AGENTS.md
+```
+
 ## Skills
 
 Each skill is a directory under `skills/`:
@@ -71,11 +85,10 @@ For example: `feat: prefer mapped justfile dependencies`.
 ## Using an existing skill from another agent tool
 
 Link skills into each agent's skill-discovery directory instead of copying them,
-so the files here remain the single source of truth. Prefer symbolic links; use
-junctions only as a fallback when symbolic links are not practical. For example:
+so the files here remain the single source of truth. For example:
 
 ```sh
-ln -s ~/.agents/skills/browser ~/.claude/skills/browser
+ln -s "$HOME/.agents/skills/browser" "$HOME/.claude/skills/browser"
 ```
 
 ## License

@@ -2,8 +2,7 @@
 
 ## Global installer
 
-Do not use `apt` or `apt-get` by default. Use them only as a last resort when
-the preferred installers cannot meet the requirement.
+Use `apt` only when the preferred installers are not practical.
 
 ## Disk space
 

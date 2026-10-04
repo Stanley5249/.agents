@@ -127,3 +127,8 @@ same lints as the `lint` recipe:
   }
 }
 ```
+
+## WSL
+
+WSL projects use Zed's
+[WSL remote server](https://zed.dev/docs/remote-development#opening-a-local-folder-in-wsl).
