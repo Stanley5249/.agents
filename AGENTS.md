@@ -118,7 +118,8 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Editor
 
-- I use Zed.
+- I use Zed. Documentation: <https://zed.dev/docs/>
+- WSL projects use Zed's WSL remote server.
 
 ### Installer
 
@@ -147,12 +148,9 @@ These tools are available:
 
 ### Others
 
+- Use Starship for cross-platform prompts: <https://starship.rs/installing/>
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
-
-### Interaction
-
-- `bat`
-- `gum`
+- Use `bat` and `gum` when writing interactive commands for me.
 
 ## Rules
 
