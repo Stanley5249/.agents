@@ -1,12 +1,12 @@
 # Code
 
 Design rules for writing, planning, and reviewing code. Language rules add
-idioms for their stack, and a project's `AGENTS.md` may tighten any rule here.
+idioms for their stack.
 
 ## Quality
 
-I insist on project quality and a clean, modular codebase. Treat these size
-thresholds as review prompts, not hard limits:
+I insist on project quality and a clean, modular codebase. These size thresholds
+prompt a review:
 
 - When a single hand-maintained code file grows beyond 400 lines, consider
   splitting it into focused modules. If keeping it together is clearer, record
@@ -14,17 +14,17 @@ thresholds as review prompts, not hard limits:
 - When a subdirectory or module contains more than eight hand-maintained files,
   consider modularizing it or simplifying its structure.
 - Comment why the code is the way it is, not what it does.
-- Do not maintain backward compatibility for unpublished, private, or pre-0.1.0
-  projects.
+- In unpublished, private, or pre-0.1.0 projects, change interfaces, formats,
+  and schemas in place and remove the old form.
 
 ## State
 
 - When two or more flags or optionals describe one thing, make them one enum.
 - Anything with a lifecycle, such as a job, a request, or a screen, moves
-  through one transition function that rejects an illegal move. Reporting the
-  current state again is not a move.
+  through one transition function that rejects an illegal move. Moving to the
+  current state again is a repeated report, so accept it.
 - Elsewhere, keep logic flat: early returns or one `match` or `switch` on an
-  enum, with no more than two levels of nesting.
+  enum, with at most two levels of nesting.
 
 ## Errors
 
@@ -51,8 +51,8 @@ thresholds as review prompts, not hard limits:
 
 ## Coupling
 
-- No cycles between modules. If two modules need each other, merge them or move
-  the shared part to their parent.
+- Keep module dependencies acyclic. If two modules need each other, merge them
+  or move the shared part to their parent.
 
 ## Tests
 
