@@ -125,12 +125,6 @@ for approval.
 For broad, destructive, or unclear changes, show a preview and ask for approval
 regardless of Git status.
 
-These tools are available:
-
-- `git`
-- [`git-filter-repo`](https://github.com/newren/git-filter-repo)
-- `gh`
-
 ### Others
 
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
