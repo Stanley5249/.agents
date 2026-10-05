@@ -149,35 +149,32 @@ These tools are available:
 
 ## Rules
 
-Files are at `~/.agents/rules/`.
+Files are at `~/.agents/rules/`. Before the first edit or plan of an activity,
+read every file listed for it. When a task spans several activities, read all of
+their files.
 
-Read the platform rule before a global installation, a download or write over
-100 MB, or a system setting change:
+- Write, plan, or review code: `version-control.md`, `code.md`, and the language
+  rule for each stack
+- Write or edit README, `AGENTS.md`, or `docs/`: `version-control.md`,
+  `documents.md`
+- Any other edit in a Git repository: `version-control.md`
+- Run or configure a project's tools, such as its linter, formatter, type
+  checker, manifest, lockfile, toolchain, justfile, or CI: the language rule for
+  each stack, `justfile.md`, `zed.md`, `ci.md`
+- Scaffold a new project or migrate one to these conventions:
+  `project-setup.md`, the language rule for each stack, `justfile.md`, `zed.md`,
+  `documents.md`, `ci.md`
+- Change Zed settings: `zed.md`
+- Release, version bump, changelog, or release notes: `release.md`,
+  `version-control.md`
+- Plan a PR, or any remote write to a repository I do not own, such as a PR,
+  issue, comment, or push: `contributing.md`, `version-control.md`
+- Global installation, a download or write over 100 MB, or a system setting
+  change: `windows.md` for Windows 11, or `wsl.md` for Ubuntu 26.04 in WSL 2
 
-- `windows.md`: Windows 11
-- `wsl.md`: Ubuntu 26.04 in WSL 2
-
-Read these files when first required:
-
-- `version-control.md`: any task that edits a Git repository, before the first
-  edit or plan
-- `code.md`: writing, planning, or reviewing code, before the first edit or plan
-- `project-setup.md`: scaffolding a new project or migrating an existing
-  repository to these conventions
-- `justfile.md`: creating, changing, or auditing a justfile
-- `documents.md`: writing or editing README, `AGENTS.md`, or `docs/`
-- `contributing.md`: planning a PR or any remote write to a repository I do not
-  own, such as a PR, issue, comment, or push
-- `release.md`: a release, version bump, changelog, or release notes
-- `zed.md`: changing Zed settings, or a project's formatter or linter
-
-Before running or configuring a project's tools, such as its linter, formatter,
-type checker, manifest, lockfile, toolchain, justfile, or CI, read the rule for
-each stack it uses:
+Language rules:
 
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
 - `javascript.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: multi-language environment overlay for heavy native or GPU
-  dependencies
-- `ci.md`: local or hosted CI
+- `pixi.md`: overlay beside a language rule for heavy native or GPU dependencies
