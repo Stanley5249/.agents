@@ -17,6 +17,24 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   when a second is likely, such as a `-core` and `-cli` split, because
   restructuring later is more disruptive.
 
+## Code
+
+- A panic is for a ruled-out case, and its message names the invariant, such as
+  `expect("worker never exits before the app does")`. Anything a user, a disk,
+  or a child process can cause is an error.
+- Use only `pub` or private. If an item seems to need `pub(crate)` or
+  `pub(super)`, move it to the shared parent or merge the modules.
+- Clone a value only to send it across a boundary, such as a thread, a task, or
+  a process. Otherwise borrow it or move it.
+- Silence a wrong lint at the source with `#[expect(..., reason = "...")]`.
+  Never use `#[allow]`.
+- When a file's tests outgrow its code, move them to `<module>/tests.rs` behind
+  `#[cfg(test)] mod tests;`.
+- With `tracing`, put `#[instrument(skip_all, fields(...))]` on each unit of
+  work, and add `err` only where the error is handled. Messages are constant
+  lowercase phrases, such as `failed to <verb> <object>` or a past-tense event.
+  Variables go in fields with the same names everywhere.
+
 ## Lint and format
 
 - Tailor `clippy.toml` to each project. Typical settings: `msrv`,

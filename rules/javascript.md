@@ -27,6 +27,8 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   `eslint-plugin-svelte`, because oxlint has no counterpart to the Svelte
   plugin's template rules. Run ESLint with `--max-warnings 0`, and type-check
   with `svelte-check`, separate from formatting and tests.
+- Every lint disable comment needs a reason. Never disable a rule for a whole
+  file.
 
 ## Justfile
 
