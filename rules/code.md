@@ -19,33 +19,36 @@ prompt a review:
 
 ## State
 
-- When two or more flags or optionals describe one thing, make them one enum.
+- When two or more flags or optionals describe one thing, make them one enum or
+  tagged union.
 - Anything with a lifecycle, such as a job, a request, or a screen, moves
   through one transition function that rejects an illegal move. Moving to the
   current state again is a repeated report, so accept it.
-- Elsewhere, keep logic flat: early returns or one `match` or `switch` on an
-  enum, with at most two levels of nesting.
+- Elsewhere, keep logic flat: early returns or one `match` or `switch` on its
+  variants, with at most two levels of nesting.
 
 ## Errors
 
-- Every error is returned, shown to the user, or logged. Ignoring one needs a
+- Every error is propagated, shown to the user, or logged. Ignoring one needs a
   comment that says why.
-- Log an error where you handle it, not where you return it.
+- Log an error where you handle it, not where you propagate it.
 
 ## Ownership
 
-- A resource has one owner. Others reach it through a handle to that owner, such
-  as a channel sender, never through a shared copy.
+- A stateful resource, such as a file, a child process, or a connection, has one
+  owner that opens and closes it. Others act on it through the owner, such as by
+  calling its methods or sending it a message, instead of holding the resource
+  themselves.
 
 ## Cleanup
 
 - Write each cleanup once, such as removing a partial file, stopping a child
   process, or reporting a terminal state. When several exits share it, do the
-  work in an inner function and clean up in one outer place, use a guard such as
-  `Drop` in Rust or `finally` in TypeScript, or let the transition function own
-  it.
-- Cleanup runs on every exit, including early returns, cancellation, and a
-  panic.
+  work in an inner function and clean up in one outer place, use a guard, or let
+  the transition function own it. Guards include `Drop` in Rust, `finally` in
+  TypeScript, and `with` in Python.
+- Cleanup runs on every exit, including early returns, exceptions, panics, and
+  cancellation.
 
 ## Coupling
 
