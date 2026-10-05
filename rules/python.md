@@ -44,8 +44,7 @@ that version.
 ## Lint, format, and type checking
 
 - Use `ruff` as the only linter and formatter. Start every project with all
-  rules selected and Google-style docstrings. Ignore a rule when the project
-  needs to, with a comment that says why:
+  rules selected and Google-style docstrings:
 
   ```toml
   [tool.ruff.lint]

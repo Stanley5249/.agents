@@ -29,8 +29,7 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 - `Drop` runs synchronously and returns nothing, so a guard holds only
   synchronous cleanup that logs its own failure. Await async cleanup on the
   outer path.
-- Silence a wrong lint at the source with `#[expect(..., reason = "...")]`.
-  Never use `#[allow]`.
+- Silence a lint with `#[expect(..., reason = "...")]`. Never use `#[allow]`.
 - When a file's tests outgrow its code, move them to `<module>/tests.rs` behind
   `#[cfg(test)] mod tests;`.
 - With `tracing`, put `#[instrument(skip_all, fields(...))]` on each unit of
