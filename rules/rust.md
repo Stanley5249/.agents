@@ -16,6 +16,8 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   `Cargo.toml`'s `[workspace] members`. Start with one even for a single crate
   when a second is likely, such as a `-core` and `-cli` split, because
   restructuring later is more disruptive.
+- Keep the `-core` crate free of the UI or framework so `cargo test` alone
+  covers the logic. The app or CLI crate only wires it up.
 
 ## Code
 
