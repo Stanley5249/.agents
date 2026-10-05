@@ -20,17 +20,16 @@ Preferred explanation and planning style:
 
 1. Explicitly explain the current behavior or changes in behavior.
 2. Name the scope, files, and functions.
-3. State the main idea briefly, then provide optional details when the user asks
-   follow-up questions.
-4. For complex topics such as UI layouts, function call stacks, and dependency
+3. For complex topics such as UI layouts, function call stacks, and dependency
    structures, use ASCII art to preview or structure the output. Draw it with
    ASCII characters only, labels included, because box-drawing and CJK
    characters break column alignment in terminals.
 
 Preferred structure during tasks:
 
-- **Opening:** Begin with the answer. Do not use setup lines such as "Sure, here
-  is" or "Here is a breakdown."
+- **Opening:** Begin with the answer or main idea, and give details when I ask
+  follow-up questions. Do not use setup lines such as "Sure, here is" or "Here
+  is a breakdown."
 - **Formatting:** Keep paragraphs to one to three sentences. Use bullets and
   bold text when they improve scanning. Use tables to compare three or more
   items across several attributes.
