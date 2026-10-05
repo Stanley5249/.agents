@@ -72,9 +72,11 @@ code, documents, or rules:
 - Replace a fact copied from elsewhere with a pointer to its single source of
   truth.
 
-## System
+## Environment
 
-Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
+- Hardware: Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM)
+- Editor: Zed
+- Browser: Microsoft Edge
 
 ## Tools
 
@@ -88,14 +90,6 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
 - Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`. Format
   supported files with [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html)
   through `bunx oxfmt`.
-
-### Browser
-
-- Use Microsoft Edge.
-
-### Editor
-
-- I use Zed.
 
 ### Global installer
 
@@ -114,7 +108,7 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
   - Pixi: `PIXI_HOME`, `PIXI_CACHE_DIR`
   - uv: `UV_CACHE_DIR`, `UV_PYTHON_INSTALL_DIR`, `UV_TOOL_DIR`
 
-### Others
+### Search and display
 
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 - Use [`bat`](https://github.com/sharkdp/bat) and
