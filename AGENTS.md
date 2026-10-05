@@ -152,30 +152,33 @@ These tools are available:
 
 ## Rules
 
-Files are at `~/.agents/rules/`. Before the first edit or plan of an activity,
-read every file listed for it. When a task spans several activities, read all of
-their files.
+Files are at `~/.agents/rules/`. Before an activity, read all of its files.
 
-- Write, plan, or review code: `version-control.md`, `code.md`, and the language
-  rule for each stack
-- Write or edit README, `AGENTS.md`, or `docs/`: `version-control.md`,
-  `documents.md`
-- Any other edit in a Git repository: `version-control.md`
-- Run or configure a project's tools, such as its linter, formatter, type
-  checker, manifest, lockfile, toolchain, justfile, or CI: the language rule for
-  each stack, `justfile.md`, `zed.md`, `ci.md`
-- Scaffold a new project or migrate one to these conventions:
-  `project-setup.md`, the language rule for each stack, `justfile.md`, `zed.md`,
-  `documents.md`, `ci.md`
-- Change Zed settings: `zed.md`
+Editing a repository:
+
+- Code, including planning and review: `version-control.md`, `code.md`, language
+  rules
+- README, `AGENTS.md`, or `docs/`: `version-control.md`, `documents.md`
+- Anything else: `version-control.md`
+
+Project tooling:
+
+- Run or configure a linter, formatter, type checker, manifest, lockfile,
+  toolchain, justfile, or CI: language rules, `justfile.md`, `zed.md`, `ci.md`
+- Scaffold or migrate a project: `project-setup.md`, language rules,
+  `justfile.md`, `zed.md`, `documents.md`, `ci.md`
+- Zed settings: `zed.md`
+
+Outside the repository:
+
+- Plan a PR, or write remotely to a repository I do not own: `contributing.md`,
+  `version-control.md`
 - Release, version bump, changelog, or release notes: `release.md`,
   `version-control.md`
-- Plan a PR, or any remote write to a repository I do not own, such as a PR,
-  issue, comment, or push: `contributing.md`, `version-control.md`
 - Global installation, a download or write over 100 MB, or a system setting
-  change: `windows.md` for Windows 11, or `wsl.md` for Ubuntu 26.04 in WSL 2
+  change: `windows.md` for Windows 11, `wsl.md` for Ubuntu 26.04 in WSL 2
 
-Language rules:
+Language rules, one per stack:
 
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
