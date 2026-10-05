@@ -23,7 +23,9 @@ Preferred explanation and planning style:
 3. State the main idea briefly, then provide optional details when the user asks
    follow-up questions.
 4. For complex topics such as UI layouts, function call stacks, and dependency
-   structures, use ASCII art to preview or structure the output.
+   structures, use ASCII art to preview or structure the output. Draw it with
+   ASCII characters only, labels included, because box-drawing and CJK
+   characters break column alignment in terminals.
 
 Preferred structure during tasks:
 
