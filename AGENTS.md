@@ -78,38 +78,17 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
 
 ## Tools
 
-### Python
+### Scripts and one-off tools
 
-- Don't use a global Python; use `uv run python`.
-- When a bundled script needs
+- Run Python with `uv run python`, never a global Python. When a bundled script
+  needs
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
-  use `uv run --with <package> python <script>` instead of modifying the
-  project's dependencies.
-- For package-provided one-off CLI tools, use `uvx --with <package> <command>`
-  after getting approval.
-
-### JavaScript
-
-`bun` > `deno` > `node`
-
-- For one-off tools, use `bunx` after getting approval.
-- [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html) is pre-approved
-  through `bunx oxfmt` and `bunx oxfmt --check`. Use it to format supported
-  files.
-- Warn before introducing `node` into a project, and try a `bun` alternative
-  when available.
-
-### Rust
-
-- Prefer `cargo clippy` over `cargo check`.
-- Avoid worktrees for Rust projects with large `target/` directories. Ask
-  explicitly before creating one.
-- These tools are available:
-  - [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall)
-  - [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/)
-  - [`cargo-nextest`](https://nexte.st/)
-  - [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov)
-  - [`cargo-sweep`](https://github.com/holmgr/cargo-sweep)
+  use `uv run --with <package> python <script>`.
+- Prefer `bun`, then `deno`, then `node`, to run JavaScript.
+- Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx` after
+  getting approval. [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html) is
+  pre-approved through `bunx oxfmt` and `bunx oxfmt --check`. Use it to format
+  supported files.
 
 ### Browser
 
@@ -126,8 +105,8 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
 - Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and
   `uv tool`.
 - Use `bun install -g` for JavaScript CLIs.
-- Use `cargo-binstall` for Rust binaries that the installers above do not
-  provide.
+- Use [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust
+  binaries that the installers above do not provide.
 - Do not assume that packages, tools, and caches live in default paths. When you
   need a path, read the tool's environment variable first:
   - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`

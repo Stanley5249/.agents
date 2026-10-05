@@ -62,8 +62,18 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   allow_attributes_without_reason = "warn"
   ```
 
+- For an ad hoc check, run `cargo clippy` instead of `cargo check`.
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated
   reason.
+
+## Tools
+
+- Ask before creating a worktree, because each one builds its own `target/`.
+- These tools are installed:
+  - [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/)
+  - [`cargo-nextest`](https://nexte.st/)
+  - [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov)
+  - [`cargo-sweep`](https://github.com/holmgr/cargo-sweep)
 
 ## Release automation
 
