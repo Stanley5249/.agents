@@ -51,24 +51,11 @@ When editing code and documents, follow the rules above and these additional
 rules:
 
 - Preserve original voice.
-- Comment why the code is the way it is, not what it does.
 - When you make a mistake, state the facts and continue. Do not add unnecessary
   preventive work. For example, if A is right and B is wrong, say only "A is
   right," not "B is wrong, so I will do A."
 - Do not add fast-changing information. Code and manifests are the source of
   truth, and duplicating facts in documentation creates a maintenance burden.
-- Do not maintain backward compatibility for unpublished, private, or pre-0.1.0
-  projects.
-
-I insist on project quality and a clean, modular codebase, so follow these rules
-for my projects. Treat these size thresholds as review prompts, not hard limits:
-
-- When a single hand-maintained code or documentation file grows beyond 400
-  lines, consider splitting it into focused modules or documents. If keeping it
-  together is clearer, record the reason in the appropriate file-level
-  documentation.
-- When a subdirectory or module contains more than eight hand-maintained files,
-  consider modularizing it or simplifying its structure.
 
 ## System
 
@@ -174,6 +161,7 @@ Read these files when first required:
 
 - `version-control.md`: any task that edits a Git repository, before the first
   edit or plan
+- `code.md`: writing, planning, or reviewing code, before the first edit or plan
 - `project-setup.md`: scaffolding a new project or migrating an existing
   repository to these conventions
 - `justfile.md`: creating, changing, or auditing a justfile
