@@ -3,7 +3,8 @@
 ## Core rules
 
 - Keep documents minimal and concise.
-- State each fact once, in a single source of truth.
+- State each fact once, in a single source of truth. Point to code and manifests
+  for facts that change, such as versions, counts, and file lists.
 - When a hand-maintained document grows beyond 400 lines, consider splitting it
   into focused documents. If keeping it together is clearer, say why at its top.
 - Ask for approval before adding sections to or restructuring `README.md`,
