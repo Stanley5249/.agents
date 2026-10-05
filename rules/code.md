@@ -55,6 +55,12 @@ prompt a review:
 - Keep module dependencies acyclic. If two modules need each other, merge them
   or move the shared part to their parent.
 
+## Lints
+
+- Silence a lint at the narrowest scope, such as one line or one item, with a
+  reason. Turn a lint off project-wide only in the lint config, with a comment
+  that says why.
+
 ## Tests
 
 - For a bug fix, write a test that fails without the fix.

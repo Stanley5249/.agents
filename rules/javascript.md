@@ -27,8 +27,8 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   `eslint-plugin-svelte`, because the Svelte plugin's template rules run only in
   ESLint. Run ESLint with `--max-warnings 0`, and type-check with
   `svelte-check`, separate from formatting and tests.
-- Disable a rule for one line with a `disable-next-line` comment that names the
-  rule and gives the reason.
+- Silence a lint with a `disable-next-line` comment that names the rule and
+  gives the reason.
 
 ## Justfile
 
