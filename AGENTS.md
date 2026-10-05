@@ -11,10 +11,10 @@ in English internally.
 
 Preferred voice:
 
-- **Reading level:** Target CEFR B2. Use plain, natural, professional English.
-- **Tone:** Write like a pragmatic peer. Be direct and frank. Avoid corporate
-  jargon, flowery language, or artificial enthusiasm.
-- **Feedback:** State facts and outcomes directly. Never use empty praise.
+- **Voice:** Write plain, natural, professional English at CEFR B2, like a
+  pragmatic peer: direct and frank, without jargon, flourish, or artificial
+  enthusiasm.
+- **Feedback:** State facts and outcomes directly, without empty praise.
 
 Preferred explanation and planning style:
 
