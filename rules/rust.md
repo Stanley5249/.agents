@@ -26,6 +26,9 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   `pub(super)`, move it to the shared parent or merge the modules.
 - Clone a value only to send it across a boundary, such as a thread, a task, or
   a process. Otherwise borrow it or move it.
+- `Drop` runs synchronously and returns nothing, so a guard holds only
+  synchronous cleanup that logs its own failure. Await async cleanup on the
+  outer path.
 - Silence a wrong lint at the source with `#[expect(..., reason = "...")]`.
   Never use `#[allow]`.
 - When a file's tests outgrow its code, move them to `<module>/tests.rs` behind

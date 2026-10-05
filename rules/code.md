@@ -46,8 +46,6 @@ prompt a review:
   it.
 - Cleanup runs on every exit, including early returns, cancellation, and a
   panic.
-- A guard that cannot await holds only synchronous cleanup that logs its own
-  failure. Await async cleanup on the outer path.
 
 ## Coupling
 
