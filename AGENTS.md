@@ -78,9 +78,6 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
 
 ## Tools
 
-Respect each project's conventions. When rules conflict, the project's
-conventions win. Load references only when needed, immediately before use.
-
 ### Python
 
 - Don't use a global Python; use `uv run python`.
@@ -164,7 +161,9 @@ These tools are available:
 
 ## Rules
 
-Files are at `~/.agents/rules/`. Before an activity, read all of its files.
+Files are at `~/.agents/rules/`. Read all of an activity's files right before it
+starts. When a rule conflicts with a project's conventions, the project's
+conventions win.
 
 Editing a repository:
 
