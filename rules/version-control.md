@@ -28,11 +28,9 @@ means moving the commits onto it.
   containing `*`.
 - When the user explicitly wants to ignore a local file, add it to
   `.git/info/exclude`.
-- Keep tracked files portable. Never copy user data, machine-specific
-  configuration, content from ignored files, or an absolute path from a real
-  machine into them. Use a repository-relative path, an environment variable, or
-  `.env`. Placeholder examples and test fixtures that never touch the disk are
-  fine.
+- Tracked files hold only portable content: repository-relative paths,
+  environment variables, and placeholders. Keep user data, machine paths, and
+  machine-specific settings in ignored files such as `.env`.
 
 ### Commit
 
