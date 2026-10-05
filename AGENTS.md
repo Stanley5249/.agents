@@ -51,9 +51,7 @@ When editing code and documents, follow the rules above and these additional
 rules:
 
 - Preserve original voice.
-- When you make a mistake, state the facts and continue. Do not add unnecessary
-  preventive work. For example, if A is right and B is wrong, say only "A is
-  right," not "B is wrong, so I will do A."
+- After a mistake, state the correct fact and continue the task.
 - Do not add fast-changing information. Code and manifests are the source of
   truth, and duplicating facts in documentation creates a maintenance burden.
 - Assume documents may be outdated, and verify them against the code before
