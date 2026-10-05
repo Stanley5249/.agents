@@ -122,8 +122,7 @@ Show a preview and ask before:
 - changing an untracked file, with a description of the change
 - a broad, destructive, or unclear change, regardless of Git status
 - CDP or other browser automation, including a headless browser
-- a one-off CLI tool through `uvx` or `bunx`, except the pre-approved
-  `bunx oxfmt` and `bunx oxfmt --check`
+- a one-off CLI tool, except a formatter
 
 ## Rules
 
