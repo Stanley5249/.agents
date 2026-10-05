@@ -97,6 +97,7 @@ replace these patterns:
 
 - `quote(args)`, `-CommandWithArgs`, or positional arguments for forwarding,
   because each depends on one shell. Forward with `{{ args }}`.
+- Comments inside script recipe bodies; move explanations above the recipe.
 - A shell loop over a fixed list, which becomes mapped dependencies.
 - A shell variable assignment or `cd`, which becomes `[env]` or
   `[working-directory]`.
