@@ -81,7 +81,7 @@ conventions win. Load references only when needed, immediately before use.
 
 ### Python
 
-- Run project Python with `uv run python`.
+- Don't use a global Python; use `uv run python`.
 - When a bundled script needs
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
   use `uv run --with <package> python <script>` instead of modifying the
