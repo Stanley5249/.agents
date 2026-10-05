@@ -178,6 +178,8 @@ Read these files when first required:
   repository to these conventions
 - `justfile.md`: creating, changing, or auditing a justfile
 - `documents.md`: writing or editing README, `AGENTS.md`, or `docs/`
+- `contributing.md`: planning a PR or any remote write to a repository I do not
+  own, such as a PR, issue, comment, or push
 - `release.md`: a release, version bump, changelog, or release notes
 - `zed.md`: changing Zed settings, or a project's formatter or linter
 
