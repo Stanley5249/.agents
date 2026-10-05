@@ -34,9 +34,12 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 - When a file's tests outgrow its code, move them to `<module>/tests.rs` behind
   `#[cfg(test)] mod tests;`.
 - With `tracing`, put `#[instrument(skip_all, fields(...))]` on each unit of
-  work, and add `err` only where the error is handled. Messages are constant
-  lowercase phrases, such as `failed to <verb> <object>` or a past-tense event.
-  Variables go in fields with the same names everywhere.
+  work, such as a request, a job, or a child process run. Add `err` only where
+  the error is handled. Use `level = "debug"` for a span on a hot path, such as
+  a query a screen calls on every refresh.
+- Tracing messages are constant lowercase phrases, such as
+  `failed to <verb> <object>` or a past-tense event. Variables go in fields with
+  the same names everywhere.
 
 ## Lint and format
 
