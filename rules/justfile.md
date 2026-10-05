@@ -36,7 +36,8 @@ recipes instead of raw commands.
 
 - Expose a trailing `*args` wherever a recipe wraps one tool, so extra arguments
   pass through unchanged. An aggregate recipe forwards `*args` only when every
-  child accepts the same arguments.
+  child accepts the same arguments. Call each recipe in its own `just`
+  invocation to avoid conflicts between variadic parameters and recipe names.
 - Quote a scalar `{{ parameter }}` with double quotes, which both PowerShell and
   `sh` accept.
 - When the recipe itself needs an option, declare it with
@@ -92,18 +93,19 @@ recipes instead of raw commands.
 
 ## Audit
 
-When migrating or reviewing a justfile, check it against the rules above and
-replace these patterns:
+When migrating or reviewing a justfile, check it against the rules above. Find
+each pattern on the left and apply the fix on the right:
 
-- `quote(args)`, `-CommandWithArgs`, or positional arguments for forwarding,
-  because each depends on one shell. Forward with `{{ args }}`.
-- Comments inside script recipe bodies; move explanations above the recipe.
-- A shell loop over a fixed list, which becomes mapped dependencies.
-- A shell variable assignment or `cd`, which becomes `[env]` or
-  `[working-directory]`.
-- A helper with both the `_name` prefix and `[private]`.
-- A `fmt-check` without `just --fmt --check`, or a `fmt` and `fmt-check` that
-  run different commands.
-- Destructive cleanup without `[confirm]`.
-- `[parallel]` on jobs that write a shared output, such as a lockfile.
-- A copy of a shell-specific recipe for the other platform.
+| Find                                                                          | Fix                                                       |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------- |
+| Forwarding through `quote(args)`, `-CommandWithArgs`, or positional arguments | Forward with `{{ args }}`, which works in every shell     |
+| Comments inside a script recipe body                                          | Move them above the recipe                                |
+| A shell loop over a fixed list                                                | Use mapped dependencies                                   |
+| A shell variable assignment or `cd`                                           | Use `[env]` or `[working-directory]`                      |
+| A helper with both the `_name` prefix and `[private]`                         | Keep only the prefix                                      |
+| A `fmt-check` without `just --fmt --check`                                    | Add `_fmt-just`                                           |
+| A `fmt` and `fmt-check` that run different commands                           | Call the same `_fmt-<tool>` helpers                       |
+| Destructive cleanup without `[confirm]`                                       | Add `[confirm("...")]`                                    |
+| `[parallel]` on jobs that write a shared output, such as a lockfile           | Remove `[parallel]`                                       |
+| `[parallel]` on tools without their quiet flags                               | Pass each tool its quiet flag                             |
+| A copy of a shell-specific recipe for the other platform                      | Delete the copy and keep the primary platform's attribute |
