@@ -24,11 +24,11 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
   `oxlint-tsgolint` to `devDependencies` and set `typeAware` and `denyWarnings`
   under `options` in `.oxlintrc.json`.
 - Lint a Svelte project with ESLint, `typescript-eslint`, and
-  `eslint-plugin-svelte`, because oxlint has no counterpart to the Svelte
-  plugin's template rules. Run ESLint with `--max-warnings 0`, and type-check
-  with `svelte-check`, separate from formatting and tests.
-- Every lint disable comment needs a reason. Never disable a rule for a whole
-  file.
+  `eslint-plugin-svelte`, because the Svelte plugin's template rules run only in
+  ESLint. Run ESLint with `--max-warnings 0`, and type-check with
+  `svelte-check`, separate from formatting and tests.
+- Disable a rule for one line with a `disable-next-line` comment that names the
+  rule and gives the reason.
 
 ## Justfile
 
