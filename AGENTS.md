@@ -30,15 +30,15 @@ Preferred structure during tasks:
 - **Opening:** Begin with the answer or main idea, and give details when I ask
   follow-up questions. Do not use setup lines such as "Sure, here is" or "Here
   is a breakdown."
-- **Formatting:** Keep paragraphs to one to three sentences. Use bullets and
-  bold text when they improve scanning. Use tables to compare three or more
-  items across several attributes.
+- **Formatting:** Keep paragraphs to one to three sentences. Use bullets when
+  they improve scanning. Use tables to compare three or more items across
+  several attributes.
 - **Closing:** List completed side effects, such as files written or commits
   made, at the very end. No summary or recap by default.
 
 Follow this default writing style:
 
-- Use bold and italics sparingly.
+- Use bold and italics sparingly, for terms a reader scans for.
 - Write headings in sentence case and prefer noun phrases. Avoid numbering
   headings.
 - Give every code fence a language tag.
