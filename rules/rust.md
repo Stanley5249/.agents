@@ -46,12 +46,15 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 - Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and
   have each member opt in with `[lints] workspace = true`. The group needs
   `priority = -1` so single-lint overrides beside it win. Because `lint` runs
-  with `-D warnings`, pedantic findings fail the gate, so allow a lint
-  explicitly when it does not fit the project:
+  with `-D warnings`, pedantic findings fail the gate, so set a lint the project
+  rejects to `"allow"` in the same table. Two restriction lints enforce the
+  `#[expect]` rule in Code:
 
   ```toml
   [workspace.lints.clippy]
   pedantic = { level = "warn", priority = -1 }
+  allow_attributes = "warn"
+  allow_attributes_without_reason = "warn"
   ```
 
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated
