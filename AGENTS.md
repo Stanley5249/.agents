@@ -56,6 +56,17 @@ rules:
   relying on them. Do not stop a task to fix a document. List the corrections in
   the final summary and let me decide.
 
+Revise in one pass before finishing a file or a final report, and when auditing
+code, documents, or rules:
+
+- Rewrite each negative statement, which says what is false or absent, as what
+  is true. For example, "B is wrong, so I will do A" becomes "A is right."
+- Pair each prohibition, which bans an action, with the action to take instead.
+  For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
+- Merge statements that repeat each other within the text.
+- Replace a fact copied from elsewhere with a pointer to its single source of
+  truth.
+
 ## System
 
 Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
