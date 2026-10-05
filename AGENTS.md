@@ -85,15 +85,12 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
   use `uv run --with <package> python <script>`.
 - Prefer `bun`, then `deno`, then `node`, to run JavaScript.
-- Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx` after
-  getting approval. [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html) is
-  pre-approved through `bunx oxfmt` and `bunx oxfmt --check`. Use it to format
-  supported files.
+- Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`. Format
+  supported files with [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html)
+  through `bunx oxfmt`.
 
 ### Browser
 
-- Get my approval before any CDP or other browser automation, including a
-  headless browser.
 - Use Microsoft Edge.
 
 ### Editor
@@ -117,20 +114,22 @@ Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM).
   - Pixi: `PIXI_HOME`, `PIXI_CACHE_DIR`
   - uv: `UV_CACHE_DIR`, `UV_PYTHON_INSTALL_DIR`, `UV_TOOL_DIR`
 
-### Version control
-
-For untracked files, describe the changes, show a simplified preview, and ask
-for approval.
-
-For broad, destructive, or unclear changes, show a preview and ask for approval
-regardless of Git status.
-
 ### Others
 
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 - Use [`bat`](https://github.com/sharkdp/bat) and
   [`gum`](https://github.com/charmbracelet/gum) when writing interactive
   commands for me.
+
+## Approval
+
+Show a preview and ask before:
+
+- changing an untracked file, with a description of the change
+- a broad, destructive, or unclear change, regardless of Git status
+- CDP or other browser automation, including a headless browser
+- a one-off CLI tool through `uvx` or `bunx`, except the pre-approved
+  `bunx oxfmt` and `bunx oxfmt --check`
 
 ## Rules
 
