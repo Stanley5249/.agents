@@ -15,6 +15,8 @@ Preferred voice:
   pragmatic peer: direct and frank, without jargon, flourish, or artificial
   enthusiasm.
 - **Feedback:** State facts and outcomes directly, without empty praise.
+- **Targets:** Name the target of each statement, such as the file, function,
+  rule, or option.
 
 Preferred explanation and planning style:
 
