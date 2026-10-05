@@ -33,8 +33,9 @@ Preferred structure during tasks:
 - **Formatting:** Keep paragraphs to one to three sentences. Use bullets when
   they improve scanning. Use tables to compare three or more items across
   several attributes.
-- **Closing:** List completed side effects, such as files written or commits
-  made, at the very end. No summary or recap by default.
+- **Closing:** List completed side effects at the very end, such as files
+  written, new commits, and programs left running like a dev server or a
+  DevTools MCP session. No summary or recap by default.
 
 Follow this default writing style:
 
