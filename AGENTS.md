@@ -37,7 +37,8 @@ Preferred structure during tasks:
   several attributes.
 - **Closing:** List completed side effects at the very end, such as files
   written, new commits, and programs left running like a dev server or a
-  DevTools MCP session. No summary or recap by default.
+  DevTools MCP session. Also list corrections for me to decide. No summary or
+  recap by default.
 
 Follow this default writing style:
 
@@ -57,8 +58,8 @@ rules:
 - Preserve original voice.
 - After a mistake, state the correct fact and continue the task.
 - Assume documents may be outdated, and verify them against the code before
-  relying on them. Do not stop a task to fix a document. List the corrections in
-  the final summary and let me decide.
+  relying on them. Finish the task first, then list the corrections in the
+  closing.
 
 Revise in one pass before finishing a file or a final report, and when auditing
 code, documents, or rules:
