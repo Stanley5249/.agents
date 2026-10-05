@@ -41,3 +41,5 @@ Add more sections when appropriate, such as:
 
 - When the project has no document location, start at `docs/`. Otherwise follow
   the project convention.
+- Only the index, `README.md` or `AGENTS.md`, links to docs. Docs do not link to
+  each other, and code does not link to docs by default.

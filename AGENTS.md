@@ -56,6 +56,9 @@ rules:
   right," not "B is wrong, so I will do A."
 - Do not add fast-changing information. Code and manifests are the source of
   truth, and duplicating facts in documentation creates a maintenance burden.
+- Assume documents may be outdated, and verify them against the code before
+  relying on them. Do not stop a task to fix a document. List the corrections in
+  the final summary and let me decide.
 
 ## System
 
