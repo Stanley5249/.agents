@@ -58,8 +58,8 @@ rules:
 - Preserve original voice.
 - After a mistake, state the correct fact and continue the task.
 - Assume documents may be outdated, and verify them against the code before
-  relying on them. Finish the task first, then list the corrections in the
-  closing.
+  relying on them, and verify technical claims and commands you write the same
+  way. Finish the task first, then list the corrections in the closing.
 
 Revise in one pass before finishing a file or a final report, and when auditing
 code, documents, or rules:
