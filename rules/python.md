@@ -72,6 +72,3 @@ Typical mappings include `fmt` and `fmt-check` through `uv run ruff format`,
 and `test` through `uv run pytest`.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.
-
-Until the project has a justfile, run `uv run pytest` and `uv run ruff check`
-directly.
