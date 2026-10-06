@@ -68,6 +68,7 @@ code, documents, or rules:
   is true. For example, "B is wrong, so I will do A" becomes "A is right."
 - Pair each prohibition, which bans an action, with the action to take instead.
   For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
+- In slide copy and UI text, replace bare pronouns with explicit nouns.
 - Merge statements that repeat each other within the text.
 - Replace a fact copied from elsewhere with a pointer to its single source of
   truth.
