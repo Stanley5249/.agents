@@ -13,7 +13,13 @@ prompt a review:
   the reason in the file-level documentation.
 - When a subdirectory or module contains more than eight hand-maintained files,
   consider modularizing it or simplifying its structure.
+
+## Comments
+
 - Comment why the code is the way it is, not what it does.
+
+## Compatibility
+
 - In unpublished, private, or pre-0.1.0 projects, change interfaces, formats,
   and schemas in place and remove the old form.
 
