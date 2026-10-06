@@ -1,7 +1,7 @@
 # Pixi projects
 
 This rule serves as an environment overlay on top of `project-setup.md`
-alongside `python.md` or `rust.md`.
+alongside one or more language rules.
 
 ## When to use pixi
 
@@ -44,16 +44,13 @@ tombi = "*"
 ci = { features = ["tools"], no-default-feature = true }
 ```
 
-In `pixi.toml`, drop the `tool.pixi.` prefix. Recipes call the tools with
-`pixi run -e ci` and the project with `pixi run -e default`. Name the
-environment in every call, because inside an activated environment a bare
-`pixi run` uses that one.
+In `pixi.toml`, drop the `tool.pixi.` prefix.
 
 ## Lint, format, and justfile
 
-Follow the rules of the wrapped language. Run commands through `pixi run <task>`
-or a justfile recipe shelling out to `pixi run`, whichever the project already
-uses.
+Use the wrapped language's tools, but run them with `pixi run -e <environment>`
+from justfile recipes instead of pixi tasks. Name the environment in every call,
+because inside an activated environment a bare `pixi run` uses that one.
 
 Export `PIXI_LOCKED := "true"` in the justfile, so every `pixi run` fails on a
 stale `pixi.lock` instead of re-solving. Add a `lock-check` recipe that runs
