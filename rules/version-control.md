@@ -39,8 +39,7 @@ means moving the commits onto it.
 - Check the worktree status before changing it. Preserve unrelated user changes.
 - Put one feature or one discrete repository action in each commit. Moving or
   renaming files, updating dependencies, reformatting code, and performing a
-  standalone refactor are separate actions.
-- Do not combine independent actions merely because they were requested
+  standalone refactor are separate actions, even when they were requested
   together.
 - Keep a feature's implementation, tests, and directly required documentation or
   configuration together in the same commit.
@@ -57,12 +56,12 @@ means moving the commits onto it.
 
 ### Amend
 
-These rules apply only to local, unpublished commits:
+These rules apply only to local, unpublished commits. Ask before amending a
+published or shared commit.
 
 - During fast prototyping or concept discussions, defer the commit until the
   user is satisfied.
 - Amend the latest commit when a small follow-up belongs to the same change.
-- Do not amend published or shared commits without explicit approval.
 
 ## Commit messages
 
