@@ -11,5 +11,5 @@
 ## Before planning a PR
 
 - Search for duplicates in open and closed PRs and issues.
-- If related PRs have sat about a month without review or merge, do not open
-  another PR in that area.
+- If related PRs have sat about a month without review or merge, report them to
+  the user and ask before opening another PR in that area.
