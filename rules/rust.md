@@ -33,6 +33,10 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   synchronous cleanup that logs its own failure. Await async cleanup on the
   outer path.
 - Silence a lint with `#[expect(..., reason = "...")]`. Never use `#[allow]`.
+- Import types and traits by name, or glob-import a `prelude` module. Use full
+  paths when calling functions from other modules in the same crate.
+- Give each module with child files its own directory. Keep module documentation
+  and declarations in `mod.rs`, and definitions in named child files.
 - When a file's tests outgrow its code, move them to `<module>/tests.rs` behind
   `#[cfg(test)] mod tests;`.
 - With `tracing`, put `#[instrument(skip_all, fields(...))]` on each unit of
