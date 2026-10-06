@@ -34,6 +34,8 @@ means moving the commits onto it.
 
 ### Commit
 
+- Before the first commit or history rewrite in a repository, read its README
+  and contributing guide for commit conventions, which override these rules.
 - Check the worktree status before changing it. Preserve unrelated user changes.
 - Put one feature or one discrete repository action in each commit. Moving or
   renaming files, updating dependencies, reformatting code, and performing a
