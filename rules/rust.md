@@ -101,7 +101,7 @@ components = ["rustfmt", "clippy"]
 
 Typical mappings are `fmt` to `cargo fmt --all`, `fmt-check` to
 `cargo fmt --all --check`, `typecheck` to
-`cargo check --workspace --all-targets`, `lint` to
+`cargo check --locked --workspace --all-targets`, `lint` to
 `cargo clippy --locked --workspace --all-targets -- -D warnings`, and `test` to
 `cargo test --locked --workspace`. A docs check runs `cargo doc --workspace`
 with `RUSTDOCFLAGS=-D warnings`. Let `check` and `ci` compose the applicable
@@ -109,7 +109,8 @@ source-preserving recipes; add `build` or `install` only when the workflow needs
 an explicit recipe for them.
 
 `--locked` fails the gate when `Cargo.lock` disagrees with `Cargo.toml`, so `ci`
-also proves the committed lockfile is current.
+also proves the committed lockfile is current and Rust needs no `lock-check`
+recipe.
 
 `--all-targets` also covers tests, benches, and examples for `cargo check` and
 `cargo clippy`, but `cargo test --all-targets` silently skips doctests. Run

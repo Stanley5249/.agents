@@ -20,7 +20,8 @@ rule defines:
 - Lockfile git attributes and frozen lockfile checks
 - Linter, formatter, and type-checker choices
 - Language-specific workspace layout and test setup
-- Base justfile recipes (`fmt`, `lint`, `typecheck`, `test`, `lock-check`)
+- Base justfile recipes (`fmt`, `lint`, `typecheck`, `test`, and `lock-check` or
+  an equivalent locked flag)
 
 ## Formatting and validation
 
