@@ -121,7 +121,8 @@ code, documents, or rules:
 Show a preview and ask before:
 
 - changing an untracked file, with a description of the change
-- a broad, destructive, or unclear change, regardless of Git status
+- a broad, destructive, or unclear change, regardless of Git status, including a
+  design choice with several valid options
 - CDP or other browser automation, including a headless browser
 - a one-off CLI tool, except a formatter
 
