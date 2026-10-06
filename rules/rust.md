@@ -57,7 +57,7 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   `priority = -1` so single-lint overrides beside it win. Because `lint` runs
   with `-D warnings`, pedantic findings fail the gate, so set a lint the project
   rejects to `"allow"` in the same table. Two restriction lints enforce the
-  `#[expect]` rule in Code:
+  `#[expect]` rule in the Code section above:
 
   ```toml
   [workspace.lints.clippy]

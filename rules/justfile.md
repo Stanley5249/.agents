@@ -36,8 +36,9 @@ recipes instead of raw commands.
 
 - Expose a trailing `*args` wherever a recipe wraps one tool, so extra arguments
   pass through unchanged. An aggregate recipe forwards `*args` only when every
-  child accepts the same arguments. Call each recipe in its own `just`
-  invocation to avoid conflicts between variadic parameters and recipe names.
+  child accepts the same arguments. When passing arguments on the command line,
+  run one recipe per `just` command, because a variadic parameter takes the
+  words after it as arguments, including later recipe names.
 - Quote a scalar `{{ parameter }}` with double quotes, which both PowerShell and
   `sh` accept.
 - When the recipe itself needs an option, declare it with
