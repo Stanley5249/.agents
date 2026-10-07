@@ -82,7 +82,7 @@ bunx oxfmt            # format the tree in place
 bunx oxfmt --check    # fail on unformatted files, change nothing
 ```
 
-In a justfile, map these to `fmt` and `fmt-check`.
+In a justfile, map these to `fmt` and the format step of `check`.
 
 ## Further reading
 

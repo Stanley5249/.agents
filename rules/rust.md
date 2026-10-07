@@ -99,7 +99,7 @@ components = ["rustfmt", "clippy"]
 
 ## Justfile
 
-Typical mappings are `fmt` to `cargo fmt --all`, `fmt-check` to
+Typical mappings are `fmt` to `cargo fmt --all`, the format step of `check` to
 `cargo fmt --all --check`, `typecheck` to
 `cargo check --locked --workspace --all-targets`, `lint` to
 `cargo clippy --locked --workspace --all-targets -- -D warnings`, and `test` to

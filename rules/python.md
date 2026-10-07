@@ -67,8 +67,8 @@ that version.
 ## Justfile
 
 Put commands in justfile recipes that invoke local executables through `uv run`.
-Typical mappings include `fmt` and `fmt-check` through `uv run ruff format`,
-`lint` through `uv run ruff check`, `typecheck` through `uv run pyrefly check`,
-and `test` through `uv run pytest`.
+Typical mappings include `fmt` and the format step of `check` through
+`uv run ruff format`, `lint` through `uv run ruff check`, `typecheck` through
+`uv run pyrefly check`, and `test` through `uv run pytest`.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.

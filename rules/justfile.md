@@ -12,6 +12,10 @@ recipes instead of raw commands.
 
 - Always `set default-list`, and document each public recipe so it appears in
   `just --list`.
+- Make unsuffixed recipes cover the primary language, and add `-all` variants
+  that also cover the other languages and slow test suites. Keep recipes that
+  cover only the other languages private, such as `_lint-py`, and keep a scoped
+  recipe public only when docs or messages refer to it, such as `test-e2e`.
 - Prefer native just syntax, such as functions, lists, and dependencies, over
   shell commands. Set a variable with `[env("NAME", "value")]` instead of a
   shell assignment, and change directory with `[working-directory("path")]`
@@ -35,8 +39,8 @@ recipes instead of raw commands.
   ```
 
 - Expose a trailing `*args` wherever a recipe wraps one tool, so extra arguments
-  pass through unchanged. An aggregate recipe forwards `*args` only when every
-  child accepts the same arguments. When passing arguments on the command line,
+  pass through unchanged. An aggregate recipe takes no arguments; pass arguments
+  to the single-tool recipe instead. When passing arguments on the command line,
   run one recipe per `just` command, because a variadic parameter takes the
   words after it as arguments, including later recipe names.
 - Quote a scalar `{{ parameter }}` with double quotes, which both PowerShell and
@@ -45,16 +49,16 @@ recipes instead of raw commands.
   `[arg("name", long, help="...")]` and a default, alongside `*args`.
 - Name a private helper `_name`. Use `[private]` only when a public-looking name
   reads better.
-- Give each formatter one `_fmt-<tool> *args` helper. `fmt` and `fmt-check` call
-  the same helpers, and `fmt-check` passes each its check flag. Both always
-  include `_fmt-just`, which runs `just --fmt`:
+- Give each formatter one `_fmt-<tool> *args` helper. `fmt` calls the helpers,
+  and `check` calls them with each tool's check flag. Both always include
+  `_fmt-just`, which runs `just --fmt`:
 
   ```just
   [parallel]
   fmt: _fmt-tombi _fmt-oxfmt _fmt-just
 
   [parallel]
-  fmt-check: (_fmt-tombi "--check") (_fmt-oxfmt "--check") (_fmt-just "--check")
+  check: (_fmt-tombi "--check") (_fmt-oxfmt "--check") (_fmt-just "--check") lint
 
   _fmt-tombi *args:
       tombi format --quiet {{ args }} .
@@ -83,14 +87,14 @@ recipes instead of raw commands.
   ```
 
 - Use these names where their roles apply: `install`, `build`, `dev`, `prod`,
-  `fmt`, `fix`, `fmt-check`, `typecheck`, `lint`, `check`, `test`, and `ci`.
-  Prefer `dev` and `prod` over `start` and `run`.
+  `fmt`, `fix`, `typecheck`, `lint`, `check`, `test`, and `ci`. Prefer `dev` and
+  `prod` over `start` and `run`.
   - `fmt` rewrites sources by formatting only, and `fix` runs `fmt`, then the
     linters' automatic fixes.
-  - `fmt-check`, `typecheck`, `lint`, and `test` preserve sources. `lint` treats
+  - `typecheck`, `lint`, `check`, and `test` preserve sources. `lint` treats
     warnings as errors where the tool supports it.
-  - `check` is the fast local gate, and `ci` composes `fmt-check`, `check`, and
-    `test`, plus `build` when the project needs it.
+  - `check` is the fast local gate that runs format checks and linters, and `ci`
+    composes `check` and `test`, plus `build` when the project needs it.
 
 ## Audit
 
@@ -104,8 +108,9 @@ each pattern on the left and apply the fix on the right:
 | A shell loop over a fixed list                                                | Use mapped dependencies                                   |
 | A shell variable assignment or `cd`                                           | Use `[env]` or `[working-directory]`                      |
 | A helper with both the `_name` prefix and `[private]`                         | Keep only the prefix                                      |
-| A `fmt-check` without `just --fmt --check`                                    | Add `_fmt-just`                                           |
-| A `fmt` and `fmt-check` that run different commands                           | Call the same `_fmt-<tool>` helpers                       |
+| A `check` without `just --fmt --check`                                        | Add `(_fmt-just "--check")`                               |
+| A `fmt` and `check` that run different formatter commands                     | Call the same `_fmt-<tool>` helpers                       |
+| A separate `fmt-check` recipe                                                 | Move its format checks into `check`                       |
 | Destructive cleanup without `[confirm]`                                       | Add `[confirm("...")]`                                    |
 | `[parallel]` on jobs that write a shared output, such as a lockfile           | Remove `[parallel]`                                       |
 | `[parallel]` on tools without their quiet flags                               | Pass each tool its quiet flag                             |
