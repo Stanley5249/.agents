@@ -128,9 +128,9 @@ Show a preview and ask before:
 
 ## Rules
 
-Files are at `~/.agents/rules/`. Read all of an activity's files right before it
-starts. When a rule conflicts with a project's conventions, the project's
-conventions win.
+Files are at `~/.agents/rules/`. Read all of an activity's files once per
+session, before the activity first starts. When a rule conflicts with a
+project's conventions, the project's conventions win.
 
 Editing a repository:
 
