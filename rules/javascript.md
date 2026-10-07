@@ -33,10 +33,10 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
 ## Justfile
 
 Put commands in justfile recipes that invoke local executables directly. Typical
-Bun-backed mappings include `fmt` and `fmt-check` through `bunx oxfmt`, and
-`test` through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the
-frontend tooling in use. Add `install` only when a dedicated `bun install` entry
-point is useful to the workflow.
+Bun-backed mappings include `fmt` and the format step of `check` through
+`bunx oxfmt`, and `test` through `bun test`; `typecheck`, `lint`, `dev`, and
+`build` depend on the frontend tooling in use. Add `install` only when a
+dedicated `bun install` entry point is useful to the workflow.
 
 Add a `lock-check` recipe that runs `bun install --frozen-lockfile` and include
 it in `ci`.
