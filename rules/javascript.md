@@ -21,8 +21,8 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
 ## Lint and type checking
 
 - Lint plain JavaScript and TypeScript with type-aware oxlint: add `oxlint` and
-  `oxlint-tsgolint` to `devDependencies` and set `typeAware` and `denyWarnings`
-  under `options` in `.oxlintrc.json`.
+  `oxlint-tsgolint` to `devDependencies` and set `typeAware`, `typeCheck`, and
+  `denyWarnings` under `options` in `.oxlintrc.json`.
 - Lint a Svelte project with ESLint, `typescript-eslint`, and
   `eslint-plugin-svelte`, because the Svelte plugin's template rules run only in
   ESLint. Run ESLint with `--max-warnings 0`, and type-check with
@@ -32,11 +32,12 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables directly. Typical
-Bun-backed mappings include `fmt` and the format step of `check` through
-`bunx oxfmt`, and `test` through `bun test`; `typecheck`, `lint`, `dev`, and
-`build` depend on the frontend tooling in use. Add `install` only when a
-dedicated `bun install` entry point is useful to the workflow.
+Put commands in justfile recipes that invoke local executables directly, and run
+`devDependencies` tools with `bun run <tool>`. Typical Bun-backed mappings
+include `fmt` and the format step of `check` through `bun run oxfmt`, and `test`
+through `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the
+frontend tooling in use. Add `install` only when a dedicated `bun install` entry
+point is useful to the workflow.
 
 Add a `lock-check` recipe that runs `bun install --frozen-lockfile` and include
 it in `ci`.
