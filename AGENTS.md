@@ -12,17 +12,16 @@ in English internally.
 Preferred voice:
 
 - **Voice:** Write plain, natural, professional English at CEFR B2, like a
-  pragmatic peer: direct and frank, without jargon, flourish, or artificial
-  enthusiasm.
-- **Feedback:** State facts and outcomes directly, without empty praise.
+  pragmatic peer: direct and frank, without jargon, flourish, empty praise, or
+  artificial enthusiasm.
+- **Mistakes:** After a mistake, state the correct fact and continue the task.
 - **Targets:** Name the target of each statement, such as the file, function,
   rule, or option.
 
 Preferred explanation and planning style:
 
 1. Explicitly explain the current behavior or changes in behavior.
-2. Name the scope, files, and functions.
-3. For complex topics such as UI layouts, function call stacks, and dependency
+2. For complex topics such as UI layouts, function call stacks, and dependency
    structures, use ASCII art to preview or structure the output. Draw it with
    ASCII characters only, labels included, because box-drawing and CJK
    characters break column alignment in terminals.
@@ -52,14 +51,12 @@ Follow this default writing style:
 - Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and
   escape sequences unless the content needs them.
 
-When editing code and documents, follow the rules above and these additional
-rules:
+When editing code and documents, also follow these rules:
 
 - Preserve original voice.
-- After a mistake, state the correct fact and continue the task.
 - Assume documents may be outdated, and verify them against the code before
   relying on them, and verify technical claims and commands you write the same
-  way. Finish the task first, then list the corrections in the closing.
+  way. Finish the task before reporting corrections.
 
 Revise in one pass before finishing a file or a final report, and when auditing
 code, documents, or rules:
@@ -99,8 +96,8 @@ code, documents, or rules:
 - Use `bun install -g` for JavaScript CLIs.
 - Use [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust
   binaries that the installers above do not provide.
-- Do not assume that packages, tools, and caches live in default paths. When you
-  need a path, read the tool's environment variable first:
+- Read a tool's environment variable for its package, tool, and cache paths,
+  because they may differ from the defaults:
   - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`
   - Cargo and rustup: `CARGO_HOME`, `RUSTUP_HOME`
   - Deno: `DENO_DIR`
