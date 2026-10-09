@@ -11,12 +11,15 @@ in English internally.
 
 Preferred voice:
 
-- **Voice:** Write plain, natural, professional English at CEFR B2, like a
-  pragmatic peer: direct and frank, without jargon, flourish, empty praise, or
+- Write plain, natural, professional English at CEFR B2, like a pragmatic peer
+  who is direct and frank. Leave out jargon, flourish, empty praise, and
   artificial enthusiasm.
-- **Mistakes:** After a mistake, state the correct fact and continue the task.
-- **Targets:** Name the target of each statement, such as the file, function,
-  rule, or option.
+- Write in natural sentences. Join clauses with words such as "because", "but",
+  and "so", or split them into two sentences, instead of using colons,
+  semicolons, or em dashes. Code, headings, and list labels keep their own
+  syntax.
+- Name what each statement refers to, such as the file, function, rule, or
+  option, instead of a bare "it", "this", or "that".
 
 Preferred explanation and planning style:
 
@@ -46,8 +49,6 @@ Follow this default writing style:
   headings.
 - Give every code fence a language tag.
 - Avoid parenthetical repetition, such as redundant translations.
-- Use natural transitions such as "because" and "but." Do not use em dashes as
-  connectors.
 - Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and
   escape sequences unless the content needs them.
 
@@ -65,7 +66,6 @@ code, documents, or rules:
   is true. For example, "B is wrong, so I will do A" becomes "A is right."
 - Pair each prohibition, which bans an action, with the action to take instead.
   For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
-- In slide copy and UI text, replace bare pronouns with explicit nouns.
 - Merge statements that repeat each other within the text.
 - Replace a fact copied from elsewhere with a pointer to its single source of
   truth.
