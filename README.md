@@ -55,6 +55,24 @@ context, move the supporting details into `reference/*.md` files. Have
 `SKILL.md` point to them by name, such as in a decision tree or lookup table, so
 an agent reads only the file it needs instead of the entire skill upfront.
 
+## Prompts
+
+Reusable prompts live in [`prompts/`](prompts/). Any agent can read a prompt
+file and follow its instructions.
+
+### Pi
+
+In `~/.pi/agent/settings.json`, add the `prompts` entry, preserving existing
+settings and prompt paths:
+
+```json
+{
+  "prompts": ["~/.agents/prompts"]
+}
+```
+
+Run `/reload`, then type `/` to find available prompt commands.
+
 ## Rules
 
 Policy files, such as version control and project setup, live under `rules/`.
