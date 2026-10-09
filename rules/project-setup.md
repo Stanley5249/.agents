@@ -1,32 +1,9 @@
 # Project setup
 
-Detect the repository shape, then read:
-
-- the language and environment rules that `~/.agents/AGENTS.md` indexes for it
-- `documents.md` for README and `AGENTS.md`
-- `zed.md` for editor settings
-
-A project can combine multiple language rules, such as `rust.md` +
-`javascript.md` for a desktop app or `rust.md` + `python.md` for a Rust core
-with a Python harness. Heavy native or GPU dependencies add `pixi.md` as an
-environment overlay.
-
-## Language extensions
-
-Language rules (`python.md`, `rust.md`, `javascript.md`) extend this setup. Each
-rule defines:
-
-- Manifests and pinned toolchain versions
-- Lockfile git attributes and frozen lockfile checks
-- Linter, formatter, and type-checker choices
-- Language-specific workspace layout and test setup
-- Base justfile recipes (`fmt`, `lint`, `typecheck`, `test`, and `lock-check` or
-  an equivalent locked flag)
+Repository-wide setup and migration conventions.
 
 ## Formatting and validation
 
-- Format JS, TS, CSS, HTML, JSON, YAML, and Markdown with oxfmt wherever those
-  file types appear. Lint them as `javascript.md` describes.
 - Format TOML files with `tombi` (`tombi.toml`) regardless of the package
   manager. It covers `Cargo.toml`, `pyproject.toml`, `pixi.toml`, and its own
   configuration file.
@@ -44,18 +21,15 @@ rule defines:
   * text=auto eol=lf
   ```
 
-- Append generated lockfile handling for each language or environment in use, as
-  specified in the corresponding extension rule (`python.md`, `rust.md`,
-  `javascript.md`, `pixi.md`):
+- Configure generated lockfiles to preserve their format and avoid automatic
+  merges:
 
   ```gitattributes
   <lockfile> merge=binary linguist-language=<LANG> linguist-generated=true -diff
   ```
 
   This prevents corrupted lockfiles from automatic 3-way git merges, flags them
-  as generated on GitHub, and collapses noisy lockfile diffs. Extension rules
-  contain only the concrete lockfile pattern; this section defines the
-  rationale.
+  as generated on GitHub, and collapses noisy lockfile diffs.
 
 ### Licenses
 
@@ -73,7 +47,6 @@ rule defines:
 - Start from an existing project with a similar structure, and introduce a new
   pattern only for a stated reason.
 - Set up the repository metadata before history accumulates.
-- Add a justfile as `justfile.md` describes.
 - Make the first commit with a Conventional Commit subject, such as
   `chore: first commit`.
 
@@ -87,7 +60,6 @@ rule defines:
 - Move the instructions in a project `CLAUDE.md` into `AGENTS.md`, merging them
   with what is already there, then delete `CLAUDE.md`, including one that only
   imports `@AGENTS.md`.
-- Audit the justfile as `justfile.md` describes.
 - Commit each accepted change separately, such as a formatter switch, the
   reformat it causes, and a new `.gitattributes`.
 - After changing line-ending rules in `.gitattributes`, run

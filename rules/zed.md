@@ -66,7 +66,7 @@
 ## Linters
 
 - In plain JavaScript or TypeScript projects, keep the Oxc extension's `oxlint`
-  server active, following `javascript.md`.
+  server active.
 - In Svelte projects, use ESLint for code and template linting. Disable oxlint
   with `"language_servers": ["!oxlint", "..."]` at the top level and in each
   relevant language block.

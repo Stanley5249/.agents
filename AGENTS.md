@@ -123,25 +123,34 @@ Show a preview and ask before:
 
 ## Rules
 
-Files are at `~/.agents/rules/`. Read all of an activity's files once per
-session, before the activity first starts. When a rule conflicts with a
-project's conventions, the project's conventions win.
+Files are at `~/.agents/rules/`. This index owns rule loading. Keep each rule
+focused on its topic, and keep loading instructions and cross-rule references
+here. Read every matching activity's files once per session before starting that
+activity. When a rule conflicts with a project's conventions, the project's
+conventions win.
 
 Editing a repository:
 
 - Code, including planning and review: `version-control.md`, `code.md`, language
   rules
-- README, `AGENTS.md`, or `docs/`: `version-control.md`, `documents.md`
+- Markdown or other documentation: `version-control.md`, `documents.md`
 - Anything else: `version-control.md`
 
 Project tooling:
 
-- Run or configure a linter, formatter, type checker, manifest, lockfile,
-  toolchain, justfile, or CI: language rules, `justfile.md`, `zed.md`, `ci.md`
-- Scaffold or migrate a project: `project-setup.md`, language rules,
-  `justfile.md`, `zed.md`, `documents.md`, `ci.md`
-- Zed settings: `zed.md`
-- Run, configure, or migrate to oxfmt: `oxfmt.md`
+- Run or configure a linter, type checker, language-native formatter, manifest,
+  lockfile, or toolchain: language and environment rules
+- Write or review a justfile: `justfile.md`, language and environment rules. Add
+  `oxfmt.md` when recipes invoke oxfmt
+- Run or configure a CI gate: `ci.md`, language and environment rules. Add
+  `justfile.md` when the gate uses just and `oxfmt.md` when it checks formatting
+  with oxfmt
+- Scaffold or migrate a project: `project-setup.md`, language and environment
+  rules, `justfile.md`, `zed.md`, `documents.md`, `ci.md`, `oxfmt.md`
+- Zed settings: `zed.md`, language and environment rules. Add `oxfmt.md` when
+  integrating oxfmt
+- Run, configure, or migrate to oxfmt: `oxfmt.md`. Add `justfile.md` when
+  changing recipes and `zed.md` when changing editor integration
 - Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 Outside the repository:
@@ -153,7 +162,7 @@ Outside the repository:
 - Global installation, a download or write over 100 MB, or a system setting
   change: `windows.md` for Windows 11, `wsl.md` for Ubuntu 26.04 in WSL 2
 
-Language rules, one per stack:
+Language and environment rules, selected for every stack involved:
 
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project

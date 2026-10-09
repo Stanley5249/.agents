@@ -1,7 +1,6 @@
 # Python projects
 
-This rule extends `project-setup.md` for Python projects. Use uv for package
-management and virtual environment handling.
+Use uv for package management and virtual environment handling.
 
 ## Repository metadata
 
