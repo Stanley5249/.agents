@@ -37,7 +37,6 @@ to match it. The settings below are the ones that usually matter:
 | ----------------- | ------------------------------------------------------------------------- |
 | `printWidth`      | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
 | `proseWrap`       | `"always"` wraps Markdown prose; keep the default if line breaks matter   |
-| `sortPackageJson` | set `false` to leave the key order that `bun add` and humans wrote        |
 | `svelte`          | `{}` enables `.svelte` files and needs the `svelte` package installed     |
 | `sortTailwindcss` | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
 | `ignorePatterns`  | gitignore-style globs, rooted at the directory holding the config         |
