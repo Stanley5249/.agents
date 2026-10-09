@@ -7,8 +7,8 @@ syntax.
 
 ## Recipes
 
-Give every project a justfile as its command surface, and point docs to its
-recipes instead of raw commands.
+Give every project a justfile as its command surface for recurring tasks. Docs
+may run other commands directly.
 
 - Always `set default-list`, and document each public recipe so it appears in
   `just --list`.
