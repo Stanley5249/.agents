@@ -2,7 +2,6 @@
   "prettier": { "allowed": false },
   "languages": {
     "Markdown": { "formatter": { "language_server": { "name": "oxfmt" } } },
-    "JSON": { "formatter": { "language_server": { "name": "oxfmt" } } },
-    "TypeScript": { "formatter": { "language_server": { "name": "oxfmt" } } }
+    "JSON": { "formatter": { "language_server": { "name": "oxfmt" } } }
   }
 }
