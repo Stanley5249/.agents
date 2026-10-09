@@ -1,17 +1,8 @@
----
-name: oxfmt
-description:
-  Configure and run oxfmt, the Prettier-compatible formatter from Oxc, for JS,
-  TS, Svelte, CSS, HTML, JSON, YAML, and Markdown, including migration from
-  Prettier.
----
-
 # oxfmt
 
-oxfmt is a single native binary that formats what Prettier formats, with the
-Svelte and Tailwind CSS plugins built in. Its output matches Prettier's for the
-same settings in all but a few corners, so it replaces Prettier without
-restyling a codebase.
+Format JS, TS, Svelte, CSS, HTML, JSON, YAML, and Markdown with
+[oxfmt](https://oxc.rs/docs/guide/usage/formatter.html). Svelte and Tailwind CSS
+plugins are built in. Review output differences when replacing Prettier.
 
 ## Install
 
@@ -20,8 +11,6 @@ restyling a codebase.
   else.
 - **Documentation-first repositories** with no `package.json`: run `bunx oxfmt`
   directly.
-
-`bunx oxfmt` prefers the local copy, so recipes use one command either way.
 
 ## Configuration
 
@@ -77,14 +66,41 @@ configuration.
 
 ## Commands
 
+In JS projects with oxfmt in `devDependencies`, use the locked local tool:
+
 ```sh
-bunx oxfmt            # format the tree in place
-bunx oxfmt --check    # fail on unformatted files, change nothing
+bun run oxfmt
+bun run oxfmt --check
 ```
 
-In a justfile, map these to `fmt` and the format step of `check`.
+In documentation-first repositories, use:
 
-## Further reading
+```sh
+bunx oxfmt
+bunx oxfmt --check
+```
 
-- [reference/migrate-from-prettier.md](reference/migrate-from-prettier.md):
-  replacing Prettier in an existing project and proving the output is unchanged.
+The first command formats files in place. `--check` validates formatting while
+preserving files. In a justfile, put the appropriate command in one
+`_fmt-oxfmt *args` helper and forward `{{ args }}`. Map the helper to `fmt` and
+the format step of `check`.
+
+## Migration from Prettier
+
+- Start from a clean worktree where the existing Prettier check passes. Run
+  `bunx oxfmt --migrate=prettier`, review settings and ignores, and handle
+  `overrides` by hand.
+- Replace Prettier and its plugins with oxfmt, keeping `svelte` where needed.
+  Update recipes, CI, agent instructions, and editor integration. Keep ESLint
+  presets that disable conflicting formatting rules.
+- Move required ignores into `.oxfmtrc.json`, then remove the old Prettier
+  configuration and `.prettierignore`.
+- Format tracked files only. Use
+  `git ls-files -z | xargs -0 bun run oxfmt --no-error-on-unmatched-pattern`,
+  substituting `bunx oxfmt` in documentation repositories. Verify the formatted
+  file count and inspect every diff.
+- Compare against the clean baseline. Trial settings can leave expanded objects
+  expanded because `objectWrap` preserves their layout. For a suspected bug,
+  preserve the file with an ignore pattern and report the issue upstream.
+- Run formatting checks, static checks, and tests. Commit tooling as `build` and
+  formatting-only changes separately as `style`.
