@@ -1,7 +1,6 @@
 # Justfile
 
-Language rules map the recipe names below to their tools. This rule covers how
-every justfile is written. The
+Conventions for writing every justfile. The
 [Just README](https://github.com/casey/just/blob/master/README.md) covers the
 syntax.
 
@@ -55,16 +54,13 @@ may run other commands directly.
 
   ```just
   [parallel]
-  fmt: _fmt-tombi _fmt-oxfmt _fmt-just
+  fmt: _fmt-tombi _fmt-just
 
   [parallel]
-  check: (_fmt-tombi "--check") (_fmt-oxfmt "--check") (_fmt-just "--check") lint
+  check: (_fmt-tombi "--check") (_fmt-just "--check") lint
 
   _fmt-tombi *args:
       tombi format --quiet {{ args }} .
-
-  _fmt-oxfmt *args:
-      bunx oxfmt {{ args }}
 
   _fmt-just *args:
       just --fmt {{ args }}

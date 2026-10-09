@@ -85,9 +85,7 @@ code, documents, or rules:
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
   use `uv run --with <package> python <script>`.
 - Prefer `bun`, then `deno`, then `node`, to run JavaScript.
-- Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`. Format
-  supported files with [`oxfmt`](https://oxc.rs/docs/guide/usage/formatter.html)
-  through `bunx oxfmt`.
+- Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`.
 
 ### Global installer
 
@@ -143,6 +141,7 @@ Project tooling:
 - Scaffold or migrate a project: `project-setup.md`, language rules,
   `justfile.md`, `zed.md`, `documents.md`, `ci.md`
 - Zed settings: `zed.md`
+- Run, configure, or migrate to oxfmt: `oxfmt.md`
 - Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 Outside the repository:
