@@ -1,5 +1,9 @@
 # Contributing
 
+## Formatting check
+
+Before committing, run `bunx oxfmt --check` from the repository root.
+
 ## Commit conventions
 
 Use unscoped Conventional Commit subjects. This repository shares agent
