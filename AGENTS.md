@@ -143,6 +143,7 @@ Project tooling:
 - Scaffold or migrate a project: `project-setup.md`, language rules,
   `justfile.md`, `zed.md`, `documents.md`, `ci.md`
 - Zed settings: `zed.md`
+- Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 Outside the repository:
 

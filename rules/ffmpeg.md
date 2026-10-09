@@ -1,10 +1,3 @@
----
-name: ffmpeg
-description:
-  ffmpeg guidance useful for hardware-accelerated media processing and Windows
-  interoperability.
----
-
 # ffmpeg
 
 ## Hardware
