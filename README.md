@@ -27,6 +27,12 @@ git clone https://github.com/Stanley5249/.agents.git
 Connect your agent's global instruction file to `AGENTS.md` using its supported
 import or symlink mechanism.
 
+### Rules
+
+`AGENTS.md` defines when agents should load each rule and which files an
+activity requires. Keep rules focused on one topic, and put loading conditions
+in `AGENTS.md` instead of cross-rule references.
+
 ### Skills
 
 Pi and Codex discover `~/.agents/skills/` automatically. For Claude Code, link
