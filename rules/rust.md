@@ -1,7 +1,5 @@
 # Rust projects
 
-This rule extends `project-setup.md` for Rust workspaces and crates.
-
 ## Repository metadata
 
 In `.gitattributes`, configure `Cargo.lock`:

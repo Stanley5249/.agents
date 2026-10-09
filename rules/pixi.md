@@ -1,8 +1,5 @@
 # Pixi projects
 
-This rule serves as an environment overlay on top of `project-setup.md`
-alongside one or more language rules.
-
 ## When to use pixi
 
 Pixi is for multi-language projects or projects with heavy native or GPU

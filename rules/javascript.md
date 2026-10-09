@@ -1,7 +1,6 @@
 # JavaScript projects
 
-This rule extends `project-setup.md` for JavaScript and TypeScript projects. Use
-Bun as the runtime and package manager. Try Bun, then Deno, and warn before
+Use Bun as the runtime and package manager. Try Bun, then Deno, and warn before
 introducing `node`. TypeScript is the default dialect for application code.
 
 ## Repository metadata

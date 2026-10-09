@@ -1,7 +1,6 @@
 # Code
 
-Design rules for writing, planning, and reviewing code. Language rules add
-idioms for their stack.
+Design rules for writing, planning, and reviewing code.
 
 ## Quality
 
