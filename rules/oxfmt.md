@@ -80,9 +80,7 @@ bunx oxfmt --check
 ```
 
 The first command formats files in place. `--check` validates formatting while
-preserving files. In a justfile, put the appropriate command in one
-`_fmt-oxfmt *args` helper and forward `{{ args }}`. Map the helper to `fmt` and
-the format step of `check`.
+preserving files.
 
 ## Migration from Prettier
 
