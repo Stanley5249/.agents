@@ -143,16 +143,14 @@ Project tooling:
 
 - Run or configure a linter, type checker, language-native formatter, manifest,
   lockfile, or toolchain: applicable stack rules
-- Write or review a justfile: `justfile.md`, applicable stack rules. Add
-  `oxfmt.md` when recipes invoke oxfmt
+- Write or review a justfile: `justfile.md`, applicable stack rules
 - Run or configure a CI gate: `ci.md`, applicable stack rules. Add `justfile.md`
-  when the gate uses just and `oxfmt.md` when it checks formatting with oxfmt
+  when the gate uses just
 - Scaffold or migrate a project: `project-setup.md`, `documents.md`, and
   applicable stack rules. Also select the tooling items that the task involves.
-- Zed settings: `zed.md`, applicable stack rules. Add `oxfmt.md` when
-  integrating oxfmt
-- Run, configure, or migrate to oxfmt: `oxfmt.md`. Add `justfile.md` when
-  changing recipes and `zed.md` when changing editor integration
+- Zed settings: `zed.md`, applicable stack rules
+- Run, configure, review, or migrate to oxfmt, including command wrappers, CI
+  checks, and editor integration: `oxfmt.md`
 - Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 Contribution, release, and system tasks:
