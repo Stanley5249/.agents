@@ -1,8 +1,8 @@
 # oxfmt
 
-Format JS, TS, Svelte, CSS, HTML, JSON, YAML, and Markdown with
-[oxfmt](https://oxc.rs/docs/guide/usage/formatter.html). Svelte and Tailwind CSS
-plugins are built in. Review output differences when replacing Prettier.
+Prefer [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) for JS, TS,
+Svelte, CSS, HTML, JSON, YAML, and Markdown. Svelte and Tailwind CSS plugins are
+built in. Review output differences when replacing Prettier.
 
 ## Install
 
