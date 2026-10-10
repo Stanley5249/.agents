@@ -9,8 +9,8 @@ built in. Review output differences when replacing Prettier.
 - **Projects with a JS toolchain**, such as a Svelte app or a Tauri frontend:
   add `oxfmt` to `devDependencies` so the version is locked with everything
   else.
-- **Documentation-first repositories** with no `package.json`: run `bunx oxfmt`
-  directly.
+- **Other repositories**, including Rust, Python, and documentation projects:
+  run `bunx oxfmt` for supported files when oxfmt is not installed locally.
 
 ## Configuration
 
@@ -65,14 +65,14 @@ configuration.
 
 ## Commands
 
-In JS projects with oxfmt in `devDependencies`, use the locked local tool:
+When oxfmt is installed in `devDependencies`, use the locked local tool:
 
 ```sh
 bun run oxfmt
 bun run oxfmt --check
 ```
 
-In documentation-first repositories, use:
+In repositories without a local oxfmt dependency, use:
 
 ```sh
 bunx oxfmt
@@ -94,8 +94,8 @@ preserving files.
   configuration and `.prettierignore`.
 - Format tracked files only. Use
   `git ls-files -z | xargs -0 bun run oxfmt --no-error-on-unmatched-pattern`,
-  substituting `bunx oxfmt` in documentation repositories. Verify the formatted
-  file count and inspect every diff.
+  substituting `bunx oxfmt` when there is no local oxfmt dependency. Verify the
+  formatted file count and inspect every diff.
 - Compare against the clean baseline. Trial settings can leave expanded objects
   expanded because `objectWrap` preserves their layout. For a suspected bug,
   preserve the file with an ignore pattern and report the issue upstream.
