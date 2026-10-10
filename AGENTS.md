@@ -129,12 +129,13 @@ here. Read every matching activity's files once per session before starting that
 activity. When a rule conflicts with a project's conventions, the project's
 conventions win.
 
-Editing a repository:
+Repository work:
 
-- Code, including planning and review: `version-control.md`, `code.md`, language
-  rules
-- Markdown or other documentation: `version-control.md`, `documents.md`
-- Anything else: `version-control.md`
+- Read `version-control.md` before starting repository planning, inspection,
+  development, review, testing, or tooling, including small changes.
+- For code planning, inspection, development, or review, also read `code.md` and
+  the language rules.
+- For Markdown or other documentation, also read `documents.md`.
 
 Project tooling:
 
