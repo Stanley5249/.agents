@@ -9,9 +9,10 @@ description:
 # Drive a browser
 
 Ask for browser automation approval before the first DevTools call. Use the
-`chrome-devtools` MCP server that is already configured. Do not start a CLI
-daemon, a raw CDP socket, or a second MCP server, because every new browser
-connection can prompt the user to allow remote debugging again.
+`chrome-devtools` MCP server that is already configured as the only browser
+connection, instead of a CLI daemon, a raw CDP socket, or a second MCP server,
+because every new browser connection can prompt the user to allow remote
+debugging again.
 
 ## Setup
 
@@ -78,12 +79,12 @@ right after opening hands focus back.
 
 ## Rules
 
-- **Do not browse the user's tabs.** `list_pages` is metadata, not a place to
-  look around.
+- **Act only on the tabs you open or the user names.** Read `list_pages` as
+  metadata, without looking around the user's other tabs.
 - **Check for a thrown script.** A failed `evaluate_script` returns an error,
   not a value. `Execution context was destroyed` after a click means the
   navigation worked, so poll the new page instead of clicking again.
-- **Never claim an attachment you do not have.** If a page looks logged out,
+- **Confirm the attachment before relying on it.** If a page looks logged out,
   check `list_pages` for the user's real tabs before going on.
 - If the same call fails twice for the same reason, stop and report the raw
   error.
