@@ -42,8 +42,8 @@ means moving the commits onto it.
   tests and required docs, or one move, rename, dependency update, reformat, or
   refactor.
 - Amend the latest commit when a small follow-up belongs to the same change.
-- Before a commit, run the formatter and fast static checks. Leave slow tests
-  and builds for the end of the task.
+- Before a commit, run the formatter, fast static checks, and the tests for the
+  changed code. Leave the full suite and slow builds for the end of the task.
 
 ### Worktree
 
