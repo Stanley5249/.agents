@@ -42,6 +42,9 @@ selected skills:
 ln -s ~/.agents/skills/browser ~/.claude/skills/browser
 ```
 
+Skills with `disable-model-invocation: true`, such as `network-debug`, run only
+when you start them with `/<name>`.
+
 ### Prompts
 
 Any agent can follow files in `prompts/`. To expose them as Pi commands, add to
