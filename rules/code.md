@@ -59,10 +59,11 @@ prompt a review:
 
 ## Compatibility
 
-- Keep interfaces, formats, and schemas compatible by default. In my own
-  repository, ask before a breaking change that gives a clearly cleaner design.
-- In my own unpublished or pre-0.1.0 project, change them in place and remove
-  the old form.
+- In my own unpublished project, change interfaces, formats, and schemas in
+  place and remove the old form.
+- In my own published project, keep them compatible, and ask before a breaking
+  change that gives a clearly cleaner design.
+- In other projects, keep them compatible.
 
 ## State
 
