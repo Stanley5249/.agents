@@ -15,7 +15,6 @@ means moving the commits onto it.
 - Name code branches `<type>/<topic>` using a Conventional Commit type and a
   short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`,
   or `refactor/parser`.
-- Ask before merging a task branch into `main`.
 
 ### Ignore
 
@@ -34,34 +33,24 @@ means moving the commits onto it.
 
 ### Commit
 
-- Before the first commit or history rewrite in a repository, read its README
-  and contributing guide for commit conventions, which override these rules.
+- Before the first commit in a repository, read its README and contributing
+  guide for commit conventions, which override these rules.
 - Check the worktree status before changing it. Preserve unrelated user changes.
-- Put one feature or one discrete repository action in each commit. Moving or
-  renaming files, updating dependencies, reformatting code, and performing a
-  standalone refactor are separate actions, even when they were requested
-  together.
-- Keep a feature's implementation, tests, and directly required documentation or
-  configuration together in the same commit.
-- When introducing images or other binary assets, declare their patterns with
-  `binary` in `.gitattributes` in the same commit.
-- Keep a commit reviewable. When one action runs past roughly 300 changed lines,
-  split it along a seam that already exists, such as a store change under the
-  interface that uses it.
-- You may implement several actions in one working batch, but commit each action
-  separately.
-- Run the formatter and static checks before committing so each commit is clean.
-- By default, run tests after all tasks are complete so that slow tests do not
-  block iteration.
-
-### Amend
-
-These rules apply only to local, unpublished commits. Ask before amending a
-published or shared commit.
-
-- During fast prototyping or concept discussions, defer the commit until the
-  user is satisfied.
+- On a non-default branch, commit and amend local commits without asking. Ask
+  before merging, pushing, or rewriting published history.
+- Commit each action as soon as it is done. One action is one feature with its
+  tests and required docs, or one move, rename, dependency update, reformat, or
+  refactor.
 - Amend the latest commit when a small follow-up belongs to the same change.
+- Before a commit, run the formatter and fast static checks. Leave slow tests
+  and builds for the end of the task.
+
+### Worktree
+
+- Use the agent's built-in worktree feature when it has one. Otherwise, create
+  the worktree at `.agents/worktrees/<topic>` and ignore it as a local scratch
+  directory.
+- Remove a worktree when its branch is merged or abandoned.
 
 ## Commit messages
 
