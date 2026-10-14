@@ -8,11 +8,13 @@ argument-hint: "[hostname] [test-url]"
 
 Help me find a stable, faster CDN endpoint for the target hostname on my current
 network. Diagnose first, then propose a reversible configuration change only
-when measurements support one. Use English internally and follow my conversation
-language for explanations.
+when measurements support one.
 
-Target hostname: ${1:-ask me for the target hostname} Representative HTTPS URL:
-${2:-select a suitable public URL with me}
+- Target hostname: $1
+- Representative HTTPS URL: $2
+
+Ask me for a missing hostname, and select a suitable public URL with me when the
+URL is missing.
 
 ## Scope and approval
 
@@ -22,8 +24,8 @@ ${2:-select a suitable public URL with me}
   each.
 - Perform read-only diagnostics first. Show the exact diff and backup plan, then
   ask for approval before changing hosts, DNS, proxy, VPN, or browser settings.
-- Use the configured browser connection only after browser-automation approval.
-  Prefer public resources and command-line measurements when sufficient.
+- Prefer public resources and command-line measurements to the browser when they
+  are sufficient.
 - Use existing tools. Ask before installing tools or starting delegated agents.
 - Keep tests bounded across the entire task: at most six candidate IPs per
   hostname, three initial samples per candidate, a 15-second timeout per
