@@ -22,7 +22,8 @@ SOFTWARE.
 
 ---
 
-Portions of rules/code.md are based on Ponytail
+Portions of rules/code.md, prompts/quality-review.md, and
+prompts/quality-audit.md are based on Ponytail
 (https://github.com/DietrichGebert/ponytail) under the MIT License:
 
 Copyright (c) 2026 DietrichGebert
