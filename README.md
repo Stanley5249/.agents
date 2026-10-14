@@ -55,6 +55,13 @@ Any agent can follow files in `prompts/`. To expose them as Pi commands, add to
 
 Run `/reload`, then type `/` to find available prompt commands.
 
+To expose them as Claude Code commands, link the directory. On Windows, this
+needs Developer Mode or an elevated shell:
+
+```powershell
+New-Item -ItemType SymbolicLink -Path "$HOME\.claude\commands" -Target "$HOME\.agents\prompts"
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions.
