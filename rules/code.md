@@ -2,6 +2,46 @@
 
 Design rules for writing, planning, and reviewing code.
 
+## Scope
+
+Before editing, read the task and the code it touches. List every place the
+change must reach: callers, tests, fixtures, config, and exports. Check what the
+change could break for users: data it would destroy or expose, and callers that
+stop working. That is scope, and extra features sit outside it.
+
+## Smallest change
+
+Take the first option that fully works:
+
+1. Does it need to exist? Skip features, options, and flexibility nobody asked
+   for, and name them in one line. A vague request, such as "build me X", gets
+   the smallest version that does the core job.
+2. Is it already in this codebase as a helper, component, service, or pattern?
+   Use it the way the surrounding code does.
+3. Does the standard library or platform provide it? Use it, unless the project
+   has its own.
+4. Does an installed dependency provide it? Use it. Add a dependency only when
+   it replaces more than a few lines.
+5. Can it be one line a reader understands at a glance? Write one line.
+6. Otherwise, write the minimum code that works.
+
+- Keep the solution lazy and the change complete. Finish every part the task
+  needs, including the callers, tests, and fixtures the change breaks.
+- Write only the abstractions, wrappers, type conversions, options, config, and
+  boilerplate the task needs now, and leave out "for later" code. Keep values in
+  the form the platform already gives. Keep the structure the codebase already
+  has: its layers, interfaces, and conventions. Prefer deletion to addition.
+- The working change with the least new code wins, once you know everything it
+  must touch. A one-liner that needs decoding is not short.
+- For a bug fix, grep every caller of the function you touch before you edit,
+  then fix the root cause once in the shared code.
+- Code you move or merge keeps its error handling and validation.
+- Between options of equal size, take the one that is correct on edge cases.
+
+Never cut validation at trust boundaries, error handling that prevents data
+loss, security, accessibility, the calibration real hardware needs, or anything
+the user asked for.
+
 ## Quality
 
 I insist on project quality and a clean, modular codebase. These size thresholds
@@ -19,8 +59,10 @@ prompt a review:
 
 ## Compatibility
 
-- In unpublished, private, or pre-0.1.0 projects, change interfaces, formats,
-  and schemas in place and remove the old form.
+- Keep interfaces, formats, and schemas compatible by default. In my own
+  repository, ask before a breaking change that gives a clearly cleaner design.
+- In my own unpublished or pre-0.1.0 project, change them in place and remove
+  the old form.
 
 ## State
 
@@ -69,3 +111,16 @@ prompt a review:
 ## Tests
 
 - For a bug fix, write a test that fails without the fix.
+- Give new non-trivial logic, such as a branch, a loop, a parser, money or
+  security code, or a new script or app, one small test or an assert-based
+  self-check. A trivial change needs neither.
+
+## Review
+
+- Rank findings in this order: correct, safe, holds under load, tested, fast,
+  lean.
+- Look for what these rules cannot show, such as security holes, races under
+  concurrent load, a query per item, and edge cases like empty, zero, rounding,
+  or time zones.
+- Give each finding a concrete case, confirm it in the code, and propose the
+  smallest fix. Drop findings without a case, including style preferences.
