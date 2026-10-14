@@ -120,8 +120,3 @@ prompt a review:
 
 - Rank findings in this order: correct, safe, holds under load, tested, fast,
   lean.
-- Look for what these rules cannot show, such as security holes, races under
-  concurrent load, a query per item, and edge cases like empty, zero, rounding,
-  or time zones.
-- Give each finding a concrete case, confirm it in the code, and propose the
-  smallest fix. Drop findings without a case, including style preferences.
