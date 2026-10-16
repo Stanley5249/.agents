@@ -57,7 +57,7 @@ Repository-wide setup and migration conventions.
 ## Migration
 
 - Audit the repository against the core conventions, the repository metadata,
-  and each rule file it needs. List each gap with its planned change.
+  and the loaded rules. List each gap with its planned change.
 - Show the list and ask which changes to apply. The user decides which existing
   conventions to replace.
 - Work on a task branch, such as `chore/migrate-conventions`.
