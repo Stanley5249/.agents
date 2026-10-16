@@ -1,4 +1,4 @@
-# Project setup
+# Setup
 
 Repository-wide setup and migration conventions.
 
