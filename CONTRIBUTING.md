@@ -4,6 +4,11 @@
 
 Before committing, run `bunx oxfmt --check` from the repository root.
 
+## Rule loading
+
+`AGENTS.md` indexes `rules/` and owns all loading conditions. Rule files hold
+only topic content, without loading conditions or references to other rules.
+
 ## Commit conventions
 
 Use unscoped Conventional Commit subjects. This repository shares agent
