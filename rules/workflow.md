@@ -1,4 +1,4 @@
-# Version control
+# Workflow
 
 ## User practices
 

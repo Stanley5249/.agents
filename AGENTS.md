@@ -133,7 +133,7 @@ references in this index. Project conventions take precedence over these rules.
 
 Repository work:
 
-- Read `version-control.md` before starting repository planning, inspection,
+- Read `workflow.md` before starting repository planning, inspection,
   development, review, testing, tooling, release, or remote writes, including
   small changes.
 - For code planning, inspection, development, or review, also read `code.md` and
