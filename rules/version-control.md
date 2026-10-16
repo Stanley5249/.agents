@@ -15,21 +15,6 @@ means moving the commits onto it.
   short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`,
   or `refactor/parser`.
 
-### Ignore
-
-- By default, ignore user data and notes such as local configuration, databases,
-  runtime artifacts, and plans. Project assets are not user data, so track them.
-- By default, do not commit editor-specific or agent-specific dotpaths such as
-  `.zed/`, `.agents/`, `.claude/`, and `.pi/` unless the repository
-  intentionally tracks them.
-- For a local temporary or scratch directory, add a local `.gitignore`
-  containing `*`.
-- When the user explicitly wants to ignore a local file, add it to
-  `.git/info/exclude`.
-- Tracked files hold only portable content: repository-relative paths,
-  environment variables, and placeholders. Keep user data, machine paths, and
-  machine-specific settings in ignored files such as `.env`.
-
 ### Commit
 
 - Before the first commit in a repository, read its README and contributing
@@ -40,6 +25,9 @@ means moving the commits onto it.
 - Commit each action as soon as it is done. One action is one feature with its
   tests and required docs, or one move, rename, dependency update, reformat, or
   refactor.
+- Tracked files hold only portable content: repository-relative paths,
+  environment variables, and placeholders. Keep user data, machine paths, and
+  machine-specific settings in ignored files such as `.env`.
 - Amend the latest commit when a small follow-up belongs to the same change.
 - Before a commit, run the formatter, fast static checks, and the tests for the
   changed code. Leave the full suite and slow builds for the end of the task.
@@ -89,6 +77,28 @@ line at 72 characters or fewer.
 
 Use `!` and `BREAKING CHANGE` only after the project has been published and has
 a compatibility contract.
+
+## Contributions to repositories I do not own
+
+### Safety
+
+- Every remote write needs an explicit yes: opening, editing, or closing a PR or
+  issue, a comment or review reply, and a push to a PR branch.
+- Show the full draft text and the exact command first, then wait.
+- Read-only `gh` calls such as `view`, `list`, `status`, `diff`, and search need
+  no approval.
+
+### Before planning a PR
+
+- Search for duplicates in open and closed PRs and issues.
+- If related PRs have sat about a month without review or merge, report them to
+  the user and ask before opening another PR in that area.
+
+## Release
+
+- Only published projects keep a changelog. Generate it or the release notes
+  with [`git-cliff`](https://git-cliff.org/) from Conventional Commits.
+- Changelogs and release notes may use emoji, such as in section headings.
 
 ## Tools
 

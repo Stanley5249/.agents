@@ -134,7 +134,8 @@ references in this index. Project conventions take precedence over these rules.
 Repository work:
 
 - Read `version-control.md` before starting repository planning, inspection,
-  development, review, testing, or tooling, including small changes.
+  development, review, testing, tooling, release, or remote writes, including
+  small changes.
 - For code planning, inspection, development, or review, also read `code.md` and
   applicable stack rules.
 - For Markdown or other documentation, also read `documents.md`.
@@ -144,8 +145,8 @@ Project tooling:
 - Run, configure, or review a linter, type checker, language-native formatter,
   manifest, lockfile, or toolchain: applicable stack rules
 - Write or review a justfile: `justfile.md`, applicable stack rules
-- Run, configure, or review a CI gate: `ci.md`, applicable stack rules. Add
-  `justfile.md` when the gate uses just
+- Run, configure, or review a CI gate: applicable stack rules. Add `justfile.md`
+  when the gate uses just
 - Scaffold a project: `project-setup.md`, `documents.md`, `justfile.md`, and
   applicable stack rules. Also select the tooling items that the task involves.
 - Migrate a project: `project-setup.md`, `documents.md`, and applicable stack
@@ -156,12 +157,8 @@ Project tooling:
   integration: `oxfmt.md`
 - Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
-Contribution, release, and system tasks:
+System tasks:
 
-- Plan a PR, or write remotely to a repository I do not own: `contributing.md`,
-  `version-control.md`
-- Release, version bump, changelog, or release notes: `release.md`,
-  `version-control.md`
 - Global installation, a download or write over 100 MB, or a system setting
   change: `windows.md` for Windows 11, `wsl.md` for Ubuntu 26.04 in WSL 2
 
