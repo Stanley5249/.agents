@@ -1,8 +1,6 @@
 # Workflow
 
-## User practices
-
-### Branch
+## Branch
 
 Decide this before the first edit, because choosing a branch after the work
 means moving the commits onto it.
@@ -15,10 +13,8 @@ means moving the commits onto it.
   short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`,
   or `refactor/parser`.
 
-### Commit
+## Commit
 
-- Before the first commit in a repository, read its README and contributing
-  guide for commit conventions, which override these rules.
 - Check the worktree status before changing it. Preserve unrelated user changes.
 - On a non-default branch, commit and amend local commits without asking. Ask
   before merging, pushing, or rewriting published history.
@@ -32,11 +28,10 @@ means moving the commits onto it.
 - Before a commit, run the formatter, fast static checks, and the tests for the
   changed code. Leave the full suite and slow builds for the end of the task.
 
-### Worktree
+## Worktree
 
 - Use the agent's built-in worktree feature when it has one. Otherwise, create
-  the worktree at `.agents/worktrees/<topic>` and ignore it as a local scratch
-  directory.
+  the worktree at `.agents/worktrees/<topic>` and ignore it.
 - Remove a worktree when its branch is merged or abandoned.
 
 ## Commit messages
@@ -78,7 +73,7 @@ line at 72 characters or fewer.
 Use `!` and `BREAKING CHANGE` only after the project has been published and has
 a compatibility contract.
 
-## Contributions to repositories I do not own
+## External repositories
 
 ### Safety
 

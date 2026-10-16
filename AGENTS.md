@@ -136,6 +136,8 @@ Repository work:
 - Read `workflow.md` before starting repository planning, inspection,
   development, review, testing, tooling, release, or remote writes, including
   small changes.
+- Before the first commit in a repository, read its README and contributing
+  guide.
 - For code planning, inspection, development, or review, also read `code.md` and
   applicable stack rules.
 - For Markdown or other documentation, also read `documents.md`.
