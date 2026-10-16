@@ -133,30 +133,19 @@ references in this index. Project conventions take precedence over these rules.
 
 Repository work:
 
-- Read `workflow.md` before starting repository planning, inspection,
-  development, review, testing, tooling, release, or remote writes, including
-  small changes.
-- Before the first commit in a repository, read its README and contributing
-  guide.
-- For code planning, inspection, development, or review, also read `code.md` and
-  applicable stack rules.
-- For Markdown or other documentation, also read `documents.md`.
+- Before any repository task, including small changes and remote writes, read
+  the project's README and contributing guide, then `workflow.md`.
+- For code, including planning and review, also read `code.md`.
+- For documentation, also read `documents.md`.
 
 Project tooling:
 
-- Run, configure, or review a linter, type checker, language-native formatter,
-  manifest, lockfile, or toolchain: applicable stack rules
-- Write or review a justfile: `justfile.md`, applicable stack rules
-- Run, configure, or review a CI gate: applicable stack rules. Add `justfile.md`
-  when the gate uses just
-- Scaffold a project: `setup.md`, `documents.md`, `justfile.md`, and applicable
-  stack rules. Also select the tooling items that the task involves.
-- Migrate a project: `setup.md`, `documents.md`, and applicable stack rules.
-  Also select the tooling items that the task involves.
-- Zed settings: `zed.md`, applicable stack rules
-- Choose formatting for oxfmt-supported files, or run, configure, review, or
-  migrate to oxfmt, including command wrappers, CI checks, and editor
-  integration: `oxfmt.md`
+- Scaffold or migrate a project, or change CI, `.gitattributes`, licenses, or
+  TOML formatting: `setup.md`
+- Justfile, including one in a new or migrated project: `justfile.md`
+- oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or
+  migrated project: `oxfmt.md`
+- Zed settings: `zed.md`
 - Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 System tasks:
@@ -164,9 +153,10 @@ System tasks:
 - Global installation, a download or write over 100 MB, or a system setting
   change: `windows.md` for Windows 11, `wsl.md` for Ubuntu 26.04 in WSL 2
 
-Applicable stack rules, selected for every stack involved:
+Stack rules, for every stack in the project:
 
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
 - `javascript.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: overlay beside a language rule for heavy native or GPU dependencies
+- `pixi.md`: overlay beside a language rule for multi-language projects or heavy
+  native or GPU dependencies
