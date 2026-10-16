@@ -25,15 +25,9 @@ Repository-wide setup and migration conventions.
   * text=auto eol=lf
   ```
 
-- Configure generated lockfiles to preserve their format and avoid automatic
-  merges:
-
-  ```gitattributes
-  <lockfile> merge=binary linguist-language=<LANG> linguist-generated=true -diff
-  ```
-
-  This prevents corrupted lockfiles from automatic 3-way git merges, flags them
-  as generated on GitHub, and collapses noisy lockfile diffs.
+- Configure generated lockfiles with `merge=binary`, `linguist-generated=true`,
+  and `-diff`. This prevents corrupted lockfiles from automatic 3-way git
+  merges, flags them as generated on GitHub, and collapses noisy lockfile diffs.
 
 ### Licenses
 
