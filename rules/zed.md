@@ -43,10 +43,6 @@
   }
   ```
 
-- For Svelte, enable `"svelte": {}` in `.oxfmtrc.json` and keep the `svelte`
-  package installed so oxfmt formats `.svelte` files in the editor and on the
-  command line.
-
 ## Other formatters
 
 - When another tool owns a language, select that tool's formatter and exclude
