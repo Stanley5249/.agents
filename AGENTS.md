@@ -147,10 +147,10 @@ Project tooling:
 - Write or review a justfile: `justfile.md`, applicable stack rules
 - Run, configure, or review a CI gate: applicable stack rules. Add `justfile.md`
   when the gate uses just
-- Scaffold a project: `project-setup.md`, `documents.md`, `justfile.md`, and
-  applicable stack rules. Also select the tooling items that the task involves.
-- Migrate a project: `project-setup.md`, `documents.md`, and applicable stack
-  rules. Also select the tooling items that the task involves.
+- Scaffold a project: `setup.md`, `documents.md`, `justfile.md`, and applicable
+  stack rules. Also select the tooling items that the task involves.
+- Migrate a project: `setup.md`, `documents.md`, and applicable stack rules.
+  Also select the tooling items that the task involves.
 - Zed settings: `zed.md`, applicable stack rules
 - Choose formatting for oxfmt-supported files, or run, configure, review, or
   migrate to oxfmt, including command wrappers, CI checks, and editor
