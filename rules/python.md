@@ -51,7 +51,6 @@ that version.
   ignore = [
     "COM812", # conflicts with the formatter
   ]
-
   [tool.ruff.lint.pydocstyle]
   convention = "google"
   ```
