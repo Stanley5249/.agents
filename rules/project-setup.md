@@ -7,11 +7,13 @@ Repository-wide setup and migration conventions.
 - Format TOML files with `tombi` (`tombi.toml`) regardless of the package
   manager. It covers `Cargo.toml`, `pyproject.toml`, `pixi.toml`, and its own
   configuration file.
-- Prefer the smallest setup that provides a clear local verification gate. Add
-  release automation, team workflows, or hosted automation only when the project
-  needs them.
 
 ## Repository metadata
+
+### Ignore
+
+- Ignore a non-portable file in `.git/info/exclude`. Ignore a scratch directory
+  with a local `.gitignore` containing `*`.
 
 ### Git attributes
 
