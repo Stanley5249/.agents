@@ -147,10 +147,10 @@ Project tooling:
   migrated project: `oxfmt.md`
 - Zed settings: `zed.md`
 
-System tasks:
+System:
 
-- Global installation, a download or write over 100 MB, or a system setting
-  change: `windows.md` for Windows 11, `wsl.md` for Ubuntu 26.04 in WSL 2
+- Any task that runs commands or writes files: `windows.md` on Windows 11,
+  `wsl.md` on Ubuntu 26.04 in WSL 2
 
 Stack rules, for every stack in the project:
 
