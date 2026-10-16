@@ -1,4 +1,12 @@
-# ffmpeg
+---
+name: ffmpeg-qsv
+description:
+  Encode or re-encode video with ffmpeg on Windows, using the Intel Arc iGPU
+  through Quick Sync Video (QSV)
+disable-model-invocation: true
+---
+
+# ffmpeg with QSV on Windows
 
 ## Hardware
 
@@ -21,9 +29,10 @@ ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:
   1080p figure, so don't reuse it at other resolutions unchecked.
 - `-b:a` scales with channel count, not a fixed number: 48k per channel (96k for
   stereo). Raise it further for music-heavy sources.
-- `-look_ahead_depth:v`, `-extbrc:v`, `-adaptive_i:v`, `-adaptive_b:v` are QSV
-  tunables to try when quality needs a push, not defaults to set upfront. Leave
-  them unset until a specific source justifies measuring them.
+- `-extbrc:v`, `-look_ahead_depth:v`, `-adaptive_i:v`, and `-adaptive_b:v` are
+  QSV tunables to try when quality needs a push, not defaults to set upfront.
+  Leave them unset until a specific source justifies measuring them.
+  `-look_ahead_depth:v` takes effect only with `-extbrc:v 1`.
 - Use Matroska or WebM for AV1 with Opus unless the requested playback target
   has confirmed support for that combination in another container.
 - This is a starting point. Expect to retune per source; that is normal, not a
