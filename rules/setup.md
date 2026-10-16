@@ -12,8 +12,10 @@ Repository-wide setup and migration conventions.
 
 ### Ignore
 
-- Ignore a non-portable file in `.git/info/exclude`. Ignore a scratch directory
-  with a local `.gitignore` containing `*`.
+- Ignore files that every clone produces, such as build outputs and `.env`, in
+  the tracked `.gitignore`.
+- Ignore files that only your environment produces, such as editor or agent
+  dotpaths and personal notes, in `.git/info/exclude`.
 
 ### Git attributes
 
