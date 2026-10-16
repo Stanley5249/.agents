@@ -146,7 +146,6 @@ Project tooling:
 - oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or
   migrated project: `oxfmt.md`
 - Zed settings: `zed.md`
-- Process media with ffmpeg or ffprobe: `ffmpeg.md`
 
 System tasks:
 
