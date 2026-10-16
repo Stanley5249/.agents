@@ -28,6 +28,13 @@ means moving the commits onto it.
 - Before a commit, run the formatter, fast static checks, and the tests for the
   changed code. Leave the full suite and slow builds for the end of the task.
 
+## Ignore
+
+- Ignore files that every clone produces, such as build outputs and `.env`, in
+  the tracked `.gitignore`.
+- Ignore files that only your environment produces, such as editor or agent
+  dotpaths and personal notes, in `.git/info/exclude`.
+
 ## Worktree
 
 - Use the agent's built-in worktree feature when it has one. Otherwise, create

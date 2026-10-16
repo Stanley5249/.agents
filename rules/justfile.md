@@ -94,8 +94,7 @@ may run other commands directly.
 
 ## Audit
 
-When migrating or reviewing a justfile, check it against the rules above. Find
-each pattern on the left and apply the fix on the right:
+Find each pattern on the left and apply the fix on the right:
 
 | Find                                                                          | Fix                                                       |
 | ----------------------------------------------------------------------------- | --------------------------------------------------------- |

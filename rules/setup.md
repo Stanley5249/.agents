@@ -2,20 +2,20 @@
 
 Repository-wide setup and migration conventions.
 
-## Formatting and validation
+## TOML
 
 - Format TOML files with `tombi` (`tombi.toml`) regardless of the package
   manager. It covers `Cargo.toml`, `pyproject.toml`, `pixi.toml`, and its own
   configuration file.
 
+## CI
+
+- Call the tools directly instead of through the command runner, and run the
+  same checks as the local gate.
+- Run independent checks as parallel jobs.
+- Keep each job's output visible, so a failure shows its cause.
+
 ## Repository metadata
-
-### Ignore
-
-- Ignore files that every clone produces, such as build outputs and `.env`, in
-  the tracked `.gitignore`.
-- Ignore files that only your environment produces, such as editor or agent
-  dotpaths and personal notes, in `.git/info/exclude`.
 
 ### Git attributes
 
@@ -56,8 +56,8 @@ Repository-wide setup and migration conventions.
 
 ## Migration
 
-- Audit the repository against the core conventions, the repository metadata,
-  and the loaded rules. List each gap with its planned change.
+- Audit the repository against the loaded rules. List each gap with its planned
+  change.
 - Show the list and ask which changes to apply. The user decides which existing
   conventions to replace.
 - Work on a task branch, such as `chore/migrate-conventions`.
