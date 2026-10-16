@@ -8,7 +8,7 @@ Before committing, run `bunx oxfmt --check` from the repository root.
 
 Use unscoped Conventional Commit subjects. This repository shares agent
 resources across projects, so the repository itself provides the scope. This
-overrides the `agents` scope in `rules/version-control.md`.
+overrides the `agents` scope in `rules/workflow.md`.
 
 Skills are instructions that agents execute, so type skill changes by their
 effect on agent behavior:
