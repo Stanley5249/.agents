@@ -1,6 +1,6 @@
 # Agents
 
-Shared instructions, rules, skills, and reusable prompts for coding agents.
+Shared instructions, rules, and skills for coding agents.
 
 ## Installation
 
@@ -17,8 +17,6 @@ git clone https://github.com/Stanley5249/.agents.git
 - [`rules/`](rules/): guidance loaded for specific activities.
 - [`skills/`](skills/): skills with a `SKILL.md` entry point and optional
   supporting files.
-- [`prompts/`](prompts/): reusable Markdown prompts. Each file defines its
-  purpose and usage.
 
 ## Usage
 
@@ -40,29 +38,6 @@ selected skills:
 
 ```sh
 ln -s ~/.agents/skills/browser ~/.claude/skills/browser
-```
-
-Skills with `disable-model-invocation: true`, such as `network-debug`, run only
-when you start them with `/<name>`.
-
-### Prompts
-
-Any agent can follow files in `prompts/`. To expose them as Pi commands, add to
-`~/.pi/agent/settings.json`, preserving existing settings and prompt paths:
-
-```json
-{
-  "prompts": ["~/.agents/prompts"]
-}
-```
-
-Run `/reload`, then type `/` to find available prompt commands.
-
-To expose them as Claude Code commands, link the directory. On Windows, this
-needs Developer Mode or an elevated shell:
-
-```powershell
-New-Item -ItemType SymbolicLink -Path "$HOME\.claude\commands" -Target "$HOME\.agents\prompts"
 ```
 
 ## Contributing
