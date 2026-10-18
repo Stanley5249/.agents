@@ -8,6 +8,11 @@ set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
 link:
     ./scripts/link-skills.ps1
 
+# Pick which skills to link into Claude Code
+[unix]
+link:
+    ./scripts/link-skills.sh
+
 # Format files
 fmt: _fmt-oxfmt _fmt-just
 
