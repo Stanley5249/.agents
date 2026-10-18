@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Git Bash on Windows copies files on `ln -s` unless told to make real links.
+export MSYS=winsymlinks:nativestrict
 
 source=$(cd "$(dirname "$0")/../skills" && pwd)
 target="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills"

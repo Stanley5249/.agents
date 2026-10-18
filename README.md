@@ -37,8 +37,9 @@ in `AGENTS.md` instead of cross-rule references.
 
 Pi and Codex discover `~/.agents/skills/` automatically. For Claude Code, run
 `just link` to pick which skills to link into `~/.claude/skills`. It needs
-[just](https://just.systems/) and [gum](https://github.com/charmbracelet/gum).
-Press `x` or `Tab` to toggle a skill.
+[just](https://just.systems/), [gum](https://github.com/charmbracelet/gum), and
+on Windows, [Git for Windows](https://gitforwindows.org/) for Git Bash. Press
+`x` or `Tab` to toggle a skill.
 
 Skills such as `quality-review` set `disable-model-invocation`, so they run only
 when you invoke them.
