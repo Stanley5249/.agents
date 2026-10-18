@@ -2,7 +2,7 @@
 
 ## Formatting check
 
-Before committing, run `bunx oxfmt --check` from the repository root.
+Before committing, run `just check` from the repository root.
 
 ## Rule loading
 
