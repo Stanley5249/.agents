@@ -1,7 +1,28 @@
 {
-  "prettier": { "allowed": false },
+  "prettier": {
+    "allowed": false
+  },
   "languages": {
-    "Markdown": { "formatter": { "language_server": { "name": "oxfmt" } } },
-    "JSON": { "formatter": { "language_server": { "name": "oxfmt" } } }
+    "Markdown": {
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      }
+    },
+    "JSON": {
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      }
+    },
+    "JSONC": {
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      }
+    }
   }
 }
