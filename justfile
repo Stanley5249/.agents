@@ -6,7 +6,7 @@ set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
 # Pick which skills to link into Claude Code
 [windows]
 link:
-    ./scripts/link-skills.ps1
+    & "$env:ProgramFiles\Git\bin\bash.exe" scripts/link-skills.sh
 
 # Pick which skills to link into Claude Code
 [unix]
