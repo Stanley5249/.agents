@@ -17,6 +17,8 @@ git clone https://github.com/Stanley5249/.agents.git
 - [`rules/`](rules/): guidance loaded for specific activities.
 - [`skills/`](skills/): skills with a `SKILL.md` entry point and optional
   supporting files.
+- [`docs/`](docs/): notes on adapted upstream work, such as
+  [Ponytail](docs/ponytail.md).
 
 ## Usage
 
@@ -49,4 +51,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions.
 [MIT](LICENSE). Parts of [`rules/code.md`](rules/code.md) and
 [`quality-review`](skills/quality-review/SKILL.md) are based on
 [Ponytail](https://github.com/DietrichGebert/ponytail/tree/2961b52fc1fe6a5a87c7a959a79512e5c2f3ffe5)
-by DietrichGebert, also under MIT.
+by DietrichGebert, also under MIT. See [`docs/ponytail.md`](docs/ponytail.md)
+for what was adapted.
