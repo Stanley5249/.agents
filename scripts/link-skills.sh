@@ -12,11 +12,16 @@ for dir in "$source"/*/; do
   if [[ -f "$dir/SKILL.md" ]]; then skills+=("$(basename "$dir")"); fi
 done
 
-# Only symlinks into this repository are managed, so other entries in the
-# Claude Code skills folder, such as `synced`, stay untouched.
+# Only symlinks into this repository and broken symlinks are managed, so other
+# entries in the Claude Code skills folder, such as `synced`, stay untouched.
 linked=()
+stale=()
 for path in "$target"/*; do
-  if [[ -L "$path" && "$(readlink "$path")" == "$source"/* ]]; then
+  if [[ ! -L "$path" ]]; then
+    continue
+  elif [[ ! -e "$path" ]]; then
+    stale+=("$(basename "$path")")
+  elif [[ "$(readlink "$path")" == "$source"/* ]]; then
     linked+=("$(basename "$path")")
   fi
 done
@@ -35,7 +40,7 @@ while IFS= read -r name; do
   if [[ -z $name ]] || printf '%s\n' "${linked[@]}" | grep -qxF "$name"; then
     continue
   fi
-  if [[ -e "$target/$name" || -L "$target/$name" ]]; then
+  if [[ -e "$target/$name" ]]; then
     echo "Skipped $name, because $target/$name already exists." >&2
   else
     add+=("$name")
@@ -45,13 +50,17 @@ for name in "${linked[@]}"; do
   if ! grep -qxF "$name" <<<"$chosen"; then remove+=("$name"); fi
 done
 
-if ((${#add[@]} + ${#remove[@]} == 0)); then
+if ((${#stale[@]} + ${#add[@]} + ${#remove[@]} == 0)); then
   echo 'No changes.'
   exit
 fi
+for name in "${stale[@]}"; do echo "x $name (broken)"; done
 for name in "${add[@]}"; do echo "+ $name"; done
 for name in "${remove[@]}"; do echo "- $name"; done
-gum confirm "Apply $((${#add[@]} + ${#remove[@]})) changes?" || exit 0
+gum confirm "Apply $((${#stale[@]} + ${#add[@]} + ${#remove[@]})) changes?" || exit 0
+
+# Broken links go first, so a skill linked under the same name can replace one.
+for name in "${stale[@]}"; do rm "$target/$name"; done
 
 for name in "${add[@]}"; do ln -sT "$source/$name" "$target/$name"; done
 for name in "${remove[@]}"; do rm "$target/$name"; done
