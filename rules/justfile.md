@@ -73,9 +73,8 @@ may run other commands directly.
   migration, including deleting regenerable files. A recipe that `check` or `ci`
   depends on never confirms, because a gate must run unattended; `--yes` is for
   automation that runs a confirming recipe on purpose.
-- Guard `set shell` and shell-specific recipes with the primary platform's
-  attribute, `[windows]` or `[unix]`. Do not add a version for the other
-  platform. On Windows, select PowerShell explicitly:
+- Guard `set shell` and shell-specific recipes with `[windows]` or `[unix]`. On
+  Windows, select PowerShell explicitly:
 
   ```just
   [windows]
@@ -96,17 +95,16 @@ may run other commands directly.
 
 Find each pattern on the left and apply the fix on the right:
 
-| Find                                                                          | Fix                                                       |
-| ----------------------------------------------------------------------------- | --------------------------------------------------------- |
-| Forwarding through `quote(args)`, `-CommandWithArgs`, or positional arguments | Forward with `{{ args }}`, which works in every shell     |
-| Comments inside a script recipe body                                          | Move them above the recipe                                |
-| A shell loop over a fixed list                                                | Use mapped dependencies                                   |
-| A shell variable assignment or `cd`                                           | Use `[env]` or `[working-directory]`                      |
-| A helper with both the `_name` prefix and `[private]`                         | Keep only the prefix                                      |
-| A `check` without `just --fmt --check`                                        | Add `(_fmt-just "--check")`                               |
-| A `fmt` and `check` that run different formatter commands                     | Call the same `_fmt-<tool>` helpers                       |
-| A separate `fmt-check` recipe                                                 | Move its format checks into `check`                       |
-| Destructive cleanup without `[confirm]`                                       | Add `[confirm("...")]`                                    |
-| `[parallel]` on jobs that write a shared output, such as a lockfile           | Remove `[parallel]`                                       |
-| `[parallel]` on tools without their quiet flags                               | Pass each tool its quiet flag                             |
-| A copy of a shell-specific recipe for the other platform                      | Delete the copy and keep the primary platform's attribute |
+| Find                                                                          | Fix                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------- |
+| Forwarding through `quote(args)`, `-CommandWithArgs`, or positional arguments | Forward with `{{ args }}`, which works in every shell |
+| Comments inside a script recipe body                                          | Move them above the recipe                            |
+| A shell loop over a fixed list                                                | Use mapped dependencies                               |
+| A shell variable assignment or `cd`                                           | Use `[env]` or `[working-directory]`                  |
+| A helper with both the `_name` prefix and `[private]`                         | Keep only the prefix                                  |
+| A `check` without `just --fmt --check`                                        | Add `(_fmt-just "--check")`                           |
+| A `fmt` and `check` that run different formatter commands                     | Call the same `_fmt-<tool>` helpers                   |
+| A separate `fmt-check` recipe                                                 | Move its format checks into `check`                   |
+| Destructive cleanup without `[confirm]`                                       | Add `[confirm("...")]`                                |
+| `[parallel]` on jobs that write a shared output, such as a lockfile           | Remove `[parallel]`                                   |
+| `[parallel]` on tools without their quiet flags                               | Pass each tool its quiet flag                         |
