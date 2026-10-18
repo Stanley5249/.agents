@@ -43,6 +43,13 @@ Press `x` or `Tab` to toggle a skill.
 Skills such as `quality-review` set `disable-model-invocation`, so they run only
 when you invoke them.
 
+Install third-party skills with the
+[skills CLI](https://github.com/vercel-labs/skills), such as
+`bunx skills add <owner>/<repo> -g`. It puts each skill in `~/.agents/skills/`,
+links it for the agents you pick, and records it in `.skill-lock.json`. Add the
+installed folder to `.git/info/exclude`, because each machine picks its own
+third-party skills.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions.
