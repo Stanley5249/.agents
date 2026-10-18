@@ -84,7 +84,7 @@ code, documents, or rules:
   needs
   [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
   use `uv run --with <package> python <script>`.
-- Prefer `bun`, then `deno`, then `node`, to run JavaScript.
+- Prefer `bun`, then `node`, to run JavaScript.
 - Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`.
 
 ### Global installer
@@ -98,7 +98,6 @@ code, documents, or rules:
   because they may differ from the defaults:
   - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`
   - Cargo and rustup: `CARGO_HOME`, `RUSTUP_HOME`
-  - Deno: `DENO_DIR`
   - npm: `NPM_CONFIG_CACHE`
   - pip: `PIP_CACHE_DIR`
   - Pixi: `PIXI_HOME`, `PIXI_CACHE_DIR`
