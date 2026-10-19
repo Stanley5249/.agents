@@ -48,6 +48,9 @@ may run other commands directly.
   `[arg("name", long, help="...")]` and a default, alongside `*args`.
 - Name a private helper `_name`. Use `[private]` only when a public-looking name
   reads better.
+- Name a custom recipe with a verb first, such as `link` or `gen-docs`, and a
+  helper as `_<verb>-<object>`, such as `_fmt-just`. The role names below keep
+  their established forms.
 - Give each formatter one `_fmt-<tool> *args` helper. `fmt` calls the helpers,
   and `check` calls them with each tool's check flag. Both always include
   `_fmt-just`, which runs `just --fmt`:
