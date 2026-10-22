@@ -35,21 +35,12 @@ in `AGENTS.md` instead of cross-rule references.
 
 ### Skills
 
-Pi and Codex discover `~/.agents/skills/` automatically. For Claude Code, run
-`just link` to pick which skills to link into `~/.claude/skills`. It needs
-[just](https://just.systems/), [gum](https://github.com/charmbracelet/gum), and
-on Windows, [Git for Windows](https://gitforwindows.org/) for Git Bash. Press
-`x` or `Tab` to toggle a skill.
+Run `just link` to choose local skills for Pi, Codex, and Claude Code. Requires
+[just](https://just.systems/) and [Bun](https://bun.sh/).
 
-Skills such as `quality-review` set `disable-model-invocation`, so they run only
-when you invoke them.
-
-Install third-party skills with the
-[skills CLI](https://github.com/vercel-labs/skills), such as
-`bunx skills add <owner>/<repo> -g`. It puts each skill in `~/.agents/skills/`,
-links it for the agents you pick, and records it in `.skill-lock.json`. Add the
-installed folder to `.git/info/exclude`, because each machine picks its own
-third-party skills.
+Agents pass explicit skill names and `--yes` to `just link`. For third-party
+skills, use [Vercel Skills](https://github.com/vercel-labs/skills)
+non-interactively with explicit skills, target agents, and scope.
 
 ## Contributing
 
