@@ -23,6 +23,13 @@
           "name": "oxfmt"
         }
       }
+    },
+    "YAML": {
+      "formatter": {
+        "language_server": {
+          "name": "oxfmt"
+        }
+      }
     }
   }
 }
