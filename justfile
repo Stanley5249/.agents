@@ -3,15 +3,9 @@ set default-list
 [windows]
 set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
 
-# Pick which skills to link into Claude Code
-[windows]
-link:
-    @& "$env:ProgramFiles\Git\bin\bash.exe" scripts/link-skills.sh
-
-# Pick which skills to link into Claude Code
-[unix]
-link:
-    @./scripts/link-skills.sh
+# Link local skills for Pi, Codex, and Claude Code
+link *args:
+    bunx skills add ./skills --global --agent pi codex claude-code {{ args }}
 
 # Format files
 fmt: _fmt-oxfmt _fmt-just

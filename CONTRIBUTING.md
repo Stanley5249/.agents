@@ -11,7 +11,8 @@ only topic content, without loading conditions or references to other rules.
 
 ## Skills
 
-Keep invocation settings in sync across harnesses. For manual-only skills, set:
+When changing this repository's skills, keep invocation settings in sync across
+harnesses. For manual-only skills, set:
 
 - `disable-model-invocation: true` in `SKILL.md` for Pi and Claude Code.
 - `policy.allow_implicit_invocation: false` in `agents/openai.yaml` for Codex.
