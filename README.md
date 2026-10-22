@@ -42,6 +42,9 @@ Agents pass explicit skill names and `--yes` to `just link`. For third-party
 skills, use [Vercel Skills](https://github.com/vercel-labs/skills)
 non-interactively with explicit skills, target agents, and scope.
 
+Preview broken Claude skill links with `bun scripts/clean-skill-links.ts`. Add
+`--apply` to remove them.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for commit conventions.
