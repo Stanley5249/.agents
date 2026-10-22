@@ -124,8 +124,9 @@ Show a preview and ask before:
 
 Files are at `~/.agents/rules/`. This index owns rule-loading conditions.
 
-Before starting an activity, read all files required by every matching item
-below. Requirements are additive. Read each file once per session.
+Before starting an activity, load files required by all matching rules below.
+Read each rule, skill, or project guide once per conversation, reusing content
+already in context.
 
 Keep each rule focused on its topic. Keep loading conditions and cross-rule
 references in this index. Project conventions take precedence over these rules.
