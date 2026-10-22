@@ -3,7 +3,7 @@ set -euo pipefail
 # Git Bash on Windows copies files on `ln -s` unless told to make real links.
 export MSYS=winsymlinks:nativestrict
 
-source=$(cd "$(dirname "$0")/../skills" && pwd)
+source=$(cd "$(dirname "$0")/../skills" && pwd -P)
 target="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/skills"
 mkdir -p "$target"
 
@@ -21,7 +21,7 @@ for path in "$target"/*; do
     continue
   elif [[ ! -e "$path" ]]; then
     stale+=("$(basename "$path")")
-  elif [[ "$(readlink "$path")" == "$source"/* ]]; then
+  elif [[ -d "$path" ]] && [[ "$(cd "$path" && pwd -P)" == "$source"/* ]]; then
     linked+=("$(basename "$path")")
   fi
 done
@@ -62,5 +62,11 @@ gum confirm "Apply $((${#stale[@]} + ${#add[@]} + ${#remove[@]})) changes?" || e
 # Broken links go first, so a skill linked under the same name can replace one.
 for name in "${stale[@]}"; do rm "$target/$name"; done
 
-for name in "${add[@]}"; do ln -sT "$source/$name" "$target/$name"; done
+for name in "${add[@]}"; do
+  if [[ -e "$target/$name" || -L "$target/$name" ]]; then
+    echo "Skipped $name, because $target/$name already exists." >&2
+  else
+    ln -s "$source/$name" "$target/$name"
+  fi
+done
 for name in "${remove[@]}"; do rm "$target/$name"; done
