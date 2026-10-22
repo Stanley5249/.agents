@@ -1,24 +1,7 @@
-# Taiwanese Chinese writing
+# 台灣中文寫作
 
-Checks for Traditional Chinese (Taiwan) text. Apply them when writing Chinese
-text, and give them to reviewers alongside other checks. Report only real
-problems, and treat patterns as clues to judge in context.
-
-- Z1 Taiwan usage and grammar: wording used in Taiwan, correct collocations,
-  clear subjects, and one name for one concept.
-- Z2 Translationese structure: phrasing that obscures meaning or reads
-  unnaturally in Taiwan usage. Check vague pronouns, passive constructions, and
-  English clause frames such as 當……的時候, 對於……而言, and 作為一個. Words such
-  as 它, 這, 被, and 當 also occur naturally, so report the specific ambiguity
-  or awkwardness.
-- Z3 Modifiers: long relative clauses placed before a noun, stacked 的, 地
-  adverbs and stacked intensifiers such as 非常地, and dummy verbs such as 進行
-  or 作出 before an action noun. Prefer splitting the clause or using the verb
-  directly.
-- Z4 Names: technical names stay in their original form, such as Rust or
-  lockfile, instead of a forced translation.
-- Z5 Punctuation: full-width punctuation in Chinese, no full-width semicolons,
-  and a half-width space between Chinese and Latin text or numbers. Reviewers
-  often misread this rule and ask to delete that space.
-
-Reviewers reply in Traditional Chinese (Taiwan) when the text is Chinese.
+- Z1 台灣用語與語法：使用台灣慣用的詞彙，保持主詞清楚，同一概念使用一致的名稱，並去除中國用語。
+- Z2 翻譯腔句型：檢查讓語意模糊或不符合台灣語感的表達，例如指涉不明的代名詞、被動句，以及「當……的時候」、「對於……而言」、「作為一個」等沿用英文結構的句型。「它」、「這」、「被」、「當」也有自然的用法，回報時要指出具體哪裡含糊或拗口。
+- Z3 修飾語與冗詞：檢查名詞前過長的修飾子句、連用的「的」、帶「地」的副詞、「非常地」等多餘或疊加的程度修飾，以及在動作名詞前加上「進行」、「作出」等空泛動詞的寫法。優先拆句或直接使用動詞。
+- Z4 名稱：專有名詞和技術用語保留原文，避免生硬的翻譯。
+- Z5 標點與空格：中文使用全形標點，需要分隔句子時用逗號或句號取代全形分號。中文與英文字母或數字之間保留一個半形空格。
