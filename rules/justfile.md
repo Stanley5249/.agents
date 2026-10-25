@@ -46,7 +46,7 @@ Give every project a justfile as its command surface for recurring tasks. Docs m
       just --fmt {{ args }}
   ```
 
-- Mark a recipe `[parallel]` when its jobs ignore order, write no shared output, and at least two take over about a second. Pass each tool its quiet flag, not an environment variable, so the output does not interleave.
+- Mark a recipe `[parallel]` when its jobs ignore order, write no shared output, and there are at least two. Pass each tool its quiet flag, not an environment variable, so the output does not interleave.
 - Add `[confirm("...")]` to irreversible work, such as a deploy, release, or migration, including deleting regenerable files. A recipe that `check` or `ci` depends on never confirms, because a gate must run unattended; `--yes` is for automation that runs a confirming recipe on purpose.
 - Guard `set shell` and shell-specific recipes with `[windows]` or `[unix]`. On Windows, select PowerShell explicitly:
 
