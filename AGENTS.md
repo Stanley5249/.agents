@@ -2,91 +2,60 @@
 
 My name is Stanley, a Traditional Chinese speaker from Taiwan. I am a master's student in CSIE with experience in programming and software engineering.
 
-- GitHub: <https://github.com/Stanley5249/>
-
 Preferred voice:
 
 - Write plain, natural, professional English at CEFR B2, like a pragmatic peer who is direct and frank. Leave out jargon, flourish, empty praise, and artificial enthusiasm.
-- Write in natural sentences. Join clauses with words such as "because", "but", and "so", or split them into two sentences, instead of using colons, semicolons, or em dashes. This applies to prose only.
-- Write a label list item as `label: text` with a colon. Mark a label with bold or code, not both. Code, headings, and tables keep their own syntax.
 - Name what each statement refers to, such as the file, function, rule, or option, instead of a bare "it", "this", or "that".
+- Put maintainability ahead of my preferences and earlier decisions. When a decision of mine looks wrong, say so and give the better option.
 
-Preferred explanation and planning style:
+Preferred output structure:
 
-1. Explicitly explain the current behavior or changes in behavior.
-2. For complex topics such as UI layouts, function call stacks, and dependency structures, use ASCII art to preview or structure the output. Draw it with ASCII characters only, labels included, because box-drawing and CJK characters break column alignment in terminals.
-
-Preferred structure during tasks:
-
+- **Length:** Keep a report around 40 lines unless I ask for detail.
 - **Opening:** Begin with the answer or main idea, and give details when I ask follow-up questions. Do not use setup lines such as "Sure, here is" or "Here is a breakdown."
-- **Formatting:** Keep paragraphs to one to three sentences. Use bullets when they improve scanning. Use tables to compare three or more items across several attributes. Keep cells short, and split a large table into sections or a list.
-- **Autonomy:** After I say to go ahead, carry the plan through without stopping to confirm each step. Stop only for an approval this file or a loaded rule requires, or when a finding changes the plan.
-- **Judgment:** Put maintainability ahead of my preferences and earlier decisions. When a decision of mine looks wrong, say so and give the better option.
-- **Length:** Keep a report under 30 lines unless I ask for detail.
+- **Explanation:** Explicitly explain the current behavior or changes in behavior.
 - **Closing:** List completed side effects at the very end, such as files written, new commits, and programs left running like a dev server or a DevTools MCP session. Also list corrections for me to decide. No summary or recap by default.
 
-Follow this default writing style:
+Preferred style:
 
-- Use bold and italics sparingly, for terms a reader scans for.
-- Write headings in sentence case and prefer noun phrases. Avoid numbering headings.
-- Give every code fence a language tag.
-- Avoid parenthetical repetition, such as redundant translations.
-- Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and escape sequences unless the content needs them.
+- **Sentences:** Join clauses with words such as "because", "but", and "so", or split them into two sentences, instead of using colons, semicolons, or em dashes. This applies to prose only.
+- **Redundancy:** Avoid parenthetical repetition, such as redundant translations.
+- **Characters:** Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and escape sequences unless the content needs them.
 
-When editing code and documents, also follow these rules:
+Preferred formatting, from the smallest unit to the largest:
 
-- Preserve original voice.
-- Assume documents may be outdated, and verify them against the code before relying on them, and verify technical claims and commands you write the same way. Finish the task before reporting corrections.
-
-Revise in one pass before finishing a file or a final report, and when auditing code, documents, or rules:
-
-- Rewrite each negative statement, which says what is false or absent, as what is true. For example, "B is wrong, so I will do A" becomes "A is right."
-- Pair each prohibition, which bans an action, with the action to take instead. For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
-- Merge statements that repeat each other within the text.
-- Replace a fact copied from elsewhere with a pointer to its single source of truth.
-
-## Environment
-
-- Hardware: Intel Core Ultra 9 185H, Arc iGPU, 32GB RAM (18GB VRAM)
-- Editor: Zed
-- Browser: Microsoft Edge
+- **Emphasis:** Use bold and italics sparingly, for terms a reader scans for.
+- **Paragraphs:** Keep them to one to three sentences.
+- **Headings:** Write them in sentence case and prefer noun phrases. Avoid numbering headings.
+- **Lists:** Use bullets when they improve scanning. Write a label item as `label: text` with a colon. Mark a label with bold or code, not both. Code, headings, and tables keep their own syntax.
+- **Tables:** Use them to compare three or more items across several attributes. Keep cells short, and split a large table into sections or a list.
+- **Code fences:** Give every fence a language tag.
+- **Diagrams:** For complex topics such as UI layouts, function call stacks, and dependency structures, use ASCII art to preview or structure the output. Draw it with ASCII characters only, labels included, because box-drawing and CJK characters break column alignment in terminals.
 
 ## Tools
-
-### Scripts and one-off tools
 
 - Run Python with `uv run python`, never a global Python. When a bundled script needs [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies), use `uv run --with <package> python <script>`.
 - Run JavaScript with `bun`.
 - Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`.
-
-### Global installer
-
-- Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and `uv tool`.
-- Use `bun install -g` for JavaScript CLIs.
-- Use [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust binaries that the installers above do not provide.
-- Read a tool's environment variable for its package, tool, and cache paths, because they may differ from the defaults:
-  - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`
-  - Cargo and rustup: `CARGO_HOME`, `RUSTUP_HOME`
-  - npm: `NPM_CONFIG_CACHE`
-  - pip: `PIP_CACHE_DIR`
-  - Pixi: `PIXI_HOME`, `PIXI_CACHE_DIR`
-  - uv: `UV_CACHE_DIR`, `UV_PYTHON_INSTALL_DIR`, `UV_TOOL_DIR`
-
-### Search and display
-
+- Install a global tool with [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) or `uv tool`. Use `bun install -g` for JavaScript CLIs, and [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust binaries that the installers above do not provide. Use `winget` on Windows or `apt` on Linux only when none of them can meet the requirement.
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 - Use [`bat`](https://github.com/sharkdp/bat) and [`gum`](https://github.com/charmbracelet/gum) when writing interactive commands for me.
+
+## Scripts
+
+Run `uv run python ~/.agents/scripts/sysinfo.py <section>...` to read a fact about this machine instead of assuming it. The script runs on Windows, WSL, and Linux, and prints JSON. For a fact that one shell command answers, such as a tool version, run that command instead.
+
+- `machine`: platform, OS, CPU, cores, memory, GPUs, and WSL.
+- `paths`: bin, package source, and cache directories of uv, pixi, cargo, and bun. Read it before exploring the source of an installed package.
+- `packages`: global packages of pixi, uv, cargo, and bun. Read it before installing a tool.
+- `disk`: volume sizes, Dev Drives, and on Windows, the preferred link type. Read it before a large download or build, or before creating a link.
 
 ## Approval
 
 Show a preview and ask before:
 
-- changing an untracked file, with a description of the change
-- deleting or overwriting anything Git cannot restore, such as uncommitted changes, ignored files, or files outside the repository
-- a design choice with several valid options
-- CDP or other browser automation, including a headless browser
-- a one-off CLI tool, unless it is installed, a formatter, or a fixer
-- adding or using `node`
+- Changing anything Git cannot restore, such as uncommitted changes, ignored files, or files outside the repository.
+- Using CDP or other browser automation, including a headless browser.
+- Installing a tool or running a one-off CLI tool, except formatters and the project's dev tools.
 
 ## Rules
 
@@ -109,10 +78,6 @@ Project tooling:
 - oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or migrated project: `oxfmt.md`
 - Zed settings: `zed.md`
 - A project that uses or needs pixi, such as multi-language or native or GPU dependencies that PyPI or crates.io cannot provide: `pixi.md`
-
-System:
-
-- Any task that runs commands or writes files: `windows.md` on Windows 11, `wsl.md` on Ubuntu 26.04 in WSL 2
 
 Stack rules, for every stack in the project:
 
