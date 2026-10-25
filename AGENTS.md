@@ -82,6 +82,7 @@ Revise in one pass before finishing a file or a final report, and when auditing 
 Show a preview and ask before:
 
 - changing an untracked file, with a description of the change
+- deleting or overwriting anything Git cannot restore, such as uncommitted changes, ignored files, or files outside the repository
 - a design choice with several valid options
 - CDP or other browser automation, including a headless browser
 - a one-off CLI tool, unless it is installed, read-only, a formatter, or a fixer
