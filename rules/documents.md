@@ -2,7 +2,6 @@
 
 ## Core rules
 
-- Keep documents minimal and concise.
 - State each fact once, in a single source of truth. Point to code and manifests for facts that change, such as versions, counts, and file lists.
 - When a hand-maintained document grows beyond 400 lines, split it into focused documents, or say at its top why it stays whole.
 - Ask for approval before adding sections to or restructuring `README.md`, `AGENTS.md`, or other documents. Keep existing content accurate without asking.
@@ -17,7 +16,7 @@ Start with the smallest shape appropriate to the audience.
 - Commands: point to a command runner such as `justfile` when present instead of copying its commands, and start with the essential ones only.
 - Documents: links to hosted docs when present, plus relative paths to local docs.
 
-Add more sections when appropriate, such as:
+Propose more sections for approval when appropriate, such as:
 
 - badges for release, documentation, CI, coverage, and license
 - usage
@@ -34,7 +33,7 @@ Add more sections when appropriate, such as:
 
 ## Markdown
 
-- Write headings in sentence case. Keep proper nouns, package names, and code in their own case.
+- Keep proper nouns, package names, and code in their own case in headings.
 - Use a tight list, with no blank lines, unless most items hold paragraphs or code blocks.
 - Write each paragraph or list item on one line. Never wrap by hand, because a one-word edit then stays on one line.
 - Link to a stable target, such as a relative path or the latest page of a library's docs. Pin a commit SHA only to cite that exact version as evidence.

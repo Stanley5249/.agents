@@ -5,7 +5,7 @@
 Decide this before the first edit, because choosing a branch after the work means moving the commits onto it.
 
 - Use `main` as the default branch. If a new repository starts on `master`, rename it with `git branch -m main`.
-- For a change that fits in one commit, work on the current branch directly. Otherwise, use a task branch instead of committing directly to `main`.
+- For a change that is one action, as defined under Commit, work on the current branch directly. Otherwise, use a task branch instead of committing directly to `main`.
 - Name code branches `<type>/<topic>` using a Conventional Commit type and a short, specific kebab-case topic, such as `feat/search`, `fix/login-timeout`, or `refactor/parser`.
 
 ## Commit

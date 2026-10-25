@@ -72,5 +72,5 @@ The first command formats files in place. `--check` validates formatting while p
 - Replace Prettier and its plugins with oxfmt, keeping `svelte` where needed. Update recipes, CI, agent instructions, and editor integration. Keep ESLint presets that disable conflicting formatting rules.
 - Move required ignores into `.oxfmtrc.json`, then remove the old Prettier configuration and `.prettierignore`.
 - Format tracked files only. Use `git ls-files -z | xargs -0 bun run oxfmt --no-error-on-unmatched-pattern`, substituting `bunx oxfmt` when there is no local oxfmt dependency. Verify the formatted file count and inspect every diff.
-- Compare against the clean baseline. Trial settings can leave expanded objects expanded because `objectWrap` preserves their layout. For a suspected bug, preserve the file with an ignore pattern and report the issue upstream.
+- Compare against the clean baseline. Trial settings can leave expanded objects expanded because `objectWrap` preserves their layout. For a suspected bug, preserve the file with an ignore pattern and draft an upstream issue for approval.
 - Run formatting checks, static checks, and tests. Commit tooling as `build` and formatting-only changes separately as `style`.
