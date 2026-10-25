@@ -6,11 +6,9 @@ Parts of this repository adapt [Ponytail](https://github.com/DietrichGebert/pony
 
 The adaptation follows upstream commit `2961b52fc1fe6a5a87c7a959a79512e5c2f3ffe5`. `README.md` and `LICENSE` link the same commit, so update all three together.
 
-| Upstream file                     | Local target                                                                                                       |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `.agents/rules/ponytail.md`       | `rules/code.md`: Scope, Smallest change, the closing "Never cut" paragraph, and the non-trivial logic Tests bullet |
-| `skills/ponytail-review/SKILL.md` | `skills/quality-review/SKILL.md`, and the ranking line in the `rules/code.md` Review section                       |
-| `skills/ponytail-audit/SKILL.md`  | `skills/quality-review/SKILL.md`, merged with the review skill                                                     |
+- **`.agents/rules/ponytail.md`**: `rules/code.md` (Scope, Smallest change, the closing "Never cut" paragraph, and the non-trivial logic Tests bullet)
+- **`skills/ponytail-review/SKILL.md`**: `skills/quality-review/SKILL.md`, and the ranking line in `rules/review.md`
+- **`skills/ponytail-audit/SKILL.md`**: `skills/quality-review/SKILL.md`, merged with the review skill
 
 The other upstream skills, hooks, and plugin files are not adapted.
 
@@ -32,7 +30,7 @@ Structural changes, such as moving, merging, or regrouping sections, are fine.
 - "The shortest working diff wins" becomes "The working change with the least new code wins", which matches the upstream opening "the least new code".
 - Dropped: the "lazy senior developer" persona and "The best code is the code never written", the closing lines on what was skipped, the `shortcut:` comment convention, "A house component beats a native widget", and "in one line" for comments.
 - "Never cut" stays a prohibition by the author's choice.
-- The Review section keeps only the ranking line. The full checklist lives in the skill.
+- The ranking line lives in `rules/review.md`. The full checklist lives in the skill.
 
 `skills/quality-review/SKILL.md`:
 
@@ -52,7 +50,7 @@ Structural changes, such as moving, merging, or regrouping sections, are fine.
    gh api repos/DietrichGebert/ponytail/compare/<pinned commit>...HEAD --jq '.files[].filename'
    ```
 
-2. For each changed file in the Source table, read the upstream diff and apply it to the local target, keeping the deliberate differences.
+2. For each changed file in the Source list, read the upstream diff and apply it to the local target, keeping the deliberate differences.
 3. Compare each adapted file with upstream sentence by sentence. Every remaining difference must match an entry above or a style rule.
 4. Update the pinned commit here, in `README.md`, and in `LICENSE`.
 

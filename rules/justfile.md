@@ -62,18 +62,16 @@ Give every project a justfile as its command surface for recurring tasks. Docs m
 
 ## Audit
 
-Find each pattern on the left and apply the fix on the right:
+Find each pattern below and apply its fix:
 
-| Find                                                                          | Fix                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Forwarding through `quote(args)`, `-CommandWithArgs`, or positional arguments | Forward with `{{ args }}`, which works in every shell |
-| Comments inside a script recipe body                                          | Move them above the recipe                            |
-| A shell loop over a fixed list                                                | Use mapped dependencies                               |
-| A shell variable assignment or `cd`                                           | Use `[env]` or `[working-directory]`                  |
-| A helper with both the `_name` prefix and `[private]`                         | Keep only the prefix                                  |
-| A `check` without `just --fmt --check`                                        | Add `(_fmt-just "--check")`                           |
-| A `fmt` and `check` that run different formatter commands                     | Call the same `_fmt-<tool>` helpers                   |
-| A separate `fmt-check` recipe                                                 | Move its format checks into `check`                   |
-| Destructive cleanup without `[confirm]`                                       | Add `[confirm("...")]`                                |
-| `[parallel]` on jobs that write a shared output, such as a lockfile           | Remove `[parallel]`                                   |
-| `[parallel]` on tools without their quiet flags                               | Pass each tool its quiet flag                         |
+- Replace forwarding through `quote(args)`, `-CommandWithArgs`, or positional arguments with `{{ args }}`, which works in every shell.
+- Move comments inside a script recipe body above the recipe.
+- Replace a shell loop over a fixed list with mapped dependencies.
+- Replace a shell variable assignment or `cd` with `[env]` or `[working-directory]`.
+- Keep only the prefix on a helper with both the `_name` prefix and `[private]`.
+- Add `(_fmt-just "--check")` to a `check` without `just --fmt --check`.
+- Call the same `_fmt-<tool>` helpers from a `fmt` and `check` that run different formatter commands.
+- Move the format checks of a separate `fmt-check` recipe into `check`.
+- Add `[confirm("...")]` to destructive cleanup.
+- Remove `[parallel]` from jobs that write a shared output, such as a lockfile.
+- Pass each tool its quiet flag when `[parallel]` runs tools without their quiet flags.

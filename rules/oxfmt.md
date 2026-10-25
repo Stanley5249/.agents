@@ -22,12 +22,10 @@ Without `node_modules`, use `https://cdn.jsdelivr.net/npm/oxfmt/configuration_sc
 
 Record only settings that differ from oxfmt's defaults. Check a default in the schema's descriptions instead of guessing, and drop any setting that turns out to match it. The settings below are the ones that usually matter:
 
-| Setting           | Why set it                                                                |
-| ----------------- | ------------------------------------------------------------------------- |
-| `printWidth`      | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
-| `svelte`          | `{}` enables `.svelte` files and needs the `svelte` package installed     |
-| `sortTailwindcss` | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
-| `ignorePatterns`  | gitignore-style globs, rooted at the directory holding the config         |
+- **`printWidth`**: Prettier's default is 80, so set 80 to keep Prettier-era output unchanged.
+- **`svelte`**: `{}` enables `.svelte` files and needs the `svelte` package installed.
+- **`sortTailwindcss`**: `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4.
+- **`ignorePatterns`**: gitignore-style globs, rooted at the directory holding the config.
 
 Leave `proseWrap` at its default, `"preserve"`, and write each Markdown paragraph on one line. `"always"` rewraps the whole paragraph after a one-word edit, so an agent's edit can miss its target text and the diff covers every line.
 
