@@ -21,7 +21,7 @@ Take the first option that fully works:
 - Write only the abstractions, wrappers, type conversions, options, config, and boilerplate the task needs now, and leave out "for later" code. Keep values in the form the platform already gives. For a fix or a small feature, keep the structure the codebase already has: its layers, interfaces, and conventions. Prefer deletion to addition.
 - For a redesign, build to the reviewed target design. Port old code only where it fits the target, and delete the rest.
 - Remove a type, field, or layer whose only reason is to keep another part working.
-- The working change with the least new code wins, once you know everything it must touch.
+- The working change with the least new code wins, once you know everything it must touch. A one-liner that needs decoding is not short.
 - For a bug fix, grep every caller of the function you touch before you edit, then fix the root cause once in the shared code.
 - Code you move or merge keeps its error handling and validation.
 - Between options of equal size, take the one that is correct on edge cases.
