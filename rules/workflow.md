@@ -90,4 +90,4 @@ Use `!` and `BREAKING CHANGE` only after the project has been published, meaning
 
 ## Tools
 
-`git`, [`git-filter-repo`](https://github.com/newren/git-filter-repo), and `gh` are installed.
+Use `git`, [`git-filter-repo`](https://github.com/newren/git-filter-repo), and `gh`.

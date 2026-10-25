@@ -44,7 +44,7 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 ## Tools
 
 - Ask before creating a worktree, because each one builds its own `target/`.
-- These tools are installed:
+- Use these tools:
   - [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/)
   - [`cargo-nextest`](https://nexte.st/)
   - [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov)
