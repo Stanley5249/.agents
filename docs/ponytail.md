@@ -6,11 +6,11 @@ Parts of this repository adapt [Ponytail](https://github.com/DietrichGebert/pony
 
 The adaptation follows upstream commit `2961b52fc1fe6a5a87c7a959a79512e5c2f3ffe5`. `README.md` and `LICENSE` link the same commit, so update all three together.
 
-| Upstream file | Local target |
-| --- | --- |
-| `.agents/rules/ponytail.md` | `rules/code.md`: Scope, Smallest change, the closing "Never cut" paragraph, and the non-trivial logic Tests bullet |
-| `skills/ponytail-review/SKILL.md` | `skills/quality-review/SKILL.md`, and the ranking line in the `rules/code.md` Review section |
-| `skills/ponytail-audit/SKILL.md` | `skills/quality-review/SKILL.md`, merged with the review skill |
+| Upstream file                     | Local target                                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `.agents/rules/ponytail.md`       | `rules/code.md`: Scope, Smallest change, the closing "Never cut" paragraph, and the non-trivial logic Tests bullet |
+| `skills/ponytail-review/SKILL.md` | `skills/quality-review/SKILL.md`, and the ranking line in the `rules/code.md` Review section                       |
+| `skills/ponytail-audit/SKILL.md`  | `skills/quality-review/SKILL.md`, merged with the review skill                                                     |
 
 The other upstream skills, hooks, and plugin files are not adapted.
 

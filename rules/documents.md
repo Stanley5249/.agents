@@ -36,7 +36,7 @@ Add more sections when appropriate, such as:
 
 - Write headings in sentence case. Keep proper nouns, package names, and code in their own case.
 - Use a tight list, with no blank lines, unless most items hold paragraphs or code blocks.
-- Write each paragraph or list item on one line. The formatter joins hand-wrapped lines, so never wrap by hand.
+- Write each paragraph or list item on one line. Never wrap by hand, because a one-word edit then stays on one line.
 - Link to a stable target, such as a relative path or the latest page of a library's docs. Pin a commit SHA only to cite that exact version as evidence.
 - Search for anchor links to a heading in the same commit that renames it.
 

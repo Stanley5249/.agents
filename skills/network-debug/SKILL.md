@@ -19,11 +19,11 @@ Find where the slow part of the path is, then fix the narrowest part you can con
 
 ## Where to look
 
-| Symptom | Read |
-| --- | --- |
-| A website or download is slow, or one domain is slow | `references/web-cdn.md` |
-| Fast on one network or device, slow on another | `references/path-and-link.md` |
-| A game, voice call, or other real-time UDP app lags | `references/realtime-udp.md` |
+| Symptom                                              | Read                          |
+| ---------------------------------------------------- | ----------------------------- |
+| A website or download is slow, or one domain is slow | `references/web-cdn.md`       |
+| Fast on one network or device, slow on another       | `references/path-and-link.md` |
+| A game, voice call, or other real-time UDP app lags  | `references/realtime-udp.md`  |
 
 Most problems touch more than one file. A slow site on Wi-Fi only, for example, starts in `path-and-link.md` and may end in `web-cdn.md`.
 
