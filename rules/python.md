@@ -12,8 +12,7 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 
 ## Layout
 
-- Keep `pyproject.toml`, `uv.lock`, and a pinned `.python-version` at the
-  repository root.
+- Keep `pyproject.toml`, `uv.lock`, and a pinned `.python-version` at the repository root.
 - Add packages with `uv add` and let uv manage the project's `.venv`.
 
 ## Build backend
@@ -26,8 +25,7 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   build-backend = "uv_build"
   ```
 
-- For standalone applications or scripts that do not publish wheels, disable
-  package building in `pyproject.toml`:
+- For standalone applications or scripts that do not publish wheels, disable package building in `pyproject.toml`:
 
   ```toml
   [tool.uv]
@@ -36,14 +34,11 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 
 ## Python version and syntax
 
-Check the target Python version in `.python-version` or `pyproject.toml`
-(`requires-python`) before writing code, and use the latest syntax supported by
-that version.
+Check the target Python version in `.python-version` or `pyproject.toml` (`requires-python`) before writing code, and use the latest syntax supported by that version.
 
 ## Lint, format, and type checking
 
-- Use `ruff` as the only linter and formatter. Start every project with all
-  rules selected and Google-style docstrings:
+- Use `ruff` as the only linter and formatter. Start every project with all rules selected and Google-style docstrings:
 
   ```toml
   [tool.ruff.lint]
@@ -55,9 +50,7 @@ that version.
   convention = "google"
   ```
 
-- Keep LF line endings on Windows. Python text mode writes CRLF there, so write
-  files with `Path.write_text(text, newline="\n")` or `write_bytes`, and set
-  ruff's format option:
+- Keep LF line endings on Windows. Python text mode writes CRLF there, so write files with `Path.write_text(text, newline="\n")` or `write_bytes`, and set ruff's format option:
 
   ```toml
   [tool.ruff.format]
@@ -73,12 +66,6 @@ that version.
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables through `uv run`.
-Typical mappings include `fmt` through `uv run ruff format`, the format step of
-`check` through `uv run --locked ruff format --check`, `lint` through
-`uv run --locked ruff check`, `typecheck` through
-`uv run --locked pyrefly check`, and `test` through `uv run --locked pytest`.
-Use `--locked` in validation recipes so stale lockfiles fail the check before uv
-can update them.
+Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings include `fmt` through `uv run ruff format`, the format step of `check` through `uv run --locked ruff format --check`, `lint` through `uv run --locked ruff check`, `typecheck` through `uv run --locked pyrefly check`, and `test` through `uv run --locked pytest`. Use `--locked` in validation recipes so stale lockfiles fail the check before uv can update them.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.

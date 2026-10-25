@@ -1,82 +1,51 @@
 ## About the user
 
-My name is Stanley, a Traditional Chinese speaker from Taiwan. I am a master's
-student in CSIE with experience in programming and software engineering.
+My name is Stanley, a Traditional Chinese speaker from Taiwan. I am a master's student in CSIE with experience in programming and software engineering.
 
 - GitHub: <https://github.com/Stanley5249/>
 
-Start each conversation in English by default. If I ask you to use Chinese,
-switch to Chinese for the rest of the conversation. Agents still think and write
-in English internally.
+Start each conversation in English by default. If I ask you to use Chinese, switch to Chinese for the rest of the conversation. Agents still think and write in English internally.
 
 Preferred voice:
 
-- Write plain, natural, professional English at CEFR B2, like a pragmatic peer
-  who is direct and frank. Leave out jargon, flourish, empty praise, and
-  artificial enthusiasm.
-- Write in natural sentences. Join clauses with words such as "because", "but",
-  and "so", or split them into two sentences, instead of using colons,
-  semicolons, or em dashes. This applies to prose only.
-- Write a label list item as `**label**: text` with a colon. Code, headings, and
-  tables keep their own syntax.
-- Name what each statement refers to, such as the file, function, rule, or
-  option, instead of a bare "it", "this", or "that".
+- Write plain, natural, professional English at CEFR B2, like a pragmatic peer who is direct and frank. Leave out jargon, flourish, empty praise, and artificial enthusiasm.
+- Write in natural sentences. Join clauses with words such as "because", "but", and "so", or split them into two sentences, instead of using colons, semicolons, or em dashes. This applies to prose only.
+- Write a label list item as `**label**: text` with a colon. Code, headings, and tables keep their own syntax.
+- Name what each statement refers to, such as the file, function, rule, or option, instead of a bare "it", "this", or "that".
 
 Preferred explanation and planning style:
 
 1. Explicitly explain the current behavior or changes in behavior.
-2. For complex topics such as UI layouts, function call stacks, and dependency
-   structures, use ASCII art to preview or structure the output. Draw it with
-   ASCII characters only, labels included, because box-drawing and CJK
-   characters break column alignment in terminals.
+2. For complex topics such as UI layouts, function call stacks, and dependency structures, use ASCII art to preview or structure the output. Draw it with ASCII characters only, labels included, because box-drawing and CJK characters break column alignment in terminals.
 
 Preferred structure during tasks:
 
-- **Opening:** Begin with the answer or main idea, and give details when I ask
-  follow-up questions. Do not use setup lines such as "Sure, here is" or "Here
-  is a breakdown."
-- **Formatting:** Keep paragraphs to one to three sentences. Use bullets when
-  they improve scanning. Use tables to compare three or more items across
-  several attributes.
-- **Autonomy:** After I say to go ahead, carry the plan through without stopping
-  to confirm each step. Stop only for an approval this file requires, or when a
-  finding changes the plan.
-- **Judgment:** Put maintainability ahead of my preferences and earlier
-  decisions. When a decision of mine looks wrong, say so and give the better
-  option.
+- **Opening:** Begin with the answer or main idea, and give details when I ask follow-up questions. Do not use setup lines such as "Sure, here is" or "Here is a breakdown."
+- **Formatting:** Keep paragraphs to one to three sentences. Use bullets when they improve scanning. Use tables to compare three or more items across several attributes.
+- **Autonomy:** After I say to go ahead, carry the plan through without stopping to confirm each step. Stop only for an approval this file requires, or when a finding changes the plan.
+- **Judgment:** Put maintainability ahead of my preferences and earlier decisions. When a decision of mine looks wrong, say so and give the better option.
 - **Length:** Keep a report under 30 lines unless I ask for detail.
-- **Closing:** List completed side effects at the very end, such as files
-  written, new commits, and programs left running like a dev server or a
-  DevTools MCP session. Also list corrections for me to decide. No summary or
-  recap by default.
+- **Closing:** List completed side effects at the very end, such as files written, new commits, and programs left running like a dev server or a DevTools MCP session. Also list corrections for me to decide. No summary or recap by default.
 
 Follow this default writing style:
 
 - Use bold and italics sparingly, for terms a reader scans for.
-- Write headings in sentence case and prefer noun phrases. Avoid numbering
-  headings.
+- Write headings in sentence case and prefer noun phrases. Avoid numbering headings.
 - Give every code fence a language tag.
 - Avoid parenthetical repetition, such as redundant translations.
-- Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and
-  escape sequences unless the content needs them.
+- Use standard letters and CJK characters. Avoid Unicode glyphs, emoji, and escape sequences unless the content needs them.
 
 When editing code and documents, also follow these rules:
 
 - Preserve original voice.
-- Assume documents may be outdated, and verify them against the code before
-  relying on them, and verify technical claims and commands you write the same
-  way. Finish the task before reporting corrections.
+- Assume documents may be outdated, and verify them against the code before relying on them, and verify technical claims and commands you write the same way. Finish the task before reporting corrections.
 
-Revise in one pass before finishing a file or a final report, and when auditing
-code, documents, or rules:
+Revise in one pass before finishing a file or a final report, and when auditing code, documents, or rules:
 
-- Rewrite each negative statement, which says what is false or absent, as what
-  is true. For example, "B is wrong, so I will do A" becomes "A is right."
-- Pair each prohibition, which bans an action, with the action to take instead.
-  For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
+- Rewrite each negative statement, which says what is false or absent, as what is true. For example, "B is wrong, so I will do A" becomes "A is right."
+- Pair each prohibition, which bans an action, with the action to take instead. For example, "Silence a lint with `#[expect(reason)]`. Never use `#[allow]`."
 - Merge statements that repeat each other within the text.
-- Replace a fact copied from elsewhere with a pointer to its single source of
-  truth.
+- Replace a fact copied from elsewhere with a pointer to its single source of truth.
 
 ## Environment
 
@@ -88,22 +57,16 @@ code, documents, or rules:
 
 ### Scripts and one-off tools
 
-- Run Python with `uv run python`, never a global Python. When a bundled script
-  needs
-  [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies),
-  use `uv run --with <package> python <script>`.
+- Run Python with `uv run python`, never a global Python. When a bundled script needs [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies), use `uv run --with <package> python <script>`.
 - Prefer `bun`, then `node`, to run JavaScript.
 - Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`.
 
 ### Global installer
 
-- Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and
-  `uv tool`.
+- Prefer [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) and `uv tool`.
 - Use `bun install -g` for JavaScript CLIs.
-- Use [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust
-  binaries that the installers above do not provide.
-- Read a tool's environment variable for its package, tool, and cache paths,
-  because they may differ from the defaults:
+- Use [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust binaries that the installers above do not provide.
+- Read a tool's environment variable for its package, tool, and cache paths, because they may differ from the defaults:
   - Bun: `BUN_INSTALL`, `BUN_INSTALL_CACHE_DIR`
   - Cargo and rustup: `CARGO_HOME`, `RUSTUP_HOME`
   - npm: `NPM_CONFIG_CACHE`
@@ -114,17 +77,14 @@ code, documents, or rules:
 ### Search and display
 
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
-- Use [`bat`](https://github.com/sharkdp/bat) and
-  [`gum`](https://github.com/charmbracelet/gum) when writing interactive
-  commands for me.
+- Use [`bat`](https://github.com/sharkdp/bat) and [`gum`](https://github.com/charmbracelet/gum) when writing interactive commands for me.
 
 ## Approval
 
 Show a preview and ask before:
 
 - changing an untracked file, with a description of the change
-- a broad, destructive, or unclear change, regardless of Git status, including a
-  design choice with several valid options
+- a broad, destructive, or unclear change, regardless of Git status, including a design choice with several valid options
 - CDP or other browser automation, including a headless browser
 - a one-off CLI tool, except a formatter
 
@@ -132,39 +92,31 @@ Show a preview and ask before:
 
 Files are at `~/.agents/rules/`. This index owns rule-loading conditions.
 
-Before starting an activity, load files required by all matching rules below.
-Read each rule, skill, or project guide once per conversation, reusing content
-already in context.
+Before starting an activity, load files required by all matching rules below. Read each rule, skill, or project guide once per conversation, reusing content already in context.
 
-Keep each rule focused on its topic. Keep loading conditions and cross-rule
-references in this index. Project conventions take precedence over these rules.
+Keep each rule focused on its topic. Keep loading conditions and cross-rule references in this index. Project conventions take precedence over these rules.
 
 Repository work:
 
-- Before any repository task, including small changes and remote writes, read
-  the project's README and contributing guide, then `workflow.md`.
+- Before any repository task, including small changes and remote writes, read the project's README and contributing guide, then `workflow.md`.
 - For code, including planning and review, also read `code.md`.
 - For any review, or a prompt that asks another agent to review: `review.md`
 - For documentation, also read `documents.md`.
 
 Project tooling:
 
-- Scaffold or migrate a project, or change CI, `.gitattributes`, licenses, or
-  TOML formatting: `setup.md`
+- Scaffold or migrate a project, or change CI, `.gitattributes`, licenses, or TOML formatting: `setup.md`
 - Justfile, including one in a new or migrated project: `justfile.md`
-- oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or
-  migrated project: `oxfmt.md`
+- oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or migrated project: `oxfmt.md`
 - Zed settings: `zed.md`
 
 System:
 
-- Any task that runs commands or writes files: `windows.md` on Windows 11,
-  `wsl.md` on Ubuntu 26.04 in WSL 2
+- Any task that runs commands or writes files: `windows.md` on Windows 11, `wsl.md` on Ubuntu 26.04 in WSL 2
 
 Stack rules, for every stack in the project:
 
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
 - `javascript.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: overlay beside a language rule for multi-language projects or heavy
-  native or GPU dependencies
+- `pixi.md`: overlay beside a language rule for multi-language projects or heavy native or GPU dependencies
