@@ -38,7 +38,7 @@ Check the target Python version in `.python-version` or `pyproject.toml` (`requi
 
 ## Lint, format, and type checking
 
-- Use `ruff` as the only linter and formatter. Start every project with all rules selected and Google-style docstrings:
+- Use `ruff` as the only linter and formatter for Python source. Start every project with all rules selected and Google-style docstrings:
 
   ```toml
   [tool.ruff.lint]

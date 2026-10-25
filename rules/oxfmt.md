@@ -60,7 +60,7 @@ The first command formats files in place. `--check` validates formatting while p
 
 ## Agent use
 
-- Write content first and format once at the end. Never fix formatting by hand, because the formatter rewrites it.
+- Write content first and format once before each commit. Never fix formatting by hand, because the formatter rewrites it.
 - Run the formatter on the files you changed, such as `bunx oxfmt <file>...`, so unrelated files stay out of the diff. Run the full `--check` before a commit.
 - Read the `--check` file list as the to-do list, and rerun the formatter on those files instead of editing them.
 - Re-read a file after formatting it before the next edit tool call, because the formatter may have changed the text.

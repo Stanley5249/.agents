@@ -73,4 +73,4 @@ Typical mappings are `fmt` to `cargo fmt --all`, the format step of `check` to `
 
 `--locked` fails the gate when `Cargo.lock` disagrees with `Cargo.toml`, so `ci` also proves the committed lockfile is current and Rust needs no `lock-check` recipe.
 
-`--all-targets` also covers tests, benches, and examples for `cargo check` and `cargo clippy`, but `cargo test --all-targets` silently skips doctests. Run `cargo test --workspace` without it, or add `--doc` alongside, when the project has doctests worth covering.
+`--all-targets` also covers tests, benches, and examples for `cargo check` and `cargo clippy`, but `cargo test --all-targets` silently skips doctests. Run `cargo test --workspace` without it, or add `--doc` alongside, when the project has doctests.
