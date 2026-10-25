@@ -11,10 +11,10 @@ Rules that look wrong but are deliberate. Read this before reviewing or changing
 - **oxfmt `printWidth` 80**: oxfmt's default is 100 according to its configuration schema, so `oxfmt.md` sets 80 to keep Prettier-era output. It does not conflict with the rule to drop settings that match the default.
 - **Installed-tool lists**: the lists in `workflow.md` and `rust.md` tell an agent which tools it may call without installing them.
 - **One-off CLI tools**: `AGENTS.md` pre-approves a tool that is installed, read-only, a formatter, or a fixer. Any other one-off tool needs approval.
-- **Judgment words**: "somewhat over" 400 lines, "clear boundary", "lazy", "changes the plan", "complex topics", and "when a second crate is likely" leave room for judgment on purpose. Do not replace them with a number.
+- **Judgment words**: "somewhat over" 400 lines, "clear boundary", "lazy", "changes the plan", "complex topics", "when a second crate is likely", and "non-trivial logic" in the test rule leave room for judgment on purpose. Do not replace them with a number.
 - **Duplicated rules across files**: a rule may repeat in two files when the files load in different situations, such as one-line Markdown paragraphs in `documents.md` and `oxfmt.md`. Rule files cannot reference each other.
 - **Reasons kept in rules**: sentences that explain why, such as the Prettier note in `zed.md` and the lockfile attributes in `setup.md`, stay because an agent follows a rule better when it knows the reason.
 - **Negative statements and prohibitions**: `AGENTS.md` rewrites a statement of absence as what is true, but keeps a prohibition paired with its replacement action. The two rules cover different sentences.
-- **No rule for when to add tests**: `tests.md` sets how to write a test and requires one for a bug fix. It leaves the decision to test new logic to the project's own habits, because a trigger such as "non-trivial" cannot be judged reliably. Add a rule only after agents are seen writing bad or missing tests.
-- **pixi beside uv or cargo**: `AGENTS.md` lists `pixi.md` as project tooling, not a language stack. A project rarely mixes pixi with uv or cargo for the same tools, so no rule sets precedence between them.
+- **pixi beside uv or cargo**: `AGENTS.md` lists `pixi.md` as project tooling, not a language stack. A project uses one of them, or they are interchangeable, so no rule sets precedence between them.
+- **No review rule**: the `quality-review` and `feedback-loop` skills cover reviews, so no rule file does. A review prompt outside the skills gets no rule.
 - **Haiku reviews**: Haiku invents numeric thresholds and flags author-chosen judgment words. Verify each finding before editing.
