@@ -118,7 +118,5 @@ prompt a review:
 
 ## Review
 
-- Rank findings in this order: correct, safe, holds under load, tested, fast,
-  lean.
 - Check decisions recorded in docs against the rules they serve, and report a
   decision whose cost a rule forbids.
