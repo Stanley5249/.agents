@@ -15,7 +15,7 @@ git clone https://github.com/Stanley5249/.agents.git
 - [`AGENTS.md`](AGENTS.md): shared instructions and the index of applicable rules.
 - [`rules/`](rules/): guidance loaded for specific activities.
 - [`skills/`](skills/): skills with a `SKILL.md` entry point and optional supporting files.
-- [`docs/`](docs/): notes on adapted upstream work, such as [Ponytail](docs/ponytail.md).
+- [`docs/ponytail.md`](docs/ponytail.md): notes on the adapted upstream work, Ponytail.
 - [`docs/decisions.md`](docs/decisions.md): deliberate rule decisions to read before reviewing rules.
 
 ## Usage

@@ -82,7 +82,7 @@ Revise in one pass before finishing a file or a final report, and when auditing 
 Show a preview and ask before:
 
 - changing an untracked file, with a description of the change
-- a broad, destructive, or unclear change, regardless of Git status, including a design choice with several valid options
+- a design choice with several valid options
 - CDP or other browser automation, including a headless browser
 - a one-off CLI tool, unless it is installed, read-only, a formatter, or a fixer
 
