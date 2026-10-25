@@ -56,7 +56,7 @@ Revise in one pass before finishing a file or a final report, and when auditing 
 ### Scripts and one-off tools
 
 - Run Python with `uv run python`, never a global Python. When a bundled script needs [undeclared packages](https://docs.astral.sh/uv/guides/scripts/#running-a-script-with-dependencies), use `uv run --with <package> python <script>`.
-- Prefer `bun`, then `node`, to run JavaScript.
+- Run JavaScript with `bun`.
 - Run a one-off CLI tool with `uvx --with <package> <command>` or `bunx`.
 
 ### Global installer
@@ -85,6 +85,7 @@ Show a preview and ask before:
 - a design choice with several valid options
 - CDP or other browser automation, including a headless browser
 - a one-off CLI tool, unless it is installed, read-only, a formatter, or a fixer
+- adding or using `node`
 
 ## Rules
 
