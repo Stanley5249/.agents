@@ -19,7 +19,7 @@ Decide this before the first edit, because choosing a branch after the work mean
 
 ## Plan
 
-- For a large change, write the target shape first: files, types, signatures, invariants, and a list of what gets deleted. Review that skeleton before writing logic.
+- For a change that adds, moves, or deletes files or changes a public signature, write the target shape first: files, types, signatures, invariants, and a list of what gets deleted. Review that skeleton before writing logic.
 - State an issue as a direction and a target shape, with the reasons, instead of a list of prohibitions.
 
 ## Delegation
