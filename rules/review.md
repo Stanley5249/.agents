@@ -14,4 +14,4 @@ How to review work, and how to write a review prompt for another agent.
 
 - Check each finding against the code before acting on it. A reviewer can cite the wrong line or misread intent.
 - Say which findings you did not take, and why.
-- Rank findings in this order: correct, safe, holds under load, tested, fast, lean.
+- Rank findings by impact, which orders them like this: correct, safe, holds under load, tested, fast, lean.
