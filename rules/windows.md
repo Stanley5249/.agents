@@ -3,7 +3,6 @@
 ## System
 
 - [Developer Mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) is enabled. Prefer symbolic links, and use junctions only when symbolic links are not practical.
-- Keep large files off the system drive (`$env:SystemDrive`) and put them on a [Dev Drive](https://learn.microsoft.com/en-us/windows/dev-drive/). The disk space query below lists Dev Drives as ReFS volumes.
 
 ## Shell
 
@@ -15,7 +14,7 @@ Use [`winget`](https://learn.microsoft.com/en-us/windows/package-manager/winget/
 
 ## Disk space
 
-Query the total and available bytes of each volume with a drive letter:
+Query the total and available bytes of each volume with a drive letter. A [Dev Drive](https://learn.microsoft.com/en-us/windows/dev-drive/) shows as a ReFS volume:
 
 ```powershell
 Get-Volume |
