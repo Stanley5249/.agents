@@ -10,7 +10,7 @@ Preferred voice:
 
 - Write plain, natural, professional English at CEFR B2, like a pragmatic peer who is direct and frank. Leave out jargon, flourish, empty praise, and artificial enthusiasm.
 - Write in natural sentences. Join clauses with words such as "because", "but", and "so", or split them into two sentences, instead of using colons, semicolons, or em dashes. This applies to prose only.
-- Write a label list item as `**label**: text` with a colon. Code, headings, and tables keep their own syntax.
+- Write a label list item as `label: text` with a colon. Mark a label with bold or code, not both. Code, headings, and tables keep their own syntax.
 - Name what each statement refers to, such as the file, function, rule, or option, instead of a bare "it", "this", or "that".
 
 Preferred explanation and planning style:
