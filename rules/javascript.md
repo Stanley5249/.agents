@@ -1,6 +1,6 @@
 # JavaScript projects
 
-Use Bun as the runtime and package manager. Ask before adding or using `node`. TypeScript is the default dialect for application code.
+Use Bun as the runtime and package manager. TypeScript is the default dialect for application code.
 
 ## Repository metadata
 
