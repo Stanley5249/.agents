@@ -16,4 +16,5 @@ Rules that look wrong but are deliberate. Read this before reviewing or changing
 - **Reasons kept in rules**: sentences that explain why, such as the Prettier note in `zed.md` and the lockfile attributes in `setup.md`, stay because an agent follows a rule better when it knows the reason.
 - **Negative statements and prohibitions**: `AGENTS.md` rewrites a statement of absence as what is true, but keeps a prohibition paired with its replacement action. The two rules cover different sentences.
 - **No rule for when to add tests**: `tests.md` sets how to write a test and requires one for a bug fix. It leaves the decision to test new logic to the project's own habits, because a trigger such as "non-trivial" cannot be judged reliably. Add a rule only after agents are seen writing bad or missing tests.
+- **pixi beside uv or cargo**: `AGENTS.md` lists `pixi.md` as project tooling, not a language stack. A project rarely mixes pixi with uv or cargo for the same tools, so no rule sets precedence between them.
 - **Haiku reviews**: Haiku invents numeric thresholds and flags author-chosen judgment words. Verify each finding before editing.

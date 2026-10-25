@@ -109,6 +109,7 @@ Project tooling:
 - Justfile, including one in a new or migrated project: `justfile.md`
 - oxfmt, wherever it runs, or oxfmt-supported formatting, including in a new or migrated project: `oxfmt.md`
 - Zed settings: `zed.md`
+- A project that uses or needs pixi, such as multi-language or native or GPU dependencies that PyPI or crates.io cannot provide: `pixi.md`
 
 System:
 
@@ -119,4 +120,3 @@ Stack rules, for every stack in the project:
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
 - `javascript.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: overlay beside a language rule for multi-language projects or native or GPU dependencies that PyPI or crates.io cannot provide
