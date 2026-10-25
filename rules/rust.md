@@ -55,7 +55,7 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 - `cargo-deny` with a `deny.toml` for dependency, license, and advisory checks
 - `release-plz` for automated version bumps and release PRs
 
-Add these once the project ships releases. Until then, the local gate is enough.
+Add these once the project ships releases.
 
 ## Toolchain pinning
 

@@ -23,6 +23,6 @@ bun.lock merge=binary linguist-language=JSON linguist-generated=true -diff
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables directly, and run `devDependencies` tools with `bun run <tool>`. Map `test` to `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install` only when a dedicated `bun install` entry point is useful to the workflow.
+Put commands in justfile recipes that invoke local executables, and run `devDependencies` tools with `bun run <tool>`. Map `test` to `bun test`; `typecheck`, `lint`, `dev`, and `build` depend on the frontend tooling in use. Add `install` only when a dedicated `bun install` entry point is useful to the workflow.
 
 Add a `lock-check` recipe that runs `bun install --frozen-lockfile` and include it in `ci`.
