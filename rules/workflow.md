@@ -28,6 +28,19 @@ means moving the commits onto it.
 - Before a commit, run the formatter, fast static checks, and the tests for the
   changed code. Leave the full suite and slow builds for the end of the task.
 
+## Plan
+
+- For a large change, write the target shape first: files, types, signatures,
+  invariants, and a list of what gets deleted. Review that skeleton before
+  writing logic.
+- State an issue as a direction and a target shape, with the reasons, instead of
+  a list of prohibitions.
+
+## Delegation
+
+- Delegate only work whose skeleton is fixed and whose result can be checked on
+  its own, such as porting tests or applying a reviewed rename.
+
 ## Ignore
 
 - Ignore files that every clone produces, such as build outputs and `.env`, in
@@ -100,6 +113,8 @@ a compatibility contract.
 
 - Only published projects keep a changelog. Generate it or the release notes
   with [`git-cliff`](https://git-cliff.org/) from Conventional Commits.
+- Describe a release by its net change to the public API since the previous
+  release. Leave out changes that a later change in the same release replaced.
 - Changelogs and release notes may use emoji, such as in section headings.
 
 ## Tools
