@@ -80,7 +80,7 @@ Use `!` and `BREAKING CHANGE` only after the project has been published, meaning
 ### Before planning a PR
 
 - Search for duplicates in open and closed PRs and issues.
-- If a related PR has had no activity for 30 days and is not merged, report it to the user and ask before opening another PR in that area.
+- If a related PR has had no review or maintainer reply for 30 days and is not merged, report it to the user and ask before opening another PR in that area.
 
 ## Release
 
