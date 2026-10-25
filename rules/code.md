@@ -41,7 +41,7 @@ Size is a signal for review, not a cap:
 
 ## Compatibility
 
-- In my own unpublished project, change interfaces, formats, and schemas in place and remove the old form.
+- A project is published when it has a release tag or a registry package. In my own unpublished project, change interfaces, formats, and schemas in place and remove the old form.
 - In my own published project, keep them compatible, and ask before a breaking change that gives a clearly cleaner design.
 - In other projects, keep them compatible.
 
