@@ -47,8 +47,8 @@ Add more sections when appropriate, such as:
   their own case.
 - Use a tight list, with no blank lines, unless most items hold paragraphs or
   code blocks.
-- Write a paragraph or list item on one line. Leave wrapping to the project's
-  formatter, never to hand-placed line breaks.
+- Write each paragraph or list item on one line. The formatter joins
+  hand-wrapped lines, so never wrap by hand.
 - Link to a stable target, such as a relative path or the latest page of a
   library's docs. Pin a commit SHA only to cite that exact version as evidence.
 - Search for anchor links to a heading in the same commit that renames it.

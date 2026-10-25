@@ -55,6 +55,15 @@ that version.
   convention = "google"
   ```
 
+- Keep LF line endings on Windows. Python text mode writes CRLF there, so write
+  files with `Path.write_text(text, newline="\n")` or `write_bytes`, and set
+  ruff's format option:
+
+  ```toml
+  [tool.ruff.format]
+  line-ending = "lf"
+  ```
+
 - Type-check with pyrefly's strict preset:
 
   ```toml

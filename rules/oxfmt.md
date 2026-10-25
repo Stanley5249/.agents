@@ -22,7 +22,7 @@ running version:
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "printWidth": 80,
-  "proseWrap": "always"
+  "proseWrap": "never"
 }
 ```
 
@@ -36,14 +36,18 @@ to match it. The settings below are the ones that usually matter:
 | Setting           | Why set it                                                                |
 | ----------------- | ------------------------------------------------------------------------- |
 | `printWidth`      | Prettier's default is 80, so set 80 to keep Prettier-era output unchanged |
-| `proseWrap`       | `"always"` wraps Markdown prose; keep the default if line breaks matter   |
+| `proseWrap`       | `"never"` puts each Markdown paragraph on one line, so edits stay local   |
 | `svelte`          | `{}` enables `.svelte` files and needs the `svelte` package installed     |
 | `sortTailwindcss` | `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4       |
 | `ignorePatterns`  | gitignore-style globs, rooted at the directory holding the config         |
 
-`proseWrap: "always"` breaks lines only at spaces. A paragraph of Chinese or
-Japanese without spaces stays on one line, because a line break between two CJK
-characters renders as a space in Markdown. Prettier behaves the same way.
+`proseWrap: "never"` joins lines at spaces, so a hand-wrapped paragraph becomes
+one line and a rewritten sentence changes only its own line. A line break
+between two CJK characters stays as written, because joining would add a space
+in the rendered text. The default `"preserve"` keeps every line break and cannot
+fix a hand-wrapped paragraph. `"always"` rewraps the whole paragraph after a
+one-word edit, so an agent's edit can miss its target text and the diff covers
+every line.
 
 ## Ignores
 
@@ -81,6 +85,19 @@ bunx oxfmt --check
 
 The first command formats files in place. `--check` validates formatting while
 preserving files.
+
+## Agent use
+
+- Write content first and format once at the end. Never fix formatting by hand,
+  because the formatter rewrites it.
+- Run the formatter on the files you changed, such as `bunx oxfmt <file>...`, so
+  unrelated files stay out of the diff. Run the full `--check` before a commit.
+- Read the `--check` file list as the to-do list, and rerun the formatter on
+  those files instead of editing them.
+- Re-read a file after formatting it before the next edit tool call, because the
+  line breaks may have changed.
+- Keep line endings LF. oxfmt defaults to `endOfLine: "lf"`, so leave the
+  setting out.
 
 ## Migration from Prettier
 
