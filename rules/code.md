@@ -29,8 +29,13 @@ Take the first option that fully works:
   needs, including the callers, tests, and fixtures the change breaks.
 - Write only the abstractions, wrappers, type conversions, options, config, and
   boilerplate the task needs now, and leave out "for later" code. Keep values in
-  the form the platform already gives. Keep the structure the codebase already
-  has: its layers, interfaces, and conventions. Prefer deletion to addition.
+  the form the platform already gives. For a fix or a small feature, keep the
+  structure the codebase already has: its layers, interfaces, and conventions.
+  Prefer deletion to addition.
+- For a redesign, build to the reviewed target design. Port old code only where
+  it fits the target, and delete the rest.
+- Remove a type, field, or layer whose only reason is to keep another part
+  working.
 - The working change with the least new code wins, once you know everything it
   must touch. A one-liner that needs decoding is not short.
 - For a bug fix, grep every caller of the function you touch before you edit,
@@ -44,12 +49,13 @@ the user asked for.
 
 ## Quality
 
-I insist on project quality and a clean, modular codebase. These size thresholds
-prompt a review:
+I insist on project quality and a clean, modular codebase. Size is a signal for
+review, not a cap:
 
-- When a single hand-maintained code file grows beyond 400 lines, consider
-  splitting it into focused modules. If keeping it together is clearer, record
-  the reason in the file-level documentation.
+- Aim for files a reader can review in one sitting, about 400 lines. Going
+  somewhat over is fine. Split a file along a concept boundary when the boundary
+  is clear and the timing is right, such as while changing the file anyway. Keep
+  code and comments at their natural size instead of compressing them to fit.
 - When a subdirectory or module contains more than eight hand-maintained files,
   consider modularizing it or simplifying its structure.
 
@@ -115,6 +121,12 @@ prompt a review:
 - Give new non-trivial logic, such as a branch, a loop, a parser, money or
   security code, or a new script or app, one small test or an assert-based
   self-check. A trivial change needs neither.
+- Test each rule at the layer that decides it. When decision logic is separate
+  from I/O, test it with plain inputs and outputs, and test the I/O layer only
+  for waiting, cancellation, and cleanup.
+- Synchronize a test on an explicit event, such as a message, a channel end, or
+  a virtual clock. A fixed wait fails on a slow machine, and a check that
+  something did not happen still passes when it happens after the wait.
 
 ## Review
 
