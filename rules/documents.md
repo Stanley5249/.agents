@@ -39,6 +39,7 @@ Add more sections when appropriate, such as:
 - Write each paragraph or list item on one line. Never wrap by hand, because a one-word edit then stays on one line.
 - Link to a stable target, such as a relative path or the latest page of a library's docs. Pin a commit SHA only to cite that exact version as evidence.
 - Search for anchor links to a heading in the same commit that renames it.
+- Keep table cells to a few words. In a review, flag a table with a sentence in a cell or a row longer than 80 characters, and suggest sections or a `**label**: text` list.
 
 ## Document locations
 
