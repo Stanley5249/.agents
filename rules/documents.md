@@ -33,15 +33,30 @@ Add more sections when appropriate, such as:
 
 ## Agent instruction files
 
+- Keep the project's `AGENTS.md` as an index that every task loads. List each
+  doc with the facts it holds and when to read it, then the few rules every task
+  needs. Put detailed rules in docs that the index points to.
 - In a monorepo, move subproject rules to `<subproject>/AGENTS.md` when they
   start to fill the root `AGENTS.md`.
 - Refer to the global instructions instead of repeating them.
 - Add personal workflow or preferences only when the user asks.
+
+## Markdown
+
+- Write headings in sentence case. Keep proper nouns, package names, and code in
+  their own case.
+- Use a tight list, with no blank lines, unless most items hold paragraphs or
+  code blocks.
+- Write a paragraph or list item on one line. Leave wrapping to the project's
+  formatter, never to hand-placed line breaks.
+- Link to a stable target, such as a relative path or the latest page of a
+  library's docs. Pin a commit SHA only to cite that exact version as evidence.
+- Search for anchor links to a heading in the same commit that renames it.
 
 ## Document locations
 
 - When the project has no document location, start at `docs/`. Otherwise follow
   the project convention.
 - Only the index, `README.md` or `AGENTS.md`, links to docs. A doc that needs
-  another one names it in prose, and code comments explain themselves without
-  doc links by default.
+  another one names it in prose only when the reader needs it to finish the
+  task, and code comments explain themselves without doc links by default.
