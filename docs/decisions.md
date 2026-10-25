@@ -17,4 +17,7 @@ Rules that look wrong but are deliberate. Read this before reviewing or changing
 - **Negative statements and prohibitions**: `AGENTS.md` rewrites a statement of absence as what is true, but keeps a prohibition paired with its replacement action. The two rules cover different sentences.
 - **pixi beside uv or cargo**: `AGENTS.md` lists `pixi.md` as project tooling, not a language stack. A project uses one of them, or they are interchangeable, so no rule sets precedence between them.
 - **No review rule**: the `quality-review` and `feedback-loop` skills cover reviews, so no rule file does. A review prompt outside the skills gets no rule.
+- **`[parallel]` without a timing test**: `justfile.md` marks a recipe `[parallel]` without checking how long its jobs take, because an agent cannot see run time without measuring it.
+- **No disk placement rule**: `windows.md` lists volumes, including Dev Drives, but says nothing about where files go, so agents spend no effort on drive choice.
+- **Weak sentences removed**: lines an agent cannot act on, such as "keep documents minimal and concise", "I insist on project quality", and "consider splitting", stay out. Replace a vague trigger with an observable one instead of softening it.
 - **Haiku reviews**: Haiku invents numeric thresholds and flags author-chosen judgment words. Verify each finding before editing.
