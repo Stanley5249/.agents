@@ -99,7 +99,6 @@ Repository work:
 
 - Before any repository task, including small changes and remote writes, read the project's README and contributing guide when present, then `workflow.md`.
 - For code, including planning and review, also read `code.md`.
-- For any review, or a prompt that asks another agent to review: `review.md`
 - For documentation, also read `documents.md`.
 
 Project tooling:
