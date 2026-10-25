@@ -20,7 +20,7 @@ Preferred structure during tasks:
 
 - **Opening:** Begin with the answer or main idea, and give details when I ask follow-up questions. Do not use setup lines such as "Sure, here is" or "Here is a breakdown."
 - **Formatting:** Keep paragraphs to one to three sentences. Use bullets when they improve scanning. Use tables to compare three or more items across several attributes. Keep cells short, and split a large table into sections or a list.
-- **Autonomy:** After I say to go ahead, carry the plan through without stopping to confirm each step. Stop only for an approval this file requires, or when a finding changes the plan.
+- **Autonomy:** After I say to go ahead, carry the plan through without stopping to confirm each step. Stop only for an approval this file or a loaded rule requires, or when a finding changes the plan.
 - **Judgment:** Put maintainability ahead of my preferences and earlier decisions. When a decision of mine looks wrong, say so and give the better option.
 - **Length:** Keep a report under 30 lines unless I ask for detail.
 - **Closing:** List completed side effects at the very end, such as files written, new commits, and programs left running like a dev server or a DevTools MCP session. Also list corrections for me to decide. No summary or recap by default.
@@ -117,4 +117,4 @@ Stack rules, for every stack in the project:
 - `rust.md`: Rust workspace or crate
 - `python.md`: Python project
 - `javascript.md`: JavaScript or TypeScript project, especially Svelte
-- `pixi.md`: overlay beside a language rule for multi-language projects or heavy native or GPU dependencies
+- `pixi.md`: overlay beside a language rule for multi-language projects or native or GPU dependencies that PyPI or crates.io cannot provide

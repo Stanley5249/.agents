@@ -91,7 +91,3 @@ Use `!` and `BREAKING CHANGE` only after the project has been published and has 
 ## Tools
 
 `git`, [`git-filter-repo`](https://github.com/newren/git-filter-repo), and `gh` are installed.
-
-## Reference
-
-- [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/)

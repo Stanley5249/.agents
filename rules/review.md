@@ -7,7 +7,7 @@ How to review work, and how to write a review prompt for another agent.
 - Name the scope exactly: the files, commits, or diff to read, and what to leave out.
 - State the intent the work must meet, and the rules to check, by file and section.
 - Ask for verification with tools before a finding, such as a search, a test, or a build, and for each finding to quote the text it is about verbatim.
-- Ask only for findings that change behavior, correctness, or maintainability, ranked by impact, and set an output length the reader can act on.
+- Ask only for findings that change behavior, correctness, or maintainability, ranked by impact, and set a maximum number of findings.
 - Keep the review read-only, and say so.
 
 ## Findings

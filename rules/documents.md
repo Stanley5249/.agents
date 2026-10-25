@@ -4,7 +4,7 @@
 
 - Keep documents minimal and concise.
 - State each fact once, in a single source of truth. Point to code and manifests for facts that change, such as versions, counts, and file lists.
-- When a hand-maintained document grows beyond 400 lines, consider splitting it into focused documents. If keeping it together is clearer, say why at its top.
+- When a hand-maintained document grows beyond 400 lines, split it into focused documents, or say at its top why it stays whole.
 - Ask for approval before adding sections to or restructuring `README.md`, `AGENTS.md`, or other documents. Keep existing content accurate without asking.
 
 ## README

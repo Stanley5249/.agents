@@ -2,7 +2,7 @@
 
 ## When to use pixi
 
-Pixi is for multi-language projects or projects with heavy native or GPU dependencies, such as a cargo workspace that also needs a pinned CUDA toolchain from conda-forge. Plain Rust or Python projects use cargo or uv directly, because pixi's conda-forge toolchain handling pays off only when native dependencies need it.
+Pixi is for multi-language projects or projects with native or GPU dependencies that PyPI or crates.io cannot provide, such as a cargo workspace that also needs a pinned CUDA toolchain from conda-forge. Plain Rust or Python projects use cargo or uv directly, because pixi's conda-forge toolchain handling pays off only when native dependencies need it.
 
 ## Repository metadata
 

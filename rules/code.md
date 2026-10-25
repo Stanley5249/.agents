@@ -30,9 +30,9 @@ Never cut validation at trust boundaries, error handling that prevents data loss
 
 ## Quality
 
-I insist on project quality and a clean, modular codebase. Size is a signal for review, not a cap:
+Size is a signal for review, not a cap:
 
-- Aim for files a reader can review in one sitting, about 400 lines. Going somewhat over is fine. Split a file along a concept boundary when the boundary is clear and the timing is right, such as while changing the file anyway. Keep code and comments at their natural size instead of compressing them to fit.
+- Aim for files a reader can review in one sitting, about 400 lines. Going somewhat over is fine. Split a file along a concept boundary when the current change already edits that file and the boundary is clear. Keep code and comments at their natural size instead of compressing them to fit.
 - When a subdirectory or module contains more than eight hand-maintained files, consider modularizing it or simplifying its structure.
 
 ## Comments
