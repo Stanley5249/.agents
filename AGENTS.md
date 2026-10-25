@@ -100,6 +100,7 @@ Repository work:
 - For code, including planning and review, also read `code.md`.
 - For any review, or a prompt that asks another agent to review: `review.md`
 - For documentation, also read `documents.md`.
+- To write, change, or review tests, or to fix a bug: `tests.md`
 
 Project tooling:
 
