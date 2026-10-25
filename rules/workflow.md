@@ -84,7 +84,7 @@ Use `!` and `BREAKING CHANGE` only after the project has been published, meaning
 
 ## Release
 
-- Only published projects, those with a release tag or a registry package, keep a changelog. Generate it or the release notes with [`git-cliff`](https://git-cliff.org/) from Conventional Commits.
+- Only published projects, as defined under Exceptions, keep a changelog. Generate it or the release notes with [`git-cliff`](https://git-cliff.org/) from Conventional Commits.
 - Describe a release by its net change to the public API since the previous release. Leave out changes that a later change in the same release replaced.
 - Changelogs and release notes may use emoji, such as in section headings.
 
