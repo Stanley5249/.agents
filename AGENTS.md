@@ -85,7 +85,7 @@ Show a preview and ask before:
 - deleting or overwriting anything Git cannot restore, such as uncommitted changes, ignored files, or files outside the repository
 - a design choice with several valid options
 - CDP or other browser automation, including a headless browser
-- a one-off CLI tool, unless it is installed, read-only, a formatter, or a fixer
+- a one-off CLI tool, unless it is installed, a formatter, or a fixer
 - adding or using `node`
 
 ## Rules

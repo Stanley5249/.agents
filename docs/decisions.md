@@ -10,7 +10,7 @@ Rules that look wrong but are deliberate. Read this before reviewing or changing
 - **Lockfile checks**: `rust.md` needs no `lock-check` recipe because `--locked` covers `Cargo.lock`. `pixi.md` and `python.md` need one for `pixi.lock` and `uv.lock`.
 - **oxfmt `printWidth` 80**: oxfmt's default is 100 according to its configuration schema, so `oxfmt.md` sets 80 to keep Prettier-era output. It does not conflict with the rule to drop settings that match the default.
 - **Installed-tool lists**: the lists in `workflow.md` and `rust.md` tell an agent which tools it may call without installing them.
-- **One-off CLI tools**: `AGENTS.md` pre-approves a tool that is installed, read-only, a formatter, or a fixer. Any other one-off tool needs approval.
+- **One-off CLI tools**: `AGENTS.md` pre-approves a tool that is installed, a formatter, or a fixer. Any other one-off tool needs approval, including a read-only one, because a downloaded package runs its own code.
 - **Judgment words**: "somewhat over" 400 lines, "clear boundary", "lazy", "changes the plan", "complex topics", "when a second crate is likely", and "non-trivial logic" in the test rule leave room for judgment on purpose. Do not replace them with a number.
 - **Duplicated rules across files**: a rule may repeat in two files when the files load in different situations, such as one-line Markdown paragraphs in `documents.md` and `oxfmt.md`. Rule files cannot reference each other.
 - **Reasons kept in rules**: sentences that explain why, such as the Prettier note in `zed.md` and the lockfile attributes in `setup.md`, stay because an agent follows a rule better when it knows the reason.
