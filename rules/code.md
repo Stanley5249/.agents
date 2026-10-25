@@ -73,6 +73,13 @@ Size is a signal for review, not a cap:
 
 - Silence a lint at the narrowest scope, such as one line or one item, with a reason. Turn a lint off project-wide only in the lint config, with a comment that says why.
 
+## Tests
+
+- For a bug fix, write a test that fails without the fix.
+- Give new non-trivial logic, such as a branch, a loop, a parser, money or security code, or a new script or app, one small test or an assert-based self-check. A trivial change needs neither.
+- Test each rule at the layer that decides it. When decision logic is separate from I/O, test it with plain inputs and outputs, and test the I/O layer only for waiting, cancellation, and cleanup.
+- Synchronize a test on an explicit event, such as a message, a channel end, or a virtual clock. A fixed wait fails on a slow machine, and a check that something did not happen still passes when it happens after the wait.
+
 ## Review
 
 - Check decisions recorded in docs against the rules they serve, and report a decision whose cost a rule forbids.
