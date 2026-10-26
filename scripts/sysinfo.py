@@ -10,6 +10,7 @@ import argparse
 import json
 import os
 import platform
+import re
 import shutil
 import subprocess
 import sys
@@ -106,17 +107,11 @@ def cpu_name() -> str | None:
         name = registry_value(key, "ProcessorNameString")
         return str(name).strip() if name else None
     try:
-        lines = Path("/proc/cpuinfo").read_text().splitlines()
+        cpuinfo = Path("/proc/cpuinfo").read_text()
     except OSError:
         return None
-    return next(
-        (
-            line.partition(":")[2].strip()
-            for line in lines
-            if line.startswith("model name")
-        ),
-        None,
-    )
+    match = re.search(r"^model name\s*:\s*(.+)$", cpuinfo, re.MULTILINE)
+    return match[1].strip() if match else None
 
 
 def memory_bytes() -> int | None:
@@ -169,9 +164,8 @@ def gpus() -> list[str] | None:
         output = run("reg.exe", "query", key, "/s", "/v", "DriverDesc")
         if output is None:
             return None
-        # Each match looks like "    DriverDesc    REG_SZ    <name>".
-        lines = (line.split(None, 2) for line in output.splitlines())
-        return [parts[2] for parts in lines if parts[:1] == ["DriverDesc"]]
+        pattern = re.compile(r"DriverDesc\s+REG_SZ\s+(.+)")
+        return [m[1].strip() for m in map(pattern.search, output.splitlines()) if m]
     output = run("lspci")
     if output is None:
         return None
