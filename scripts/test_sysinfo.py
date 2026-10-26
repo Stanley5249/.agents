@@ -73,5 +73,95 @@ class EnvironmentTests(unittest.TestCase):
         self.assertIn(b"environment", result.stdout)
 
 
+class CommandTests(unittest.TestCase):
+    def test_run_returns_none_on_command_failure(self):
+        result = subprocess.CompletedProcess(["tool"], 1, b"partial output", b"error")
+        with patch.object(sysinfo.subprocess, "run", return_value=result):
+            self.assertIsNone(sysinfo.run("tool"))
+
+    def test_run_returns_none_on_timeout_or_missing_command(self):
+        for error in (subprocess.TimeoutExpired("tool", 30), FileNotFoundError()):
+            with (
+                self.subTest(error=type(error).__name__),
+                patch.object(sysinfo.subprocess, "run", side_effect=error),
+            ):
+                self.assertIsNone(sysinfo.run("tool"))
+
+
+class PackageTests(unittest.TestCase):
+    def test_output_lines_preserves_indentation_and_blank_lines(self):
+        with patch.object(sysinfo, "run", return_value="package\n  executable\n\nnext"):
+            self.assertEqual(
+                sysinfo.output_lines("tool", "list"),
+                ["package", "  executable", "", "next"],
+            )
+
+    def test_packages_distinguish_empty_output_from_failure(self):
+        with patch.object(sysinfo, "run", side_effect=["", None, "cargo", "bun"]):
+            self.assertEqual(
+                sysinfo.packages_section(),
+                {"pixi": [], "uv": None, "cargo": ["cargo"], "bun": ["bun"]},
+            )
+
+
+class PixiTests(unittest.TestCase):
+    def test_invalid_json_returns_none(self):
+        for output in ("not json", ""):
+            with (
+                self.subTest(output=output),
+                patch.object(sysinfo, "run", return_value=output),
+            ):
+                self.assertIsNone(sysinfo.pixi_paths())
+
+    def test_command_failure_returns_none(self):
+        with patch.object(sysinfo, "run", return_value=None):
+            self.assertIsNone(sysinfo.pixi_paths())
+
+    def test_valid_json_extracts_paths(self):
+        output = json.dumps(
+            {
+                "global_info": {"bin_dir": "bin", "env_dir": "envs"},
+                "cache_dir": "cache",
+            }
+        )
+        with patch.object(sysinfo, "run", return_value=output):
+            self.assertEqual(
+                sysinfo.pixi_paths(), {"bin": "bin", "envs": "envs", "cache": "cache"}
+            )
+
+
+class WslTests(unittest.TestCase):
+    def test_windows_distro_lines_are_trimmed(self):
+        with (
+            patch.object(sysinfo, "PLATFORM", sysinfo.WINDOWS),
+            patch.object(
+                sysinfo, "run", return_value=" Ubuntu\r\n\r\n Custom Distro \r\n"
+            ) as run,
+        ):
+            self.assertEqual(sysinfo.wsl_distros(), ["Ubuntu", "Custom Distro"])
+            run.assert_called_once_with(
+                "wsl", "--list", "--quiet", encoding="utf-16-le"
+            )
+
+    def test_windows_distinguishes_no_distros_from_command_failure(self):
+        for output, expected in (("", []), (None, None)):
+            with (
+                self.subTest(output=output),
+                patch.object(sysinfo, "PLATFORM", sysinfo.WINDOWS),
+                patch.object(sysinfo, "run", return_value=output),
+            ):
+                self.assertEqual(sysinfo.wsl_distros(), expected)
+
+    def test_non_windows_skips_command(self):
+        for platform in (sysinfo.WSL, "linux"):
+            with (
+                self.subTest(platform=platform),
+                patch.object(sysinfo, "PLATFORM", platform),
+                patch.object(sysinfo, "run") as run,
+            ):
+                self.assertIsNone(sysinfo.wsl_distros())
+                run.assert_not_called()
+
+
 if __name__ == "__main__":
     unittest.main()

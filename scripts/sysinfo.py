@@ -219,7 +219,10 @@ def pixi_paths() -> dict | None:
     output = run("pixi", "info", "--json")
     if output is None:
         return None
-    info = json.loads(output)
+    try:
+        info = json.loads(output)
+    except json.JSONDecodeError:
+        return None  # Invalid tool output is unavailable data, like a failed command.
     global_info = info.get("global_info") or {}
     return {
         "bin": global_info.get("bin_dir"),
