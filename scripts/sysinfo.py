@@ -1,7 +1,7 @@
 # /// script
 # requires-python = ">=3.12"
 # ///
-"""Print environment and machine facts as compact UTF-8 JSON.
+"""Print environment and machine facts as UTF-8 JSON.
 
 Requires Python 3.12+. Environment facts describe this Python process.
 """
@@ -177,7 +177,9 @@ def wsl_distros() -> list[str] | None:
     if PLATFORM != WINDOWS:
         return None
     # wsl.exe prints UTF-16 regardless of the console code page.
-    output = run("wsl", "--list", "--quiet", encoding="utf-16-le") or ""
+    output = run("wsl", "--list", "--quiet", encoding="utf-16-le")
+    if output is None:
+        return None
     return [line.strip() for line in output.splitlines() if line.strip()]
 
 
