@@ -265,13 +265,18 @@ def paths_section() -> dict:
 # packages
 
 
+def output_lines(*command: str) -> list[str] | None:
+    output = run(*command)
+    return None if output is None else output.splitlines()
+
+
 def packages_section() -> dict:
-    # The list formats differ per tool, so the raw output is the data.
+    # The list formats differ per tool, so the raw lines are the data.
     return {
-        "pixi": run("pixi", "global", "list"),
-        "uv": run("uv", "tool", "list"),
-        "cargo": run("cargo", "install", "--list"),
-        "bun": run("bun", "pm", "ls", "--global"),
+        "pixi": output_lines("pixi", "global", "list"),
+        "uv": output_lines("uv", "tool", "list"),
+        "cargo": output_lines("cargo", "install", "--list"),
+        "bun": output_lines("bun", "pm", "ls", "--global"),
     }
 
 
