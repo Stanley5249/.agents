@@ -50,7 +50,7 @@ Before environment-dependent work, read `environment` once per execution environ
 - `machine`: platform, OS, CPU, cores, memory, GPUs, and WSL.
 - `paths`: bin, package source, and cache directories of uv, pixi, cargo, and bun. Read it before exploring the source of an installed package.
 - `packages`: global packages of pixi, uv, cargo, and bun. Read it before installing a tool.
-- `disk`: volume sizes, Dev Drives, and on Windows, the preferred link type. Read it before a large download or build, or before creating a link.
+- `disk`: volume sizes, Windows file systems, and Developer Mode. Read it before a large download or build, or before creating a link.
 
 ## Approval
 

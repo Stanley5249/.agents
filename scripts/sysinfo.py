@@ -14,7 +14,6 @@ import re
 import shutil
 import subprocess
 import sys
-import tomllib
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
@@ -144,12 +143,16 @@ def memory_bytes() -> int | None:
         return None
 
 
-def gpus() -> list[str]:
+def gpus() -> list[str] | None:
     if ON_WINDOWS:
         import winreg
 
         names = []
-        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, DISPLAY_CLASS) as root:
+        try:
+            root = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, DISPLAY_CLASS)
+        except OSError:
+            return names
+        with root:
             for index in range(winreg.QueryInfoKey(root)[0]):
                 try:
                     with winreg.OpenKey(root, winreg.EnumKey(root, index)) as adapter:
@@ -160,10 +163,14 @@ def gpus() -> list[str]:
     if PLATFORM == WSL:
         # WSL reads the Windows host registry through interop.
         key = rf"HKLM\{DISPLAY_CLASS}"
-        output = run("reg.exe", "query", key, "/s", "/v", "DriverDesc") or ""
+        output = run("reg.exe", "query", key, "/s", "/v", "DriverDesc")
+        if output is None:
+            return None
         pattern = re.compile(r"DriverDesc\s+REG_SZ\s+(.+)")
         return [m[1].strip() for m in map(pattern.search, output.splitlines()) if m]
-    output = run("lspci") or ""
+    output = run("lspci")
+    if output is None:
+        return None
     return [line for line in output.splitlines() if "VGA" in line or "3D" in line]
 
 
@@ -177,7 +184,7 @@ def wsl_info() -> dict | None:
     if PLATFORM == WSL:
         return {
             "distro": os.environ.get("WSL_DISTRO_NAME"),
-            "windows_interop": shutil.which("cmd.exe") is not None,
+            "windows_interop": shutil.which("reg.exe") is not None,
         }
     return None
 
@@ -216,7 +223,10 @@ def uv_paths() -> dict | None:
 
 def pixi_info() -> dict | None:
     output = run("pixi", "info", "--json")
-    return json.loads(output) if output else None
+    try:
+        return json.loads(output) if output else None
+    except ValueError:
+        return None
 
 
 def pixi_paths(info: dict | None) -> dict | None:
@@ -251,7 +261,7 @@ def bun_paths() -> dict | None:
     return {
         "bin": run("bun", "pm", "bin", "--global"),
         "global_modules": existing(home / "install" / "global" / "node_modules"),
-        "cache": run("bun", "pm", "cache"),
+        "cache": existing(home / "install" / "cache"),
     }
 
 
@@ -267,38 +277,13 @@ def paths_section() -> dict:
 # packages
 
 
-def parse_versions(output: str | None, pattern: str) -> dict | None:
-    if output is None:
-        return None
-    regex = re.compile(pattern)
-    return dict(m.groups() for m in map(regex.search, output.splitlines()) if m)
-
-
-def pixi_packages() -> dict | None:
-    manifest = ((pixi_info() or {}).get("global_info") or {}).get("manifest")
-    if manifest is None:
-        return None
-    try:
-        envs = tomllib.loads(Path(manifest).read_text(encoding="utf-8")).get("envs", {})
-    except (OSError, tomllib.TOMLDecodeError):
-        return None
-    # An environment name may differ from its commands, such as rg in shell-tools.
-    return {name: sorted(env.get("exposed", {})) for name, env in envs.items()}
-
-
 def packages_section() -> dict:
+    # The list formats differ per tool, so the raw output is the data.
     return {
-        "pixi": pixi_packages(),
-        # "ruff v0.17.2", followed by "- ruff" lines.
-        "uv": parse_versions(run("uv", "tool", "list"), r"^(\S+) v(\S+)$"),
-        # "tokei v15.0.0:", followed by indented binaries.
-        "cargo": parse_versions(
-            run("cargo", "install", "--list"), r"^(\S+) v([^\s:]+)(?: \(.*\))?:$"
-        ),
-        # A tree line such as "+-- @scope/name@1.2.3". The first line is a header.
-        "bun": parse_versions(
-            run("bun", "pm", "ls", "--global"), r"(?<=\s)(@?[^\s@]+)@(\S+)$"
-        ),
+        "pixi": run("pixi", "global", "list"),
+        "uv": run("uv", "tool", "list"),
+        "cargo": run("cargo", "install", "--list"),
+        "bun": run("bun", "pm", "ls", "--global"),
     }
 
 
@@ -328,13 +313,12 @@ def disk_section() -> dict:
         volumes = []
         for root in os.listdrives():
             if info := volume(root):
-                # A Dev Drive is a ReFS volume.
-                volumes.append(info | {"dev_drive": filesystem(root) == "ReFS"})
+                # A Dev Drive is ReFS, but not every ReFS volume is a Dev Drive.
+                volumes.append(info | {"filesystem": filesystem(root)})
         key = r"SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
         developer_mode = registry_value(key, "AllowDevelopmentWithoutDevLicense") == 1
         # Without Developer Mode, symbolic links need an elevated shell.
-        link = "symlink" if developer_mode else "junction"
-        return {"volumes": volumes, "preferred_link": link}
+        return {"volumes": volumes, "developer_mode": developer_mode}
 
     paths = [str(HOME)]
     if PLATFORM == WSL:
@@ -359,28 +343,8 @@ SECTIONS: dict[str, tuple[Callable[[], dict], str]] = {
         "bin, package source, and cache dirs of uv, pixi, cargo, bun",
     ),
     "packages": (packages_section, "global packages of pixi, uv, cargo, and bun"),
-    "disk": (disk_section, "volume sizes, Dev Drives, and the preferred link type"),
+    "disk": (disk_section, "volume sizes, file systems, and Developer Mode"),
 }
-
-
-def render(value: object, depth: int = 0) -> str:
-    """Format JSON with one line per item instead of one line per value."""
-    flat = json.dumps(value, ensure_ascii=False)
-    if not isinstance(value, dict | list) or not value:
-        return flat
-    if depth >= 3 or (depth == 2 and len(flat) <= 100):
-        return flat
-    pad = "  " * (depth + 1)
-    if isinstance(value, dict):
-        items = [
-            f"{pad}{json.dumps(k)}: {render(v, depth + 1)}" for k, v in value.items()
-        ]
-        brackets = "{}"
-    else:
-        items = [pad + render(v, depth + 1) for v in value]
-        brackets = "[]"
-    body = ",\n".join(items)
-    return f"{brackets[0]}\n{body}\n{'  ' * depth}{brackets[1]}"
 
 
 def main() -> None:
@@ -412,7 +376,7 @@ def main() -> None:
         )
     with ThreadPoolExecutor() as pool:
         results = pool.map(lambda name: SECTIONS[name][0](), names)
-        print(render(dict(zip(names, results, strict=True))))
+        print(json.dumps(dict(zip(names, results, strict=True)), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
