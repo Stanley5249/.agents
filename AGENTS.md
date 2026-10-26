@@ -47,7 +47,7 @@ Run `uv run "$HOME/.agents/scripts/sysinfo.py" <section>...` to read a fact abou
 Before environment-dependent work, read `environment` once per execution environment and reuse the result. The result describes the script's process, not its parent shell or another system. For cross-system paths, query the source environment, select the intended destination, use its native path converter, and verify the result there. Pass paths as complete arguments and preserve Unicode. Query Windows `USERPROFILE` in Windows when a Windows profile path is needed. From Windows, select the intended WSL distro before running `wslpath` there.
 
 - `environment`: process OS, kernel release, architecture, home, and `WSL_DISTRO_NAME` when present.
-- `machine`: platform, OS, CPU, cores, memory, GPUs, and WSL.
+- `machine`: platform, OS, CPU, cores, memory, GPUs, and WSL distros on Windows.
 - `paths`: bin, package source, and cache directories of uv, pixi, cargo, and bun. Read it before exploring the source of an installed package.
 - `packages`: global packages of pixi, uv, cargo, and bun. Read it before installing a tool.
 - `disk`: volume sizes, Windows file systems, and Developer Mode. Read it before a large download or build, or before creating a link.

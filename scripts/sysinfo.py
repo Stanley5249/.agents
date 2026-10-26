@@ -10,7 +10,6 @@ import argparse
 import json
 import os
 import platform
-import re
 import shutil
 import subprocess
 import sys
@@ -20,7 +19,6 @@ from pathlib import Path
 
 WINDOWS = "windows"
 WSL = "wsl"
-LINUX = "linux"
 
 
 def detect_platform() -> str:
@@ -32,7 +30,6 @@ def detect_platform() -> str:
 
 
 PLATFORM = detect_platform()
-ON_WINDOWS = PLATFORM == WINDOWS
 HOME = Path.home()
 GIB = 1024**3
 
@@ -95,7 +92,7 @@ def environment_section() -> dict:
 
 
 def os_name() -> str:
-    if ON_WINDOWS:
+    if PLATFORM == WINDOWS:
         return f"Windows {platform.release()} {platform.version()}"
     try:
         return platform.freedesktop_os_release()["PRETTY_NAME"]
@@ -104,20 +101,26 @@ def os_name() -> str:
 
 
 def cpu_name() -> str | None:
-    if ON_WINDOWS:
+    if PLATFORM == WINDOWS:
         key = r"HARDWARE\DESCRIPTION\System\CentralProcessor\0"
         name = registry_value(key, "ProcessorNameString")
         return str(name).strip() if name else None
     try:
-        cpuinfo = Path("/proc/cpuinfo").read_text()
+        lines = Path("/proc/cpuinfo").read_text().splitlines()
     except OSError:
         return None
-    match = re.search(r"^model name\s*:\s*(.+)$", cpuinfo, re.MULTILINE)
-    return match[1].strip() if match else None
+    return next(
+        (
+            line.partition(":")[2].strip()
+            for line in lines
+            if line.startswith("model name")
+        ),
+        None,
+    )
 
 
 def memory_bytes() -> int | None:
-    if ON_WINDOWS:
+    if PLATFORM == WINDOWS:
         import ctypes
 
         class MemoryStatus(ctypes.Structure):
@@ -144,14 +147,14 @@ def memory_bytes() -> int | None:
 
 
 def gpus() -> list[str] | None:
-    if ON_WINDOWS:
+    if PLATFORM == WINDOWS:
         import winreg
 
         names = []
         try:
             root = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, DISPLAY_CLASS)
         except OSError:
-            return names
+            return None
         with root:
             for index in range(winreg.QueryInfoKey(root)[0]):
                 try:
@@ -166,27 +169,22 @@ def gpus() -> list[str] | None:
         output = run("reg.exe", "query", key, "/s", "/v", "DriverDesc")
         if output is None:
             return None
-        pattern = re.compile(r"DriverDesc\s+REG_SZ\s+(.+)")
-        return [m[1].strip() for m in map(pattern.search, output.splitlines()) if m]
+        # Each match looks like "    DriverDesc    REG_SZ    <name>".
+        lines = (line.split(None, 2) for line in output.splitlines())
+        return [parts[2] for parts in lines if parts[:1] == ["DriverDesc"]]
     output = run("lspci")
     if output is None:
         return None
     return [line for line in output.splitlines() if "VGA" in line or "3D" in line]
 
 
-def wsl_info() -> dict | None:
-    if ON_WINDOWS:
-        # wsl.exe prints UTF-16 regardless of the console code page.
-        output = run("wsl", "--list", "--quiet", encoding="utf-16-le") or ""
-        return {
-            "distros": [line.strip() for line in output.splitlines() if line.strip()]
-        }
-    if PLATFORM == WSL:
-        return {
-            "distro": os.environ.get("WSL_DISTRO_NAME"),
-            "windows_interop": shutil.which("reg.exe") is not None,
-        }
-    return None
+def wsl_distros() -> list[str] | None:
+    """List the installed distros. Inside WSL, the platform field already says so."""
+    if PLATFORM != WINDOWS:
+        return None
+    # wsl.exe prints UTF-16 regardless of the console code page.
+    output = run("wsl", "--list", "--quiet", encoding="utf-16-le") or ""
+    return [line.strip() for line in output.splitlines() if line.strip()]
 
 
 def machine_section() -> dict:
@@ -198,7 +196,7 @@ def machine_section() -> dict:
         "cores": os.cpu_count(),
         "memory_gib": gib(memory) if memory else None,
         "gpus": gpus(),
-        "wsl": wsl_info(),
+        "wsl_distros": wsl_distros(),
     }
     if PLATFORM == WSL:
         info["note"] = (
@@ -221,17 +219,11 @@ def uv_paths() -> dict | None:
     }
 
 
-def pixi_info() -> dict | None:
+def pixi_paths() -> dict | None:
     output = run("pixi", "info", "--json")
-    try:
-        return json.loads(output) if output else None
-    except ValueError:
+    if output is None:
         return None
-
-
-def pixi_paths(info: dict | None) -> dict | None:
-    if info is None:
-        return None
+    info = json.loads(output)
     global_info = info.get("global_info") or {}
     return {
         "bin": global_info.get("bin_dir"),
@@ -268,7 +260,7 @@ def bun_paths() -> dict | None:
 def paths_section() -> dict:
     return {
         "uv": uv_paths(),
-        "pixi": pixi_paths(pixi_info()),
+        "pixi": pixi_paths(),
         "cargo": cargo_paths(),
         "bun": bun_paths(),
     }
@@ -309,7 +301,7 @@ def volume(path: str) -> dict | None:
 
 
 def disk_section() -> dict:
-    if ON_WINDOWS:
+    if PLATFORM == WINDOWS:
         volumes = []
         for root in os.listdrives():
             if info := volume(root):
@@ -337,7 +329,10 @@ SECTIONS: dict[str, tuple[Callable[[], dict], str]] = {
         environment_section,
         "process OS, kernel release, architecture, home, and WSL distro when present",
     ),
-    "machine": (machine_section, "platform, OS, CPU, cores, memory, GPUs, and WSL"),
+    "machine": (
+        machine_section,
+        "platform, OS, CPU, cores, memory, GPUs, and WSL distros",
+    ),
     "paths": (
         paths_section,
         "bin, package source, and cache dirs of uv, pixi, cargo, bun",
@@ -376,7 +371,11 @@ def main() -> None:
         )
     with ThreadPoolExecutor() as pool:
         results = pool.map(lambda name: SECTIONS[name][0](), names)
-        print(json.dumps(dict(zip(names, results, strict=True)), ensure_ascii=False, indent=2))
+        print(
+            json.dumps(
+                dict(zip(names, results, strict=True)), ensure_ascii=False, indent=2
+            )
+        )
 
 
 if __name__ == "__main__":
