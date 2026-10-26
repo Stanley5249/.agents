@@ -334,7 +334,7 @@ SECTIONS: dict[str, tuple[Callable[[], dict], str]] = {
         "bin, package source, and cache dirs of uv, pixi, cargo, bun",
     ),
     "packages": (packages_section, "global packages of pixi, uv, cargo, and bun"),
-    "disk": (disk_section, "volume sizes, file systems, and Developer Mode"),
+    "disk": (disk_section, "volume sizes, Windows file systems, and Developer Mode"),
 }
 
 
