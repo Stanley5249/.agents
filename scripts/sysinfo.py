@@ -1,6 +1,9 @@
-"""Print machine facts that take more than one shell command to find.
+# /// script
+# requires-python = ">=3.12"
+# ///
+"""Print environment and machine facts as compact UTF-8 JSON.
 
-Works on Windows, WSL, and other Linux, and prints compact JSON.
+Requires Python 3.12+. Environment facts describe this Python process.
 """
 
 import argparse
@@ -72,6 +75,21 @@ def registry_value(key: str, name: str) -> object | None:
             return winreg.QueryValueEx(handle, name)[0]
     except OSError:
         return None
+
+
+# environment
+
+
+def environment_section() -> dict:
+    info = {
+        "system": platform.system(),
+        "release": platform.release(),
+        "machine": platform.machine(),
+        "home": str(Path.home()),
+    }
+    if distro := os.environ.get("WSL_DISTRO_NAME"):
+        info["WSL_DISTRO_NAME"] = distro
+    return info
 
 
 # machine
@@ -331,6 +349,10 @@ def disk_section() -> dict:
 
 
 SECTIONS: dict[str, tuple[Callable[[], dict], str]] = {
+    "environment": (
+        environment_section,
+        "process OS, kernel release, architecture, home, and WSL distro when present",
+    ),
     "machine": (machine_section, "platform, OS, CPU, cores, memory, GPUs, and WSL"),
     "paths": (
         paths_section,
@@ -362,6 +384,7 @@ def render(value: object, depth: int = 0) -> str:
 
 
 def main() -> None:
+    sys.stdout.reconfigure(encoding="utf-8")
     sections = "\n".join(f"  {name:<10}{help}" for name, (_, help) in SECTIONS.items())
     parser = argparse.ArgumentParser(
         prog="sysinfo.py",
@@ -370,8 +393,9 @@ def main() -> None:
         epilog=(
             f"sections:\n{sections}\n\n"
             "examples:\n"
-            "  uv run python sysinfo.py machine\n"
-            "  uv run python sysinfo.py paths packages"
+            "  uv run sysinfo.py environment\n"
+            "  uv run sysinfo.py machine\n"
+            "  uv run sysinfo.py paths packages"
         ),
     )
     parser.add_argument(
