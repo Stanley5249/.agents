@@ -44,7 +44,7 @@ Preferred formatting, from the smallest unit to the largest:
 
 Run `uv run "$HOME/.agents/scripts/sysinfo.py" <section>...` to read a fact about this machine instead of assuming it. The script uses Python 3.12+ and prints UTF-8 JSON. For a fact that one shell command answers, such as a tool version, run that command instead.
 
-Before environment-dependent work, read `environment` once per execution environment and reuse the result. The result describes the script's process, not its parent shell or another system. For cross-system paths, query the source environment, select the intended destination, use its native path converter, and verify the result there. Pass paths as complete arguments and preserve Unicode. Query Windows `USERPROFILE` in Windows when a Windows profile path is needed. From Windows, select the intended WSL distro before running `wslpath` there.
+Before environment-dependent work, read `environment` once per execution environment and reuse the result. The result describes the script's process, not its parent shell or another system, so convert paths between Windows and WSL with `wslpath` or `cygpath` and verify them in the target environment.
 
 - `environment`: process OS, kernel release, architecture, home, and `WSL_DISTRO_NAME` when present.
 - `machine`: platform, OS, CPU, cores, memory, GPUs, and WSL distros on Windows.
