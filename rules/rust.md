@@ -16,7 +16,6 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 ## Code
 
 - A panic is for a ruled-out case, and its message names the invariant, such as `expect("worker never exits before the app does")`. Anything a user, a disk, or a child process can cause is an error.
-- Use only `pub` or private. If an item seems to need `pub(crate)` or `pub(super)`, move it to the shared parent or merge the modules.
 - Clone a value only when a second owner needs its own copy, such as across a thread, a task, or a process. Otherwise borrow it or move it. Cloning an `Arc` or `Rc` copies a handle, which this rule allows.
 - `Drop` runs synchronously and returns nothing, so a guard holds only synchronous cleanup that logs its own failure. Await async cleanup on the outer path.
 - Silence a lint with `#[expect(..., reason = "...")]`. Never use `#[allow]`.
