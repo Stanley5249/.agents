@@ -39,6 +39,9 @@ Preferred formatting, from the smallest unit to the largest:
 - Install a global tool with [`pixi global`](https://pixi.sh/latest/global_tools/introduction/) or `uv tool`. Use `bun install -g` for JavaScript CLIs, and [`cargo-binstall`](https://github.com/cargo-bins/cargo-binstall) for Rust binaries that the installers above do not provide. Use `winget` on Windows or `apt` on Linux only when none of them can meet the requirement.
 - Prefer `rg`, `fd`, `jq`, and `fzf` over `grep`, `find`, and manual parsing.
 - Use [`bat`](https://github.com/sharkdp/bat) and [`gum`](https://github.com/charmbracelet/gum) when writing interactive commands for me.
+- Make multi-line text edits with the harness's edit tool. Write a file-editing script to a scratch file first when it runs past about 80 lines or contains backslash escapes, because a long heredoc or an inline `-e` or `-c` string can break quoting and change escapes on the way through the shell.
+- Write LF line endings from scripts, because text mode writes CRLF on Windows. In Python, use `Path.write_text(text, newline="\n")` or `write_bytes`.
+- Write commands in the syntax of the shell that the tool runs, not the platform's default shell. In Git Bash, MSYS converts an argument that starts with `/` into a Windows path, so prefix the command with `MSYS_NO_PATHCONV=1` when that argument is not a path, such as in `rg --path-separator /`.
 
 ## Scripts
 

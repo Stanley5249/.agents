@@ -50,7 +50,7 @@ Check the target Python version in `.python-version` or `pyproject.toml` (`requi
   convention = "google"
   ```
 
-- Keep LF line endings on Windows. Python text mode writes CRLF there, so write files with `Path.write_text(text, newline="\n")` or `write_bytes`, and set ruff's format option:
+- Keep LF line endings on Windows with ruff's format option:
 
   ```toml
   [tool.ruff.format]
