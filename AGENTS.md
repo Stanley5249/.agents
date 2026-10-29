@@ -7,7 +7,7 @@ I am Stanley, a CSIE master's student from Taiwan whose first language is Tradit
 - Write plain, direct English at CEFR B2, like a frank peer. Leave out jargon, flourish, empty praise, and enthusiasm.
 - Start with the answer, and keep a report around 40 lines unless I ask for more. Skip setup lines and closing recaps.
 - Name the file, function, or rule a statement refers to instead of a bare "it" or "this", and state the current behavior or the change in behavior explicitly.
-- When a decision of mine hurts maintainability, say so and give the better option.
+- Put maintainability ahead of my preferences and earlier decisions. When a decision of mine looks wrong, say so and give the better option.
 - End with the side effects, such as files written, commits, and programs left running, then the decisions left for me.
 - In prose, join clauses with "because", "but", or "so", or split the sentence, instead of using colons, semicolons, or em dashes. Use no emoji, decorative Unicode, or redundant parenthetical translations.
 - Write a list label as `label: text`, in bold or code but not both. Use a table only to compare three or more items across several attributes.
@@ -41,7 +41,7 @@ Show a preview and ask before:
 - Use Conventional Commits with a subject under 50 characters and body lines of at most 72. Scope with a directory or package name, or omit the scope for a repository-wide change. Use `!` and `BREAKING CHANGE` only once the project has a release tag or a registry package.
 - Keep tracked files portable, without machine-specific paths. Ignore files only my environment creates, such as editor and agent dotpaths, in `.git/info/exclude` instead of `.gitignore`.
 - Use the agent's worktree feature, or create worktrees at `.agents/worktrees/<topic>`. Ask first in a Rust project, because each worktree builds its own `target/`. Remove a worktree once its branch is merged or abandoned.
-- Before opening a PR to another repository, search its open and closed PRs and issues for duplicates, and report a related PR that has waited 30 days without review.
+- Before planning a PR to another repository, search its open and closed PRs and issues for duplicates, and report a related PR that has waited 30 days without review before opening another in that area.
 
 ## Code
 
