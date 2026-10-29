@@ -48,6 +48,4 @@ preset = "strict"
 
 ## Justfile
 
-Run every tool through `uv run --locked`, so a stale lockfile fails instead of being updated. Typical mappings are `fmt` and the format step of `check` to one `_fmt-ruff` helper over `ruff format`, `lint` to `ruff check`, `typecheck` to `pyrefly check`, and `test` to `pytest`.
-
-Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.
+Run every tool through `uv run --locked`, so a stale lockfile fails instead of being updated, and `ci` needs no separate `lock-check` recipe. Typical mappings are `fmt` and the format step of `check` to one `_fmt-ruff` helper over `ruff format`, `lint` to `ruff check`, `typecheck` to `pyrefly check`, and `test` to `pytest`.

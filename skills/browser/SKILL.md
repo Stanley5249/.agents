@@ -1,6 +1,6 @@
 ---
 name: browser
-description: Drive the user's open, logged-in Chrome or Edge with the Chrome DevTools MCP server, including inspecting live pages, filling forms, and running scripts in a page.
+description: Drive the user's open, logged-in Chrome or Edge with the Chrome DevTools MCP server, including inspecting live pages, filling forms, and running scripts in a page. Use when a task needs the user's signed-in session or a page that plain HTTP cannot fetch.
 ---
 
 # Drive a browser
