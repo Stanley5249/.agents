@@ -18,8 +18,7 @@ Record only settings that differ from the defaults, and check a default in the s
 - `svelte`: `{}` enables `.svelte` files and needs the `svelte` package.
 - `sortTailwindcss`: `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4.
 - `ignorePatterns`: gitignore-style globs rooted at the config's directory.
-
-Leave `proseWrap` at `"preserve"`, because `"always"` rewraps a whole paragraph after a one-word edit.
+- `proseWrap`: set `"never"`, which puts each Markdown paragraph and list item on one line, because `"always"` rewraps a whole paragraph after a one-word edit and the default `"preserve"` keeps hand-wrapping.
 
 ## Ignores
 
