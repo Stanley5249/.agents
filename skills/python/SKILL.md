@@ -5,11 +5,7 @@ description: Python project conventions for uv, pyproject layout, build backend,
 
 # Python
 
-Use uv for package management and virtual environments. Add packages with `uv add` and let uv manage the project's `.venv`.
-
-## Code
-
-Check the target Python version in `.python-version` or `requires-python` in `pyproject.toml` before writing code, and use the latest syntax that version supports.
+Use uv for packages and the project's `.venv`, and add packages with `uv add`. Use the latest syntax that the version in `.python-version` or `requires-python` supports.
 
 ## Layout
 
@@ -20,7 +16,7 @@ Check the target Python version in `.python-version` or `requires-python` in `py
   uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   ```
 
-- For packaged libraries, use uv's native build backend:
+- Build a packaged library with uv's native backend:
 
   ```toml
   [build-system]
@@ -28,43 +24,30 @@ Check the target Python version in `.python-version` or `requires-python` in `py
   build-backend = "uv_build"
   ```
 
-- For standalone applications or scripts that do not publish wheels, disable package building:
-
-  ```toml
-  [tool.uv]
-  package = false
-  ```
+- For an application or scripts that publish no wheels, set `package = false` under `[tool.uv]`.
 
 ## Lint, format, and type checking
 
-- Use `ruff` as the only linter and formatter for Python source. Start every project with all rules selected and Google-style docstrings:
+Use `ruff` as the only linter and formatter, starting with all rules, Google-style docstrings, and LF output on Windows, and type-check with pyrefly's strict preset:
 
-  ```toml
-  [tool.ruff.lint]
-  select = ["ALL"]
-  ignore = [
-    "COM812", # conflicts with the formatter
-  ]
-  [tool.ruff.lint.pydocstyle]
-  convention = "google"
-  ```
+```toml
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812", # conflicts with the formatter
+]
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
-- Keep LF line endings on Windows with ruff's format option:
+[tool.ruff.format]
+line-ending = "lf"
 
-  ```toml
-  [tool.ruff.format]
-  line-ending = "lf"
-  ```
-
-- Type-check with pyrefly's strict preset:
-
-  ```toml
-  [tool.pyrefly]
-  preset = "strict"
-  ```
+[tool.pyrefly]
+preset = "strict"
+```
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings are `fmt` to `uv run --locked ruff format`, the format step of `check` to `uv run --locked ruff format --check`, `lint` to `uv run --locked ruff check`, `typecheck` to `uv run --locked pyrefly check`, and `test` to `uv run --locked pytest`. Use `--locked` in every recipe so a stale lockfile fails before uv can update it, and so `fmt` and `check` share one `_fmt-ruff` helper.
+Run every tool through `uv run --locked`, so a stale lockfile fails instead of being updated. Typical mappings are `fmt` and the format step of `check` to one `_fmt-ruff` helper over `ruff format`, `lint` to `ruff check`, `typecheck` to `pyrefly check`, and `test` to `pytest`.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.

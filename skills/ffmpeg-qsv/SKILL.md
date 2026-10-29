@@ -8,35 +8,31 @@ disable-model-invocation: true
 
 ## Hardware
 
-Use the Arc iGPU through `-hwaccel qsv -hwaccel_output_format qsv` and the `_qsv` encoder family (`av1_qsv`, `hevc_qsv`, `h264_qsv`) instead of software encoders. The iGPU handles real-time AV1 encoding that software encoders cannot match on this machine. NVENC, AMF, and VAAPI appear in this full build but do not have matching GPU hardware here.
+Use the Arc iGPU through `-hwaccel qsv -hwaccel_output_format qsv` and the `_qsv` encoders, such as `av1_qsv`, `hevc_qsv`, and `h264_qsv`, because software encoders cannot match its real-time AV1. NVENC, AMF, and VAAPI appear in this full build, but the machine has no matching GPU.
 
 ## Default target: AV1 video, Opus audio
 
-The proven baseline for re-encoding existing video (not primary capture):
+The proven baseline for re-encoding existing video, not primary capture:
 
 ```sh
 ffmpeg -hwaccel qsv -hwaccel_output_format qsv -i <source> -c:v av1_qsv -preset:v fast -global_quality:v <q> -g:v 120 -c:a libopus -vbr:a on -b:a <bitrate> <target.mkv>
 ```
 
-- `-global_quality:v` scales with source resolution, not a fixed number: 26 at 4K, 28 at 1080p, 30/32/34 down to 480p. Lower = higher quality. 28 is the 1080p figure, so don't reuse it at other resolutions unchecked.
-- `-b:a` scales with channel count, not a fixed number: 48k per channel (96k for stereo). Raise it further for music-heavy sources.
-- `-extbrc:v`, `-look_ahead_depth:v`, `-adaptive_i:v`, and `-adaptive_b:v` are QSV tunables to try when quality needs a push, not defaults to set upfront. Leave them unset until a specific source justifies measuring them. `-look_ahead_depth:v` takes effect only with `-extbrc:v 1`.
-- Use Matroska or WebM for AV1 with Opus unless the requested playback target has confirmed support for that combination in another container.
-- This is a starting point. Expect to retune per source; that is normal, not a sign of a bad default.
+- `-global_quality:v` scales with source resolution: 26 at 4K, 28 at 1080p, and 30, 32, 34 down to 480p. Lower means higher quality.
+- `-b:a` scales with channel count at 48k per channel, such as 96k for stereo. Raise it for music-heavy sources.
+- `-extbrc:v`, `-look_ahead_depth:v`, `-adaptive_i:v`, and `-adaptive_b:v` are tunables to measure on a source that needs more quality, not defaults. `-look_ahead_depth:v` works only with `-extbrc:v 1`.
+- Use Matroska or WebM for AV1 with Opus unless the playback target confirms support in another container.
+- Expect to retune per source.
 
-## Invocation hygiene
+## Invocation
 
-- `-hide_banner -nostdin -loglevel error -nostats` for scripted calls, so output is errors only.
-- `-progress pipe:1` for machine-readable progress instead of parsing the human status line.
-- In scripts and programs, call ffmpeg with an argv array instead of a shell string, so paths with spaces or special characters are not re-parsed.
-- A zero exit status is not proof the output is valid. Probe the result before trusting it.
-- Encode to a new path; never write over the source. Let the caller decide whether to replace the original afterward.
+- Use `-hide_banner -nostdin -loglevel error -nostats` for scripted calls, and `-progress pipe:1` for machine-readable progress.
+- Encode to a new path and never over the source. Probe the result before trusting it, because a zero exit status does not prove the output is valid.
 
 ## Windows gotchas
 
-- A filename with an unpaired UTF-16 surrogate (downloader output that mangled an emoji) can't be opened by ffmpeg at all, because it converts the wide path to UTF-8 internally, the surrogate becomes `U+FFFD`, and it opens a name nothing on disk has. `Test-Path` succeeding while `ffprobe` says "No such file or directory" on the same path is the symptom. Workaround: pass the 8.3 short path (`GetShortPathNameW`) or a temporary ASCII-named hardlink.
-- Quote every path; don't rely on ffmpeg's own glob expansion on Windows.
+A filename with an unpaired UTF-16 surrogate, such as downloader output that mangled an emoji, cannot be opened by ffmpeg, because ffmpeg converts the wide path to UTF-8 and the surrogate becomes `U+FFFD`. The symptom is `Test-Path` succeeding while `ffprobe` reports "No such file or directory". Pass the 8.3 short path from `GetShortPathNameW` or a temporary ASCII-named hardlink instead.
 
 ## This install
 
-The gyan.dev full build from winget (`Gyan.FFmpeg`). Check `ffmpeg -version` for the exact version and enabled libraries.
+The gyan.dev full build from winget, `Gyan.FFmpeg`. Check `ffmpeg -version` for the version and enabled libraries.

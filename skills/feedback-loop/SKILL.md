@@ -7,33 +7,21 @@ disable-model-invocation: true
 
 # Feedback loop
 
-You coordinate the loop and own the final judgment. Low-cost feedback agents find potential problems; you verify their findings before acting.
+You coordinate the loop and own the final judgment. Feedback agents only read and report, and you verify each finding and apply every edit.
 
 ## Setup
 
-Identify the target, scope, and applicable instructions. Follow the main task's rules and approval requirements.
-
-When the user names a review skill or instructions, give them to every feedback agent in every round. They bind the feedback agents and leave your edit permissions unchanged.
-
-Use the user's requested agent or model. Otherwise prefer a low-cost model suited to the task when model selection is available. If the requested option is unavailable, ask before substituting. When delegation is unavailable, offer a clearly labeled self-review instead.
-
-Use one feedback agent for small work. Split larger work into independent units when that improves coverage. Default to at most three rounds, unless the user sets another limit or asks to continue until a clean round.
-
-## Permissions
-
-Feedback agents only read. You apply every edit.
-
-Apply an accepted correction without asking when it has one clearly right form and the applicable rules require no approval for it. Record every other accepted correction as a pending decision, leave that part unchanged, and continue.
+- Use the agent or model the user names, or a low-cost model. Ask before substituting an unavailable one, and offer a labeled self-review when delegation is unavailable.
+- Give every agent, in every round, the review skill or instructions the user names. They bind the agents, not your edit permissions.
+- Use one agent for small work, and split larger work into independent units. Stop after three rounds unless the user sets another limit or asks to continue until a clean round.
 
 ## Each round
 
-1. Give feedback agents the same current version, their assigned scope, relevant instructions, and context needed to judge the work. Include earlier rejected findings and their reasons to prevent repeated suggestions.
-2. Ask feedback agents to keep the work unchanged and return only actionable findings. Each finding needs a location, concrete consequence, and suggested correction. Permit investigation allowed by the main task, and require agents to report coverage and verification limits.
-3. Verify each finding against the work and applicable rules. Reject mistaken, duplicate, and preference-only suggestions. Keep unresolved questions separate from accepted findings.
-4. Apply safe corrections and record pending decisions as defined in Permissions, then start the next round without waiting for approval. Use the revised work as the next round's version, and include pending decisions so agents skip them.
+1. Give the agents the current version, their scope, the applicable rules, and the findings rejected so far with reasons.
+2. Ask for actionable findings only, each with a location, a concrete consequence, and a correction, and skip style preferences. Ask the agents to report what they could not check.
+3. Verify each finding against the work. Reject mistaken, duplicate, speculative, and preference-only findings.
+4. Apply a correction that has one clearly right form and needs no approval. Record any other accepted correction as a pending decision, and start the next round.
 
 ## Stop
 
-Stop when a complete round produces no actionable findings, the round limit is reached, or the user stops the loop. Resolve incomplete coverage and pending questions, or report them explicitly rather than treating them as a clean pass.
-
-Report the applied changes, pending decisions, remaining issues, and checks performed. Present all pending decisions together so the user can approve them in one pass.
+Stop after a round with no actionable findings, at the round limit, when the user stops the loop, or when findings keep contradicting each other or come back after rejection. Report applied changes, pending decisions together, disagreements, and unchecked coverage, without calling incomplete coverage a clean pass.

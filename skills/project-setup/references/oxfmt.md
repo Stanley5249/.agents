@@ -1,75 +1,43 @@
 # oxfmt
 
-Prefer [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) for JS, TS, Svelte, CSS, HTML, JSON, YAML, and Markdown. Svelte and Tailwind CSS plugins are built in. Review output differences when replacing Prettier.
+Prefer [oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) for JS, TS, Svelte, CSS, HTML, JSON, YAML, and Markdown. Svelte and Tailwind CSS plugins are built in.
 
-## Install
+## Install and run
 
-- **Projects with a JS toolchain**, such as a Svelte app or a Tauri frontend: add `oxfmt` to `devDependencies` so the version is locked with everything else.
-- **Other repositories**, including Rust, Python, and documentation projects: run `bunx oxfmt` for supported files when oxfmt is not installed locally.
+- In a project with a JS toolchain, add `oxfmt` to `devDependencies` and run `bun run oxfmt`, so the version is locked.
+- Elsewhere, including Rust, Python, and documentation projects, run `bunx oxfmt`.
+- Add `--check` to validate without writing.
 
 ## Configuration
 
-Put the configuration in `.oxfmtrc.json` at the repository root. Point `$schema` at the installed package when there is one, because it always matches the running version:
+Put the configuration in `.oxfmtrc.json` at the repository root. Point `$schema` at `./node_modules/oxfmt/configuration_schema.json` when the package is installed, because it matches the running version, and at `https://cdn.jsdelivr.net/npm/oxfmt/configuration_schema.json` otherwise.
 
-```json
-{
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
-  "printWidth": 80
-}
-```
+Record only settings that differ from the defaults, and check a default in the schema instead of guessing:
 
-Without `node_modules`, use `https://cdn.jsdelivr.net/npm/oxfmt/configuration_schema.json`.
-
-Record only settings that differ from oxfmt's defaults. Check a default in the schema's descriptions instead of guessing, and drop any setting that turns out to match it. The settings below are the ones that usually matter:
-
-- `printWidth`: oxfmt's default is 100 but Prettier's is 80, so set 80 to keep Prettier-era output unchanged.
-- `svelte`: `{}` enables `.svelte` files and needs the `svelte` package installed.
+- `printWidth`: the default is 100 but Prettier's is 80, so set 80 to keep Prettier-era output.
+- `svelte`: `{}` enables `.svelte` files and needs the `svelte` package.
 - `sortTailwindcss`: `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4.
-- `ignorePatterns`: gitignore-style globs, rooted at the directory holding the config.
+- `ignorePatterns`: gitignore-style globs rooted at the config's directory.
 
-Leave `proseWrap` at its default, `"preserve"`, and write each Markdown paragraph on one line. `"always"` rewraps the whole paragraph after a one-word edit, so an agent's edit can miss its target text and the diff covers every line.
+Leave `proseWrap` at `"preserve"`, because `"always"` rewraps a whole paragraph after a one-word edit.
 
 ## Ignores
 
-oxfmt already skips `node_modules` and reads `.gitignore` and `.prettierignore`, so `ignorePatterns` needs only files that are tracked but must not be formatted:
+oxfmt already skips `node_modules` and reads `.gitignore` and `.prettierignore`. Put the rest in `ignorePatterns` instead of a `.prettierignore`, and ignore only these tracked files, because an ignored file is not formatted on save either:
 
-- **Files another formatter owns.** oxfmt formats TOML too. When `tombi` or another tool owns TOML, add `"**/*.toml"`, or the two formatters fight and parallel recipes race on the same files.
-- **Vendored files** that must stay byte-identical to upstream, such as skills installed with `bunx skills add`.
-
-Ignores also apply to content an editor passes to oxfmt, so an ignored file is not formatted on save either. Ignore a file only when another formatter owns it or it must stay byte-identical.
-
-Prefer `ignorePatterns` over a `.prettierignore`, so one file holds the whole configuration.
-
-## Commands
-
-When oxfmt is installed in `devDependencies`, use the locked local tool:
-
-```sh
-bun run oxfmt
-bun run oxfmt --check
-```
-
-In repositories without a local oxfmt dependency, use:
-
-```sh
-bunx oxfmt
-bunx oxfmt --check
-```
-
-The first command formats files in place. `--check` validates formatting while preserving files.
+- Files another formatter owns. oxfmt formats TOML too, so add `"**/*.toml"` when `tombi` owns TOML, or the two formatters fight and parallel recipes race.
+- Vendored files that must stay byte-identical to upstream, such as skills installed with `bunx skills add`.
 
 ## Agent use
 
-- Never fix formatting by hand, because the formatter rewrites it. Read the `--check` file list as the to-do list, and rerun the formatter on those files.
-- Run the formatter on the files you changed, such as `bunx oxfmt <file>...`, so unrelated files stay out of the diff.
-- Re-read a file after formatting it before the next edit tool call, because the formatter may have changed the text.
-- oxfmt defaults to `endOfLine: "lf"`, so leave the setting out.
+- Fix formatting by running the formatter on the files `--check` lists, never by hand.
+- Format only the files you changed, such as `bunx oxfmt <file>...`, so unrelated files stay out of the diff.
+- Re-read a file after formatting it before editing it again.
 
 ## Migration from Prettier
 
-- Start from a clean worktree where the existing Prettier check passes. Run `bunx oxfmt --migrate=prettier`, review settings and ignores, and handle `overrides` by hand.
-- Replace Prettier and its plugins with oxfmt, keeping `svelte` where needed. Update recipes, CI, agent instructions, and editor integration. Keep ESLint presets that disable conflicting formatting rules.
-- Move required ignores into `.oxfmtrc.json`, then remove the old Prettier configuration and `.prettierignore`.
-- Format tracked files only. Use `git ls-files -z | xargs -0 bun run oxfmt --no-error-on-unmatched-pattern`, substituting `bunx oxfmt` when there is no local oxfmt dependency. Verify the formatted file count and inspect every diff.
-- Compare against the clean baseline. Trial settings can leave expanded objects expanded because `objectWrap` preserves their layout. For a suspected bug, preserve the file with an ignore pattern and draft an upstream issue for approval.
-- Run formatting checks, static checks, and tests. Commit tooling as `build` and formatting-only changes separately as `style`.
+- Start from a clean worktree where the Prettier check passes, run `bunx oxfmt --migrate=prettier`, and port `overrides` by hand.
+- Replace Prettier and its plugins, keeping `svelte` where needed, and update recipes, CI, agent instructions, and editor settings. Keep ESLint presets that disable conflicting formatting rules.
+- Format tracked files only, with `git ls-files -z | xargs -0 bun run oxfmt --no-error-on-unmatched-pattern`, or `bunx oxfmt` without a local dependency, and inspect every diff against the clean baseline. `objectWrap` keeps trial-expanded objects expanded.
+- For a suspected oxfmt bug, ignore the file and draft an upstream issue for approval.
+- Commit the tooling as `build` and the reformat separately as `style`.

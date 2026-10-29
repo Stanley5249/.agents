@@ -30,7 +30,7 @@ description: Rust conventions for panics, cloning, lint suppression, module layo
 
 ## Lint and format
 
-- Tailor `clippy.toml` to each project. Typical settings are `msrv`, `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`, and `missing-docs-in-crate-items`. Set only the ones the project needs.
+- Tailor `clippy.toml` to each project, such as `msrv` or `doc-valid-idents`, and set only what the project needs.
 - Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and have each member opt in with `[lints] workspace = true`. The group needs `priority = -1` so single-lint overrides beside it win. Because `lint` runs with `-D warnings`, pedantic findings fail the gate, so set a lint the project rejects to `"allow"` in the same table. Two restriction lints enforce the `#[expect]` rule:
 
   ```toml
@@ -40,7 +40,7 @@ description: Rust conventions for panics, cloning, lint suppression, module layo
   allow_attributes_without_reason = "warn"
   ```
 
-- `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated reason.
+- Leave `rustfmt.toml` at defaults unless an override has a stated reason.
 
 ## Toolchain and tools
 

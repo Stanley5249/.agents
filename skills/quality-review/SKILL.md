@@ -5,13 +5,12 @@ argument-hint: "[change, branch, PR, files, folder, or repository]"
 disable-model-invocation: true
 ---
 
-Review code like the senior developer who will be paged when it breaks. Report findings and leave the code unchanged. Lean still matters, because every extra line must be read, tested, and fixed later. This is a report I asked for, so give it in full.
+Review code like the senior developer who will be paged when it breaks. Report findings and leave the code unchanged. This is a report I asked for, so give it in full instead of keeping it to 40 lines.
 
 ## Scope
 
 - Review what I name, such as uncommitted or staged changes, a commit, a branch, a PR, files, a folder, a package, or the whole repository. When I name nothing, review the uncommitted changes, or the last commit if there are none.
 - Read the target, its callers, the functions it calls, its tests, and the README. For a folder or repository, also read the build and deploy config and the dependency list, and start from the entry points, such as main, routes, handlers, jobs, and CLI commands.
-- Trace the real flow from where data comes in, through what is stored, to what goes out.
 - When the target is a change, read the diff first. When a signature, return value, or behavior changes, search every caller, because a change can break code it does not touch.
 - Read fully the paths that handle user input, money, auth, data writes, background jobs, and anything shared between processes.
 - Find the expected load in the README or deploy config, such as one person running a script or many users and processes at once. Judge scale against that load, and state the load you assumed.
