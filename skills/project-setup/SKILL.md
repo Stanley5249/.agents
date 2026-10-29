@@ -1,6 +1,6 @@
 ---
 name: project-setup
-description: Scaffold or migrate a repository, or change its tooling, including justfile, oxfmt, pixi, tombi, Zed settings, CI, .gitattributes, licenses, README, agent instruction files, and release notes. Use when creating a project, adopting these conventions, or editing any of those files.
+description: Scaffold or migrate a repository, or change its tooling, including justfile, oxfmt, pixi, tombi, Zed settings, CI, .gitattributes, licenses, README, agent instruction files, and release notes. Use when creating a project, adopting these conventions, editing any of those files, or formatting files with oxfmt.
 ---
 
 # Project setup

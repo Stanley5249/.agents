@@ -5,7 +5,7 @@ set shell := ["pwsh", "-NoLogo", "-NoProfile", "-Command"]
 
 # Link local skills for Claude Code; Codex and Pi read skills/ directly
 link *args:
-    bunx skills add ./skills --global --agent pi codex claude-code {{ args }}
+    bunx skills add ./skills --global --agent claude-code {{ args }}
 
 # Format files
 fmt: _fmt-oxfmt _fmt-just

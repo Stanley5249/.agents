@@ -38,6 +38,7 @@ Show a preview and ask before:
 
 ## Git
 
+- A project's own conventions take precedence over these instructions. Check its contributing guide before the first commit, branch, or PR in that project.
 - Check the worktree status before changing it, and preserve unrelated changes.
 - Decide the branch before the first edit, because moving commits later is extra work. Work on the current branch for a change that is one action. Otherwise create a task branch named `<type>/<topic>`, such as `fix/login-timeout`. The default branch is `main`.
 - One action is one feature with its tests and required docs, or one move, rename, dependency update, reformat, or refactor. Commit each action when it is done, and amend the latest commit for a small follow-up to the same change.
@@ -50,7 +51,7 @@ Show a preview and ask before:
 
 ## Code
 
-- Before editing, read the code the change touches and list every place it must reach, such as callers, tests, fixtures, config, and exports, and what it could break for users.
+- Before editing, read the code the change touches and list every place it must reach, such as callers, tests, fixtures, config, and exports, and what it could break for users, such as data it would destroy or expose and callers that stop working.
 - Take the first option that fully works. Skip features and options nobody asked for and name them in one line, then reuse what the codebase has, then the standard library or platform, then an installed dependency, and only then write new code. Add a dependency only when it replaces more than a few lines.
 - Keep the solution small and the change complete. Write only the abstractions, options, and config the task needs now. For a fix or a small feature, keep the structure the codebase already has, and prefer deletion to addition.
 - For a change that adds, moves, or deletes files or changes a public signature, write the target shape first, with files, types, signatures, invariants, and what gets deleted, and review it before writing logic. For a redesign, port old code only where it fits the target, and delete the rest.

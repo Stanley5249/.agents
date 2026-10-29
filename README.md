@@ -40,4 +40,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-[MIT](LICENSE). Parts of the Code section in [`AGENTS.md`](AGENTS.md) and the [`code-design`](skills/code-design/SKILL.md) and [`quality-review`](skills/quality-review/SKILL.md) skills are based on [Ponytail](https://github.com/DietrichGebert/ponytail) by DietrichGebert, also under MIT.
+[MIT](LICENSE). Parts of the Code section in [`AGENTS.md`](AGENTS.md) and the [`code-design`](skills/code-design/SKILL.md) and [`quality-review`](skills/quality-review/SKILL.md) skills are based on [Ponytail](https://github.com/DietrichGebert/ponytail/tree/2961b52fc1fe6a5a87c7a959a79512e5c2f3ffe5) by DietrichGebert, also under MIT.
