@@ -348,7 +348,7 @@ SECTIONS: dict[str, tuple[Callable[[], dict], str]] = {
 
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
-    sections = "\n".join(f"  {name:<10}{help}" for name, (_, help) in SECTIONS.items())
+    sections = "\n".join(f"  {name:<13}{help}" for name, (_, help) in SECTIONS.items())
     parser = argparse.ArgumentParser(
         prog="sysinfo.py",
         description=__doc__,
