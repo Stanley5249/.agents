@@ -18,7 +18,7 @@ I am Stanley, a CSIE master's student from Taiwan whose first language is Tradit
 Check that a tool exists before relying on it.
 
 - Run Python with `uv run python`, never a global Python, and add `--with <package>` for undeclared packages. Run JavaScript with `bun`, and one-off CLIs with `uvx` or `bunx`.
-- Install global tools with `pixi global`, `uv tool`, `bun install -g`, or `cargo binstall`, and use `winget` or `apt` only when none of them can.
+- For a global tool, prefer `pixi global`, `uv tool`, `bun install -g`, or `cargo binstall`, and use `winget` or `apt` only when none of them can.
 - Write LF line endings from scripts, because text mode writes CRLF on Windows. In Python, use `Path.write_text(text, newline="\n")`.
 - In Git Bash, MSYS rewrites an argument that starts with `/` into a Windows path, so prefix the command with `MSYS_NO_PATHCONV=1` when the argument is not a path.
 - Put a file-editing script in a scratch file when it has backslash escapes or runs past about 80 lines, because inline heredocs and `-c` strings break quoting on the way through the shell.
@@ -47,7 +47,7 @@ Show a preview and ask before:
 
 - Build only what the task needs, and name skipped extras in one line. Prefer existing code, then the standard library, then an installed dependency, over new code or a new dependency.
 - Fix a bug at its root in the shared code, and add a test that fails without the fix. Give other new non-trivial logic one small test.
-- Never cut validation at trust boundaries, error handling that prevents data loss, security, accessibility, hardware calibration, or anything I asked for.
+- Never cut validation at trust boundaries, error handling that prevents data loss, the checks of code you move or merge, security, accessibility, hardware calibration, or anything I asked for.
 - In my own unpublished projects, change interfaces, formats, and schemas in place and remove the old form. Elsewhere keep them compatible, and in my published projects ask before a breaking change.
 
 ## Documents

@@ -17,7 +17,7 @@ You coordinate the loop and own the final judgment. Feedback agents only read an
 
 ## Each round
 
-1. Give the agents the current version, their scope, the applicable rules, and the findings rejected so far with reasons.
+1. Give the agents the current version, their scope, the applicable rules, the findings rejected so far with reasons, and the pending decisions so they skip them.
 2. Ask for actionable findings only, each with a location, a concrete consequence, and a correction, and skip style preferences. Ask the agents to report what they could not check.
 3. Verify each finding against the work. Reject mistaken, duplicate, speculative, and preference-only findings.
 4. Apply a correction that has one clearly right form and needs no approval. Record any other accepted correction as a pending decision, and start the next round.

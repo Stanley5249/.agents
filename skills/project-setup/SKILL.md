@@ -29,6 +29,6 @@ Call the tools directly instead of through the justfile, so a broken recipe and 
 ## Migration
 
 - Audit the repository against these conventions, show each gap with its planned change, and let the user choose which to apply. Work on a task branch.
-- Merge a project `CLAUDE.md` into `AGENTS.md` and delete `CLAUDE.md`, including one that only imports `@AGENTS.md`, because Claude Code reads `AGENTS.md` when no `CLAUDE.md` exists.
+- Merge a project `CLAUDE.md` into `AGENTS.md` and delete `CLAUDE.md`, because Claude Code reads `AGENTS.md` when no `CLAUDE.md` exists. Keep a `CLAUDE.md` that only imports `@AGENTS.md` when contributors may run Claude Code versions that cannot read `AGENTS.md` directly.
 - Commit each accepted change separately, such as a formatter switch, the reformat it causes, and a new `.gitattributes`.
 - After changing line-ending rules, run `git add --renormalize .` and commit the result on its own.
