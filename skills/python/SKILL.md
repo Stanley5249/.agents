@@ -65,6 +65,6 @@ Check the target Python version in `.python-version` or `requires-python` in `py
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings are `fmt` to `uv run ruff format`, the format step of `check` to `uv run --locked ruff format --check`, `lint` to `uv run --locked ruff check`, `typecheck` to `uv run --locked pyrefly check`, and `test` to `uv run --locked pytest`. Use `--locked` in validation recipes so a stale lockfile fails the check before uv can update it.
+Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings are `fmt` to `uv run --locked ruff format`, the format step of `check` to `uv run --locked ruff format --check`, `lint` to `uv run --locked ruff check`, `typecheck` to `uv run --locked pyrefly check`, and `test` to `uv run --locked pytest`. Use `--locked` in every recipe so a stale lockfile fails before uv can update it, and so `fmt` and `check` share one `_fmt-ruff` helper.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.

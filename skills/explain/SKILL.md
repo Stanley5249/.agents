@@ -1,6 +1,6 @@
 ---
 name: explain
-description: Teach a codebase concept through concrete representations, ASCII diagrams, and prediction questions over several turns. Use for guided learning or deep explanations of concepts, types, and APIs.
+description: Teach a codebase concept through concrete representations, ASCII diagrams, and prediction questions over several turns. Use when the user asks for a guided lesson or to be quizzed on a concept, type, or API, not for a one-off explanation.
 ---
 
 # Explain a codebase concept
