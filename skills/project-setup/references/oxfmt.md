@@ -22,7 +22,7 @@ Without `node_modules`, use `https://cdn.jsdelivr.net/npm/oxfmt/configuration_sc
 
 Record only settings that differ from oxfmt's defaults. Check a default in the schema's descriptions instead of guessing, and drop any setting that turns out to match it. The settings below are the ones that usually matter:
 
-- `printWidth`: Prettier's default is 80, so set 80 to keep Prettier-era output unchanged.
+- `printWidth`: oxfmt's default is 100 but Prettier's is 80, so set 80 to keep Prettier-era output unchanged.
 - `svelte`: `{}` enables `.svelte` files and needs the `svelte` package installed.
 - `sortTailwindcss`: `{ "stylesheet": "src/app.css" }` sorts classes for Tailwind CSS v4.
 - `ignorePatterns`: gitignore-style globs, rooted at the directory holding the config.
@@ -60,11 +60,10 @@ The first command formats files in place. `--check` validates formatting while p
 
 ## Agent use
 
-- Write content first and format once before each commit. Never fix formatting by hand, because the formatter rewrites it.
-- Run the formatter on the files you changed, such as `bunx oxfmt <file>...`, so unrelated files stay out of the diff. Run the full `--check` before a commit.
-- Read the `--check` file list as the to-do list, and rerun the formatter on those files instead of editing them.
+- Never fix formatting by hand, because the formatter rewrites it. Read the `--check` file list as the to-do list, and rerun the formatter on those files.
+- Run the formatter on the files you changed, such as `bunx oxfmt <file>...`, so unrelated files stay out of the diff.
 - Re-read a file after formatting it before the next edit tool call, because the formatter may have changed the text.
-- Keep line endings LF. oxfmt defaults to `endOfLine: "lf"`, so leave the setting out.
+- oxfmt defaults to `endOfLine: "lf"`, so leave the setting out.
 
 ## Migration from Prettier
 

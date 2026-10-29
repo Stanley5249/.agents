@@ -1,17 +1,9 @@
-# Rust projects
+---
+name: rust
+description: Rust conventions for panics, cloning, lint suppression, module layout, tracing, Clippy, workspace layout, toolchain pinning, and justfile recipes. Use when writing, reviewing, or setting up Rust code or a Cargo workspace.
+---
 
-## Repository metadata
-
-In `.gitattributes`, configure `Cargo.lock`:
-
-```gitattributes
-Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
-```
-
-## Layout
-
-- Use a workspace with its members under `crates/` or listed in the root `Cargo.toml`'s `[workspace] members`. Start with one even for a single crate when a second is likely, such as a `-core` and `-cli` split, because restructuring later is more disruptive.
-- Keep the `-core` crate free of the UI or framework so `cargo test` alone covers the logic. The app or CLI crate only wires it up.
+# Rust
 
 ## Code
 
@@ -24,11 +16,22 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
 - When a file's tests outgrow its code, move them to `<module>/tests.rs` behind `#[cfg(test)] mod tests;`.
 - With `tracing`, put `#[instrument(skip_all, fields(...))]` on each unit of work, such as a request, a job, or a child process run. Add `err` only where the error is handled. Use `level = "debug"` for a span on a hot path, such as a query a screen calls on every refresh.
 - Tracing messages are constant lowercase phrases, such as `failed to <verb> <object>` or a past-tense event. Variables go in fields with the same names everywhere.
+- For an ad hoc check, run `cargo clippy` instead of `cargo check`.
+
+## Layout
+
+- Use a workspace with its members under `crates/` or listed in the root `Cargo.toml`'s `[workspace] members`. Start with one even for a single crate when a second is likely, such as a `-core` and `-cli` split, because restructuring later is more disruptive.
+- Keep the `-core` crate free of the UI or framework so `cargo test` alone covers the logic. The app or CLI crate only wires it up.
+- In `.gitattributes`, configure `Cargo.lock`:
+
+  ```gitattributes
+  Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+  ```
 
 ## Lint and format
 
-- Tailor `clippy.toml` to each project. Typical settings: `msrv`, `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`, `missing-docs-in-crate-items`. Set only the ones the project needs.
-- Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and have each member opt in with `[lints] workspace = true`. The group needs `priority = -1` so single-lint overrides beside it win. Because `lint` runs with `-D warnings`, pedantic findings fail the gate, so set a lint the project rejects to `"allow"` in the same table. Two restriction lints enforce the `#[expect]` rule in the Code section above:
+- Tailor `clippy.toml` to each project. Typical settings are `msrv`, `doc-valid-idents` for project-specific terms, `allow-unwrap-in-tests`, and `missing-docs-in-crate-items`. Set only the ones the project needs.
+- Enable Clippy's `pedantic` group as warnings in the root `Cargo.toml`, and have each member opt in with `[lints] workspace = true`. The group needs `priority = -1` so single-lint overrides beside it win. Because `lint` runs with `-D warnings`, pedantic findings fail the gate, so set a lint the project rejects to `"allow"` in the same table. Two restriction lints enforce the `#[expect]` rule:
 
   ```toml
   [workspace.lints.clippy]
@@ -37,26 +40,9 @@ Cargo.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   allow_attributes_without_reason = "warn"
   ```
 
-- For an ad hoc check, run `cargo clippy` instead of `cargo check`.
 - `rustfmt.toml` stays at defaults. Only add overrides for a concrete, stated reason.
 
-## Tools
-
-- Ask before creating a worktree, because each one builds its own `target/`.
-- Use these tools:
-  - [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/)
-  - [`cargo-nextest`](https://nexte.st/)
-  - [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov)
-  - [`cargo-sweep`](https://github.com/holmgr/cargo-sweep)
-
-## Release automation
-
-- `cargo-deny` with a `deny.toml` for dependency, license, and advisory checks
-- `release-plz` for automated version bumps and release PRs
-
-Add these once the project ships releases.
-
-## Toolchain pinning
+## Toolchain and tools
 
 Keep `rust-toolchain.toml` minimal. Pin the channel and the required components, and pin an exact version only when a specific regression requires it:
 
@@ -66,9 +52,11 @@ channel = "stable"
 components = ["rustfmt", "clippy"]
 ```
 
+Use [`cargo-nextest`](https://nexte.st/), [`cargo-llvm-cov`](https://github.com/taiki-e/cargo-llvm-cov), and [`cargo-sweep`](https://github.com/holmgr/cargo-sweep). Once the project ships releases, add [`cargo-deny`](https://embarkstudios.github.io/cargo-deny/) with a `deny.toml` for dependency, license, and advisory checks, and `release-plz` for version bumps and release PRs.
+
 ## Justfile
 
-Typical mappings are `fmt` to `cargo fmt --all`, the format step of `check` to `cargo fmt --all --check`, `typecheck` to `cargo check --locked --workspace --all-targets`, `lint` to `cargo clippy --locked --workspace --all-targets -- -D warnings`, and `test` to `cargo test --locked --workspace`. A docs check runs `cargo doc --workspace` with `RUSTDOCFLAGS=-D warnings`. Let `check` and `ci` compose the applicable source-preserving recipes; add `build` or `install` only when the workflow needs an explicit recipe for them.
+Typical mappings are `fmt` to `cargo fmt --all`, the format step of `check` to `cargo fmt --all --check`, `typecheck` to `cargo check --locked --workspace --all-targets`, `lint` to `cargo clippy --locked --workspace --all-targets -- -D warnings`, and `test` to `cargo test --locked --workspace`. A docs check runs `cargo doc --workspace` with `RUSTDOCFLAGS=-D warnings`. Let `check` and `ci` compose the applicable source-preserving recipes, and add `build` or `install` only when the workflow needs an explicit recipe for them.
 
 `--locked` fails the gate when `Cargo.lock` disagrees with `Cargo.toml`, so `ci` also proves the committed lockfile is current and Rust needs no `lock-check` recipe.
 

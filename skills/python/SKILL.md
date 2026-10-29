@@ -1,21 +1,24 @@
-# Python projects
+---
+name: python
+description: Python project conventions for uv, pyproject layout, build backend, ruff, pyrefly, and justfile recipes. Use when writing, reviewing, or setting up Python code or a uv project.
+---
 
-Use uv for package management and virtual environment handling.
+# Python
 
-## Repository metadata
+Use uv for package management and virtual environments. Add packages with `uv add` and let uv manage the project's `.venv`.
 
-In `.gitattributes`, configure `uv.lock`:
+## Code
 
-```gitattributes
-uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
-```
+Check the target Python version in `.python-version` or `requires-python` in `pyproject.toml` before writing code, and use the latest syntax that version supports.
 
 ## Layout
 
 - Keep `pyproject.toml`, `uv.lock`, and a pinned `.python-version` at the repository root.
-- Add packages with `uv add` and let uv manage the project's `.venv`.
+- In `.gitattributes`, configure `uv.lock`:
 
-## Build backend
+  ```gitattributes
+  uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
+  ```
 
 - For packaged libraries, use uv's native build backend:
 
@@ -25,16 +28,12 @@ uv.lock merge=binary linguist-language=TOML linguist-generated=true -diff
   build-backend = "uv_build"
   ```
 
-- For standalone applications or scripts that do not publish wheels, disable package building in `pyproject.toml`:
+- For standalone applications or scripts that do not publish wheels, disable package building:
 
   ```toml
   [tool.uv]
   package = false
   ```
-
-## Python version and syntax
-
-Check the target Python version in `.python-version` or `pyproject.toml` (`requires-python`) before writing code, and use the latest syntax supported by that version.
 
 ## Lint, format, and type checking
 
@@ -66,6 +65,6 @@ Check the target Python version in `.python-version` or `pyproject.toml` (`requi
 
 ## Justfile
 
-Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings include `fmt` through `uv run ruff format`, the format step of `check` through `uv run --locked ruff format --check`, `lint` through `uv run --locked ruff check`, `typecheck` through `uv run --locked pyrefly check`, and `test` through `uv run --locked pytest`. Use `--locked` in validation recipes so stale lockfiles fail the check before uv can update them.
+Put commands in justfile recipes that invoke local executables through `uv run`. Typical mappings are `fmt` to `uv run ruff format`, the format step of `check` to `uv run --locked ruff format --check`, `lint` to `uv run --locked ruff check`, `typecheck` to `uv run --locked pyrefly check`, and `test` to `uv run --locked pytest`. Use `--locked` in validation recipes so a stale lockfile fails the check before uv can update it.
 
 Add a `lock-check` recipe that runs `uv lock --check` and include it in `ci`.
