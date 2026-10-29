@@ -3,7 +3,9 @@
 # ///
 """Print environment and machine facts as UTF-8 JSON.
 
-Requires Python 3.12+. Environment facts describe this Python process.
+Requires Python 3.12+. Environment facts describe this Python process, and
+paths are native to it, so convert them with cygpath or wslpath before using
+them in Git Bash or across Windows and WSL.
 """
 
 import argparse
